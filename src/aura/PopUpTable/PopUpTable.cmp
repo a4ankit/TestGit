@@ -1,0 +1,40 @@
+<aura:component  controller="AccountHelper" >
+    <!-- attributes -->
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="Account" type="Account" default="{ 'sobjectType': 'Account',
+                                                           'Name': ''}"/>
+    <aura:attribute name="options" type="string[]"/>
+    <aura:attribute name="AccountList" type="Account[]"/>
+    <aura:attribute name="Columns" type="List"/>
+    <aura:registerEvent name="loadMyData" type="c.passData" />
+    <div>
+        <div>
+            <lightning:layout >
+                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none" style="margin-top:10px" title="Search by Account Name">
+                    <input type="text" class="form-control" onkeyup="{!c.searchKeyChange}" placeholder="Search by Name" />
+                </div>
+            </lightning:layout>
+        </div>
+        <div>  
+            <ui:inputSelect aura:id="activity" label="Activity"
+                    class="slds-input"
+                    labelClass="slds-form-element__label"
+                    value="{!v.Account.BillingCity}"
+                    required= "true" >
+            </ui:inputSelect>
+                            
+            
+        </div>
+    </div>
+    <div style="height: 500px">
+        <lightning:datatable data="{!v.AccountList }" 
+                             keyField="id" 
+                             columns="{!v.Columns }" 
+                             onsort="{!c.updateColumnSorting}" 
+                             sortedBy="{!v.sortedBy}" 
+                             sortedDirection="{!v.sortedDirection}" 
+                             onrowselection="{!c.getSelectedName}"
+                             enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                             />
+    </div>
+</aura:component>

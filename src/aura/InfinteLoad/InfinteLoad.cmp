@@ -1,0 +1,89 @@
+<aura:component controller="AccountHelper" implements="force:appHostable">
+    <!-- attributes -->
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:handler event="c.passData" action="{!c.add}" />
+    <aura:attribute name="Account" type="Account" default="{ 'sobjectType': 'Account',
+                                                           'Name': ''}"/>
+    <aura:attribute name="AccountList" type="Account[]"/>
+    <aura:attribute name="Columns" type="List"/>
+    <aura:attribute name="saveForm" type="Boolean" default="false" />
+    <aura:attribute name="selected" type="Boolean" default="false" />
+    <aura:attribute name="add" type="Boolean" default="false" />   
+    <aura:attribute name="saveAccount" type="Account"/>
+    <aura:attribute name="isOpen" type="boolean" default="false" />
+    <aura:attribute name="currentCount" type="Integer" default="100" />
+    <aura:attribute name="initialRows" type="Integer" default="100" />
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0" />
+    <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true" />
+    <aura:attribute name="rowsToLoad" type="Integer" default="100" />
+    <aura:attribute name="loadMoreOffset" type="Integer" default="100" />
+    <aura:attribute name="totalNumberOfRows" type="Integer" default="1000"/>
+    <aura:attribute name="loadMoreStatus" type="String" />
+    <!-- toolbox -->
+    <div>
+        <button class="slds-button slds-button--brand slds-align_absolute-left" onclick="{!c.openModel}">Assigned Location Filter</button> <br/><br/>
+    </div>
+    <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->   
+    <aura:if isTrue="{!v.isOpen}">
+        
+        <!--###### MODAL BOX Start From Here ######--> 
+        <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModel}">
+                        X
+                        <span class="slds-assistive-text">Assigned Location Filter</span>
+                    </button>
+                    <h2 class="slds-text-heading--medium slds-color-text-icon-brand">Assign by Search and Filter</h2>
+                </div>
+                <!--###### MODAL BOX BODY Part Start From Here ######-->
+                <div class="slds-modal__content slds-p-around--medium">
+                    <c:PopUpTable />
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.closeModel}" >Close</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.add}">Add Selected Accounts</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+    </aura:if>
+    <div class="slds-is-relative">
+        <div class="slds-m-vertical_small">
+            <h1 class="slds-m-vertical_small">Total Rows: {! v.AccountList.length }</h1>
+            <!--<h1 class="slds-m-vertical_small">Selected Rows: {! v.selectedRowsCount }</h1>
+            
+           <div class="input-group">
+                <lightning:input type="toggle" label="Enable Infinite Loading" name="inputInfiniteLoading" checked="{! v.enableInfiniteLoading }"/>
+                <lightning:input type="number" label="Rows To Load" name="inputRowsToLoad" value="{! v.rowsToLoad }"/>
+                <lightning:input type="number" label="Load More Threshold in px" name="inputloadMoreOffset" value="{! v.loadMoreOffset }"/>
+            
+            </div>-->
+            <!-- <div class="input-group">
+                <lightning:button label="Reset" onclick="{! c.resetRows }"/>
+            </div>-->
+        </div>
+        
+        <!-- the container element determine the height of the datatable -->
+        <div style="height: 500px">
+            <lightning:datatable data="{!v.AccountList }" 
+                                 keyField="id" 
+                                 columns="{!v.Columns }" 
+                                 showRowNumberColumn="true"
+                                 onsort="{!c.updateColumnSorting}" 
+                                 sortedBy="{!v.sortedBy}" 
+                                 sortedDirection="{!v.sortedDirection}" 
+                                 onrowselection="{!c.getSelectedName}"
+                                 enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                                 loadMoreOffset="{!v.loadMoreOffset }"
+                                 onloadmore="{!c.loadMoreData }"
+                                 onrowaction="{! c.delRow }"
+                                 onsave="{!c.handleSave}"
+                                 />
+        </div>
+        {! v.loadMoreStatus }
+    </div>
+</aura:component>

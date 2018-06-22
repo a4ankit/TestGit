@@ -1,0 +1,21 @@
+<aura:component >
+    <lightning:layout >
+        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none" style="margin-top:10px">
+            <input type="text" class="form-control" onkeyup="{!c.searchKeyChange}" placeholder="Search" />
+            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning:icon iconName="utility:search" size="xx-small" alternativeText="Indicates approval"/>
+            </span>
+        </div>
+    </lightning:layout>
+    <!--<div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none" style="margin-top:10px">
+          
+                <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                    <lightning:icon iconName="utility:search" size="xx-small" alternativeText="Indicates approval"/>
+                </span>
+                <lightning:input value="{!v.searchKey}"
+                                 placeholder="Search Accounts.."
+                                 aura:id="searchField"
+                                 type="search" label=""/>                      
+            </span>
+        </div>-->
+</aura:component>

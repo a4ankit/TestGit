@@ -1,0 +1,172 @@
+<aura:component description="Encapsulates message personalization for one or more Campaign Members">
+    <aura:attribute name="journeyId" type="String" required="true" description="The associated MarketingCloudJourney__x record ID"/>
+    <aura:attribute name="members" type="Object[]" required="true" description="Campaign Member(s) in context"/>
+    <aura:attribute name="selectedActivity" type="Object" description="The currently selected activity"/>
+    <aura:attribute name="showMemberCount" type="Boolean" default="true" description="Indicates whether to show the member count label"/>
+
+    <aura:attribute name="p13nChangeTimeoutId" type="Integer" access="private" description="The timeout id for debouncing the p13n Changed Event"/>
+    <aura:attribute name="introValid" type="Boolean" access="private" default="true" description="Validity flag for the intro text field"/>
+    <aura:attribute name="closingValid" type="Boolean" access="private" default="true" description="Validity flag for the intro closing field"/>
+    <aura:attribute name="p13nValidationMap" type="Object" access="private" description="Stores validation checks for personalizations"/>
+    <aura:attribute name="disabledRTECategories" type="String" access="private" default="FORMAT_FONT" description="A comma-separated list of button categories to remove from the RTE toolbars. See lightning:inputRichText"/>
+    <aura:attribute name="ignoreFieldChanges" type="Boolean" access="private" default="false" description="Indicates whether field changes should be ignored due to them changing programmatically"/>
+    <aura:attribute name="intro" type="String" access="private" description="The introduction value"/>
+    <aura:attribute name="closing" type="String" access="private" description="The conclusion value"/>
+    <aura:attribute name="multiValueFlags" type="Object" access="private" description="Contains a flag for each P13n field to indicate whether the field contains multiple values"/>
+    <aura:attribute name="savedP13n" type="Object" access="private" description="A map of saved personalization values for all messages on the target MC Journey"/>
+    <aura:attribute name="currentP13n" type="Object" access="private" description="A map of current personalization values for all messages on the target MC Journey"/>
+    <aura:attribute name="isLoading" type="String" access="private" default="true" description="Indicates whether the component is loading"/>
+    <aura:attribute name="activityCount" type="Integer" access="private" default="0" description="The total number of activities on the target MC Journey"/>
+    <aura:attribute name="activityIndex" type="Integer" access="private" default="0" description="The index of the currently selected activity"/>
+
+    <aura:registerEvent name="personalizationChanged" type="mcdm_15:JourneyApprovalsPersonalizationChanged"/>
+
+    <aura:handler name="change" value="{!v.intro}" action="{!c.handleIntroductionChanged}"/>
+    <aura:handler name="change" value="{!v.closing}" action="{!c.handleClosingChanged}"/>
+
+    <aura:method name="applyChanges" action="{!c.applyChanges}" description="Applies any changes made to the referenced members array">
+    </aura:method>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/journey.js',
+            $Resource.mcdm_15__StaticAssets + '/values.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div>
+        <div class="{!v.isLoading ? '' : 'slds-hide'}">
+            <force:placeholder name="detail"/>
+        </div>
+        <div class="{!v.isLoading ? 'slds-hide' : ''}">
+            <!-- Message -->
+            <div class="slds-m-bottom_xx-large">
+                <div class="slds-grid slds-grid_align-spread">
+                    <div class="slds-text-heading_small bold-font">{!$Label.mcdm_15.message}</div>
+                    <aura:if isTrue="{#v.showMemberCount}">
+                        <div>
+                            {!$Label.mcdm_15.modifying}
+                            <span class="slds-m-left_xx-small bold-font">
+                                {!format(v.members.length == 1 ? $Label.mcdm_15.nMember : $Label.mcdm_15.nMembers, v.members.length)}
+                            </span>
+                        </div>
+                    </aura:if>
+                </div>
+
+                <div class="slds-grid slds-grid_align-spread slds-m-vertical_small">
+                    <mcdm_15:Autocomplete aura:id="messageAutocomplete"
+                        placeholder="{!$Label.mcdm_15.selectMcMessage}"
+                        label="{!$Label.mcdm_15.message}"
+                        selectionChanged="{!c.handleMessageSelectionChanged}"
+                        class="autocomplete slds-m-right_small">
+                        <aura:set attribute="dataProvider">
+                            <mcdm_15:JourneyActivityDataProvider aura:id="messageDataProvider"
+                                journeyId="{#v.journeyId}"
+                                asyncLoadComplete="{!c.handleMessageDataProviderLoaded}"
+                                activityCount="{!v.activityCount}"
+                            />
+                        </aura:set>
+                    </mcdm_15:Autocomplete>
+                    <div>
+                        <div class="slds-text-align_center slds-m-bottom_xx-small">
+                            <div class="{!(v.activityCount ? 'slds-hide ' : '') + ' slds-align_absolute-center slds-m-vertical_x-small'}"></div>
+                            <span class="{!v.activityCount ? '' : 'slds-hide'}">{!format($Label.mcdm_15.xOfTotal, v.activityIndex + 1, v.activityCount)}</span>
+                        </div>
+                        <lightning:buttonGroup >
+                            <lightning:buttonIcon iconName="utility:left"
+                                alternativeText="{!$Label.mcdm_15.previousMessage}"
+                                onclick="{!c.handlePrevMessageClick}"
+                                disabled="{!v.activityCount == 1}"
+                            />
+
+                            <lightning:buttonIcon iconName="utility:right"
+                                alternativeText="{!$Label.mcdm_15.nextMessage}"
+                                onclick="{!c.handleNextMessageClick}"
+                                disabled="{!v.activityCount == 1}"
+                            />
+                        </lightning:buttonGroup>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalization Options -->
+            <div>
+                <div class="slds-grid slds-grid_align-spread">
+                    <div class="slds-text-heading_small bold-font">{!$Label.mcdm_15.personalizationOptions}</div>
+                    <div>
+                        <lightning:button aura:id="undoButton"
+                            class="slds-button slds-button_neutral"
+                            disabled="true"
+                            label="{!$Label.mcdm_15.undo}"
+                            onclick="{!c.handleUndoClick}"
+                        />
+                    </div>
+                </div>
+
+                <!-- Intro -->
+                <div class="slds-m-top_small">
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_xx-small">
+                        <ui:label class="slds-form-element__label" label="{!$Label.mcdm_15.personalizationIntro}">
+                            <lightning:icon iconName="utility:info"
+                                size="xx-small"
+                                class="slds-m-left_xxx-small"
+                                title="{!v.members.length > 1 ? $Label.mcdm_15.personalizationIntroMultipleValues : $Label.mcdm_15.personalizationIntroPlaceholder}"
+                                alternativeText="{!$Label.mcdm_15.helpAlternativeText}"
+                            />
+                        </ui:label>
+                    </div>
+
+                    <div class="rich-text-container">
+                        <div
+                            onclick="{!c.handleMultiValueMessageClick}"
+                            data-localId="intro"
+                            class="{!(v.multiValueFlags.intro ? '' : 'slds-hide ') + 'slds-theme_shade slds-p-around_small rich-text-notification'}"
+                        >
+                            <p>{!$Label.mcdm_15.differentP13nValues}</p>
+                        </div>
+                        <lightning:inputRichText aura:id="intro"
+                            value="{!v.intro}"
+                            disabledCategories="{!v.disabledRTECategories}"
+                            valid="{!v.introValid}"
+                        >
+                            <force:quillButtonLink />
+                        </lightning:inputRichText>
+                    </div>
+                    <p class="{! v.introValid ? 'slds-hide' : 'slds-text-color_error'}">{!$Label.mcdm_15.p13nTooLargeError}</p>
+                </div>
+
+                <!-- Conclusion -->
+                <div class="slds-m-top_small">
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_xx-small">
+                        <ui:label class="slds-form-element__label" label="{!$Label.mcdm_15.personalizationClosing}">
+                            <lightning:icon iconName="utility:info"
+                                size="xx-small"
+                                class="slds-m-left_xxx-small"
+                                title="{!v.members.length > 1 ? $Label.mcdm_15.personalizationClosingMultipleValues : $Label.mcdm_15.personalizationClosingPlaceholder}"
+                                alternativeText="{!$Label.mcdm_15.helpAlternativeText}"
+                            />
+                        </ui:label>
+                    </div>
+
+                    <div class="rich-text-container">
+                        <div
+                            onclick="{!c.handleMultiValueMessageClick}"
+                            data-localId="closing"
+                            class="{!(v.multiValueFlags.closing ? '' : 'slds-hide ') + 'slds-theme_shade slds-p-around_small rich-text-notification'}"
+                        >
+                            <p>{!$Label.mcdm_15.differentP13nValues}</p>
+                        </div>
+                        <lightning:inputRichText aura:id="closing"
+                            value="{!v.closing}"
+                            disabledCategories="{!v.disabledRTECategories}"
+                            valid="{!v.closingValid}"
+                        >
+                            <force:quillButtonLink />
+                        </lightning:inputRichText>
+                    </div>
+                    <p class="{! v.closingValid ? 'slds-hide' : 'slds-text-color_error'}">{!$Label.mcdm_15.p13nTooLargeError}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

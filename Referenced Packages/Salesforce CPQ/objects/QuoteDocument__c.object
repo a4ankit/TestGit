@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>QuoteDocumentHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Particular version of a generated PDF document for the quote it&apos;s attached to. Ability to edit or delete this object should be taken away from all users (except administrators, of course) in order to preserve audit trail of all revisions.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AttachmentId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of attachment record generated for this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of attachment record generated for this document.</inlineHelpText>
+        <label>Attachment Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CustomerAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Customer amount on the quote at the time this document was generated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer amount on the quote at the time this document was generated.</inlineHelpText>
+        <label>Customer Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DocumentId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the Document record which contains its generated PDF.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of the Document record which contains its generated PDF.</inlineHelpText>
+        <label>Document Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ElectronicSignature__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates this document was generated for electronic signature.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field for the document to be signed electronically.</inlineHelpText>
+        <label>Electronic Signature</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>Key used to ensure unique combination of quote ID and version number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Key used to ensure unique combination of quote ID and version number.</inlineHelpText>
+        <label>Key</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ListAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List amount of the quote at the time this document was generated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List amount of the quote at the time this document was generated.</inlineHelpText>
+        <label>List Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NetAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Net amount on the quote at the time this document was generated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Net amount on the quote at the time this document was generated.</inlineHelpText>
+        <label>Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the Opportunity that parents the Quote for this document. References the opportunity on the quote for this document, allowing the Opportunity Quote Documents Related List to reside on the Opportunity as well as the Quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the Opportunity that parents the Quote for this document.</inlineHelpText>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Quote Documents</relationshipLabel>
+        <relationshipName>R00N700000029COgEAM</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OutputFormat__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Output format of this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the output format for this document.</inlineHelpText>
+        <label>Output Format</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PDF</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>MS Word</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PaperSize__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Paper size of this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the paper size for this document.</inlineHelpText>
+        <label>Paper Size</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PaperSize</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PrimaryContactId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of primary contact in the quote. Used in Email button to default the To field.</description>
+        <externalId>false</externalId>
+        <formula>Quote__r.PrimaryContact__c</formula>
+        <inlineHelpText>References the primary contact for the quote to be used on the Email button, which defaults the To field.</inlineHelpText>
+        <label>Primary Contact Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QuoteTemplate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Quote Template that generated this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Quote Template that generated this document.</inlineHelpText>
+        <label>Quote Template</label>
+        <referenceTo>QuoteTemplate__c</referenceTo>
+        <relationshipLabel>Quote Documents</relationshipLabel>
+        <relationshipName>Quote_Documents</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Quote__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Quote to which this Quote Document belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Quote to which this Quote Document belongs.</inlineHelpText>
+        <label>Quote</label>
+        <referenceTo>Quote__c</referenceTo>
+        <relationshipLabel>Quote Documents</relationshipLabel>
+        <relationshipName>R00N70000001lX7YEAU</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>SignatureStatus__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of electronic signature.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of electronic signature.</inlineHelpText>
+        <label>Signature Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sent</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Signed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Revoked</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Template__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of the template used to generate this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the template used to generate this document.</inlineHelpText>
+        <label>Template</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Sequentially incremented version number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sequentially incremented version number.</inlineHelpText>
+        <label>Version</label>
+        <precision>10</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ViewRecordId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows user to view the Quote Document Record Id.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(AttachmentId__c),DocumentId__c,AttachmentId__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Allows user to view the Quote Document Record Id.</inlineHelpText>
+        <label>View Record Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Quote Document</label>
+    <nameField>
+        <label>Document Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Quote Documents</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Quote__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Template__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UPDATEDBY_USER</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Email</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>0</height>
+        <linkType>page</linkType>
+        <masterLabel>Email</masterLabel>
+        <openType>sidebar</openType>
+        <page>EmailDocument</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>View</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>false</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>0</height>
+        <isResizable>false</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>View</masterLabel>
+        <openType>newWindow</openType>
+        <page>ViewDocument</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <width>800</width>
+    </webLinks>
+</CustomObject>

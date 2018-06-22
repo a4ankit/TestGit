@@ -1,0 +1,8 @@
+<apex:page showHeader="false">
+    <h1>
+        This is a heading
+    </h1>
+    <apex:pageBlock >
+    <apex:image id="theImage" value="https://developer.salesforce.com/files/salesforce-developer-network-logo.png" width="220" height="55" alt="Description of image here"/>
+	</apex:pageBlock>
+</apex:page>

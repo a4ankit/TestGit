@@ -1,0 +1,14 @@
+.THIS .bold {
+	font-weight: 700;
+}
+.THIS div::-webkit-scrollbar {
+    width: 12px;
+}
+.THIS div::-webkit-scrollbar-track {
+	border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+.THIS div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,25 @@
+.THIS table{
+	position: relative;
+}
+
+.THIS .dragColumn > div > img{
+	height: 10px;
+    width: 30px;
+}
+
+.THIS td:not(.dragColumn){
+	margin-left: 0px; 
+	padding-left: 0px; 
+	vertical-align:left;
+}
+
+.THIS .editcolumn {
+	vertical-align: middle;
+	padding-right: 1rem;
+}
+
+.THIS td.dragColumn, .THIS .removecolumn  {
+	vertical-align: middle;
+	padding: 0 !important;
+	text-align: center;
+}

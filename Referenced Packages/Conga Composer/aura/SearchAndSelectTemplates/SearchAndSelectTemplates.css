@@ -1,0 +1,47 @@
+.THIS div::-webkit-scrollbar {
+    width: 12px;
+}
+
+.THIS div::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.THIS div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.THIS .borderless {
+	padding: 1rem;
+    border-radius: .25rem;
+	border: 1px solid white;
+}
+
+.THIS .searchresultbox {
+	padding-right: 0px;
+}
+
+.THIS .searchResultHeight {
+	height:35vh;
+}
+
+.THIS .templatecard {
+	background-color: white; 
+	width:100%;
+}
+
+.THIS .templatecard .templatetitle {
+	font-size:.875rem;
+	font-weight:700;
+}
+
+.THIS .templatecard .templategroup {
+	font-size:.8125rem;
+	font-weight:500;
+}
+
+.THIS .templatecard .templatedescription {
+	font-size:.625rem;
+	font-weight:500;
+}

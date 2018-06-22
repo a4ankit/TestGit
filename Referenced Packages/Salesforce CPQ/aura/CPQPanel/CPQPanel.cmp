@@ -1,0 +1,29 @@
+<aura:component description="CPQPanel" implements="forceCommunity:availableForAllPageTypes" access="global" controller="SBQQ.PageActionController">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:attribute name="orientation" type="String" access="global"/>
+	<aura:attribute name="recordId" type="String" access="global"/>
+	<aura:attribute name="pageActions" type="Object[]"/>
+	<aura:attribute name="style" type="String" access="global"/>
+	<aura:attribute name="title" type="String" default="Quote Editor Actions" access="global"/>
+
+	<aura:if isTrue="{!v.orientation == 'Horizontal'}">
+		<div style="{!v.style}" class="slds-button-group" role="group">
+			<aura:if isTrue="{!v.title != ''}">
+				<div class="title-horizontal">{!v.title}</div>
+			</aura:if>
+			<aura:iteration var="item" items="{!v.pageActions}">
+				<ui:button class="slds-button slds-button--neutral" label="{!item.label}" press="{!c.navigateToPage}"/>
+			</aura:iteration>
+		</div>
+	</aura:if>
+	<aura:if isTrue="{!v.orientation == 'Vertical'}">
+		<div style="{!v.style}" role="group">
+			<aura:if isTrue="{!v.title != ''}">
+				<div class="title-vertical">{!v.title}</div>
+			</aura:if>
+			<aura:iteration var="item" items="{!v.pageActions}">
+				<ui:outputURL class="vertical" label="{!item.label}" click="{!c.navigateToPage}"/>
+			</aura:iteration>
+		</div>
+	</aura:if>
+</aura:component>

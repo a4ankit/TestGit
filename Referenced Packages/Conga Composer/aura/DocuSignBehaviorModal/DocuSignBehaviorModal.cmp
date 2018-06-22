@@ -1,0 +1,26 @@
+<aura:component extends="APXTConga4:BaseModal">
+	<aura:attribute type="List" name="DocuSignRecipients" />
+	<aura:attribute type="String" name="signingOrder" />
+	<aura:attribute type="String" name="recipientId" />
+	<aura:attribute type="String" name="recipientType" />
+	<aura:attribute type="String" name="recipientRole" />
+	<aura:set attribute="header" value="Add Recipient" />
+	<aura:set attribute="acceptLabel" value="Add" />
+	<aura:method name="saveModal" action="{!c.saveRecipient}" />
+	<aura:method name="openAddModal" action="{!c.addRecipient}" />
+	<aura:method name="openEditModal" action="{!c.editRecipient}">
+		<aura:attribute name="idToEdit" type="String" />
+	</aura:method>
+	<fieldset class="slds-form slds-form_stacked">
+		<lightning:input aura:id="recipientId" name="recipientId" label="{!$Label.apxtconga4.Recipient_Id}" required="true" value="{!v.recipientId}" />
+		<lightning:select aura:id="recipientType" name="recipientType" label="{!$Label.apxtconga4.Recipient_Type}" required="true" value="{!v.recipientType}">
+			<option value="">{!$Label.apxtconga4.Select_Option_None}</option>
+			<option value="{!$Label.apxtconga4.Recipient_Signer}">{!$Label.apxtconga4.Recipient_Signer}</option>
+			<option value="{!$Label.apxtconga4.Recipient_Carbon_Copy}">{!$Label.apxtconga4.Recipient_Carbon_Copy}</option>
+			<option value="{!$Label.apxtconga4.Recipient_Certified_Delivery}">{!$Label.apxtconga4.Recipient_Certified_Delivery}</option>
+			<option value="{!$Label.apxtconga4.Recipient_Address_Recipients}">{!$Label.apxtconga4.Recipient_Address_Recipients}</option>
+			<option value="{!$Label.apxtconga4.Recipient_Message_Envelope}">{!$Label.apxtconga4.Recipient_Message_Envelope}</option>
+		</lightning:select>
+		<lightning:input aura:id="recipientRole" name="recipientRole" label="{!$Label.apxtconga4.Recipient_Role}" required="true" value="{!v.recipientRole}" />
+	</fieldset>
+</aura:component>

@@ -1,0 +1,9 @@
+<apex:page controller="NewCaseListController">
+    <apex:repeat value="{! NewCases}" var="case">
+    <apex:outputLink value="/{!case.id}">
+        Case Id<li>{!case.id}</li>
+    
+    
+    </apex:outputLink>
+    </apex:repeat>
+</apex:page>

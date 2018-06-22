@@ -1,0 +1,4 @@
+<aura:component extends="APXTConga4:TreeView" controller="APXTConga4.sObjectRecordController">
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  
+</aura:component>

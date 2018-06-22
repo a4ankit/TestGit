@@ -1,0 +1,28 @@
+<aura:component description="Allows users to configure settings related to the pending approvals plugin component.">
+    <aura:attribute name="hideIfNoPlugin" type="boolean" default="true" description="Indicates whether the component should be hidden if no plugin is configured"/>
+    <aura:attribute name="isPluginConfigured" type="boolean" access="private" default="false" description="Indicates whether the plugin has been set or not"/>
+    <aura:attribute name="tabName" type="String" access="private" description="The custom label value."/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:method name="applyChanges" action="{!c.handleApplyChanges}" description="Persists any modified plugin settings."/>
+
+    <mcdm_15:PluginSettingsService aura:id="pluginSettingsService"/>
+
+    <aura:if isTrue="{!v.isPluginConfigured || !v.hideIfNoPlugin}">
+        <div class="slds-box slds-m-top_large">
+            <h4 class="slds-text-heading_medium">{!$Label.mcdm_15.pluginSettingsTitle}</h4>
+            <p class="slds-text-body_regular slds-m-bottom_medium slds-p-bottom_small slds-border_bottom">
+                {!$Label.mcdm_15.pluginSettingsDescription}
+            </p>
+
+            <div class="slds-form slds-form_stacked">
+                <lightning:input type="text"
+                    label="{!$Label.mcdm_15.pluginSettingsTabLabel}"
+                    name="pluginTabName"
+                    value="{!v.tabName}"
+                    maxlength="25"
+                />
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

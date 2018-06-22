@@ -1,0 +1,18 @@
+<aura:component >
+	<aura:attribute name="allowEdit" type="Boolean" default="True" />
+	<aura:attribute name="columnValue" type="String" />
+	<aura:attribute name="isPopoverVisible" type="Boolean" default="False" />
+	<aura:handler name="closeEditEvent" event="APXTConga4:CongaEvent" action="{!c.captureCloseEditEvent}" />
+	
+	<td class="slds-cell-edit">
+    	<div class="slds-grid slds-grid_align-spread editableColumn" onclick="{!c.onEditClick}">
+      		<span class="" title="{!v.columnValue}" >
+				{!v.columnValue}
+			</span>
+			<lightning:buttonIcon iconName="utility:edit" variant="bare"/>
+		</div>
+		<aura:if isTrue="{!v.isPopoverVisible}">
+			<APXTConga4:EditableColumnInput columnValue="{!v.columnValue}" />
+		</aura:if>
+	</td>
+</aura:component>

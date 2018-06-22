@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Product instance attribute.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AppliedImmediately__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Flag that indicates changes to this configuration attribute should apply immediately.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Apply Immediately</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>True</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>False</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ApplyToProductOptions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Apply configuration attribute selection to product options.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Apply To Product Options</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>True</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>False</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AttributeSet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Attribute Set</label>
+        <referenceTo>AttributeSet__c</referenceTo>
+        <relationshipLabel>Attribute Items</relationshipLabel>
+        <relationshipName>Product_Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Attribute__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Configuration Attribute this product attribute inherits.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Configuration Attribute this product attribute inherits.</inlineHelpText>
+        <label>Configuration Attribute</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>The related configuration attribute must be global</errorMessage>
+            <filterItems>
+                <field>ConfigurationAttribute__c.Product__c</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ConfigurationAttribute__c</referenceTo>
+        <relationshipLabel>Attribute Items</relationshipLabel>
+        <relationshipName>ProductAttributes</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>AutoSelect__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Set the value of this attribute when adding a product from a Dynamic Feature using the value of the added product&apos;s matching field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Auto-Select</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>True</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>False</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>HiddenValues__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Values from the backing picklist field that should be hidden on this bundle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Hidden Values</label>
+        <length>5000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Hidden__c</fullName>
+        <deprecated>false</deprecated>
+        <description>If flagged as hidden, the Configuration Attribute will not appear on the Product Configurator Page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Hidden</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>True</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>False</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Required__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the attributes requires a value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Required</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>True</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>False</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Order in which this attribute is displayed</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShownValues__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Values from the backing picklist field that should be shown on this bundle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unsupported Field</inlineHelpText>
+        <label>Shown Values</label>
+        <length>5000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TargetField__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>TEXT(Attribute__r.TargetField__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Attribute Item</label>
+    <nameField>
+        <displayFormat>PA-{0000000}</displayFormat>
+        <label>Item Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Attribute Items</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

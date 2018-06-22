@@ -1,0 +1,61 @@
+<aura:component description="Allows users to preview and specify personalization options for a specified set of Campaign Members">
+    <aura:attribute name="journeyId" type="String" required="true" description="The associated MarketingCloudJourney__x record ID"/>
+    <aura:attribute name="members" type="Object[]" required="true" default="[]" description="The currently selected campaign members"/>
+
+    <aura:attribute name="selectedActivity" type="Object" access="private" description="The currently selected activity"/>
+    <aura:attribute name="pluginCustomData" type="Map" access="private" description="Contains custom data provided by a plugin component"/>
+    <aura:attribute name="dirtyFlags" type="Object" access="private" description="Contains fields that identify which child components are dirty"/>
+    <aura:attribute name="areP13nsValid" type="Boolean" access="private" default="true" description="Indicates whether the personalization data passes validation"/>
+
+    <aura:handler event="mcdm_15:JourneyApprovalsDataProvided" action="{!c.handleDataProvided}" phase="capture"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:registerEvent name="personalizationChanged" type="mcdm_15:JourneyApprovalsPersonalizationChanged"/>
+
+    <aura:method name="applyChanges" action="{!c.applyChanges}" description="Applies any changes made to the referenced members array"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/values.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+    />
+
+    <mcdm_15:PluginSettingsService aura:id="pluginSettingsService"/>
+
+    <div class="slds-grid">
+        <div class="slds-size_3-of-7 slds-p-right_small">
+            <ui:tabset aura:id="tabset">
+                <!-- EDIT -->
+                <ui:tab title="{!$Label.mcdm_15.edit}">
+                    <div class="slds-m-top_large">
+                        <mcdm_15:MessagePersonalization aura:id="messagePersonalization"
+                            members="{#v.members}"
+                            journeyId="{#v.journeyId}"
+                            selectedActivity="{!v.selectedActivity}"
+                            personalizationChanged="{!c.handleMessageP13nChanged}"
+                        />
+                    </div>
+                </ui:tab>
+
+                <!-- SEND SETTINGS -->
+                <ui:tab title="{!$Label.mcdm_15.sendSettingsTitle}">
+                    <div class="slds-m-top_large">
+                        <mcdm_15:SendSettings aura:id="sendSettings"
+                            members="{#v.members}"
+                            personalizationChanged="{!c.handleSendSettingsChanged}"
+                        />
+                    </div>
+                </ui:tab>
+            </ui:tabset>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="slds-size_4-of-7">
+            <mcdm_15:JourneyApprovalsEmailPreview aura:id="emailPreview" activity="{!v.selectedActivity}">
+                <aura:set attribute="memberDataProvider">
+                    <mcdm_15:ClientSideDataProvider aura:id="memberDataProvider"/>
+                </aura:set>
+            </mcdm_15:JourneyApprovalsEmailPreview>
+        </div>
+    </div>
+</aura:component>

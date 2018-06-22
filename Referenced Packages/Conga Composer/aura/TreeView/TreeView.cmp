@@ -1,0 +1,48 @@
+<aura:component extensible="true" controller="APXTConga4.sObjectRecordController">
+  <aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+  
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  <aura:attribute name="items" type="Array"/>
+  <aura:attribute name="searchedItems" type="Array"/>
+
+  <div class="slds-tree_container" role="application">
+    <!-- <h4 class="slds-text-title-\-caps" id="treeheading">Tree Group Header</h4> -->
+    <div class="slds-form-element">
+      <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+        <lightning:icon iconName="utility:search" size="x-small" class="slds-input__icon slds-icon-text-default"/>
+        <input type="text" id="text-input-01" class="slds-input" placeholder="Search" onkeyup="{!c.searchKeyChange}" />
+      </div>
+    </div>
+    
+    <aura:iteration items="{!v.searchedItems}" var="item">
+      <span class="slds-checkbox">
+          <input type="checkbox" name="options" id="{!item.Id}" onclick="{!c.updateCheckboxes}" />
+          <label class="slds-checkbox__label" for="{!item.Id}">
+            <span class="slds-checkbox--faux"></span>
+            <span class="slds-form-element__label slds-assistive-text"></span>
+          </label>
+        </span>
+        {!item.Id}&nbsp;&nbsp;{!item.APXTConga4__Name__c}&nbsp;{!item.APXTConga4__Template_Group__c}&nbsp;{!item.APXTConga4__Description__c}
+        <br />
+        <!-- <aura:iteration items="{!item.items}" var="item1">
+        {!item1.label} <br />
+      </aura:iteration> -->
+      </aura:iteration>
+    <br />
+    <br />
+    <aura:iteration items="{!v.items}" var="item">
+        {!item.Id}&nbsp;&nbsp;{!item.APXTConga4__Name__c}&nbsp;{!item.APXTConga4__Template_Group__c}&nbsp;{!item.APXTConga4__Description__c}
+        <!-- <aura:iteration items="{!item.items}" var="item1">
+        {!item1.label} <br />
+      </aura:iteration> -->
+      </aura:iteration><br />
+    <br />
+    
+    <!-- <ul class="slds-tree" role="tree" aria-labelledby="treeheading" aria-activedescendant="tree0-node1">
+      <aura:iteration items="{!v.items}" var="item">
+        <c:TreeItem label="{!item.label}" items="{!item.items}" action="{!item.action}" />
+      </aura:iteration>
+    </ul> -->
+  </div>
+
+</aura:component>

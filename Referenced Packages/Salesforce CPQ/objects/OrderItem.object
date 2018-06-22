@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Activated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates if the order product is activated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if the order product is activated.</inlineHelpText>
+        <label>Activated</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Asset created from this order product</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Asset created from this order product</inlineHelpText>
+        <label>Asset</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BillingFrequency__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Defines the billing frequency.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defines the billing frequency.</inlineHelpText>
+        <label>Billing Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>BillingFrequency</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>BillingType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The billing type that defines when the billing occurs. Billing in advance lets you bill your customers for products or services before you provide them; Billing in arrears lets
+            you bill your customers after the products or services are provided.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The billing type that defines when the billing occurs.</inlineHelpText>
+        <label>Billing Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>BillingType</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>BlockPrice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The block price that is applied to this order product at order creation time.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The block price that is applied to this order product at order creation time.</inlineHelpText>
+        <label>Block Price</label>
+        <referenceTo>BlockPrice__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ChargeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of the product charge.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of the product charge.</inlineHelpText>
+        <label>Charge Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ChargeType</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ContractAction__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The contract action where this order product is resulted from.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contract action where this order product is resulted from.</inlineHelpText>
+        <label>Contract Action</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ContractAction</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The contract of the subscription that is created from this order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contract of the subscription that is created from this order product.</inlineHelpText>
+        <label>Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contracted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates if the order product is contracted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if the order product is contracted.</inlineHelpText>
+        <label>Contracted</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractingMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Controls the contracting behavior of an Order Product. &quot;Inherit&quot; uses the behavior of the parent Order. &quot;Contract Separately&quot; generates a separate Contract for
+            the Order Product. &quot;No Contract&quot; skips the Order Product altogether during the contracting process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Controls the contracting behavior of an Order Product.</inlineHelpText>
+        <label>Contracting Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inherit</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Contract Separately</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Do Not Contract</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DefaultSubscriptionTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Term length of the subscription, which only applies if the product is a subscription. It is copied from the Subscription Term of the related product when the line item is first
+            generated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Term length of the subscription, which only applies if the product is a subscription. It is copied from the Subscription Term of the related product when the line item is first
+            generated.</inlineHelpText>
+        <label>Default Subscription Term</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DimensionType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For multi-segmented Products, this is the type of price dimeension (e.g. &quot;YEAR&quot;, &quot;MONTH&quot;, &quot;QUARTER&quot;) of the order item.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For multi-segmented Products, this is the type of price dimeension (e.g. &quot;YEAR&quot;, &quot;MONTH&quot;, &quot;QUARTER&quot;) of the order item.</inlineHelpText>
+        <label>Segment Type</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DiscountSchedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Discount schedule applied to this order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount schedule applied to this order product.</inlineHelpText>
+        <label>Discount Schedule</label>
+        <referenceTo>DiscountSchedule__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OrderedQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The actual quantity of the product placed in the order.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The actual quantity of the product placed in the order.</inlineHelpText>
+        <label>Ordered Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceDimension__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>References the price dimension applied to this order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>References the price dimension applied to this order product.</inlineHelpText>
+        <label>Price Dimension</label>
+        <referenceTo>Dimension__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PriceSchedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Price schedule applied to this order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Price schedule applied to this order product.</inlineHelpText>
+        <label>Price Schedule</label>
+        <referenceTo>PriceSchedule__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProrateMultiplier__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Calculated ratio used to compute Prorated Price.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calculated ratio used to compute Prorated Price.</inlineHelpText>
+        <label>Prorate Multiplier</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QuoteLine__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The quote line where this order product is created from.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The quote line where this order product is created from.</inlineHelpText>
+        <label>Quote Line</label>
+        <referenceTo>QuoteLine__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QuotedListPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List unit price for the product quoted by this line item. List Price originates from the price book.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List unit price for the product quoted by this line item. List Price originates from the price book.</inlineHelpText>
+        <label>Quoted List Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>QuotedQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The quoted quantity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The quoted quantity.</inlineHelpText>
+        <label>Quoted Quantity</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RequiredBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Required By</label>
+        <referenceTo>OrderItem</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>Components</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RevisedOrderProduct__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>References the order product that this order product revises.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>References the order product that this order product revises.</inlineHelpText>
+        <label>Revised Order Product</label>
+        <referenceTo>OrderItem</referenceTo>
+        <relationshipLabel>Order Products (Revised Order Product)</relationshipLabel>
+        <relationshipName>RevisingOrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SegmentIndex__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For multi-segmented products, Index representing this order product&apos;s position in the segment table.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For multi-segmented products, Index representing this order product&apos;s position in the segment table.</inlineHelpText>
+        <label>Segment Index</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SegmentKey__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For multi-segmented Products, this is a shared key used to group multi-dimensional Quote Lines together.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For multi-segmented Products, this is a shared key used to group multi-dimensional Quote Lines together.</inlineHelpText>
+        <label>Segment Key</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingAccount__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Shipping Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>ShippingAccountOrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The current state of the order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the current state of the order product. It is defaulted to Draft when an order is created.</inlineHelpText>
+        <label>Activation Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>OrderProductStatus</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SubscriptionPricing__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Determines how the subscription on this line item is priced. Blank value means this line contains product that&apos;s not a subscription.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates how the subscription price is calculated. If this is blank, the line items is not a subscription product.</inlineHelpText>
+        <label>Subscription Pricing</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>SubscriptionPricing</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SubscriptionTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Subscription Term</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subscription__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Subscription created from this order product</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Subscription created from this order product</inlineHelpText>
+        <label>Subscription</label>
+        <referenceTo>Subscription__c</referenceTo>
+        <relationshipLabel>Order Products</relationshipLabel>
+        <relationshipName>SubscriptionOrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TaxAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Estimated tax amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimated tax amount</inlineHelpText>
+        <label>Estimated Tax</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TaxCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the tax code for taxation rules.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specifies the tax code for taxation rules.</inlineHelpText>
+        <label>Tax code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TermDiscountSchedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Term Discount Schedule applied to this order product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Term Discount Schedule applied to this order product.</inlineHelpText>
+        <label>Term Discount Schedule</label>
+        <referenceTo>DiscountSchedule__c</referenceTo>
+        <relationshipLabel>Order Products (Term Discount Schedule)</relationshipLabel>
+        <relationshipName>TermedOrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TerminatedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that this order product&apos;s related subscription was terminated</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that this order product&apos;s related subscription was terminated</inlineHelpText>
+        <label>Terminated Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UnproratedNetPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The full-term Net Unit Price.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The full term net price for individual line.</inlineHelpText>
+        <label>Full-Term Net Unit Price</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UpgradedSubscription__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Subscription being upgraded by this quote line.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Subscription being upgraded by this quote line. When the quote is contracted this subscription will have its Terminated Date field populated.</inlineHelpText>
+        <label>Upgraded Subscription</label>
+        <referenceTo>Subscription__c</referenceTo>
+        <relationshipLabel>Upgraded Order Products</relationshipLabel>
+        <relationshipName>OrderProducts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <validationRules>
+        <fullName>RecurringChargeTypeMustHaveBillingType</fullName>
+        <active>true</active>
+        <description>When Charge Type is Recurring, a Billing Type must be selected.</description>
+        <errorConditionFormula>AND(ISPICKVAL(ChargeType__c, &apos;Recurring&apos;), ISPICKVAL(BillingType__c, &apos;&apos;))</errorConditionFormula>
+        <errorDisplayField>BillingType__c</errorDisplayField>
+        <errorMessage>When Charge Type is Recurring, a Billing Type must be selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_billing_frequency</fullName>
+        <active>true</active>
+        <description>When Charge Type is &apos;One-Time&apos;, a Billing Frequency value cannot be selected.</description>
+        <errorConditionFormula>AND(ISPICKVAL(ChargeType__c, &apos;One-Time&apos;), NOT(ISPICKVAL(BillingFrequency__c, &apos;&apos;)))</errorConditionFormula>
+        <errorDisplayField>BillingFrequency__c</errorDisplayField>
+        <errorMessage>When Charge Type is &apos;One-Time&apos;, a Billing Frequency value cannot be selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_billing_type</fullName>
+        <active>true</active>
+        <description>When Charge Type is One-Time or Usage, a Billing Type cannot be selected.</description>
+        <errorConditionFormula>OR(
+            AND(ISPICKVAL(ChargeType__c, &apos;One-Time&apos;), NOT(ISPICKVAL(BillingType__c, &quot;&quot;))),
+            AND(ISPICKVAL(ChargeType__c, &apos;Usage&apos;), NOT(ISPICKVAL(BillingType__c, &quot;&quot;))))</errorConditionFormula>
+        <errorDisplayField>BillingType__c</errorDisplayField>
+        <errorMessage>When Charge Type is One-Time or Usage, a Billing Type value cannot be selected.</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,5 @@
+<apex:page standardController="Order" docType="html-5.0" extensions="SBQQ.OrderController" action="{!onChangeOrder}" standardStylesheets="false" title="{!headerTitle}">
+	<apex:stylesheet value="{!$Resource['sb']}"/>
+	<c:theme />
+	<apex:pageMessages />
+</apex:page>

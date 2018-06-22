@@ -1,0 +1,12 @@
+<aura:component access="global" controller="dsfs.DocusignSendingBackEndController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+	<!-- Private attributes -->
+	<aura:attribute name="recordId" type="String" access="global"/>
+    <aura:attribute name="docusignNamespace" type="String" access="private" description="Namespace (with 2 underscores) of the DFS package"/>
+    <aura:attribute name="loggingEnabled" type="Boolean" access="private" default="false" description="Client side logging enabled indicator"/>
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
+    
+    <!-- UI-->
+    <ui:button label="Send with DocuSign" press="{!c.SendWithDocuSign}"/>
+</aura:component>

@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Quote originated by external parties such as customers or partners from a Portal or Force.com Site. This object offers a subset of functionality of the full Quote object but does not require an Opportunity.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Customer account. Defaulted on create from the opportunity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer account for this quote. Defaults to the account for the opportunity when creating a quote.</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>WebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AdditionalDiscountAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Amount of additional discount on this quote.</description>
+        <externalId>false</externalId>
+        <formula>RegularAmount__c - CustomerAmount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Amount additionally discounted on this quote manually.</inlineHelpText>
+        <label>Addl. Disc. Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AverageCustomerDiscount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Average customer discount (in percent) for this quote.</description>
+        <externalId>false</externalId>
+        <formula>IF(ListAmount__c = 0, 0, ((ListAmount__c - CustomerAmount__c) / ListAmount__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average customer discount (in percent) for this quote.</inlineHelpText>
+        <label>Avg. Customer Disc. (%)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>AveragePartnerDiscount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Average partner discount (in percent) for this quote.</description>
+        <externalId>false</externalId>
+        <formula>IF(CustomerAmount__c = 0, 0, (CustomerAmount__c -  NetAmount__c) / CustomerAmount__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average partner discount (in percent) for this quote.</inlineHelpText>
+        <label>Avg. Partner Disc. (%)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>BatchQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For products sold in batches quantity in each batch. Defaulted from the product record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates quantity in each batch if products are sold in batches.</inlineHelpText>
+        <label>Batch Quantity</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingCity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>City of the Bill To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>City of the Bill To address for this quote.</inlineHelpText>
+        <label>Bill To City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingCountry__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Country of the Bill To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Country of the Bill To address for this quote.</inlineHelpText>
+        <label>Bill To Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name for the Bill To address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name for the Bill To address.</inlineHelpText>
+        <label>Bill To Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingPostalCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Postal Code of the Bill To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Postal Code of the Bill To address for this quote.</inlineHelpText>
+        <label>Bill To Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingState__c</fullName>
+        <deprecated>false</deprecated>
+        <description>State/Province of the Bill To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State/Province of the Bill To address for this quote.</inlineHelpText>
+        <label>Bill To State</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingStreet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Street portion of the billing address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Street portion of the billing address for this quote.</inlineHelpText>
+        <label>Bill To Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>CustomerAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Roll up summary of the Customer Amount.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll up summary of the Customer Amount.</inlineHelpText>
+        <label>Customer Amount</label>
+        <summarizedField>WebQuoteLine__c.CustomerTotal__c</summarizedField>
+        <summaryFilterItems>
+            <field>WebQuoteLine__c.Optional__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WebQuoteLine__c.Quote__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>CustomerDiscount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Additional discount extended to customer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Additional discount extended to the customer on this quote. You&apos;ll be able to override this value at individual line item level. Any line items that don&apos;t have additional discount explicitly specified will default to this value.</inlineHelpText>
+        <label>Additional  Disc. (%)</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>DaysQuoteOpen__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of days the quote has been open.</description>
+        <externalId>false</externalId>
+        <formula>if(OR(ISPICKVAL( Status__c ,&quot;Draft&quot; ),ISPICKVAL( Status__c ,&quot;In Review&quot;),ISPICKVAL( Status__c , &quot;Approved&quot;), ISPICKVAL( Status__c , &quot;Presented&quot;)),Round(NOW() - CreatedDate,0) ,null)</formula>
+        <inlineHelpText>Number of days the quote has been open.</inlineHelpText>
+        <label>Days Quote Open</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DefaultTemplate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Template that should be used with this quote. Salesforce CPQ will use this value to default template selection on &quot;Generate Document&quot; screen.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Template that should be used with this quote. Salesforce CPQ will use this value to default template selection on &quot;Generate Document&quot; screen.</inlineHelpText>
+        <label>Default Template</label>
+        <referenceTo>QuoteTemplate__c</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>WebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DeliveryMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Method used to deliver products in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Method used to deliver products in this quote.</inlineHelpText>
+        <label>Delivery Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Download</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ship</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DistributorDiscount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Distributor discount that applies to this quote unless overridden on line item level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Distributor discount that applies to this quote unless overridden on line item level.</inlineHelpText>
+        <label>Distributor Discount</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>DocumentId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the Document record which contains the generated document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of the Document record which contains the generated document.</inlineHelpText>
+        <label>Document Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EmailTemplateId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of email template that will be pre-populated when documents generated from this quote are emailed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If you have a specific email template to use for documents generated and emailed from this quote, enter the email template ID here.</inlineHelpText>
+        <label>Email Template Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EndDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>End date for subscriptions in this group.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>End date for subscriptions in this group.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date after which the Quote is no longer valid.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date after which the Quote is no longer valid.</inlineHelpText>
+        <label>Expires On</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FirstSegmentTermEndDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used with multi-segment Products to prorate first segment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used with multi-segment Products to prorate first segment.</inlineHelpText>
+        <label>First Segment Term End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Introduction__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Introduction that can be printed on the generated PDF document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Introduction that can be printed on the generated PDF document.</inlineHelpText>
+        <label>Introduction</label>
+        <length>2000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LineItemCount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of line items in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of line items in this quote.</inlineHelpText>
+        <label>Line Item Count</label>
+        <summaryForeignKey>WebQuoteLine__c.Quote__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ListAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Total List Amount of each non-optional line item in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total List Amount of each non-optional line item in this quote.</inlineHelpText>
+        <label>List Amount</label>
+        <summarizedField>WebQuoteLine__c.ListTotal__c</summarizedField>
+        <summaryFilterItems>
+            <field>WebQuoteLine__c.Optional__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WebQuoteLine__c.Quote__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>MarkupRate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Default markup rate applied to line items on this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default markup rate applied to line items on this quote. You&apos;ll be able to override this value on group and line item level.</inlineHelpText>
+        <label>Markup (%)</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>MasterContract__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Master contract with which subscription products in this quote are to be co-terminated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Master contract with which subscription products in this quote are to be co-terminated.</inlineHelpText>
+        <label>Master Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Co-Terminated Quotes</relationshipLabel>
+        <relationshipName>CoTerminatedWebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>NetAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Total Net Amount of each non-optional line item in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Net Amount of each non-optional line item in this quote.</inlineHelpText>
+        <label>Net Amount</label>
+        <summarizedField>WebQuoteLine__c.NetTotal__c</summarizedField>
+        <summaryFilterItems>
+            <field>WebQuoteLine__c.Optional__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WebQuoteLine__c.Quote__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notes printed on the generated PDF document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Notes printed on the generated PDF document.</inlineHelpText>
+        <label>Notes</label>
+        <length>2000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Opportunity being quoted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Opportunity being quoted.</inlineHelpText>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>WebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OriginalQuote__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>If the quote is an Amend Re-Quote this field points to the original quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this Quote record represents an Amend Re-Quote, use this field to link back to the original quote.</inlineHelpText>
+        <label>Original Quote</label>
+        <referenceTo>Quote__c</referenceTo>
+        <relationshipLabel>WebAmend: Re-Quotes</relationshipLabel>
+        <relationshipName>WebChangeOrders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PartnerDiscount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Discount extended to partner on this opportunity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount extended to partner on this opportunity.</inlineHelpText>
+        <label>Partner Discount</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PaymentTerms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Terms that govern payment of the items in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Terms that govern payment of the items in this quote.</inlineHelpText>
+        <label>Payment Terms</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Due on receipt</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Net 15</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Net 30</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Net 45</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Net 60</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Net 90</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PriceBook__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Price Book associated with this web quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Price Book associated with this web quote.</inlineHelpText>
+        <label>Price Book</label>
+        <referenceTo>Pricebook2</referenceTo>
+        <relationshipLabel>Web Quotes</relationshipLabel>
+        <relationshipName>Web_Quotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PricebookId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the pricebook that should be used for this quote if opportunity is null.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this quote is not tied to an opportunity with a price book, this stores the price book ID for the quote.</inlineHelpText>
+        <label>Pricebook Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PrimaryContact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Primary contact for the quote. This person&apos;s name will appear on the generated quote document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Primary contact for the quote. This person&apos;s name will appear on the generated quote document.</inlineHelpText>
+        <label>Primary Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Quotes</relationshipLabel>
+        <relationshipName>WebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QuoteProcessId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the quote process to use with this quote. This field is meant to be populated by a workflow rule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Guided selling process ID to use with this quote, if any.</inlineHelpText>
+        <label>Quote Process Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QuoteTemplateId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of quote template that must be used when generating documents from this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores a quote template ID if one is specified to use when generating quote PDF documents.</inlineHelpText>
+        <label>Quote Template Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RegularAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Roll up of regular amounts of quote products.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total amount of non-optional line times before additional discounts are applied.</inlineHelpText>
+        <label>Regular Amount</label>
+        <summarizedField>WebQuoteLine__c.RegularTotal__c</summarizedField>
+        <summaryFilterItems>
+            <field>WebQuoteLine__c.Optional__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>WebQuoteLine__c.Quote__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>SalesRep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Sales rep responsible for this quote if different from the user who owns the Quote record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sales rep responsible for this quote if different from the user who owns the Quote record.</inlineHelpText>
+        <label>Sales Rep</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>WebQuotes</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SelfServiced__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether this web quote is self service.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether this web quote is self service.</inlineHelpText>
+        <label>Self Serviced</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ShippingCity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>City on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>City on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingCountry__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Country on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Country on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingPostalCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Postal Code on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Postal Code on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingState__c</fullName>
+        <deprecated>false</deprecated>
+        <description>State/Province on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State/Province on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To State</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingStreet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Street on the Ship To address for this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Street on the Ship To address for this quote.</inlineHelpText>
+        <label>Ship To Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SignatureStatus__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of electronic signature.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of electronic signature.</inlineHelpText>
+        <label>Signature Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sent</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Signed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Revoked</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>StartDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Start date for subscriptions in this quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Start date for subscriptions in this quote.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status indicating where quote is in its lifecycle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status indicating where quote is in its lifecycle.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Denied</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Presented</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SubscriptionTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Subscription term used to prorate eligible products.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Subscription term used to prorate eligible products.</inlineHelpText>
+        <label>Subscription Term</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TargetCustomerAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Customer amount to be targeted in calculating additional discounts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter desired customer amount to automatically calculate additional discount on discountable line items.</inlineHelpText>
+        <label>Target Customer Amount</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalCustomerDiscountAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Total amount of customer discount. This includes any contracted, volume, compound rate and additional discounts.</description>
+        <externalId>false</externalId>
+        <formula>ListAmount__c - CustomerAmount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total amount of customer discount. This includes any contracted, volume, compound rate and additional discounts.</inlineHelpText>
+        <label>Total Customer Disc. Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of quote.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quote</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Renewal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Amendment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Re-Quote</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>WatermarkShown__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>To display watermark in the Quote Document if checkbox is selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the checkbox to display watermark in the Quote Document.</inlineHelpText>
+        <label>Watermark Shown</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Web Quote</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>SalesRep__c</columns>
+        <columns>Status__c</columns>
+        <columns>ExpirationDate__c</columns>
+        <columns>ListAmount__c</columns>
+        <columns>NetAmount__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>WQ-{000000}</displayFormat>
+        <label>Quote #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Web Quotes</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>NetAmount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>NetAmount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CustomerDiscount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PartnerDiscount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UPDATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NetAmount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CREATEDBY_USER</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>NetAmount__c</searchFilterFields>
+        <searchFilterFields>SalesRep__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchFilterFields>UPDATEDBY_USER</searchFilterFields>
+        <searchResultsAdditionalFields>NetAmount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CustomerDiscount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PartnerDiscount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Invalid_First_Segment_Term_End_Date_WQ</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(ISNULL(FirstSegmentTermEndDate__c)) &amp;&amp; NOT(ISNULL(StartDate__c)) &amp;&amp; (NOT(ISNULL(SubscriptionTerm__c)) || NOT(ISNULL(EndDate__c))) &amp;&amp;
+(FirstSegmentTermEndDate__c &lt; StartDate__c || IF(NOT(ISNULL(EndDate__c)),FirstSegmentTermEndDate__c &gt; EndDate__c, IF(LOWER($Setup.GeneralSettings__c.SubscriptionTermUnit__c)=&apos;day&apos;, FirstSegmentTermEndDate__c &gt; StartDate__c + SubscriptionTerm__c-1, FirstSegmentTermEndDate__c &gt; StartDate__c + (SubscriptionTerm__c * 30.4375))))</errorConditionFormula>
+        <errorDisplayField>FirstSegmentTermEndDate__c</errorDisplayField>
+        <errorMessage>First Segment Term End Date must fall between Quote Start Date and Quote End Date</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Edit_Lines</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Edit Lines</masterLabel>
+        <openType>replace</openType>
+        <page>EditWebQuoteLines</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateDocument</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Generate Document</masterLabel>
+        <openType>replace</openType>
+        <page>GenerateWebDocument</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>RefreshMultiplePrices</fullName>
+        <availability>online</availability>
+        <description>Refreshes list prices based on currently selected pricebook on multiple quotes.</description>
+        <displayType>massActionButton</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Refresh Prices</masterLabel>
+        <openType>replace</openType>
+        <page>RefreshMultipleWebQuotePrices</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>RefreshPrices</fullName>
+        <availability>online</availability>
+        <description>Refreshes list prices based on currently selected pricebook on a single quote.</description>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Refresh Prices</masterLabel>
+        <openType>replace</openType>
+        <page>RefreshWebQuotePrices</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

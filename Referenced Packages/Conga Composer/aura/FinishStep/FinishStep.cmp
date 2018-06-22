@@ -1,0 +1,17 @@
+<aura:component controller="APXTConga4.sObjectRecordController" extends="APXTConga4:BaseStep">
+	<aura:attribute name="layoutTypeParam" type="String" default="{#v.masterObject}"/>
+	<aura:attribute name="theme" type="String"/>
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<div class="slds-m-around--large slds-text-align--center">
+		<div class="slds-p-top--medium slds-p-bottom--medium">
+			<div class="slds-align--absolute-center slds-text-heading--medium slds-m-top--large">You are almost done! {!v.solutionName} was created on your Conga Solutions tab. A button was created on the {!v.masterObjectLabel} Object for you. To use it, add {!v.solutionName} to the page layout.</div>
+		</div>
+		<div class="slds-p-bottom--medium">
+			<div class="slds-m-top--medium">
+				<lightning:button label="{!$Label.apxtconga4.Button_Page_Layout_Finish_Step}" variant="brand" iconPosition="left" onclick="{!c.goToMasterObject}" />
+			</div>
+		</div>
+		<div class="slds-text-heading--small slds-m-top--large slds-m-bottom--medium">{!$Label.apxtconga4.Not_Quite_Sure_Finish_Step_Label}<a href="javascript:void(0);" class="slds-m-left--xx-small" onclick="{!c.openModal}">{!$Label.apxtconga4.Watch_Video_Finish_Step_Label}</a></div>
+	</div>
+	<APXTConga4:FinishVideoModal aura:id="finishVideoModal" theme="{!v.theme}" customSize="slds-modal_large" customSizeStyle="width: 1138px;overflow-x: hidden;" />
+</aura:component>

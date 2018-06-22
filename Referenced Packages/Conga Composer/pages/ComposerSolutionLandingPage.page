@@ -1,0 +1,128 @@
+<apex:page controller="APXTConga4.ComposerSolutionLandingPage">
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <br/>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">Conga Solution Manager Setup</span>               
+            </td>
+        </tr>
+    </table>
+        
+    <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock id="mainBlock" >
+            <apex:pageBlockSection columns="1">
+            <!--Thank you for installing the Conga Solution Manager. <br/>
+            Before continuing, please add the following entries to your <a HREF="https://{!JSENCODE(StandardSFServerBaseURL)}/0rp?spl1=1&setupid=SecurityRemoteProxy&retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DSecurity" target="_blank">Remote Sites Settings.</a><br/>-->
+            Before continuing, add the following entries to your <a HREF="/0rp?spl1=1&setupid=SecurityRemoteProxy&retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DSecurity" target="_blank">Remote Sites Settings.</a><br/>
+            <!--<li>https://{!NameSpaceVFServerBaseURL}<br/></li>
+            <li>https://{!MyDomainNameSpaceVFServerBaseURL}<br/></li>
+            <li>https://congasolmgr.{!StandardSFServerBaseURL}</li>
+            <li>https://c.{!VFServerURL}</li>            
+            <li>https://{!StandardSFServerBaseURL}</li>
+            <br/>-->   
+             
+            <apex:outputPanel id="mainPanel" >                                                                                   
+                <apex:panelGrid columns="4" id="rsGrid" border="0" cellpadding="5" cellspacing="1">               
+                    <apex:outputText ><b>Remote Site Name</b></apex:outputText>
+                    <apex:outputText ><b>Remote Site URL</b></apex:outputText>
+                    <apex:outputText ><b></b></apex:outputText>
+                    <apex:outputText ><b>Added</b></apex:outputText>
+                                  
+                    <apex:outputText value="CongaComposer8"/>
+                    <apex:outputText value="https://composer.congamerge.com"/>
+                    <apex:commandButton onclick="window.open('/0rp/e?SiteName=CongaComposer8&EndpointUrl=https://composer.congamerge.com&DescriptionField=Click+Save+and+close+this+window.','target=_blank')" image="{!$Resource.APXTConga4__AddSiteButton}" action="{!setCongaComposer8True}"/>              
+                    <apex:outputText id="congaComposer8" value="" rendered="{!IF(congaComposer8 = false, true, false)}"/>
+                    <apex:image url="{!$Resource.APXTConga4__ComposerSolutionCheckMark}" rendered="{!IF(congaComposer8 = false, false, true)}" alt="Added!"/>
+                                                                 
+                    <apex:outputText value="Conga_VisualForce"/>
+                    <apex:outputText value="https://{!JSENCODE(MyDomainNameSpaceVFServerBaseURL)}"/>
+                    <apex:commandButton onclick="window.open('/0rp/e?SiteName=Conga_VisualForce&EndpointUrl=https://{!JSENCODE(MyDomainNameSpaceVFServerBaseURL)}&DescriptionField=Click+Save+and+close+this+window.','target=_blank')" image="{!$Resource.APXTConga4__AddSiteButton}" action="{!setcongaVFClickedTrue}"/>              
+                    <apex:outputText id="congaVFClicked" value="" rendered="{!IF(congaVFClicked = false, true, false)}"/>
+                    <apex:image url="{!$Resource.APXTConga4__ComposerSolutionCheckMark}" rendered="{!IF(congaVFClicked = false, false, true)}" alt="Added!"/>
+                    
+                    <apex:outputText value="Conga_Front_End"/>
+                    <apex:outputText value="https://{!JSENCODE(StandardSFServerBaseURL)}"/>
+                    <apex:commandButton onclick="window.open('/0rp/e?SiteName=Conga_Front_End&EndpointUrl=https://{!JSENCODE(StandardSFServerBaseURL)}&DescriptionField=Click+Save+and+close+this+window')" image="{!$Resource.APXTConga4__AddSiteButton}" value="Add Site" action="{!setcongaFrontEndTrue}"/>
+                    <apex:outputText id="congaFrontEnd" value="" rendered="{!IF(congaFrontEnd = false, true, false)}"/>
+                    <apex:image url="{!$Resource.APXTConga4__ComposerSolutionCheckMark}" rendered="{!IF(congaFrontEnd = false, false, true)}" alt="Added!"/>
+                                    
+                    <apex:outputText value="Standard_VisualForce"/>
+                    <apex:outputText value="https://{!JSENCODE(VFServerURL)}"/>
+                    <apex:commandButton onclick="window.open('/0rp/e?SiteName=Standard_VisualForce&EndpointUrl=https://{!JSENCODE(VFServerURL)}&DescriptionField=Click+Save+and+close+this+window.')" image="{!$Resource.APXTConga4__AddSiteButton}" value="Add Site" action="{!setstandardVFTrue}"/>                                       
+                    <apex:outputText id="standardVF" value="" rendered="{!IF(standardVF = false, true, false)}"/>
+                    <apex:image url="{!$Resource.APXTConga4__ComposerSolutionCheckMark}" rendered="{!IF(standardVF = false, false, true)}" alt="Added!"/>                           
+                </apex:panelGrid>
+            </apex:outputPanel>                                    
+
+            <!-- 
+            <apex:panelGrid columns="3" id="rsGrid" border="1" cellpadding="3" cellspacing="5">
+                <apex:outputText ><b>Remote Site Name</b></apex:outputText>
+                <apex:outputText ><b>Remote Site URL</b></apex:outputText>
+                <apex:outputText value=""/>
+                
+                <apex:outputText value="SolMgr_Front_End"/>                
+                <apex:outputText value="https://APXTConga4.{!JSENCODE(StandardSFServerBaseURL)}"/>
+                <apex:outputLink value="https://{!JSENCODE(StandardSFServerBaseURL)}/0rp/e?SiteName=SolMgr_Front_End&EndpointUrl=https://congasolmgr.{!JSENCODE(StandardSFServerBaseURL)}" target="_blank">Add Site</apex:outputLink>   
+                             
+                <apex:outputText value="SolMgr_VF"/>
+                <apex:outputText value="https://{!JSENCODE(NameSpaceVFServerBaseURL)}"/>
+                <apex:outputLink value="https://{!JSENCODE(StandardSFServerBaseURL)}/0rp/e?SiteName=SolMgr_VF&EndpointUrl=https://{!JSENCODE(NameSpaceVFServerBaseURL)}" target="_blank">Add Site</apex:outputLink>
+
+                <apex:outputText value="Standard_Front_End"/>
+                <apex:outputText value="https://{!JSENCODE(StandardSFServerBaseURL)}"/>
+                <apex:outputLink value="https://{!JSENCODE(StandardSFServerBaseURL)}/0rp/e?SiteName=Standard_Front_End&EndpointUrl=https://{!JSENCODE(StandardSFServerBaseURL)}" target="_blank">Add Site</apex:outputLink>   
+
+                <apex:outputText value="Standard_VF"/>
+                <apex:outputText value="https://c.{!JSENCODE(VFServerURL)}"/>
+                <apex:outputLink value="https://{!JSENCODE(StandardSFServerBaseURL)}/0rp/e?SiteName=Standard_VF&EndpointUrl=https://c.{!JSENCODE(VFServerURL)}" target="_blank">Add Site</apex:outputLink>                              
+            </apex:panelGrid> -->
+            
+            <!--            
+            <li><a HREF="https://{!StandardSFServerBaseURL}/0rp/e?SiteName=SolMgr_VF&EndpointUrl=https://{!NameSpaceVFServerBaseURL}" target="_blank">https://{!NameSpaceVFServerBaseURL}</a></li>
+            <li><a HREF="https://{!StandardSFServerBaseURL}/0rp/e?SiteName=SolMgr_Front_End&EndpointUrl=https://congasolmgr.{!StandardSFServerBaseURL}" target="_blank">https://congasolmgr.{!StandardSFServerBaseURL}</a></li>
+            <li><a HREF="https://{!StandardSFServerBaseURL}/0rp/e?SiteName=Standard_VF&EndpointUrl=https://c.{!VFServerURL}" target="_blank">https://c.{!VFServerURL}</a></li>
+            <li><a HREF="https://{!StandardSFServerBaseURL}/0rp/e?SiteName=Standard_Front_End&EndpointUrl=https://{!StandardSFServerBaseURL}" target="_blank">https://{!StandardSFServerBaseURL}</a></li>            
+            <br/>-->
+            
+            <apex:outputText rendered="{!IF(AND(JSENCODE(OrgTypeString) != 'Professional Edition', ButtonToSolution = false), true, false)}">After you are done, <a HREF="/{!JSENCODE(CSMPrefix)}/e?">click here</a> to create your first Conga Solution.</apex:outputText>            
+            <apex:outputText rendered="{!IF(AND(JSENCODE(OrgTypeString) != 'Professional Edition', ButtonToSolution = true), true, false)}">After you are done, <a HREF="/{!JSENCODE(CSMPrefix)}/e?">click here</a> to create your first Conga Solution or convert an existing Composer button to a Conga Solution below.</apex:outputText>
+            <apex:outputText rendered="{!IF(JSENCODE(OrgTypeString) != 'Professional Edition', false, true)}">After you are done, <a HREF="/{!JSENCODE(CSMPrefix)}/e?">click here</a> to create your first Conga Solution.</apex:outputText>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="ButtonToSolutionBlock" Title="Convert An Existing Composer Button" rendered="{!IF(OR(JSENCODE(OrgTypeString) = 'Professional Edition', ButtonToSolution = false), false, true)}">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton styleClass="solutionPackButton" id="makeSolution" value="Create Solution" action="{!makeSolution}"/>            
+            </apex:pageBlockButtons>        
+            <apex:pageBlockSection columns="4">
+               <apex:pageBlockSectionItem helpText="Use this dropdown list to select an existing Composer button to be used for your new solution,  then click 'Create Solution'.">
+                    <font color="black"><b>Composer Button Name</b></font>
+                    <apex:SelectList value="{!selectedButton}" size="1">
+                            <apex:selectOptions value="{!ButtonList}"></apex:selectOptions>
+                            <apex:actionSupport event="onchange" action="{!ShowButtonMetadata}" reRender="buttonDataPanel">
+                                <apex:param name="selectedButton" value="{!selectedButton}" />
+                            </apex:actionSupport>
+                        </apex:SelectList>
+                </apex:pageBlockSectionItem>
+                <!--<apex:commandButton styleClass="solutionPackButton" id="makeSolution" value="Create Solution" action="{!makeSolution}" />-->
+            </apex:pageBlockSection>
+ 
+            <apex:outputPanel id="buttonDataPanel">
+                <apex:pageBlockTable value="{!Button}" var="item" rendered="{!display}">
+                    <apex:column headerValue="Button Data">
+                        <apex:outputText value="{!SUBSTITUTE(item, 'LBGoesHere!', '<br/>')}" style="white-space:pre;" escape="false"/>
+                        <!--<apex:outputText value="{!item}"/>-->
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton styleClass="solutionPackButton" id="makeSolution" value="Create Solution" action="{!makeSolution}"/>            
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+                
+    </apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+.THIS .settings-container { min-height: 10rem; }
+
+.THIS .slds-card__header {
+    padding: 0px;
+    margin: 0px;
+}

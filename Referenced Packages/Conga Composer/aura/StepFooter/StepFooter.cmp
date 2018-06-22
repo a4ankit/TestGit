@@ -1,0 +1,16 @@
+<aura:component >
+  <aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+	<aura:attribute name="acceptButton" type="String"/>
+	<aura:attribute name="hasAccept" type="Boolean" default="{! !empty(v.acceptButton)}" />
+	<aura:attribute name="declineButton" type="String"/>
+	<aura:attribute name="hasDecline" type="Boolean" default="{! !empty(v.declineButton)}" />
+
+	<div class="slds-docked-form-footer">
+		<aura:if isTrue="{!v.hasDecline}">
+    		<button onclick="{!c.decline}" type="button" class="slds-button slds-button--neutral">{!v.declineButton}</button>
+  		</aura:if>
+  		<aura:if isTrue="{!v.hasAccept}">
+			<button onclick="{!c.accept}" type="button" class="slds-button slds-button--brand">{!v.acceptButton}</button>
+		</aura:if>
+	</div>
+</aura:component>

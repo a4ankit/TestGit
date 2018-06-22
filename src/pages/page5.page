@@ -1,0 +1,16 @@
+<apex:page standardController="contact" recordSetVar="con">
+      <apex:form >
+      <apex:pageBlock title="create contact" id="con_list">
+      Filter: 
+            <apex:selectList value="{! filterId }" size="1">
+                <apex:selectOptions value="{! listViewOptions }"/>
+                <apex:actionSupport event="onchange" reRender="con_list"/>
+            </apex:selectList>
+              <apex:pageBlockTable var="cont" value="{!con}" >
+                  <apex:column value="{!cont.lastname}"/>
+                  <apex:column value="{!cont.firstname}"/>
+                  <apex:column value="{!cont.phone}"/>
+              </apex:pageBlockTable>
+      </apex:pageBlock>
+      </apex:form>
+</apex:page>

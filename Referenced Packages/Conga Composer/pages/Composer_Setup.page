@@ -1,0 +1,55 @@
+<apex:page controller="APXTConga4.ComposerSetupController"
+    standardStylesheets="false"
+    applyBodyTag="false">
+    <body>
+        <!-- Canvas Object -->
+        <apex:canvasApp namespacePrefix="APXTConga4" 
+        developerName="{!devName}"
+        height="600px" width="100%"
+        border="0" scrolling="no"
+        onCanvasAppError="done"
+        onCanvasAppLoad="done"
+        parameters="{!Parameters}" />
+        <!-- Custom Loading splash screen -->
+        <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+        <script>
+            var cnvs = null;
+            function hideLdr(){
+                cnvs.style.display = 'none';
+            };
+            function done(){
+                apxt.Mask.hide();
+                cnvs.style.display = '';
+            };
+            Sfdc.onReady(function () {
+                try {
+                    cnvs = document.getElementById('j_id0:j_id2:canvasapp:container').parentNode;
+                    hideLdr();
+                    apxt.Mask.show({
+                        target: cnvs.parentNode
+                        , msg: 'Loading Conga'
+                        , autoSize: true
+
+                    });
+                    
+                    var divs = document.getElementsByTagName("div");
+                    var maskContainer;
+
+                    for(var i = (divs.length -1 ); i >= 0; i--){
+                        if(divs[i].textContent == "Loading Conga"){
+                            maskContainer= divs[i].parentNode.parentNode;
+                            maskContainer.style.position = "absolute";
+                            break;
+                        }
+                    }
+                    
+                    setTimeout(hideLdr,10);
+                    setTimeout(hideLdr,50);
+                    setTimeout(hideLdr,100);
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+        </script>
+    </body>
+</apex:page>

@@ -1,0 +1,20 @@
+<aura:component >
+	<div class="slds-border--bottom slds-m-bottom--small slds-p-bottom--small">
+		<span class="slds-text-heading--large">Email Template Builder</span>
+	</div>
+	<div class="slds-m-bottom--large">
+		<span>To add a field simply select it then click "Add Field". Or you can double-click the field to add it as well. If you hold the "Control" key you can select multiple fields and add them at once.</span>
+	</div>
+	<div class="slds-grid slds-wrap">
+		<div class="slds-p-horizontal--small slds-size--1-of-3 slds-medium-size--2-of-6 slds-large-size--3-of-12">
+			<APXTConga4:TreeView />
+		</div>
+		<div class="slds-align--absolute-center slds-p-horizontal--small slds-size--1-of-3 slds-medium-size--1-of-6 slds-large-size--2-of-12">
+			<lightning:button label="Add Field" title="Add Field" iconName="utility:right" iconPosition="left" />
+		</div>
+		<div class="slds-p-horizontal--small slds-size--1-of-3 slds-medium-size--3-of-6 slds-large-size--7-of-12">
+    		<lightning:inputRichText />
+		</div>
+	</div>
+	<APXTConga4:StepFooter acceptButton="Next" declineButton="Back"/>
+</aura:component>

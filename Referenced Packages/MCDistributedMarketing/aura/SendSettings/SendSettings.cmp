@@ -1,0 +1,30 @@
+<aura:component description="Allows a user to personalize send settings for the specified set of Campaign Members"
+    controller="mcdm_15.JourneyPersonalizationAdapter"
+>
+    <aura:attribute name="members" type="Object[]" required="true" description="Campaign Member(s) in context" />
+    <aura:attribute name="greetings" type="Object[]" description="Greeting Select Objects" />
+
+    <aura:attribute name="savedGreeting" type="String" access="private" default="" description="The greeting value that was last saved" />
+
+    <aura:registerEvent name="personalizationChanged" type="mcdm_15:JourneyApprovalsPersonalizationChanged" />
+
+    <aura:method name="applyChanges" action="{!c.applyChanges}" description="Applies any changes made to the referenced members array"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div>
+        <lightning:select label="{!$Label.mcdm_15.greetingOptionSelectLabel}"
+            aura:id="greetingSelect"
+            onchange="{!c.handleInputChanged}"
+            name="greetingOption">
+
+            <aura:iteration items="{!v.greetings}" var="greeting">
+                <option value="{!greeting.value}">{!greeting.label}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+</aura:component>

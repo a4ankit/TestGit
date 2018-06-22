@@ -1,0 +1,172 @@
+<aura:component >
+	
+<table class="slds-table slds-table--bordered slds-table--resizable-cols slds-table--fixed-layout" role="grid">
+  <thead>
+    <tr class="slds-line-height--reset">
+      <th scope="col" style="width:3.25rem;" class="slds-text-align--right">
+        <div class="slds-th__action slds-th__action--form">
+          <span class="slds-checkbox">
+            <input type="checkbox" name="options" id="checkbox-118" />
+            <label class="slds-checkbox__label" for="checkbox-118">
+              <span class="slds-checkbox--faux"></span>
+              <span class="slds-form-element__label slds-assistive-text">Select All</span>
+            </label>
+          </span>
+        </div>
+      </th>
+      <th class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+        <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset" tabindex="0">
+          <span class="slds-assistive-text">Sort </span>
+          <span class="slds-truncate" title="Name">Name</span>
+          <div class="slds-icon_container">
+            <lightning:icon iconName="utility:down" size="x-small" />
+          </div>
+          <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+        </a>
+        <div class="slds-resizable">
+          <label for="cell-resize-handle-553" class="slds-assistive-text">Name column width</label>
+          <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-553" tabindex="0" />
+          <span class="slds-resizable__handle">
+            <span class="slds-resizable__divider"></span>
+          </span>
+        </div>
+      </th>
+      <th class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+        <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset" tabindex="0">
+          <span class="slds-assistive-text">Sort </span>
+          <span class="slds-truncate" title="Account Name">Alias</span>
+          <div class="slds-icon_container">
+            <lightning:icon iconName="utility:down" size="x-small" />
+          </div>
+          <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+        </a>
+        <div class="slds-resizable">
+          <label for="cell-resize-handle-554" class="slds-assistive-text">Alias Name column width</label>
+          <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-554" tabindex="0" />
+          <span class="slds-resizable__handle">
+            <span class="slds-resizable__divider"></span>
+          </span>
+        </div>
+      </th>
+      <th class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+        <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset" tabindex="0">
+          <span class="slds-assistive-text">Sort </span>
+          <span class="slds-truncate" title="Close Date">Description</span>
+          <div class="slds-icon_container">
+            <lightning:icon iconName="utility:down" size="x-small" />
+          </div>
+          <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+        </a>
+        <div class="slds-resizable">
+          <label for="cell-resize-handle-555" class="slds-assistive-text">Description Date column width</label>
+          <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-555" tabindex="0" />
+          <span class="slds-resizable__handle">
+            <span class="slds-resizable__divider"></span>
+          </span>
+        </div>
+      </th>
+      
+      
+      <th scope="col" >
+        <div class="slds-th__action">
+          <span class="slds-assistive-text">Actions</span>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="slds-hint-parent">
+      <td role="gridcell" class="slds-text-align--right" style="width:3.25rem;">
+        <span class="slds-checkbox">
+          <input type="checkbox" name="options" id="checkbox-119" />
+          <label class="slds-checkbox__label" for="checkbox-119">
+            <span class="slds-checkbox--faux"></span>
+            <span class="slds-form-element__label slds-assistive-text">Select item 1</span>
+          </label>
+        </span>
+      </td>
+      <th scope="row">
+        <div class="slds-truncate" title="Acme - 1,200 Widgets"><a href="javascript:void(0);">Create Account Brief - (CasesChart)</a></div>
+      </th>
+      <td role="gridcell">
+        <div class="slds-truncate" title="Acme">Account Brief</div>
+      </td>
+      <td role="gridcell">
+        <div class="slds-truncate" title="4/10/15">Description here</div>
+      </td>
+      
+      
+      <td role="gridcell" style="width:3.25rem;">
+        <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small" title="Show More">
+          <!-- <lightning:icon iconName="utility:down" size="x-small" /> -->
+          <APXTConga4:DataStepSelectItem />
+          <span class="slds-assistive-text">Show More</span>
+        </button>
+      </td>
+    </tr>
+    <tr class="slds-hint-parent">
+      <td role="gridcell" class="slds-text-align--right" style="width:3.25rem;">
+        <span class="slds-checkbox">
+          <input type="checkbox" name="options" id="checkbox-120" />
+          <label class="slds-checkbox__label" for="checkbox-120">
+            <span class="slds-checkbox--faux"></span>
+            <span class="slds-form-element__label slds-assistive-text">Select item 2</span>
+          </label>
+        </span>
+      </td>
+      <th scope="row">
+        <div class="slds-truncate" title="Acme - 200 Widgets"><a href="javascript:void(0);">Create and Email Quote - (Summary)</a></div>
+      </th>
+      <td role="gridcell">
+        <div class="slds-truncate" title="Acme">Opportunity Quote</div>
+      </td>
+      <td role="gridcell">
+        <div class="slds-truncate" title="1/31/15">Description here</div>
+      </td>
+      
+      
+      <td role="gridcell" >
+        <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small" title="Show More">
+          <!-- <lightning:icon iconName="utility:down" size="x-small" /> -->
+          <APXTConga4:DataStepSelectItem />
+
+          <span class="slds-assistive-text">Show More</span>
+        </button>
+      </td>
+    </tr>
+    <tr class="slds-hint-parent">
+      <td role="gridcell" class="slds-text-align--right" style="width:3.25rem;">
+        <span class="slds-checkbox">
+          <input type="checkbox" name="options" id="checkbox-121" />
+          <label class="slds-checkbox__label" for="checkbox-121">
+            <span class="slds-checkbox--faux"></span>
+            <span class="slds-form-element__label slds-assistive-text">Select item 3</span>
+          </label>
+        </span>
+      </td>
+      <th scope="row">
+        <div class="slds-truncate" title="salesforce.com - 1,000 Widgets"><a href="javascript:void(0);">Opportunity - (Master Object)</a></div>
+      </th>
+      <td role="gridcell">
+        <div class="slds-truncate" title="salesforce.com">Opp</div>
+      </td>
+      <td role="gridcell">
+        <div class="slds-truncate" title="1/31/15 3:45PM">Just the master object</div>
+      </td>
+      
+      
+      <td role="gridcell" style="width:3.25rem;">
+        <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small" title="Show More" onclick="{!c.select2}">
+          <!-- <lightning:icon iconName="utility:down" size="x-small" /> -->
+        
+
+<APXTConga4:DataStepSelectItem />
+
+          <span class="slds-assistive-text">Show More</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+	
+</aura:component>

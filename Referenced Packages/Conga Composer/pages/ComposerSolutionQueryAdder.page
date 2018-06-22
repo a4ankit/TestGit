@@ -1,0 +1,381 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionQueryAdder,APXTConga4.ComposerSolutionMergefieldHelper" id="queryAdderPage">    
+	<apex:stylesheet value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-theme-classic-all.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-all.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-library.js')}"/>  
+    
+
+<script>
+    Ext.onReady(function() {
+        apxtLoader.markReady();        
+        var mergeFieldStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'FieldName', 'MergeField' ],
+            id: 'mergeFieldStore',
+            pageSize: 12,
+            autoLoad: true,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(MergeFields)}]'))
+        });
+               
+        var queryStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'Id', 'Name', 'QueryName', 'SOQL'],
+            id: 'queryStore',
+            pageSize: 15,
+            autoLoad: true,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(Queries)}]')) 
+        });
+
+        var qStorePagingtb = Ext.create('Ext.toolbar.Paging', {
+            store: queryStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                }
+            },
+            items: [
+                {
+                    text: '',
+                    icon: '{!JSEncode($Resource.APXTConga4__RefreshIcon)}',
+                    xtype: 'button',
+                    width: 20,                    
+                    handler: function() {
+                        window.location.reload(true);                                 
+                    }
+                }], 
+            dock: 'bottom'  
+        });
+        
+        var mHelperPagingtb = Ext.create('Ext.toolbar.Paging', {
+            store: mergeFieldStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                    this.child('#tbseparator-1034').hide();                                           
+                }
+            },
+            dock: 'bottom'
+        });                
+        
+        var baseGridTitle = Ext.util.Format.htmlEncode('All Available Conga Queries');
+        var queryGrid = new Ext.grid.GridPanel({
+            store: queryStore,
+            title: baseGridTitle,
+            padding: 0,
+            width: 600,
+            maxHeight: 335,
+            autoScroll: false,
+            overFlowX: 'hidden',
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e) {                                         
+                    Ext.get('queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:commentsBlockSection:queryNameSectionItem:queryNameStringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('QueryName');
+                    Ext.get('queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:commentsBlockSection:queryNameSectionItem:queryNameStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    });
+                    Ext.get('queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:commentsBlockSection:queryIdSectionItem:queryIdStringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('Id');
+                    Ext.get('queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:commentsBlockSection:queryIdSectionItem:queryIdStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    });
+                    Ext.get('queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:commentsBlockSection:aliasSectionItem:aliasStringBox').highlight("ED1C24", { 
+                        attr: 'color', 
+                        attr: "backgroundColor", 
+                        duration: 2500 
+                    }).focus(10,'');           
+                }
+            },
+            columns: [
+                {
+                    xtype:'actioncolumn',
+                    align: 'center',
+                    width: 25,
+                    items: [{
+                        icon: '{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}'  // Use a URL in the icon config                                                
+                    }]
+                },{
+                    id: 'Name',
+                    header: "Record Name",
+                    sortable: true,
+                    width: 100,
+                    dataIndex: 'Name',
+                    selType: 'cellmodel'
+                },{
+                    id: 'QueryName',
+                    header: "Query Name",
+                    width: 325,
+                    sortable: true,
+                    dataIndex: 'QueryName'                        
+                },{
+                    id: 'Id',
+                    header: "ID",                    
+                    flex: 1,                    
+                    sortable: true,
+                    dataIndex: 'Id'
+                }],
+            bbar: qStorePagingtb,
+            renderTo: 'queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:queryTable',
+        });
+        
+        var createTip = function() {
+            var me = this;
+            var tip = Ext.create('Ext.tip.ToolTip', {           
+                target: me.getView().getEl(),
+                autoHide: true,
+                trackMouse: true,                        
+                dismissDelay: 0,
+                autoRender: true,
+                renderTo: 'queryAdderPage:queryAdderForm:inputFieldBlock:inputSection:queryTable',
+                delegate: me.getView().itemSelector,
+                tpl: new Ext.XTemplate(
+                    'SOQL Statement:<br/>{SOQL}'
+                ),
+                listeners: {
+                    beforeshow: function (tip, geOpts) {                        
+                        var rec = me.getView().getRecord(tip.triggerElement);
+                        rec.data['SOQL'] = Ext.util.Format.htmlEncode(rec.data['SOQL']);  
+                        tip.update(rec.data);
+                    }
+                }
+            });
+        };    
+        
+        var mergeFieldHelperGridBaseTitle = Ext.util.Format.htmlDecode('{!JSENCODE(objectTypeString)} Field Helper');  
+        var mergeFieldGrid = new Ext.grid.GridPanel({
+            store: mergeFieldStore,
+            title: mergeFieldHelperGridBaseTitle,
+            padding: 0,
+            width: 600,
+            maxHeight: 335,
+            autoScroll: false,
+            overFlowX: 'hidden',
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e){                                                
+                    if(Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV0Item:pv0StringBox').dom.value === ''){
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV0Item:pv0StringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('MergeField');
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV0Item:pv0StringBox').highlight("60bb46", { 
+                            attr: 'color', 
+                            attr: 'backgroundColor', 
+                            duration: 1500 
+                        }).focus(10,'');
+                    } 
+                    else if(Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV0Item:pv0StringBox').dom.value != '' && Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV1Item:pv1StringBox').dom.value === ''){
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV1Item:pv1StringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('MergeField');
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV1Item:pv1StringBox').highlight("60bb46", { 
+                            attr: 'color', 
+                            attr: 'backgroundColor', 
+                            duration: 1500 
+                        }).focus(10,'');
+                    }
+                    else if(Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV0Item:pv0StringBox').dom.value != '' && Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV1Item:pv1StringBox').dom.value != '' && Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV2Item:pv2StringBox').dom.value === ''){
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV2Item:pv2StringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('MergeField');
+                        Ext.get('queryAdderPage:queryAdderForm:EXTMergeFieldBlock:ExtMergeFieldBlockSection:MergeFieldBlockPVSection:MergeFieldSectionPV2Item:pv2StringBox').highlight("60bb46", { 
+                            attr: 'color', 
+                            attr: 'backgroundColor', 
+                            duration: 1500 
+                        }).focus(10,'');
+                    }                             
+                }
+            },
+            columns: [
+               {
+                    id: 'FieldName',
+                    header: "Field Name",
+                    sortable: true,
+                    width: 225,
+                    dataIndex: 'FieldName',
+                    selType: 'cellmodel'
+                },{
+                    id: 'MergeFieldName',
+                    header: "Merge Field Syntax",
+                    flex: 1,
+                    sortable: true,
+                    dataIndex: 'MergeField'                        
+                }],
+            bbar: mHelperPagingtb,
+            renderTo: '{!JSENCODE(MFTableRenderToString)}'         
+        });
+        
+        var searchDataGrid = Ext.create('Ext.form.field.Text',{
+            fieldLabel: 'Query Name Search',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',                        
+            labelWidth: 125,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,
+            enableKeyEvents: true,
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var userInput = field.getValue();                       
+                                                                        
+                        var filteredStore = queryGrid.getStore().filterBy(function(record){                        
+                            if (userInput === ''){
+                                return record;
+                            }
+                            else if (record.get('QueryName').toLowerCase().indexOf(userInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);
+                            
+                        if(userInput === '') {
+                            queryGrid.setTitle(baseGridTitle);
+                        } else {
+                            queryGrid.setTitle(Ext.util.Format.htmlEncode('"' + userInput + '" Queries'));                                
+                        }
+                        qStorePagingtb.moveFirst();
+                        qStorePagingtb.doRefresh();                                                              
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });
+        
+        var searchMergeFields = Ext.create('Ext.form.field.Text',{
+            fieldLabel: 'Field Name Search',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',                        
+            labelWidth: 100,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,            
+            enableKeyEvents: true,
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var mergeFieldUserInput = field.getValue();                       
+                                                                        
+                        var mergeFieldFilter = mergeFieldGrid.getStore().filterBy(function(record){                        
+                            if (mergeFieldUserInput === ''){
+                                return record;
+                            }
+                            else if (record.get('FieldName').toLowerCase().indexOf(mergeFieldUserInput.toLowerCase()) != -1 || 
+                                    record.get('MergeField').toLowerCase().indexOf(mergeFieldUserInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);                            
+                            
+                        if(mergeFieldUserInput === '') {
+                            mergeFieldGrid.setTitle(mergeFieldHelperGridBaseTitle);
+                        } else {
+                            mergeFieldGrid.setTitle(Ext.util.Format.htmlEncode('"' + mergeFieldUserInput + '" Fields'));                                
+                        }
+                         
+                        mHelperPagingtb.moveFirst();
+                        mHelperPagingtb.doRefresh();                                                                     
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });        
+        
+        queryGrid.getDockedItems()[0].add(searchDataGrid);    
+        mergeFieldGrid.getDockedItems()[0].add(searchMergeFields);
+        Ext.get('textfield-1046-inputEl').highlight("60bb46", { 
+            attr: 'color', 
+            attr: 'backgroundColor', 
+            duration: 3000 
+        }).focus(10,'');   
+        
+        queryGrid.addListener('viewready', createTip);
+    
+        /*queryGrid.on("afterlayout", function(component) {
+            component.getBottomToolbar().refresh.hideParent = true;
+            component.getBottomToolbar().refresh.hide(); 
+        });
+        
+        mergeFieldGrid.on("afterlayout", function(component) {
+            component.getBottomToolbar().refresh.hideParent = true;
+            component.getBottomToolbar().refresh.hide(); 
+        });*/
+               
+    });                                                 
+</script>    
+    
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution Query<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!SMRecordName} Solution</span>       
+            </td>
+        </tr>
+    </table>
+    <!--<apex:outputLink value="/{!Conga_Solution__c.Id}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:outputLink>-->
+    <apex:pageMessages />  
+    
+    <apex:form id="queryAdderForm">
+        <!--<apex:commandLink action="{!save}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:commandLink>-->
+    
+        <apex:pageBlock id="inputFieldBlock">
+            <apex:pageblockButtons location="top">      
+                <apex:commandButton action="{!returnToSMRecord}" value="Return to Solution Record" />                           
+                <apex:commandButton action="{!addQuery}" id="queryAdderButton" value="{!IF(IsEdit = true, 'Update Query', 'Add Conga Query to Solution Record')}"/>                
+            </apex:pageblockButtons>            
+            <apex:pageBlockSection columns="2" id="inputSection"  title="Select A Query">                
+                <apex:pageBlockSection id="queryTable" columns="1">
+                </apex:pageBlockSection> 
+                                                
+                <apex:pageBlockSection id="commentsBlockSection" columns="1">                                                                                                                                                                                                     
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the query selected." id="queryNameSectionItem">
+                        <font color="black"><b>Query Name</b></font><font color="red" size="3px"><b>|</b></font>                     
+                        <apex:inputText value="{!queryNameString}" id="queryNameStringBox"/>
+                    </apex:pageBlockSectionItem>                                     
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the query selected." id="queryIdSectionItem">
+                        <font color="black"><b>Query ID</b></font><font color="red" size="3px"><b>|</b></font>                     
+                        <apex:inputText value="{!queryIdString}" id="queryIdStringBox"/>
+                    </apex:pageBlockSectionItem>                                  
+                    <apex:pageBlockSectionItem helptext="Provide a shorthand description (e.g. Cases) of the data retrieved from the query. The alias is used as the dataset name in the Conga Composer Template Builder. Illegal characters and spaces will be automatically removed. Alphanumeric only, starting with a letter, 2 - 20 supported." id="aliasSectionItem">                
+                        <font color="black"><b>Alias</b></font><font color="red" size="3px"><b>|</b></font>
+                        <apex:inputText value="{!aliasString}" id="aliasStringBox"/> 
+                    </apex:pageBlockSectionItem>                     
+                    <apex:pageBlockSectionItem helpText="Enter comments/description. This field will not affect Composer behavior.">                            
+                        <b>Description</b>
+                        <apex:inputTextarea value="{!commentString}" id="commentStringBox" rows="5" cols="25"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >                      
+                        <apex:outputText value=""/>
+                        <apex:panelGrid >
+                            Conga Composer's default behavior passes the {!MasterObjectType} Record ID to the first filter of your query. To modify this behavior and/or add more dynamic filtering options, access the Advanced Filter Configuration.
+                            <apex:commandButton action="{!setMergeFieldSwitch}" value="Advanced Filter Configuration" title="Click to enable Advanced Filter Configuration."/>                        
+                        </apex:panelGrid>
+                    </apex:pageBlockSectionItem>                                                                                                                                                                                                                            
+                </apex:pageBlockSection>            
+                <apex:commandButton onclick="window.open('/{!queryPrefix}/e?retURL={!APXTConga4__Conga_Solution__c.Id}','_blank','location=no,resizable=no,toolbar=no,status=no,menubar=no,width=1100,height=800', 1)" value="Create New Conga Query Record" title="Click to create a new Conga Query record in a new window."/>    
+            </apex:pageBlockSection>  
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="EXTMergeFieldBlock" title="Advanced Filter Configuration" rendered="{!IF(JSENCODE(MergeFieldSwitchValue) = 'true', 'false', 'true')}">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!addQuery}" id="queryAdderButton" value="Add Conga Query to Solution Record"/>
+            </apex:pageBlockButtons>              
+            <apex:pageBlockSection columns="2" id="ExtMergeFieldBlockSection" title="Select Merge Fields">
+                <apex:pageBlockSection columns="1" id="ExtMergeFieldGridBlockSection">
+                </apex:pageBlockSection>                   
+                <apex:pageBlockSection columns="1" id="MergeFieldBlockPVSection" >
+                    <apex:pageBlockSectionItem helptext="{!$ObjectType.APXTConga4__Conga_Solution_Query__c.fields.APXTConga4__pv0__c.inlineHelpText}" id="MergeFieldSectionPV0Item" >                
+                        <b>pv0 Value</b> 
+                        <apex:inputTextarea value="{!pv0String}" id="pv0StringBox" rows="5" cols="25"/> 
+                    </apex:pageBlockSectionItem>             
+                    <apex:pageBlockSectionItem helptext="{!$ObjectType.APXTConga4__Conga_Solution_Query__c.fields.APXTConga4__pv1__c.inlineHelpText}" id="MergeFieldSectionPV1Item" >                
+                        <b>pv1 Value</b>
+                        <apex:inputTextarea value="{!pv1String}" id="pv1StringBox" rows="5" cols="25"/> 
+                    </apex:pageBlockSectionItem>               
+                    <apex:pageBlockSectionItem helptext="{!$ObjectType.APXTConga4__Conga_Solution_Query__c.fields.APXTConga4__pv2__c.inlineHelpText}" id="MergeFieldSectionPV2Item" >                
+                        <b>pv2 Value</b>
+                        <apex:inputTextarea value="{!pv2String}" id="pv2StringBox" rows="5" cols="25"/> 
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>                                
+            </apex:pageBlockSection>           
+        </apex:pageBlock>        
+        
+    </apex:form>
+    <apex:relatedList list="Conga_Solution_Queries__r" title="Selected Queries" rendered="{!IF(isEdit = true, false, true)}"/>       
+</apex:page>

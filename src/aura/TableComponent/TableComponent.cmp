@@ -1,0 +1,83 @@
+<aura:component controller="TableComponentController">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="Account" type="Account" default="{ 'sobjectType': 'Account',
+                                                           'Name': ''}"/>
+    <aura:attribute name="AccountList" type="Account[]"/>
+    <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true"/>
+    <aura:attribute name="sortedBy" type="string" default="Name" />
+    <aura:attribute name="sortedDirection" type="string" default="asc" />
+    <aura:attribute name="Columns" type="List"/>
+    <!-- PAGE HEADER -->
+     <!-- / PAGE HEADER -->
+    <!-- NEW Account-->
+  <lightning:layout >
+        <lightning:layoutItem padding="around-small" size="6">
+            <!-- CREATE NEW ACCOUNT -->
+            <div aria-labelledby="newaccount">
+                <!-- BOXED AREA -->
+                <fieldset class="slds-box slds-theme--default slds-container--small">
+                    
+                    <legend id="Account" class="slds-text-heading--small 
+                                                slds-p-vertical--medium">
+                        New Account
+                    </legend>
+                    <!-- CREATE NEW Account -->
+                    <form class="slds-form--stacked">          
+                        <lightning:input aura:id="account"  label="Account Name"
+                                         name="accountname"
+                                         value="{!v.Account.Name}"
+                                         required="true"
+                                         placeholder="Type here.."/> 
+                        <lightning:input aura:id="account" label="Phone"
+                                         name="accountphone"
+                                         value="{!v.Account.Phone}"
+                                         placeholder="Type here.."/>
+                        <lightning:input aura:id="account" label="Type"
+                                         name="accounttype"
+                                         value="{!v.Account.Type}"
+                                         placeholder="Type here.."/>
+                        <lightning:input aura:id="account" label="Industry"
+                                         name="industry"
+                                         value="{!v.Account.Industry}"
+                                         placeholder="Type here.."/>
+                        <lightning:input aura:id="account" label="Website"  
+                                         name="website"
+                                         value="{!v.Account.Website}"
+                                         placeholder="Type here.."/>
+                        <lightning:button label="Submit" 
+                                          class="slds-m-top--medium"
+                                          variant="brand"
+                                          onclick="{!c.clickSubmit}"/>
+                    </form>
+                    <!-- / CREATE NEW EXPENSE FORM -->
+                    
+                </fieldset>
+                <!-- / BOXED AREA -->
+                
+            </div>
+            <!-- / CREATE NEW EXPENSE -->
+            
+        </lightning:layoutItem>
+    </lightning:layout>
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+        <lightning:layoutItem >
+            <lightning:icon iconName="standard:account" alternativeText="My Accounts"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading--label">ACCOUNT</h1>
+                <h2 class="slds-text-heading--medium">My Account</h2>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <lightning:card iconName="standard:account" title="{!'Account List'}">
+        <lightning:datatable data="{! v.AccountList }" keyField="id" columns="{! v.Columns }" 
+                             hideCheckboxColumn="true" onsort="{!c.updateColumnSorting}" 
+                             sortedBy="{!v.sortedBy}" sortedDirection="{!v.sortedDirection}" onrowselection="{!c.getSelectedName}"
+                             enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                             loadMoreOffset="{! v.loadMoreOffset }"
+                             onloadmore="{! c.loadMoreData }" />
+        
+    </lightning:card>
+    
+</aura:component>

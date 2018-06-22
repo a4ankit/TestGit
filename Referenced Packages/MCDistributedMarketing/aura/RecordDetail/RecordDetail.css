@@ -1,0 +1,5 @@
+.THIS .forceDetailPanel .footer.active {
+    position: absolute !important;
+    left: auto !important;
+    width: 100% !important;
+}

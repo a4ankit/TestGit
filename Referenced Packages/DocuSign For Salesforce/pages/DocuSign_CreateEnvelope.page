@@ -1,0 +1,6 @@
+<apex:page controller="dsfs.CustomButtonController" action="{!CreateEnvelopeRecord}"
+	tabStyle="dsfs__DocuSign_Status__c" id="DocuSignCreateEnvelopePage">
+
+
+
+</apex:page>

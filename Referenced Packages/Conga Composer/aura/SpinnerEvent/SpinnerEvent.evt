@@ -1,0 +1,3 @@
+<aura:event type="Component" description="Event template">
+	<aura:attribute name="eventAction" type="String" description="what this event should do"/>
+</aura:event>

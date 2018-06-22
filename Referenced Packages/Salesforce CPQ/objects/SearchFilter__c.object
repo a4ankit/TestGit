@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>SearchFilterHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Search filter definition.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Action__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Action to which this filter applies. Blank value means the filter is global.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Action to which this filter applies. Blank value means the filter is global.</inlineHelpText>
+        <label>Action</label>
+        <referenceTo>CustomAction__c</referenceTo>
+        <relationshipLabel>Search Filters</relationshipLabel>
+        <relationshipName>SearchFilters</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DisplayOrder__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Order in which this filter is displayed in the UI.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Order in which this filter is displayed in the UI.</inlineHelpText>
+        <label>Display Order</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FilterSourceField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field that sources value for use in filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field that sources value for use in filtering.</inlineHelpText>
+        <label>Filter Source Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>FilterSourceObject__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Type</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Status</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Quote</controllingFieldValue>
+                <valueName>Type</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Quote</controllingFieldValue>
+                <valueName>Status</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FilterSourceObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Object that sources value for use in filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Object that sources value for use in filtering.</inlineHelpText>
+        <label>Filter Source Object</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quote</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FilterValue__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Static value used in filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Static value used in filtering.</inlineHelpText>
+        <label>Filter Value</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HiddenSourceField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field that sources value for use in determining whether the filter is hidden.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the field that sources value for use in determining whether the filter is hidden.</inlineHelpText>
+        <label>Hidden Source Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>HiddenSourceObject__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Primary</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Quote</controllingFieldValue>
+                <valueName>Primary</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>HiddenSourceObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Object that sources value for use in determining whether the filter is hidden.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify object that sources value for use in determining whether the filter is hidden.</inlineHelpText>
+        <label>Hidden Source Object</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quote</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Hidden__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag that marks this filter as hidden. Hidden filters do not display in the UI but contribute to search queries.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the checkbox to mark this filter as hidden. Hidden filters do not display in the UI but contribute to search queries.</inlineHelpText>
+        <label>Hidden</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Operator used by this filter to determine whether filter value is matched.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the operator to use with this filter.</inlineHelpText>
+        <label>Operator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>not equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>less than</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>less or equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>greater than</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>greater or equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>starts with</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>ends with</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>contains</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>between</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TargetField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field searched by this filter.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the field to search.</inlineHelpText>
+        <label>Target Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>TargetObject__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Name</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product Code</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product Family</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product Description</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Quantity</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Status</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Product</controllingFieldValue>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <valueName>Name</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Product</controllingFieldValue>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <controllingFieldValue>Subscription</controllingFieldValue>
+                <valueName>Product Code</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Product</controllingFieldValue>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <valueName>Product Family</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Product</controllingFieldValue>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <valueName>Product Description</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <controllingFieldValue>Subscription</controllingFieldValue>
+                <valueName>Quantity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Asset</controllingFieldValue>
+                <valueName>Status</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TargetObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Object searched by this filter.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify object to search.</inlineHelpText>
+        <label>Target Object</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Product</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Asset</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Subscription</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Search Filter</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>DisplayOrder__c</columns>
+        <columns>TargetObject__c</columns>
+        <columns>TargetField__c</columns>
+        <columns>Operator__c</columns>
+        <columns>FilterValue__c</columns>
+        <columns>Hidden__c</columns>
+        <columns>HiddenSourceField__c</columns>
+        <columns>FilterSourceField__c</columns>
+        <columns>Action__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Filter Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Search Filters</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>DisplayOrder__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>TargetObject__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>TargetField__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Operator__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FilterValue__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Hidden__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>DisplayOrder__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>TargetObject__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>TargetField__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Operator__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>TargetObject__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>TargetField__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Operator__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>TargetObject__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TargetField__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Operator__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FilterValue__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Hidden__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Require_filter_object_for_filter_field</fullName>
+        <active>true</active>
+        <description>Require filter source object is selected when filter source field is not blank.</description>
+        <errorConditionFormula>AND(ISPICKVAL(FilterSourceObject__c, &apos;&apos;),NOT(ISPICKVAL(FilterSourceField__c, &apos;&apos;)))</errorConditionFormula>
+        <errorMessage>You must select Filter Source Object when Filter Source Field is selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_hidden_object_for_hidden_field</fullName>
+        <active>true</active>
+        <description>Require hidden source object is selected when hidden source field is not blank.</description>
+        <errorConditionFormula>AND(ISPICKVAL(HiddenSourceObject__c, &apos;&apos;),NOT(ISPICKVAL(HiddenSourceField__c, &apos;&apos;)))</errorConditionFormula>
+        <errorMessage>You must select Hidden Source Object when Hidden Source Field is selected.</errorMessage>
+    </validationRules>
+</CustomObject>

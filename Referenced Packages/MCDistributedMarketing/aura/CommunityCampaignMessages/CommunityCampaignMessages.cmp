@@ -1,0 +1,12 @@
+<aura:component access="global"
+    implements="force:hasRecordId,force:hasSObjectName,forceCommunity:availableForAllPageTypes"
+    description="Wrapper for campaign messages to abstract Journey Approval navigation"
+>
+    <aura:attribute name="linkedJourneyId" type="String" description="The Salesforce ID for Linked Journey Object"/>
+
+    <mcdm_15:CampaignMessages recordId="{!v.recordId}"
+        sObjectName="{!v.sObjectName}"
+        navigationHandler="{!c.navigateToJourneyApprovals}"
+        linkedJourneyId="{!v.linkedJourneyId}"
+    />
+</aura:component>

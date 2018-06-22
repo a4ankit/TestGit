@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+  <aura:attribute name="hideWizard" default="true" type="Boolean" />
+  <aura:handler name="showWizard" event="APXTConga4:showWizard" action="{!c.showWizard}" />
+
+  <aura:if isTrue="{!v.hideWizard}">
+  <APXTConga4:CreateStep />
+  <aura:set attribute="else">
+    <APXTConga4:SolutionWizard steps="[{label:'1: Details', type:'c:SolutionStep', bindings:[{from:'masterObject', to:'selectedObject'}]},{label:'2: Data', type:'c:DataStep', bindings:[{from:'masterObject', to:'masterObject'}]}, {label:'3: Templates', type:'c:TemplateStep'},{label:'4: Behavior Settings', type:'c:BehaviorStep'}, {label:'5: Finish', type:'c:FinishStep'}]"/>
+    </aura:set>
+  </aura:if>
+</aura:component>

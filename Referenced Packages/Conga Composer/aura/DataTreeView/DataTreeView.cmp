@@ -1,0 +1,4 @@
+<aura:component extends="APXTConga4:TreeView" controller="APXTConga4.DataStepController">
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  <aura:attribute name="masterObject" type="String" />
+</aura:component>

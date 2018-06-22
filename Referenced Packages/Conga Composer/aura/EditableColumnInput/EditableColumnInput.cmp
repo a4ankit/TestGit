@@ -1,0 +1,11 @@
+<aura:component >
+	<aura:attribute name="columnValue" type="String" />
+	<aura:registerEvent name="closeEditEvent" type="APXTConga4:CongaEvent" />
+	<div>
+	<div class="slds-is-absolute slds-popover popoverPanel">
+		<div aura:id="popbody" class="slds-cell-wrap slds-popover__body popoverBody" onkeypress="{!c.onKeyPress}">
+			<lightning:input aura:id="columnInput" value="{!v.columnValue}" label="" name="" onblur="{!c.onBlur}" minlength="3" maxlength="20" pattern="[A-Za-z0-9]*" messageWhenBadInput="Must have 3-20 characters" messageWhenPatternMismatch="Cannot contain spaces or special characters"/>
+		</div>
+	</div>
+	</div>
+</aura:component>

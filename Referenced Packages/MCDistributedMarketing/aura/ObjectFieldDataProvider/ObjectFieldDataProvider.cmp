@@ -1,0 +1,20 @@
+<aura:component extends="ui:dataProvider"
+    controller="mcdm_15.ObjectFieldsDataProviderAdapter"
+    description="Provides all fields for a given Object">
+
+    <aura:attribute name="objectType" type="String" required="true" description="String representation of the Object Type e.g. 'CONTACT'" />
+    <aura:attribute name="maxResults" type="Integer" default="5" description="The maximum number of results to return" />
+
+    <aura:handler name="provide" action="{!c.provide}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:ClientSideDataProvider aura:id="clientSideDataProvider"
+        maxResults="{!v.maxResults}"
+        sortResults="true"
+    />
+</aura:component>

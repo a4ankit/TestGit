@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Connected_App_Setting__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Connected App Setting</label>
+        <referenceTo>Connected_App_Setting__mdt</referenceTo>
+        <relationshipLabel>Composer Settings</relationshipLabel>
+        <relationshipName>Composer_Settings</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <label>Composer Setting</label>
+    <pluralLabel>Composer Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

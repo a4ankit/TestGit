@@ -1,0 +1,16 @@
+<aura:component extends="ui:dataProvider"
+    extensible="true"
+    description="Provides enumeration / searching of items held in browser memory">
+
+    <aura:attribute name="items" type="Object[]" default="[]" description="The items to enumerate over"/>
+    <aura:attribute name="maxResults" type="Integer" description="The maximum number of results to return. Results are not limited when nothing is specified" />
+    <aura:attribute name="totalResultSize" type="Integer" default="0" description="The size of the total result set. When this value is more than 'maxResults' it indicates that more results are available."/>
+    <aura:attribute name="sortResults" type="Boolean" default="false" description="Indicates whether the results should be sorted or not"/>
+
+    <aura:handler name="provide" action="{!c.handleProvideEvent}"/>
+
+    <aura:method name="provideData" description="Provides data to listeners of the on-change event.">
+        <aura:attribute name="searchString" type="String" required="true" description="The string to match on"/>
+        <aura:attribute name="clearResults" type="Boolean" required="true" description="Indicates that we want to clear the search results"/>
+    </aura:method>
+</aura:component>

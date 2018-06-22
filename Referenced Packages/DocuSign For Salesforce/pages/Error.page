@@ -1,0 +1,21 @@
+<apex:page Controller="dsfs.ErrorController" showHeader="{!(showHeader)}" sidebar="false" tabStyle="dsfs__DocuSign_Status__c">
+   <apex:stylesheet value="{!$Resource.dsfs__styles}" />
+   <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+   <script type="text/javascript">
+   jQuery(document).ready(function($) {
+      if ('{!JSENCODE($CurrentPage.parameters.showHeader)}' == 'false'){
+      		$("#backButton").css('display', 'none');
+      }
+   });
+   </script>
+   <div class="docusign-container">
+	   	<div id="dsAlert">
+			<ul class="alert-messages">
+				<li><p><apex:outputText value="{!(errorMsg)}"/></p></li>
+			</ul>
+			<apex:outputPanel rendered="{!NOT(ISBLANK(sourceId))}">
+				<a href="/{!(sourceId)}" id="backButton" class="secondary button">{!$Label.Back}</a>
+			</apex:outputPanel>
+		</div>
+	</div>
+</apex:page>

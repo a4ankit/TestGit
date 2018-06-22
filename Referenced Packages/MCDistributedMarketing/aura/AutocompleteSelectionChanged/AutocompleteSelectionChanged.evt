@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Triggered when an autocomplete item has been selected">
+    <aura:attribute name="value" type="Object" description="The value of the item selected"/>
+</aura:event>

@@ -1,0 +1,24 @@
+<aura:component controller="APXTConga4.sObjectRecordController" extends="BaseStep">
+	
+	<aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+	<aura:set attribute="showNav" value="false" />
+ 	<aura:attribute name="editId" type="String" default="" />
+	<aura:attribute name="hide" type="Boolean" default="true" />
+	<aura:attribute name="previewId" type="String" default="" />
+ 	<aura:attribute name="recordId" type="String" default="" />
+
+	<div class="{!(v.hide ? '' : 'slds-is-open ') + 'slds-dropdown-trigger slds-dropdown-trigger--click'}" >
+		<button class="slds-button slds-button--icon-border-filled slds-button--icon-xx-small" style="width: 20px; height: 20px;" aria-haspopup="true" title="Show More" onclick="{!c.showView}" onblur="{!c.onBlur}">
+	  		<lightning:icon iconName="utility:down" size="x-small" />
+	  		<span class="slds-assistive-text">Show More</span>
+		</button>
+  		<div class="slds-dropdown slds-dropdown--right slds-dropdown--actions" style="z-index:9000;"> 
+			<ul class="slds-dropdown__list" role="menu">
+		  		<li class="slds-dropdown__item" role="presentation">
+		     		<a  id="{!v.editId}" onclick="{! c.previewTemplate }">Edit</a>
+		  		</li>
+			</ul>
+  		</div>
+	</div>
+
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Indicates a selection change (selected/deselected) for the given item">
+    <aura:attribute name="approval" type="Object" description="The approval item associated with the event"/>
+    <aura:attribute name="selected" type="Boolean" description="The state of the selection (true = selected, false = deselected)"/>
+</aura:event>

@@ -1,0 +1,13 @@
+<apex:page standardController="Account">
+<apex:form >
+    <apex:pageblock >
+        
+        <apex:pageBlockSection >
+            <apex:inputField value="{!Account.Name}"/>
+    <apex:image title="Kitten" url="{!URLFOR($Resource.vfimagetest, 'cats/kitten1.jpg')}"/>
+            </apex:pageBlockSection>
+    <apex:image title="Kitten" url="{!URLFOR($Resource.vfimagetest, 'cats/kitten2.jpg')}"/> 
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

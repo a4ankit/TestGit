@@ -1,0 +1,20 @@
+<aura:component >
+ <aura:attribute name="item" type="Camping_Item__c" required="false" />
+    
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+ <lightning:icon iconName="action:goal" alternativeText="camping list"/>
+ 
+ <p>Name<ui:outputText value="{!v.item.name}" /></p>
+ 
+ <p>Price<lightning:formattedNumber value="{!v.item.Price__c}" style="currency"/></p>
+ 
+ <p>Quantity<lightning:formattedNumber value="{!v.item.Quantity__c}" /></p>
+ 
+ <p>
+ <lightning:input type="toggle" 
+ label="Packed" 
+ name="packed" 
+ checked="{!v.item.Packed__c}" />
+ </p> 
+ </lightning:layout>
+</aura:component>

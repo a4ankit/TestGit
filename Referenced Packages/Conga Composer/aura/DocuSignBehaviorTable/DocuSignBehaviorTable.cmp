@@ -1,0 +1,75 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.DocuSignBehaviorController">
+	<aura:attribute type="List" name="DocuSignRecipients" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:attribute name="showNav" default="false" type="Boolean" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<APXTConga4:DocuSignBehaviorModal aura:id="addRecipientModal" DocuSignRecipients="{!v.DocuSignRecipients}" />
+	<div>
+		<div class="slds-form-element slds-float_right slds-m-bottom_large">
+			<aura:if isTrue="{!v.DocuSignRecipients.length >= 24}">
+				<div style="padding-left: 2rem; padding-top: 5rem; position: relative;">
+					<div class="slds-popover slds-popover_tooltip slds-nubbin_right-top" role="tooltip" id="help" style="position: absolute; top: 71px; left: -346px;">
+						<div class="slds-popover__body">{!$Label.apxtconga4.Toast_Maximum_Recipients_Message}</div>
+					</div>
+				</div>
+			</aura:if>
+			<lightning:button label="{!$Label.apxtconga4.Add_Recipient}" onclick="{!c.handleAddRecipient}" disabled="{!v.DocuSignRecipients.length >= 24}" />
+		</div>
+		<div>
+			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+				<thead>
+					<tr class="slds-text-title_caps">
+						<th scope="col" class="slds-cell-shrink">
+							<div class="slds-truncate" title="{!$Label.apxtconga4.Recipient_Signing_Order}">{!$Label.apxtconga4.Recipient_Signing_Order}</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="{!$Label.apxtconga4.Recipient_Id}">{!$Label.apxtconga4.Recipient_Id}</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="{!$Label.apxtconga4.Recipient_Type}">{!$Label.apxtconga4.Recipient_Type}</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="{!$Label.apxtconga4.Recipient_Role}">{!$Label.apxtconga4.Recipient_Role}</div>
+						</th>
+						<th scope="col" class="slds-cell-shrink">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<aura:if isTrue="{!empty(v.DocuSignRecipients)}">
+						<tr>
+							<td colspan="4" class="slds-text-align_center">
+								<aura:if isTrue="{!v.DocuSignRecipients.length == 0}">
+									<a href="javascript:void(0);" onclick="{!c.handleAddRecipient}" class="slds-text-link_reset">{!$Label.apxtconga4.No_Recipients}<span class="slds-text-link slds-m-left--xx-small">{!$Label.apxtconga4.Add_Recipient}</span></a>
+								</aura:if> 
+							</td>
+						</tr>
+					</aura:if>
+					<aura:iteration items="{!v.DocuSignRecipients}" var="recipient">
+						<tr>
+							<td scope="row" data-label="{!$Label.apxtconga4.Recipient_Signing_Order}" class="vertical_align">
+								<div class="slds-truncate" title="{!recipient.SigningOrder}">{!recipient.SigningOrder}</div>
+							</td>
+							<td data-label="{!$Label.apxtconga4.Recipient_Id}" class="vertical_align">
+								<div class="slds-truncate" title="{!recipient.Id}">{!recipient.Id}</div>
+							</td>
+							<td data-label="{!$Label.c.Recipient_Signing_Type}" class="vertical_align">
+								<div class="slds-truncate" title="{!recipient.Type}">{!recipient.Type}</div>
+							</td>
+							<td data-label="{!$Label.c.Recipient_Signing_Role}" class="vertical_align">
+								<div class="slds-truncate" title="{!recipient.Role}">{!recipient.Role}</div>
+							</td>
+							<td>
+								<lightning:buttonMenu alternativeText="Toggle menu" class="slds-button--icon-small slds-button_small" value="{!recipient.SigningOrder}" onselect="{!c.handleSelect}">
+									<lightning:menuItem label="{!$Label.apxtconga4.Edit_Recipient}" value="{!$Label.apxtconga4.Edit_Recipient}" />
+									<lightning:menuItem label="{!$Label.apxtconga4.Delete_Recipient}" value="{!$Label.apxtconga4.Delete_Recipient}" />
+								</lightning:buttonMenu>
+							</td>
+						</tr>
+					</aura:iteration>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</aura:component>

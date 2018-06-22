@@ -1,0 +1,5 @@
+.THIS { min-height: 244px; }
+
+.THIS .form-disabled__message { flex-direction: column; }
+
+.THIS .campaign-journey-link__loading-indicator { position: static; }

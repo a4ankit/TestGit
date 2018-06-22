@@ -1,0 +1,9 @@
+<aura:component controller="DemoCltr">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="accountList" type="Account[]" default=""/>
+    <aura:attribute name="newAccount" type="Account"/>
+    <aura:iteration items="{!v.accountList}" var="acc">
+        Account : {!acc.Id}, {!acc.Name}
+    </aura:iteration>
+    //newAccount.Name = test
+</aura:component>

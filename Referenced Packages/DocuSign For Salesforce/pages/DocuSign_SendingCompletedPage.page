@@ -1,0 +1,74 @@
+<apex:page Controller="dsfs.EnvelopeController" showHeader="true" sidebar="false" tabStyle="dsfs__DocuSign_Status__c" action="{!createActionLinks}">
+	<apex:stylesheet value="{!$Resource.dsfs__styles}" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js" />
+	<apex:includeScript value="{!$Resource.dsfs__modernizrjs}" />
+	<apex:includeScript value="{!$Resource.dsfs__html5shivjs}" />	
+	<script type="text/javascript">
+		jQuery.noConflict();
+		jQuery(document).ready(function($) {
+			if(!Modernizr.svg) {
+    			$('.success-icon').attr('src', '{!$Resource.SuccessPNG}');
+			}
+			var signNowError = '{!JSENCODE($CurrentPage.parameters.signNowError)}';
+            		var newWindow = '{!JSENCODE($CurrentPage.parameters.NW)}';
+			if(signNowError !== '') {
+				$('#dsAlert ul').append('<li><p>'+decodeURIComponent(signNowError).replace(/\+/g, ' ')+'</p></li>');
+				$('.alert-messages').addClass('info');
+		        $('#dsAlert').show();
+			}
+			if(newWindow == '1'){
+				$('#sucess-content').hide();
+				$('#review-content').hide();
+				$('#new-window-content').show();
+			} else {
+				$('#content').show();
+			}
+			if (dsGlobal.envelope.showWriteReview === true) {
+				$('#review-content').show();
+			}
+			$('#writeReviewButton').click(function() {
+			    console.log('writeReviewButton clicked');
+			    window.open('https://appexchange.salesforce.com/listingDetail?listingId=a0N30000001taX4EAI&tab=r', '_blank');
+			    try {
+			        Visualforce.remoting.Manager.invokeAction(
+			            dsGlobal.writeReview,
+			            function(result, event) { 
+			                console.log(result);});
+			    } catch (err) {
+			        console.log(err);
+			    }
+			});
+		});
+		Visualforce.remoting.timeout = 120000;
+		dsGlobal = {
+			writeReview: '{!$RemoteAction.EnvelopeController.writeReview}',
+			envelope: JSON.parse('{!JSENCODE(envelopeJson)}')
+		};
+	</script>
+	<div class="docusign-container">
+	   	<div id="dsAlert" style="display: none">
+			<ul class="alert-messages"></ul>
+		</div>		
+		<div class="success">
+			<img class="success-icon" src="{!$Resource.Success}"/>
+			<div class="success-content" id="content"  style="display: none">
+				<h1>{!$Label.DocuSignSendingCompleted}</h1>
+				<p>{!$Label.YourDocEmailedInPdf}</p>
+				<input type="hidden" value="{!$CurrentPage.parameters.DSEnvGUID}" name="envelopeId"/>
+				<a href="{!pathPrefix}/{!envelope.sourceId}" class="secondary button">{!$Label.ReturnTo} {!objectType}</a>
+				<div id="review-content" style="display: none">
+					<hr/>
+					<h1>{!$Label.RateUs}</h1>
+					<p>{!$Label.ShareExperienceWithCommunity}</p>
+					<a href="javascript:void(0);" id="writeReviewButton" class="secondary button">{!$Label.WriteAReview}</a>
+				</div>
+			</div>
+			<div class="success-content" id="new-window-content" style="display:none">
+				<h1>{!$Label.DocuSignSendingCompleted}!</h1>	
+				<p>{!$Label.EnvelopeSent}</p>
+				<a href="" onclick="window.close()" class="secondary button">{!$Label.CloseWindow}</a>
+			</div>
+		</div>
+	</div>
+</apex:page>

@@ -1,0 +1,25 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.GeneratedFileBehaviorController" >
+	<aura:attribute name="convertToPdf" type="Boolean" default="false" />
+	<aura:attribute name="filename" type="String" />
+	<aura:attribute name="isMandatory" type="Boolean" default="false" />
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:registerEvent name="behaviorSaveComplete" type="APXTConga4:CongaEvent" />
+	<aura:set attribute="showNav" value="false" />
+	<div class="slds-panel slds-clearfix">
+		<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-has-divider_bottom-space">
+			<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.GenerateFile_Settings_Header}</h2>
+		</div>
+		<div data-reactroot="" class="slds-form slds-form_stacked slds-form_stacked slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">
+			<p class="slds-m-bottom--large">{!$Label.apxtconga4.Generated_File_Description}</p>
+			<lightning:input type="toggle" aura:id="convertToPdf" label="{!$Label.apxtconga4.Convert_To_PDF_Label}" name="togglevalue" checked="{!v.convertToPdf}" messageToggleActive="{!$Label.apxtconga4.Yes_Label}" messageToggleInactive="{!$Label.apxtconga4.No_Label}"/>
+			<lightning:input type="toggle" aura:id="isMandatory" label="{!$Label.apxtconga4.Is_Mandatory_Label}" name="togglevalue" checked="{!v.isMandatory}" messageToggleActive="{!$Label.apxtconga4.Yes_Label}" messageToggleInactive="{!$Label.apxtconga4.No_Label}"/>
+			<lightning:input aura:id="filenameField" type="text" label="{!$Label.apxtconga4.Filename_Label}" name="filename" value="{!v.filename}" maxlength="100" pattern="^[a-zA-Z0-9_\-\.!${}äöüÄÖÜ]*$"/>
+			<p class="slds-form-element__label">{!$Label.apxtconga4.Filename_Note_Label}</p>
+			<div class="slds-form-element slds-float_right slds-p-top_medium">
+				<lightning:button aura:id="buttonSave" variant="brand" label="Save" onclick="{!c.handleSave}" />
+			</div>
+		</div>
+	</div>
+</aura:component>

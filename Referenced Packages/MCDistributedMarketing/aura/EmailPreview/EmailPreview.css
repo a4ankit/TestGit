@@ -1,0 +1,8 @@
+.THIS .email-subject { font-weight: t(fontWeightBold); }
+
+.THIS .email-content {
+    border: 1px solid t(colorBorder);
+    border-radius: t(borderRadiusMedium);
+    background-color: t(colorBackgroundAlt);
+    position: relative;
+}

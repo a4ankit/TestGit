@@ -1,0 +1,41 @@
+<aura:component extensible="true">
+	<!-- Navigation Bar -->
+	<aura:attribute name="index" default="0" type="Integer" />
+	<aura:attribute name="inVFPage" type="String" />
+	<aura:attribute name="masterObject" type="String" default="-- Select a Salesforce Object --" />
+	<aura:attribute name="masterObjectLabel" type="String"/>
+	<aura:attribute name="showNav" default="true" type="Boolean" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="solutionName" type="String" />
+	<aura:attribute name="steps" default="[{label:'Add Details', type:'c:SolutionStep', bindings:[{from:'masterObject', to:'selectedObject'}]},{label:'Gather Data', type:'c:DataStep', bindings:[{from:'masterObject', to:'masterObject'}]}, {label:'Add Templates', type:'c:TemplateStep'},{label:'Assign Behaviors', type:'c:BehaviorStep'}, {label:'Add Button to Page Layout', type:'c:FinishStep'}]" type="List" />
+	<aura:attribute name="theme" type="String" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:handler name="stepEvent" event="APXTConga4:StepEvent" action="{!c.captureNavigationEvent}" />
+	<aura:if isTrue="{!v.showSpinner}">
+		<APXTConga4:Spinner />
+	</aura:if>
+	<APXTConga4:Toast aura:id="toastComponent" showOnEvent="true" title="{!$Label.apxtconga4.Toast_Title}" />
+	<div class="{!(v.showNav ? 'slds-grid slds-m-around--large' : 'slds-hide')}">
+		<div class="slds-tabs--path" role="application">
+			<ul class="slds-tabs--path__nav" role="tablist">
+				<aura:iteration items="{!v.steps}" var="item" indexVar="index">
+					<li class="{!(v.index eq index ? 'slds-is-current' : (v.index gt index ? 'slds-is-complete' : 'slds-is-incomplete')) + ' slds-tabs--path__item'}" role="presentation">
+						<a data-step="{!index}" onclick="{!c.jump}" class="slds-tabs--path__link" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+							<span class="slds-tabs--path__stage">
+								<aura:if isTrue="{!v.index gt index}">
+									<lightning:icon iconName="utility:check" size="x-small" />
+									<span class="slds-assistive-text">Stage Complete</span>
+								</aura:if>
+							</span>
+							<span data-step="{!index}" onclick="{!c.jump}" class="slds-tabs--path__title">{!item.label}</span>
+						</a>
+					</li>
+				</aura:iteration>
+			</ul>
+		</div>
+	</div>
+	<!-- /Navigation Bar -->
+	<div>
+		{!v.body}
+	</div>
+</aura:component>

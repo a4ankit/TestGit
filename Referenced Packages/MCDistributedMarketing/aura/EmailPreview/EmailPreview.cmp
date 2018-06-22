@@ -1,0 +1,39 @@
+<aura:component description="Renders an email from Marketing Cloud"
+    controller="mcdm_15.MarketingCloudEmailAdapter"
+>
+    <aura:attribute name="emailData" type="Object" required="true" description="Object to store emailId, Subject, PreHeader and fieldMaps needed to render Email"/>
+    <aura:attribute name="emailPreview" type="Object" description="Contains markup, subject line and preheader data"/>
+    <aura:attribute name="errorMessage" type="String" description="Displayed when an error fetching the preview has occurred"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true" description="Activity flag"/>
+
+    <aura:registerEvent name="previewStateChanged" type="ui:change"/>
+    <aura:handler name="change" value="{!v.emailData}" action="{!c.handleEmailDataChange}" description="Will update preview on data change"/>
+
+    <ltng:require scripts="{!$Resource.mcdm_15__StaticAssets + '/commons.js'}"
+        afterScriptsLoaded="{!c.handleEmailDataChange}"
+    />
+
+    <div>
+        <div class="{!empty(v.errorMessage) ? 'slds-hide' : '' }">
+            <div class="email-error slds-media slds-media_center">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="utility:warning" variant="error" size="small"/>
+                </div>
+                <div class="slds-media__body">
+                    <p>{!v.errorMessage}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="{!!empty(v.errorMessage) ? 'slds-hide' : ''}">
+            <div aura:id="contentWrapper" class="email-content slds-p-around_xxx-small">
+                <lightning:spinner class="{!(v.isLoading ? '' : 'slds-hide')}"
+                    alternativeText="{!$Label.mcdm_15.loading}"
+                    variant="brand"
+                    size="large"/>
+
+                <mcdm_15:ContentRendererFrame aura:id="renderFrame"/>
+            </div>
+        </div>
+    </div>
+</aura:component>

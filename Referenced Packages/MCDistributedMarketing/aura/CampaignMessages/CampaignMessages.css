@@ -1,0 +1,26 @@
+.THIS { position: relative; }
+
+.THIS .preview-header { width: 3.75rem; }
+
+/* slds-card overrides for custom border between header and body */
+.THIS .slds-card__header {
+    margin-bottom: 0;
+    padding-bottom: 0.75rem;
+}
+
+/* slds-table overrides for custom alignment */
+.THIS .slds-table th:first-of-type,
+.THIS .slds-table td:first-of-type {
+    padding-left: 1.5rem;
+}
+.THIS .slds-table th:last-of-type,
+.THIS .slds-table td:last-of-type {
+    padding-right: 1.5rem;
+}
+
+.THIS .approval-summary { background-color: t(colorBackgroundChromeDesktop); }
+
+/* slds-button_icon-more workaround for broken arrow handling with border-* variants */
+.THIS .slds-button_icon-more {
+    background-color: t(colorBackgroundButtonDefault);
+}

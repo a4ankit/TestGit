@@ -1,0 +1,23 @@
+<apex:page sidebar="false">
+	<apex:includeLightning />
+	<script>
+		
+        $Lightning.use("APXTConga4:AppForVisualForcePages", function() {
+          $Lightning.createComponent("APXTConga4:SolutionStep",
+          {index:0,
+            inVFPage:"true",
+            masterObject: '{!$CurrentPage.parameters.mo}',
+            masterObjectLabel: '{!$CurrentPage.parameters.mol}',
+            solutionId: '{!$CurrentPage.parameters.sid}',
+            solutionName: '{!$CurrentPage.parameters.sn}',
+            theme: '{!$CurrentPage.parameters.theme}'},
+          "lightning",
+          function(cmp) {
+            
+          });
+        });
+    </script>
+
+    <div id="lightning" />
+
+</apex:page>

@@ -1,0 +1,12 @@
+<aura:component extends="ui:dataProvider"
+    controller="mcdm_15.JourneyDataProviderAdapter"
+    description="Data provider for Journey autocomplete component">
+
+    <aura:handler name="provide" action="{!c.provide}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+    />
+
+</aura:component>

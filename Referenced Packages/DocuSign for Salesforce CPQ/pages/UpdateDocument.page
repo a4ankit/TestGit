@@ -1,0 +1,11 @@
+<apex:page standardController="SBQQ__QuoteDocument__c" extensions="SBQQDS.QuoteDocumentExtController">
+	<apex:pageMessages />
+	<apex:form >
+		<apex:pageBlock mode="edit" title="Update Document Status">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Update" action="{!onUpdate}"/>
+				<apex:commandButton value="Cancel" action="{!onCancel}"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

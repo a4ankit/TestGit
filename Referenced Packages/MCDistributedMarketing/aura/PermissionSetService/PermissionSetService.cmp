@@ -1,0 +1,19 @@
+<aura:component controller="mcdm_15.PermissionSetServiceAdapter">
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+    />
+
+    <aura:method name="getAllPermissions" action="{!c.handleAllPermissions}" description="Returns an object that contains information about whether the current user is a DM admin or DM standard user">
+        <aura:attribute name="callback" type="Object" description="A callback function that returns a map of Distributed Marketing permission sets"/>
+    </aura:method>
+
+    <aura:method name="getIsAdminUser" action="{!c.handleIsAdminUser}" description="Returns whether the current user is a DM admin">
+        <aura:attribute name="callback" type="Object" description="A callback function that returns a boolean"/>
+    </aura:method>
+
+    <aura:method name="getIsStandardUser" action="{!c.handleIsStandardUser}" description="Returns whether the current user is a DM standard user">
+        <aura:attribute name="callback" type="Object" description="A callback function that returns a boolean"/>
+    </aura:method>
+</aura:component>

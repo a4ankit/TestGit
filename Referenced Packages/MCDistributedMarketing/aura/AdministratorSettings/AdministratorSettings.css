@@ -1,0 +1,7 @@
+.THIS { height: 100%; }
+
+.THIS .settings-container {
+    position: relative;
+    min-height: calc(100% - 92px - 0.75rem); /* .slds-page-header + .slds-m-top_small */
+    background-color: t(colorBackgroundAlt);
+}

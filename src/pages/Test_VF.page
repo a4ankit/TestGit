@@ -1,0 +1,11 @@
+<apex:page >
+ <apex:includeLightning />
+ nope
+ <div id="lightning" />
+ <script>
+ $Lightning.use("c:visual_app", function(){$Lightning.createComponent("c:light_test", {label : ""}, "lightning", function(cmp){});
+ $Lightning.createComponent("c:campingList", {label : ""}, "lightning", function(cmp){});
+});
+ </script>
+
+</apex:page>

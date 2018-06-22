@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>TermConditionHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Condition that determines whether parent quote term is printed or not.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Index__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Assign an unique number to this Condition to reference it in the Quote Term&apos;s Advanced Condition.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Assign an unique number to this Condition to reference it in the Quote Term&apos;s Advanced Condition.</inlineHelpText>
+        <label>Index</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The operator for this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the operator for the field.</inlineHelpText>
+        <label>Operator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>not equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>less than</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>less or equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>greater than</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>greater or equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>starts with</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>ends with</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>contains</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>QuoteTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Parent term for this term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Parent term for this term.</inlineHelpText>
+        <label>Quote Term</label>
+        <referenceTo>QuoteTerm__c</referenceTo>
+        <relationshipLabel>Term Conditions</relationshipLabel>
+        <relationshipName>UseConditions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>TestedField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field on quote object used for testing this condition.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field on quote object used for testing this condition.</inlineHelpText>
+        <label>Tested Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>List Amount</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Regular Amount</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Customer Amount</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Net Amount</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TestedVariable__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Summary variable used in testing this condition.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Summary variable used in testing this condition.</inlineHelpText>
+        <label>Tested Variable</label>
+        <referenceTo>SummaryVariable__c</referenceTo>
+        <relationshipLabel>Term Conditions</relationshipLabel>
+        <relationshipName>TermConditions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Value to test against.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Value to test against.</inlineHelpText>
+        <label>Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Term Condition</label>
+    <nameField>
+        <displayFormat>{00000}</displayFormat>
+        <label>Condition #</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Term Conditions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Field_and_Variable</fullName>
+        <active>true</active>
+        <description>Validates that either field or summary variable is selected, but not both.</description>
+        <errorConditionFormula>AND(NOT(ISPICKVAL(TestedField__c, &apos;&apos;)),NOT(ISBLANK(TestedVariable__c)))</errorConditionFormula>
+        <errorMessage>You may not select both field and variable to test. Create separate conditions to test against field and variable.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Field_or_Variable</fullName>
+        <active>true</active>
+        <description>Validates that either field or summary variable is selected.</description>
+        <errorConditionFormula>AND(ISPICKVAL(TestedField__c, &apos;&apos;),ISBLANK(TestedVariable__c))</errorConditionFormula>
+        <errorMessage>You must select either field or variable to test.</errorMessage>
+    </validationRules>
+</CustomObject>

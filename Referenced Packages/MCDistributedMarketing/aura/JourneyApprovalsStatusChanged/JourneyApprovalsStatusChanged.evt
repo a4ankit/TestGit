@@ -1,0 +1,5 @@
+<!-- DEPRECATED: THIS EVENT IS NOT IN USE, BUT CANNOT BE REMOVED FROM THE PACKAGE -->
+<aura:event type="COMPONENT" description="Indicates a status change for the given Journey Approval">
+    <aura:attribute name="approvals" type="Object[]" description="The Journey Approvals whose status changed"/>
+    <aura:attribute name="status" type="String" description="The status"/>
+</aura:event>

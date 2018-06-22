@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>activityEmailSubject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header label for Journey Activity Table</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>activityMessages</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header label for Journey activities list</shortDescription>
+        <value>Campaign Messages</value>
+    </labels>
+    <labels>
+        <fullName>addAdditionalGreetingMapping</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Label for Creating Additional Greeting Mapping</shortDescription>
+        <value>Add Another Greeting</value>
+    </labels>
+    <labels>
+        <fullName>administrationOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for option to go to Distributed Marketing Administration page.</shortDescription>
+        <value>Administration</value>
+    </labels>
+    <labels>
+        <fullName>administrationOptionTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for option to go to Distributed Marketing Administration page.</shortDescription>
+        <value>Distributed Marketing Settings</value>
+    </labels>
+    <labels>
+        <fullName>administrationPageTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of the administration settings page</shortDescription>
+        <value>Distributed Marketing Administration</value>
+    </labels>
+    <labels>
+        <fullName>administratorSettingsGreetingHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for UI for modifying and adding custom Greeting options</shortDescription>
+        <value>Greeting</value>
+    </labels>
+    <labels>
+        <fullName>administratorSettingsGreetingSubHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for UI for modifying and adding custom Greeting options</shortDescription>
+        <value>Greetings allow your users to talk to their customers in the way they want to be talked to. We give your users first and full name, but you can give them up to eight additional ways to address recipients, like nickname or preferred name. Most custom and standard fields are available.</value>
+    </labels>
+    <labels>
+        <fullName>apply</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Apply</value>
+    </labels>
+    <labels>
+        <fullName>applyChanges</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Apply Changes Button label</shortDescription>
+        <value>Apply Changes</value>
+    </labels>
+    <labels>
+        <fullName>approval</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A table heading for approving or rejecting a given row</shortDescription>
+        <value>Approval</value>
+    </labels>
+    <labels>
+        <fullName>approvalFailures</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A variable count of failures, e.g., &quot;5 items failed&quot;</shortDescription>
+        <value>{0} items failed</value>
+    </labels>
+    <labels>
+        <fullName>approvalSuccesses</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A variable count of successes, e.g., &quot;5 succeeded&quot;</shortDescription>
+        <value>{0} items succeeded</value>
+    </labels>
+    <labels>
+        <fullName>approve</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action label for the act of approving pending changes.</shortDescription>
+        <value>Approve</value>
+    </labels>
+    <labels>
+        <fullName>approvedApprovalStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval status value</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
+        <fullName>approvedSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>&apos;Approved&apos; summary label.</shortDescription>
+        <value>Approved:</value>
+    </labels>
+    <labels>
+        <fullName>askAdminConnectCampaign</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Instructional text</shortDescription>
+        <value>Ask your Administrator to connect this campaign.</value>
+    </labels>
+    <labels>
+        <fullName>authedUserDataLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>E.g., &quot;John Doe (john@example.com) of Business Unit 282172&quot;</shortDescription>
+        <value>{0} ({1}) of Business Unit {2}</value>
+    </labels>
+    <labels>
+        <fullName>autocompleteSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result set summary text where: {0} = results shown, {1} = total results</shortDescription>
+        <value>Showing {0} of {1} results</value>
+    </labels>
+    <labels>
+        <fullName>autogeneratedDeFolder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Folder name for storing DEs in Marketing Cloud. {0} is sf ord id</shortDescription>
+        <value>Distributed Marketing {0} Data Extensions</value>
+    </labels>
+    <labels>
+        <fullName>back</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back button text</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>breadcrumbs</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the word &apos;Breadcrumbs&apos;</shortDescription>
+        <value>Breadcrumbs</value>
+    </labels>
+    <labels>
+        <fullName>campaignMemberApproval</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section heading</shortDescription>
+        <value>Campaign Member Approval</value>
+    </labels>
+    <labels>
+        <fullName>campaignPersonalizationDefaults</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for Journey Send Setting Defaults Modal for Campaigns</shortDescription>
+        <value>Campaign Personalization Defaults</value>
+    </labels>
+    <labels>
+        <fullName>cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>cannotShowMoreRecords</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Informs the user that no more records can be loaded in a list/grid.</shortDescription>
+        <value>Approve or reject some campaign members to display more waiting for your review.</value>
+    </labels>
+    <labels>
+        <fullName>categoryCreationFailed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Creating the nested category failed for unexpected reasons.</shortDescription>
+        <value>Creating category &apos;{0}&apos; under &apos;Data Extensions&apos; in Marketing Cloud failed.</value>
+    </labels>
+    <labels>
+        <fullName>clearText</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title and alternative text shown for a clear-text button</shortDescription>
+        <value>Clear text</value>
+    </labels>
+    <labels>
+        <fullName>closingPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Conclusion]</value>
+    </labels>
+    <labels>
+        <fullName>completeConnection</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Post install page button label</shortDescription>
+        <value>Complete Connection</value>
+    </labels>
+    <labels>
+        <fullName>configureDistributedMarketing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alert the Admin that DM has not been configured</shortDescription>
+        <value>Almost there! Click &quot;Complete Connection&quot; and follow the instructions to finish connecting to the Marketing Cloud.</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaign</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Campaign-Journey linkage</shortDescription>
+        <value>Connect Campaign</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignAlreadyConnected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Connect Campaign modal messaging, where {0} is the name of the Journey</shortDescription>
+        <value>Looks like your campaign is already connected to {0}.</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignChangeJourney</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Connect Campaign modal messaging, where {0} is the name of the Journey</shortDescription>
+        <value>You can change the journey if there are no campaign members in the campaign.</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignFormDisabledHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Connect Campaign modal sub-heading</shortDescription>
+        <value>You&apos;re all set!</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignInstructions</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Instructional messaging for connecting a campaign</shortDescription>
+        <value>Connect this campaign to a journey to get started.</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignIntroHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Warning body</shortDescription>
+        <value>What Journey would you like to connect?</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignPermissionDenied</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Warning body</shortDescription>
+        <value>Ask your admin for access to manage this campaign connection.</value>
+    </labels>
+    <labels>
+        <fullName>connectCampaignPermissionDeniedHeading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Heading</shortDescription>
+        <value>Ready to connect this campaign?</value>
+    </labels>
+    <labels>
+        <fullName>customDefaultGreetingNotFound</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Custom default greeting settings have become corrupted and need to be reset.</shortDescription>
+        <value>Update default greeting settings to map it correctly or ask your admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>customPermissionNotValid</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message displayed to users if the requested custom permission is invalid</shortDescription>
+        <value>Custom Permission &quot;{0}&quot; is not valid</value>
+    </labels>
+    <labels>
+        <fullName>dataExtensionCreationFailed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>We tried to create a data extension with a specific name and it failed</shortDescription>
+        <value>We couldn&apos;t create the data extension {0}. Try again or ask your administrator for help.</value>
+    </labels>
+    <labels>
+        <fullName>deColumnNotLargeEnoughError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message displayed to user if the value for a DE exceeds the max length</shortDescription>
+        <value>Message exceeds character limit. Edit the message and try again.</value>
+    </labels>
+    <labels>
+        <fullName>defaultGreetingHeading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Heading for the User Default Greeting Component</shortDescription>
+        <value>Greeting</value>
+    </labels>
+    <labels>
+        <fullName>defaultGreetingSubHeading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sub Heading for the User Default Greeting Component</shortDescription>
+        <value>What name do you want to use to greet your recipients?</value>
+    </labels>
+    <labels>
+        <fullName>defaultOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Default setting selection label</shortDescription>
+        <value>Default</value>
+    </labels>
+    <labels>
+        <fullName>defaultSendSettingAccountDefault</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account level fallback select option for Default Journey Send Settings</shortDescription>
+        <value>Use my default settings ({0})</value>
+    </labels>
+    <labels>
+        <fullName>defaultSendSettingOrgDefault</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Org level fallback select option for Default Journey Send Settings</shortDescription>
+        <value>System Default ({0})</value>
+    </labels>
+    <labels>
+        <fullName>deleteGreetingMapping</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility for Greeting Mapping Delete Button</shortDescription>
+        <value>Delete Greeting Mapping</value>
+    </labels>
+    <labels>
+        <fullName>details</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Record details tab label</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>differentP13nValues</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text shown when multiple members have different values for a field</shortDescription>
+        <value>You selected members with different personalization. Write a new message to update for everyone selected.</value>
+    </labels>
+    <labels>
+        <fullName>distributedMarketingAdminHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for the Distributed Marketing Administration Page</shortDescription>
+        <value>Connect to the Marketing Cloud</value>
+    </labels>
+    <labels>
+        <fullName>distributedMarketingIsConfigured</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alert the Admin that DM has been configured</shortDescription>
+        <value>Everything looks good! You&apos;re connected to the Marketing Cloud.</value>
+    </labels>
+    <labels>
+        <fullName>duplicateGreetingLabelsDetected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Message for when a user enters Duplicate Greeting Labels</shortDescription>
+        <value>Make sure your greeting labels are unique before saving.</value>
+    </labels>
+    <labels>
+        <fullName>edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Synonymous with modify</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>emailPreview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab header for email preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
+        <fullName>emailPreviewError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Displayed when an error fetching the preview has occurred</shortDescription>
+        <value>An error occurred while rendering the email preview. Ask your Marketing Cloud admin to check the connected journey.</value>
+    </labels>
+    <labels>
+        <fullName>enableApprovalFlow</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for a toggle field to enable/disable approval flow.</shortDescription>
+        <value>Enable Approval Flow</value>
+    </labels>
+    <labels>
+        <fullName>errorAccessingObjectField</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Message for when greeting is mapped to an unaccessbile SObject field</shortDescription>
+        <value>We can&apos;t do this because this campaign is using data you don’t have access to. Ask your Salesforce Admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>errorApprovalStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval status value</shortDescription>
+        <value>Failed</value>
+    </labels>
+    <labels>
+        <fullName>errorFetchingContent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>success / error messaging</shortDescription>
+        <value>There was a problem retrieving content. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>erroredSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>&apos;Errored&apos; summary label.</shortDescription>
+        <value>Errored:</value>
+    </labels>
+    <labels>
+        <fullName>externalComponents</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab header for a panel that contains external components</shortDescription>
+        <value>More</value>
+    </labels>
+    <labels>
+        <fullName>failedSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>&apos;Failed&apos; summary label.</shortDescription>
+        <value>Failed:</value>
+    </labels>
+    <labels>
+        <fullName>failedToCreateCampaignJourneyLink</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Failure toast message</shortDescription>
+        <value>Failed to create Campaign - Journey linkage. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>feed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Chatter feed tab label</shortDescription>
+        <value>Feed</value>
+    </labels>
+    <labels>
+        <fullName>firstName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label, e.g., &quot;First Name: John&quot;</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>firstNamePlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[First Name]</value>
+    </labels>
+    <labels>
+        <fullName>fullName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label, e.g., &quot;Full Name: John Doe&quot;</shortDescription>
+        <value>Full Name</value>
+    </labels>
+    <labels>
+        <fullName>globalSettingsAltText</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alternative Text for the Settings cog on the campaign messages component.</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>globalSettingsLoadingError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message displayed when global settings can&apos;t be populated.</shortDescription>
+        <value>Error getting options; please refresh page</value>
+    </labels>
+    <labels>
+        <fullName>globalSettingsTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Settings cog on the campaign messages component.</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>greeting</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header text for greeting field</shortDescription>
+        <value>Greeting</value>
+    </labels>
+    <labels>
+        <fullName>greetingMappingLabelTextInput</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility for Greeting Mapping Label Text Input</shortDescription>
+        <value>Greeting Mapping Label Text Input</value>
+    </labels>
+    <labels>
+        <fullName>greetingMappingLocked</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility for Greeting Mapping Lock Icon</shortDescription>
+        <value>Unable to Delete Greeting Mapping</value>
+    </labels>
+    <labels>
+        <fullName>greetingOptionSelectLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility Label for Greeting Select Input</shortDescription>
+        <value>Select Option For Greeting</value>
+    </labels>
+    <labels>
+        <fullName>greetingPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contains a greeting field label and shown if the value is not available</shortDescription>
+        <value>[{0}]</value>
+    </labels>
+    <labels>
+        <fullName>helpAlternativeText</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Descriptive help messaging for info icons + tooltip implementations.</shortDescription>
+        <value>Hover your cursor over this tooltip for more information.</value>
+    </labels>
+    <labels>
+        <fullName>insufficientPrivilegesMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Messaging for pages where the user doesn&apos;t have access</shortDescription>
+        <value>If you think you should have acess to this page, ask your administrator for help. Visit our support page to learn more about accessing and using Distributed Marketing.</value>
+    </labels>
+    <labels>
+        <fullName>insufficientPrivilegesTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title messaging for pages where the user doesn&apos;t have access</shortDescription>
+        <value>You don&apos;t have access to this page</value>
+    </labels>
+    <labels>
+        <fullName>introPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Introduction]</value>
+    </labels>
+    <labels>
+        <fullName>journeyApprovalDataExtensionDuplicateKey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Extension column that must be unique sent duplicate values</shortDescription>
+        <value>A record with the same primary key value already exists on this journey. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>journeyApprovalUnknownError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error we don&apos;t know how to handle when adding someone to a journey</shortDescription>
+        <value>An error occurred for this campaign member. Try again or ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>journeyCampaignMemberRemoved</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Campaign member user tried to add to journey was deleted</shortDescription>
+        <value>Campaign member was removed.</value>
+    </labels>
+    <labels>
+        <fullName>journeyEntryError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A runtime error happened on the MC side, likely Entry Source was deleted</shortDescription>
+        <value>Unable to add the campaign member because the entry event for the associated journey can&apos;t be found. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>journeyFieldMissing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown for members with a required field missing. {0} = Name of the field.</shortDescription>
+        <value>The required field {0} is missing. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>journeyFieldNotSet</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown for members with an empty required field. {0} = Name of the field.</shortDescription>
+        <value>Enter the required field {0} for this campaign member.</value>
+    </labels>
+    <labels>
+        <fullName>journeyFieldsMissing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown for members with required fields missing. {0} = Name of the fields.</shortDescription>
+        <value>These required fields are missing: {0}. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>journeyLookup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessbility Label for Connect to Journey Campaign Lookup</shortDescription>
+        <value>Search for Journey by name</value>
+    </labels>
+    <labels>
+        <fullName>journeySubscriberkeyMissingOrDataExtensionDeleted</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Either the subscriberkey field was not sent or the journey&apos;s DE was deleted</shortDescription>
+        <value>Confirm that the data extension was set up for the associated journey and a SubscriberKey was defined. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>lastNamePlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Last Name]</value>
+    </labels>
+    <labels>
+        <fullName>loading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Activity text.</shortDescription>
+        <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>lockedGreetingOptionTooltip</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tooltip for the lock Icon for packaged/default greetings</shortDescription>
+        <value>You can modify or remove custom options that are not set as default.</value>
+    </labels>
+    <labels>
+        <fullName>manageJourneyOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the global settings option to open Connect Campaign modal.</shortDescription>
+        <value>Manage Journey</value>
+    </labels>
+    <labels>
+        <fullName>manageJourneyOptionTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the global settings option to open Connect Campaign modal.</shortDescription>
+        <value>Connect Journey to Campaign</value>
+    </labels>
+    <labels>
+        <fullName>manyNominationsSelected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Displayed when too many nominations are selected in the nominations view</shortDescription>
+        <value>Select one campaign member to view their record details.</value>
+    </labels>
+    <labels>
+        <fullName>mcReservedFieldError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message to display when a reserved journey name is specified</shortDescription>
+        <value>Field &quot;{0}&quot; is reserved and cannot be set with custom values.</value>
+    </labels>
+    <labels>
+        <fullName>mcTimeout</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message to display to user for MC Timeout on request</shortDescription>
+        <value>Your request could not be completed at this time. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>memberDetailsTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Member Details modal Launched from Journey Approval Record</shortDescription>
+        <value>Member Details</value>
+    </labels>
+    <labels>
+        <fullName>message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The generic label for a MC journey message</shortDescription>
+        <value>Message</value>
+    </labels>
+    <labels>
+        <fullName>modified</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A flag to indicate that a given record has been changed</shortDescription>
+        <value>Modified</value>
+    </labels>
+    <labels>
+        <fullName>modifying</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The word &apos;modifying&apos; followed by a colon</shortDescription>
+        <value>Modifying:</value>
+    </labels>
+    <labels>
+        <fullName>more</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Generic label for actions that overflow and are combined into a collection</shortDescription>
+        <value>More</value>
+    </labels>
+    <labels>
+        <fullName>nApproved</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A variable count of approvals, e.g., &quot;22 approved&quot;</shortDescription>
+        <value>{0} Approved</value>
+    </labels>
+    <labels>
+        <fullName>nMember</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The number &apos;{0}&apos; of members in context (singular form)</shortDescription>
+        <value>{0} member</value>
+    </labels>
+    <labels>
+        <fullName>nMembers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The number &apos;{0}&apos; of members in context (plural form)</shortDescription>
+        <value>{0} members</value>
+    </labels>
+    <labels>
+        <fullName>nRejected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A variable count of rejections, e.g., &quot;22 rejected&quot;</shortDescription>
+        <value>{0} Rejected</value>
+    </labels>
+    <labels>
+        <fullName>name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label, e.g., &quot;Name: John Doe&quot;</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>nextMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alternative text for the next msg button</shortDescription>
+        <value>Next message</value>
+    </labels>
+    <labels>
+        <fullName>noJourneyMessages</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message to indicate lack of email activities in Journey</shortDescription>
+        <value>No messages yet!</value>
+    </labels>
+    <labels>
+        <fullName>noNominationSelected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No selection message for pending nominations view</shortDescription>
+        <value>No pending nomination selected.</value>
+    </labels>
+    <labels>
+        <fullName>noPendingMembersBody</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No campaign members pending approval messaging</shortDescription>
+        <value>No campaign members currently need your approval.</value>
+    </labels>
+    <labels>
+        <fullName>noPendingMembersHeading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No campaign members pending approval title</shortDescription>
+        <value>You&apos;re all set!</value>
+    </labels>
+    <labels>
+        <fullName>noRootCategory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>By default this category should exist. We nest our categories under it.</shortDescription>
+        <value>The &apos;Data Extensions&apos; category does not exist in the Marketing Cloud.</value>
+    </labels>
+    <labels>
+        <fullName>objectFieldLookup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility label for Object field lookup</shortDescription>
+        <value>{0} field Lookup input</value>
+    </labels>
+    <labels>
+        <fullName>objectFieldLookupPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder for Object field lookup</shortDescription>
+        <value>Search for {0} field</value>
+    </labels>
+    <labels>
+        <fullName>p13nDataExtensionDescription</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the personalization data extension DM creates</shortDescription>
+        <value>Data Extension used for Distributed Marketing personalization</value>
+    </labels>
+    <labels>
+        <fullName>p13nTooLargeError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message displayed when entering too much text in a personalization field</shortDescription>
+        <value>Looks like you&apos;ve entered too much text. Edit the message and try again.</value>
+    </labels>
+    <labels>
+        <fullName>pageUnauthorized</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error messaging displayed to users without appropriate permissions.</shortDescription>
+        <value>You do not have the appropriate permission set to view this page. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>pendingApprovalStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval status value</shortDescription>
+        <value>Pending</value>
+    </labels>
+    <labels>
+        <fullName>pendingApprovals</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Campaign members pending approval for addition to a Journey</shortDescription>
+        <value>Pending Approvals</value>
+    </labels>
+    <labels>
+        <fullName>pendingApprovalsHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for pending approvals view</shortDescription>
+        <value>Pending Approvals</value>
+    </labels>
+    <labels>
+        <fullName>pendingMembersCounts</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Describes how many members are displayed out of the total set</shortDescription>
+        <value>{0} of {1} Members</value>
+    </labels>
+    <labels>
+        <fullName>personalization</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Synonymous with modification or customization</shortDescription>
+        <value>Personalization</value>
+    </labels>
+    <labels>
+        <fullName>personalizationClosing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Closing field for personalization</shortDescription>
+        <value>Conclusion</value>
+    </labels>
+    <labels>
+        <fullName>personalizationClosingMultipleValues</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for the Conclusion field (multiple members selected)</shortDescription>
+        <value>Add a conclusion to these messages...</value>
+    </labels>
+    <labels>
+        <fullName>personalizationClosingPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for the Conclusion field (single member selected)</shortDescription>
+        <value>Add a conclusion to this message...</value>
+    </labels>
+    <labels>
+        <fullName>personalizationClosingWithCount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label, where {0}/{1} is character count, e.g., 50/255</shortDescription>
+        <value>Conclusion ({0}/{1})</value>
+    </labels>
+    <labels>
+        <fullName>personalizationDeNotFound</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error displayed to user if their Personalization Data Extension is not found</shortDescription>
+        <value>We can&apos;t find the data extension used to personalize the campaign. Ask your Salesforce administrator to fix the data extension.</value>
+    </labels>
+    <labels>
+        <fullName>personalizationDefaultsOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for option to go to Campaign personalization defaults page.</shortDescription>
+        <value>Message Settings</value>
+    </labels>
+    <labels>
+        <fullName>personalizationDefaultsOptionTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tooltip for option to go to Campaign personalization defaults page.</shortDescription>
+        <value>Default Settings for Campaign</value>
+    </labels>
+    <labels>
+        <fullName>personalizationIntro</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Introduction field for personalization</shortDescription>
+        <value>Introduction</value>
+    </labels>
+    <labels>
+        <fullName>personalizationIntroMultipleValues</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for the Introduction field (multiple members selected)</shortDescription>
+        <value>Add an introduction to these messages...</value>
+    </labels>
+    <labels>
+        <fullName>personalizationIntroPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for the Introduciton field (single member selected)</shortDescription>
+        <value>Add an introduction to this message...</value>
+    </labels>
+    <labels>
+        <fullName>personalizationIntroWithCount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label, where {0}/{1} is character count, e.g., 50/255</shortDescription>
+        <value>Introduction ({0}/{1})</value>
+    </labels>
+    <labels>
+        <fullName>personalizationOptions</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of the personalization options section in the personalization dialog</shortDescription>
+        <value>Personalization Options</value>
+    </labels>
+    <labels>
+        <fullName>personalizeMessages</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label</shortDescription>
+        <value>Personalize Messages</value>
+    </labels>
+    <labels>
+        <fullName>personalizeMessagesTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the journey personalization dialog</shortDescription>
+        <value>Personalize Messages</value>
+    </labels>
+    <labels>
+        <fullName>pleaseCompleteAllFields</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Message for missing fields</shortDescription>
+        <value>Make sure all greetings have field associations for all objects before saving.</value>
+    </labels>
+    <labels>
+        <fullName>pluginSettingsDescription</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The description of the plugin settings component</shortDescription>
+        <value>The pending approvals plugin allows you to enhance your users&apos; Distributed Marketing experience. Support more advanced use cases, such as team CC and BCC, or provide additional context, data, or instructions.</value>
+    </labels>
+    <labels>
+        <fullName>pluginSettingsTabLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the tab-name input field</shortDescription>
+        <value>What would you like to call your custom tab?</value>
+    </labels>
+    <labels>
+        <fullName>pluginSettingsTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The title of the plugin settings component</shortDescription>
+        <value>Pending Approvals Plugin</value>
+    </labels>
+    <labels>
+        <fullName>preview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header text for preview column</shortDescription>
+        <value>preview</value>
+    </labels>
+    <labels>
+        <fullName>previousMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alternative text for the previous msg button</shortDescription>
+        <value>Previous message</value>
+    </labels>
+    <labels>
+        <fullName>processApprovalsCompleteErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error toast message for complete error processing approvals</shortDescription>
+        <value>0 campaign members were processed. Review error details for each campaign member.</value>
+    </labels>
+    <labels>
+        <fullName>processApprovalsPartialSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Partial success text for processing approvals. {0} = processed. {1} = failed.</shortDescription>
+        <value>{0} campaign members were processed, but {1} failed. Review error details for each campaign member.</value>
+    </labels>
+    <labels>
+        <fullName>processApprovalsSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success text for processing approvals. {0} = No. of members processed.</shortDescription>
+        <value>{0} campaign members were processed.</value>
+    </labels>
+    <labels>
+        <fullName>processOneApprovalSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success toast message for processing one approval. {0} = Name of the member.</shortDescription>
+        <value>Campaign member {0} was approved.</value>
+    </labels>
+    <labels>
+        <fullName>processOneRejectionSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success toast message for processing one rejection. {0} = Name of the member.</shortDescription>
+        <value>Campaign member {0} was rejected.</value>
+    </labels>
+    <labels>
+        <fullName>recipientInfo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tab header for recipient info panel</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>recordOwnerIncompleteOrMissing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message for when the record owner is missing information or not there</shortDescription>
+        <value>Confirm this member has a record owner, and that the record owner has a valid name and email address. Ask your Salesforce admin for help.</value>
+    </labels>
+    <labels>
+        <fullName>reject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action label for the act of rejecting pending changes.</shortDescription>
+        <value>Reject</value>
+    </labels>
+    <labels>
+        <fullName>rejectedApprovalStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval status value</shortDescription>
+        <value>Rejected</value>
+    </labels>
+    <labels>
+        <fullName>rejectedSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>&apos;Rejected&apos; summary label.</shortDescription>
+        <value>Rejected:</value>
+    </labels>
+    <labels>
+        <fullName>relatedLists</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Related lists tab label</shortDescription>
+        <value>Related Lists</value>
+    </labels>
+    <labels>
+        <fullName>resetToPending</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action label for resetting approvals to their default state (Pending)</shortDescription>
+        <value>Reset to Pending</value>
+    </labels>
+    <labels>
+        <fullName>save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>saveAndClose</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Save &amp; Close</value>
+    </labels>
+    <labels>
+        <fullName>searchForMCJourney</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Autocomplete placeholder text</shortDescription>
+        <value>Search Marketing Cloud for journey...</value>
+    </labels>
+    <labels>
+        <fullName>selectAllCheckbox</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for a &quot;select all&quot; checkbox</shortDescription>
+        <value>Select all checkbox</value>
+    </labels>
+    <labels>
+        <fullName>selectCampaignMember</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for searching and selecting a Campaign Member.</shortDescription>
+        <value>Select a campaign member...</value>
+    </labels>
+    <labels>
+        <fullName>selectMcMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder text for searching and selecting a MC message.</shortDescription>
+        <value>Select a message...</value>
+    </labels>
+    <labels>
+        <fullName>selectToEdit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Checkbox label for a row item to toggle editing</shortDescription>
+        <value>Select to Edit</value>
+    </labels>
+    <labels>
+        <fullName>selectedMember</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Indicates how many members are selected. {0} = # of members selected</shortDescription>
+        <value>{0} Member Selected</value>
+    </labels>
+    <labels>
+        <fullName>selectedMembers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Indicates how many members are selected. {0} = # of members selected</shortDescription>
+        <value>{0} Members Selected</value>
+    </labels>
+    <labels>
+        <fullName>sendFrom</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Send From Select input label for default send settings</shortDescription>
+        <value>Send From</value>
+    </labels>
+    <labels>
+        <fullName>sendFromAndEmailInstruction</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A brief explanation for the fromNameAndEmail field.</shortDescription>
+        <value>Who would you like your emails to be sent from?</value>
+    </labels>
+    <labels>
+        <fullName>sendFromAndEmailLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A drop-down form field label for email sending options.</shortDescription>
+        <value>From Name and Email Address</value>
+    </labels>
+    <labels>
+        <fullName>sendFromEmailPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[From Email]</value>
+    </labels>
+    <labels>
+        <fullName>sendFromNamePlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[From Name]</value>
+    </labels>
+    <labels>
+        <fullName>sendFromOptionMe</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A fromNameAndEmail option that refers to the active user.</shortDescription>
+        <value>Me (user email)</value>
+    </labels>
+    <labels>
+        <fullName>sendFromOptionRecordOwner</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>A fromNameAndEmail option that refers to the record owner.</shortDescription>
+        <value>Record Owner</value>
+    </labels>
+    <labels>
+        <fullName>sendFromOptionSelectLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accessibility Label for SendFrom Select Input</shortDescription>
+        <value>Select &quot;From&quot; Option for Greeting</value>
+    </labels>
+    <labels>
+        <fullName>sendSettingsTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the send settings tab in the personalization dialog</shortDescription>
+        <value>Send Settings</value>
+    </labels>
+    <labels>
+        <fullName>setDefaultOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Set Default setting selection label</shortDescription>
+        <value>Set Default</value>
+    </labels>
+    <labels>
+        <fullName>settingsOption</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for option to go to Distributed Marketing Settings page.</shortDescription>
+        <value>Global Settings</value>
+    </labels>
+    <labels>
+        <fullName>settingsOptionTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for option to go to Distributed Marketing Settings page.</shortDescription>
+        <value>Distributed Marketing Personalization Defaults</value>
+    </labels>
+    <labels>
+        <fullName>sfCampaignIdPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Campaign Id]</value>
+    </labels>
+    <labels>
+        <fullName>sfCampaignMemberIdPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Campaign Member Id]</value>
+    </labels>
+    <labels>
+        <fullName>sfUserIdPlaceholder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Shown as a placeholder in email previews if the value is not available</shortDescription>
+        <value>[Your User Id]</value>
+    </labels>
+    <labels>
+        <fullName>signature</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header text for signature field</shortDescription>
+        <value>Signature</value>
+    </labels>
+    <labels>
+        <fullName>staticPreviewDescription</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Helps users understand the content displayed in an email preview</shortDescription>
+        <value>Seeing generic content in your preview? We replace that content with real data when you approve, personalize, and send the message.</value>
+    </labels>
+    <labels>
+        <fullName>status</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Represents a campaign member&apos;s approval status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>submit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>submitMembers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action/button label.</shortDescription>
+        <value>Submit Members</value>
+    </labels>
+    <labels>
+        <fullName>to</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The label for an email&apos;s recipient</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>toggleOff</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the inactive toggle state for a checkbox. Synonymous with disabled.</shortDescription>
+        <value>Off</value>
+    </labels>
+    <labels>
+        <fullName>toggleOn</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the active toggle state for a checkbox. Synonymous with enabled.</shortDescription>
+        <value>On</value>
+    </labels>
+    <labels>
+        <fullName>tooManyApprovals</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Informs that up to {0} members can be approved at once</shortDescription>
+        <value>You can approve up to {0} campaign members at a time</value>
+    </labels>
+    <labels>
+        <fullName>undo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action label to undo the last change.</shortDescription>
+        <value>Undo</value>
+    </labels>
+    <labels>
+        <fullName>unknownError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Displayed when an error is not specifically handled</shortDescription>
+        <value>There was problem processing your request. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>viewPendingMembers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label where {0} is the number of pending members</shortDescription>
+        <value>View Pending Members ({0})</value>
+    </labels>
+    <labels>
+        <fullName>viewPreview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Assistive text for email preview icon</shortDescription>
+        <value>View Preview</value>
+    </labels>
+    <labels>
+        <fullName>xOfTotal</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Displays which numbered item &apos;{0}&apos; has context from a set of length &apos;{1}&apos;</shortDescription>
+        <value>{0} of {1}</value>
+    </labels>
+</CustomLabels>

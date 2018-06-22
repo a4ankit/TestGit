@@ -1,0 +1,6 @@
+<!--
+ - Created by mhoefer on 9/19/16.
+ -->
+
+<aura:tokens extends="force:base">
+</aura:tokens>

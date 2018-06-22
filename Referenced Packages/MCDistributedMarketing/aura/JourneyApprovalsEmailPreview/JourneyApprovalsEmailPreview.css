@@ -1,0 +1,22 @@
+.THIS {
+    background-color: t(colorBackground);
+    border-radius: t(borderRadiusMedium);
+    min-height: 600px; /* So that the modal does not collapse while e-mails are loading */
+}
+
+.THIS .placeholder-header, .THIS .placeholder-preheader { border-radius: t(borderRadiusMedium); }
+
+.THIS .placeholder-header {
+    height: 0.7rem;
+    background-color: t(colorBackgroundStencilAlt);
+    width: 75%;
+}
+
+.THIS .placeholder-preheader {
+    height: 0.5rem;
+    background-color: t(colorBackgroundStencil);
+}
+
+.THIS .member-select { width: 45%; }
+
+.THIS .uiAutocompleteList { z-index: 9051; } /* So that it shows above the spinner: t(zIndexSpinner) + 1 */

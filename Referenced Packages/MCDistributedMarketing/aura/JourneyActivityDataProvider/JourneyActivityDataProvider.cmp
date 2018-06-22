@@ -1,0 +1,22 @@
+<aura:component extends="ui:dataProvider"
+    controller="mcdm_15.CampaignMessagesAdapter"
+    description="Provides journey activity enumeration">
+
+    <aura:attribute name="journeyId" type="String" required="true" description="The id of the targeted MC Journey" />
+    <aura:attribute name="activityCount" type="Integer" default="0" description="The number of activites on the targeted MC Journey"/>
+    <aura:attribute name="items" type="Object[]" default="[]" description="The items to enumerate over"/>
+
+    <aura:registerEvent name="asyncLoadComplete" type="ui:change"/>
+    <aura:handler name="provide" action="{!c.provide}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:ClientSideDataProvider aura:id="clientSideDataProvider"
+        items="{!v.items}"
+    />
+
+</aura:component>

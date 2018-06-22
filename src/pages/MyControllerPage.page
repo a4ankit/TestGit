@@ -1,0 +1,5 @@
+<apex:page controller="MyController" tabStyle="Account">
+    <apex:form >
+    <h1> Congratulations</h1>
+    </apex:form>
+</apex:page>

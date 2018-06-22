@@ -1,0 +1,23 @@
+<aura:component extends="APXTConga4:BaseModal">
+	<aura:registerEvent name="emailEvent" type="APXTConga4:SolutionEvent"/>
+	<aura:registerEvent name="templateBuilderEvent" type="APXTConga4:SolutionEvent"/>
+	<aura:set attribute="header" value="Choose Template Type" />
+	<div class="slds-grid">
+		<div class="slds-col slds-text-align--center">
+			<button class="slds-button slds-button--neutral slds-p-top_xx-small slds-p-bottom_xx-small" onclick="{!c.templateBuilderClick}">
+ 				<lightning:icon iconName="utility:file" />{!$Label.apxtconga4.Files_Text}
+ 			</button>
+			<p class="slds-m-top--medium">
+				<span>{!$Label.apxtconga4.Files_Button_Description}</span>
+			</p>
+		</div>
+		<div class="slds-col slds-text-align--center">
+ 			<button class="slds-button slds-button--neutral slds-p-top_xx-small slds-p-bottom_xx-small" onclick="{!c.emailTemplateClick}">
+ 				<lightning:icon iconName="utility:email" />{!$Label.apxtconga4.Email_Text}
+ 			</button>
+ 			<p class="slds-m-top--medium">
+ 				<span>{!$Label.apxtconga4.Email_Button_Description}</span>
+ 			</p>
+		</div>
+	</div>
+</aura:component>

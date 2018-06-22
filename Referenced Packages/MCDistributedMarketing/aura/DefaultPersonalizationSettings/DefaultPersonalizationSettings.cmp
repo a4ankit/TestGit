@@ -1,0 +1,48 @@
+<aura:component controller="mcdm_15.DefaultPersonalizationSettingsAdapter">
+    <aura:attribute name="hierarchyTypeStr" type="String" description="Differentiates different Levels of Settings. Values: (ACCOUNT, ACCOUNT_CAMPAIGN)"/>
+    <aura:attribute name="typeId" type="String" description="ID for the type of setting"/>
+    <aura:attribute name="compactView" type="Boolean" default="false" description="Flag to remove more verbose labels"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true" description="Activity flag"/>
+    <aura:attribute name="settings" type="Object" description="Settings and component metadata"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:method name="applyChanges" description="Save the Journey send settings">
+        <aura:attribute name="callback" type="Object" description="Called after save is complete"/>
+    </aura:method>
+
+    <div>
+        <lightning:spinner class="{!(v.isLoading ? '' : 'slds-hide')}"
+            alternativeText="{!$Label.mcdm_15.loading}"
+            variant="brand"
+            size="large"/>
+
+        <aura:if isTrue="{! (!v.isLoading)}">
+            <h3 class="slds-text-heading_medium">{!$Label.mcdm_15.defaultGreetingHeading}</h3>
+            <h4 class="slds-text-body_regular">{!$Label.mcdm_15.defaultGreetingSubHeading}</h4>
+            <div class="slds-size_1-of-2 slds-m-top_medium">
+                <lightning:select class="slds-m-bottom_small"
+                    label="{!$Label.mcdm_15.greetingOptionSelectLabel}"
+                    variant="label-hidden"
+                    value="{!v.settings.savedSetting.greetingKey}">
+                    <aura:iteration items="{!v.settings.greetingOptions}" var="option">
+                        <option value="{!option.value}">{!option.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <!-- TODO Add back in for 209 Currently hardcoding as Record Owner  -->
+            <aura:if isTrue="false">
+                <h3 class="slds-text-heading_medium">{!$Label.mcdm_15.sendFromAndEmailLabel}</h3>
+                <h4 class="slds-text-body_regular">{!$Label.mcdm_15.sendFromAndEmailInstruction}</h4>
+                <div class="slds-size_1-of-2">
+                    <lightning:select label="{!$Label.mcdm_15.sendFromOptionSelectLabel}"
+                        value="{!v.settings.savedSetting.sendFrom}">
+                        <aura:iteration items="{!v.settings.sendFromOptions}" var="option">
+                            <option value="{!option.value}">{!option.label}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+            </aura:if>
+        </aura:if>
+    </div>
+</aura:component>

@@ -1,0 +1,23 @@
+<aura:component >
+    <aura:attribute name="activity" required="true" type="Object" description="The individual Journey activity Object"/>
+    <aura:attribute name="journeyId" required="true" type="String" description="The id of the MC Journey this message belongs to"/>
+
+    <aura:registerEvent name="previewRequested" type="ui:change"/>
+
+    <tr>
+        <td>
+            <div class="slds-truncate" title="{!v.activity.Name}">{!v.activity.Name}</div>
+        </td>
+        <td>
+            <div class="slds-truncate" title="{!v.activity.EmailSubject}">{!v.activity.EmailSubject}</div>
+        </td>
+        <td>
+            <lightning:buttonIcon iconName="utility:preview"
+                size="small"
+                onclick="{!c.handlePreviewButtonClick}"
+                alternativeText="{!$Label.mcdm_15.viewPreview}"
+                title="{!$Label.mcdm_15.viewPreview}"
+            />
+        </td>
+    </tr>
+</aura:component>

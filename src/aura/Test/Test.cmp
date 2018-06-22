@@ -1,0 +1,67 @@
+<aura:component >
+
+
+    <lightning:input type="week" label="Week" name="week" />
+    <lightning:input type="time" label="Time" name="time" />
+    <lightning:input aura:id="field" label="First name" placeholder="First name" required="true" />
+    <lightning:input aura:id="field" label="Last name" placeholder="Last name" required="true" />        
+    <lightning:button aura:id="submit" type="submit" label="Submit" onclick="{! c.onClick }"/>
+    <fieldset>
+        <legend>Select your favorite color:</legend>
+        <lightning:input type="checkbox" label="Red" 
+                         name="color1" value="1" aura:id="colors"/>
+        <lightning:input type="checkbox" label="Blue" 
+                         name="color2" value="2" aura:id="colors"/>
+        <lightning:input type="checkbox" label="Green" 
+                         name="color3" value="3" aura:id="colors"/>
+        <lightning:input type="toggle" label="yellow" name="color4"
+                         value="4" aura:id="colors" />
+    </fieldset>
+    <lightning:button label="Submit" onclick="{!c.submitForm}"/>
+    
+    
+    <div style="max-width: 400px;">
+        <lightning:inputAddress aura:id="myaddress"
+                                addressLabel="Address"
+                                streetLabel="Street"
+                                cityLabel="City"
+                                countryLabel="Country"
+                                provinceLabel="State"
+                                postalCodeLabel="PostalCode"
+                                street="1 Market St."
+                                city="San Francisco"
+                                country="US"
+                                province="CA"
+                                postalCode="94105"
+                                required="true"
+                                />
+    </div>
+        <aura:attribute name="provinceOptions" type="List" default="[
+        {'label': 'California', 'value': 'CA'},
+        {'label': 'Texas', 'value': 'TX'},
+        {'label': 'Washington', 'value': 'WA'},
+    ]"/>
+    <aura:attribute name="countryOptions" type="List" default="[
+        {'label': 'United States', 'value': 'US'},
+        {'label': 'Japan', 'value': 'JP'},
+        {'label': 'China', 'value': 'CN'},
+    ]"/>
+    <div style="max-width: 600px;">
+        <lightning:inputAddress aura:id="myaddress"
+            addressLabel="Address"
+            streetLabel="Street"
+            cityLabel="City"
+            countryLabel="Country"
+            provinceLabel="Province/State"
+            postalCodeLabel="PostalCode"
+            street="1 Market St."
+            city="San Francisco"
+            country="US"
+            countryOptions="{! v.countryOptions }"
+            provinceOptions="{! v.provinceOptions }"
+            postalCode="94105"
+            required="true"
+        />
+        <lightning:button label="Submit" onclick="{!c.handleClick}"/>
+    </div>
+</aura:component>

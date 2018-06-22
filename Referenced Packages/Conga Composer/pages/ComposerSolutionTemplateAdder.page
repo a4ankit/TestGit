@@ -1,0 +1,327 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionTemplateAdder,APXTConga4.ComposerSolutionMergefieldHelper" id="templateAdderPage">
+	<apex:stylesheet value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-theme-classic-all.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-all.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-library.js')}"/>  
+    
+
+<script>
+    Ext.onReady(function() {
+        apxtLoader.markReady();            
+        var templateStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'Id', 'Name', 'TemplateName', 'iconURL'],
+            id: 'templateStore',
+            pageSize: 15,                        
+            autoLoad: true,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(Templates)}]'))                        
+        });
+    
+        var pagingtb = Ext.create('Ext.toolbar.Paging',{
+            store: templateStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                    //this.child('#tbseparator-1019').hide(); 
+                }
+            },            
+            items: [
+                {
+                    text: '',
+                    icon: '{!JSENCODE($Resource.APXTConga4__RefreshIcon)}',
+                    xtype: 'button',
+                    width: 20,                    
+                    handler: function() {
+                        window.location.reload(true);                                 
+                    }
+                }], 
+            dock: 'bottom'  
+        });
+        
+        var mergeFieldStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'FieldName', 'MergeField' ],
+            id: 'mergeFieldStore',
+            pageSize: 15,
+            autoLoad: true,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(MergeFields)}]'))
+        });   
+        
+        var mHelperPagingtb = Ext.create('Ext.toolbar.Paging', {
+            store: mergeFieldStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                }
+            },              
+            dock: 'bottom'
+        });  
+        
+        var baseGridTitle = Ext.util.Format.htmlEncode('All Available Conga Templates');
+        var templateGrid = new Ext.grid.GridPanel({
+            store: templateStore,
+            title: baseGridTitle,
+            width: 600,
+            maxHeight: 375,
+            autoScroll: true,
+            overflowy: 'auto',
+            overFlowX: 'hidden',
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e) {                                                     
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:nameInputItem:templateNameStringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('TemplateName');
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:nameInputItem:templateNameStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    }).focus(10,'');
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:idInputItem:templateIdStringBox').dom.value = grid.getSelectionModel().getStore().getAt(rowIndex).get('Id');
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:idInputItem:templateIdStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    });
+                    //console.log(grid.getSelectionModel().getStore().getAt(rowIndex).get('iconURL'));              
+                }
+            },
+            columns: [
+                {
+                    xtype:'actioncolumn',
+                    align: 'center',
+                    width: 22,
+                    dataIndex: 'iconURL',
+                    renderer: function(value){
+                        return '<img src=' + value + ' width=16 />';
+                    }
+
+                    /*id: 'fileTypeIcon',
+                    sortable: true,
+                    width: 25,
+                    dataIndex: 'iconURL'*/
+                },
+                {
+                    id: 'Name',
+                    header: "Record Name",
+                    sortable: true,
+                    width: 103,
+                    dataIndex: 'Name',
+                    selType: 'cellmodel',
+                    renderer: 'htmlEncode' 
+                },{
+                    id: 'TemplateName',
+                    header: "Template Name",
+                    width: 300,
+                    sortable: true,
+                    dataIndex: 'TemplateName',
+                    renderer: 'htmlEncode'                         
+                },{
+                    id: 'Id',
+                    header: "ID",
+                    flex: 1,                        
+                    sortable: true,
+                    dataIndex: 'Id'
+                }           
+            ],
+            bbar: pagingtb,
+            renderTo: 'templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:EXTTable',            
+        });
+        
+        var searchTextField = Ext.create('Ext.form.field.Text', {
+            fieldLabel: 'Template Name Search',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',                        
+            labelWidth: 135,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,
+            enableKeyEvents: true,         
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var userInput = field.getValue();                       
+                                                                        
+                        var filteredStore = templateGrid.getStore().filterBy(function(record){                        
+                            if (userInput === ''){
+                                return record;
+                            }
+                            else if (record.get('TemplateName').toLowerCase().indexOf(userInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);
+                        
+                        if(userInput === '') {
+                            templateGrid.setTitle(baseGridTitle);
+                        } else {
+                            templateGrid.setTitle(Ext.util.Format.htmlEncode('"' + userInput + '" Conga Templates'));                                
+                        }
+                        pagingtb.moveFirst();
+                        pagingtb.doRefresh();
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });
+        templateGrid.getDockedItems()[0].add(searchTextField);  
+        Ext.get('textfield-1043-inputEl').highlight("60bb46", { 
+            attr: 'color', 
+            attr: 'backgroundColor', 
+            duration: 3000 
+        }).focus(10,'');                        
+    
+        var mergeFieldHelperGridBaseTitle = Ext.util.Format.htmlDecode('{!JSENCODE(objectTypeString)} Field Helper');  
+        var mergeFieldGrid = new Ext.grid.GridPanel({
+            store: mergeFieldStore,
+            title: mergeFieldHelperGridBaseTitle,
+            padding: 8,
+            width: 600,
+            maxHeight: 335,
+            autoScroll: false,
+            overFlowX: 'hidden',
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e){                                                
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:aliasBSI:templateAliasStringBox').dom.value = Ext.util.Format.htmlEncode(Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:aliasBSI:templateAliasStringBox').dom.value + grid.getSelectionModel().getStore().getAt(rowIndex).get('MergeField'));
+                    Ext.get('templateAdderPage:templateAdderForm:inputFieldsBlock:tNameSection:nameandidsection:aliasBSI:templateAliasStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    }).focus(10,'');                                                                                                          
+                }
+            },
+            columns: [
+               {
+                    id: 'FieldName',
+                    header: "Field Name",
+                    sortable: true,
+                    width: 225,
+                    dataIndex: 'FieldName',
+                    selType: 'cellmodel'
+                },{
+                    id: 'MergeFieldName',
+                    header: "Merge Field Syntax",
+                    flex: 1,
+                    sortable: true,
+                    dataIndex: 'MergeField'                        
+                }],
+            bbar: mHelperPagingtb,
+            renderTo: '{!JSENCODE(MFTableRenderToString)}'         
+        });
+                
+        var searchMergeFields = Ext.create('Ext.form.field.Text',{
+            fieldLabel: 'Field Name Search',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',                        
+            labelWidth: 100,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,            
+            enableKeyEvents: true,
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var mergeFieldUserInput = field.getValue();                       
+                                                                        
+                        var mergeFieldFilter = mergeFieldGrid.getStore().filterBy(function(record){                        
+                            if (mergeFieldUserInput === ''){
+                                return record;
+                            }
+                            else if (record.get('FieldName').toLowerCase().indexOf(mergeFieldUserInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);                            
+                            
+                        if(mergeFieldUserInput === '') {
+                            mergeFieldGrid.setTitle(mergeFieldHelperGridBaseTitle);
+                        } else {
+                            mergeFieldGrid.setTitle(Ext.util.Format.htmlEncode('"' + mergeFieldUserInput + '" Fields'));                                
+                        }
+                         
+                        mHelperPagingtb.moveFirst();
+                        mHelperPagingtb.doRefresh();                                                                     
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });                
+        mergeFieldGrid.getDockedItems()[0].add(searchMergeFields);
+
+    });                                              
+</script>  
+        
+<table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution Template<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!SMRecordName} Solution</span>          
+            </td>
+        </tr>
+    </table>
+    <!--<apex:outputLink value="/{!Conga_Solution__c.Id}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:outputLink>  -->
+    <apex:pageMessages />  
+    
+    <apex:form id="templateAdderForm">
+        <!--<apex:commandLink action="{!save}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:commandLink>-->
+    
+        <apex:pageBlock id="inputFieldsBlock">
+            <apex:pageblockButtons location="top">    
+                <apex:commandButton action="{!returnToSMRecord}" value="Return to Solution Record" />                              
+                <apex:commandButton action="{!addTemplate}" id="templateAdderButton" value="{!IF(IsEdit = true, 'Update Conga Template', 'Add Conga Template to Solution Record')}"  />
+            </apex:pageblockButtons>
+                
+            <apex:pageBlockSection columns="2" id="tNameSection" title="Select A Template">
+
+                <apex:pageBlockSection id="EXTTable" columns="1">
+                </apex:pageBlockSection>    
+                <apex:pageBlockSection columns="1" id="nameandidsection">                
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the Template selected." id="nameInputItem">
+                        <font color="black"><b>Template Name</b></font><font color="red" size="3px"><b>|</b></font>                        
+                        <apex:inputText value="{!templateNameString}" id="templateNameStringBox" size="35"/>
+                    </apex:pageBlockSectionItem>                
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the Template selected." id="idInputItem">
+                        <font color="black"><b>Template ID</b></font><font color="red" size="3px"><b>|</b></font>                        
+                        <apex:inputText value="{!templateIdString}" id="templateIdStringBox"/>
+                    </apex:pageBlockSectionItem> 
+                    <!--<apex:pageBlockSectionItem id="aliasBSI" helptext="This specifies the output file name for this template. May use static text or merge field names. Use a plus sign (+) to represent literal spaces. Do not include symbols unsupported in file names." >
+                        <b>Output File Name</b>                 
+                        <apex:inputTextArea value="{!templateAlias}" id="templateAliasStringBox" rows="4" cols="25"/>
+                    </apex:pageBlockSectionItem>-->
+                    <apex:pageBlockSectionItem helpText="Used to sort templates. Automatically assigned when Templates are added. Fractional values are allowed." rendered="{!IF(isEdit = true, true, false)}">
+                        <apex:outputLabel value="Template Sort Order"></apex:outputLabel>
+                        <apex:inputtext value="{!templateSortOrder}"/>
+                    </apex:pageBlockSectionItem>                    
+                    <apex:pageBlockSectionItem helpText="Shows the Template Group(s) in use as defined by the TemplateGroup parameter. Add the TemplateGroup parameter prior to selecting a template to use this functionality.">
+                        <b>Template Group(s)</b>
+                        <apex:outputText value="{!TemplateGroupList}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem helpText="Enter comments/description. This field will not affect Composer behavior.">                            
+                        <b>Description</b>                 
+                        <apex:inputTextarea value="{!templateCommentsString}" id="templateCommentsStringBox" rows="5" cols="25"/>
+                    </apex:pageBlockSectionItem>  
+<!-- Removed b/c the Template Alias has been removed
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value=""/>
+                        <apex:panelGrid >
+                            To add merge fields to the Output File Name field, click Merge Field Helper.
+                            <apex:commandButton action="{!setMergeFieldSwitch}" value="Merge Field Helper"/>                        
+                        </apex:panelGrid>
+                    </apex:pageblockSectionItem>    
+-->                                                                         
+                </apex:pageBlockSection> 
+                <apex:commandButton onclick="window.open('/{!TemplatePrefix}/e?retURL={!APXTConga4__Conga_Solution__c.Id}','_blank','location=no,resizable=no,toolbar=no,status=no,menubar=no,width=1100,height=800', 1)" value="Create New Conga Template Record" title="Click to create a new Conga Template Record in a new window."/> 
+            </apex:pageBlockSection>    
+        </apex:pageBlock>     
+        
+        <apex:pageBlock id="EXTMergeFieldBlock" title="Merge Field Helper" rendered="{!IF(JSENCODE(MergeFieldSwitchValue) = 'true', 'false', 'true')}">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!addTemplate}" id="templateAdderButton" value="Add Conga Template to Solution Record"/>
+            </apex:pageBlockButtons>           
+            <apex:pageBlockSection columns="1" id="ExtMergeFieldBlockSection" title="Select Merge Fields">  
+            </apex:pageBlockSection>           
+        </apex:pageBlock>  
+    
+    </apex:form>
+    <apex:relatedList list="Conga_Solution_Templates__r" title="Selected Templates" rendered="{!IF(isEdit = true, false, true)}"/>
+</apex:page>

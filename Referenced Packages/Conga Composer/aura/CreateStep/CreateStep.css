@@ -1,0 +1,24 @@
+.THIS .bold  {
+	font-weight: 700;
+}
+.THIS .relative {
+	position: relative;
+}
+.THIS .white  {
+	color: #fff;
+}
+.THIS .bgwhite {
+	background-color: #fff;
+}
+.THIS div.container-quick {
+	background-image: url(/resource/APXTConga4__QuickStartBackground); background-size:100% 100%; height: 228px; width: 430px;background-repeat: no-repeat;
+}
+.THIS div.container-custom {
+	background-image: url(/resource/APXTConga4__CustomSolutionBackground);background-size:100% 100%;height: 228px;width: 430px;background-repeat: no-repeat;
+}
+.THIS div.btn_container-quick {
+	bottom: -65px;
+}
+.THIS div.btn_container-custom {
+	bottom: -30px;
+}

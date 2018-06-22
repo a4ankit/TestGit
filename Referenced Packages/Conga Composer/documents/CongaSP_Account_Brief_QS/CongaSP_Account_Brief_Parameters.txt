@@ -1,0 +1,7 @@
+&OFN=Account+Brief+-+{!Account.Name}+-+{!Today}
+&AC0=1
+&AC1=Account+Brief+Created+By+{!User.Name}
+&SC0=1
+&SC1=Attachments
+&DefaultPDF=1
+&TemplateGroup=Account

@@ -1,0 +1,45 @@
+<aura:component extends="LightningTableBase">
+	<ltng:require scripts="{!join(',', 
+    $Resource.APXTConga4__jQuery + '/jquery.min.js', 
+    $Resource.APXTConga4__jQuery + '/jquery-ui.min.js')}"
+    afterScriptsLoaded="{!c.jqueryLoaded}" />
+    <aura:registerEvent name="spinnerEvent" type="APXTConga4:SpinnerEvent" />
+    <aura:registerEvent name="templateDeleteEvent" type="APXTConga4:CongaEvent" />
+    <aura:method name="reInit" action="{!c.doInit}" description="Runs the init method again" />
+    <aura:method name="hideAll" action="{!c.hideAll}" description="Closes all template table popovers" />
+    <aura:method name="retrieveTemplates" action="{!c.retrieveTemplates}" description="Retrieves templates in order" />
+    <aura:set attribute="showPager" value="false" />
+
+	<table class="slds-table slds-table--bordered slds-max-medium-table--stacked" >
+        <thead>
+            <tr class="slds-text-heading--label">
+                <aura:iteration items="{!v.headers}" var="header" >
+                    <th class="slds-is-sortable" style="margin-left: 0px; padding-left: 0px; vertical-align:left;" scope="col">
+                      <div class="slds-truncate" >{!header}</div>
+                    </th>
+                </aura:iteration>
+                <th class="slds-cell-shrink"></th>
+                <th class="slds-cell-shrink"></th>
+            </tr>
+        </thead>
+        <tbody aura:id="templateTableBody">
+        	<aura:iteration items="{!v.latestRecords}" var="record" indexVar="index">
+        	<tr data-templateid="{!record.TemplateId}">
+          		<td class="dragColumn"><div><img src="/img/identity/draggable.png" /></div></td>
+          		<td><div class="slds-truncate" title="{!record.Name}" >{!record.Name}</div></td>
+          		<td><div class="slds-truncate" title="{!record.TemplateGroup}" >{!record.TemplateGroup}</div></td>
+          		<td><div class="slds-truncate" title="{!record.Description}" >{!record.Description}</div></td>
+          		<td><div class="slds-truncate" title="{!record.LastModifiedName}" >{!record.LastModifiedName}&nbsp;&nbsp;
+          			<lightning:formattedDateTime value="{!record.LastModifiedDate}" year="numeric" month="2-digit" day="2-digit"/>
+          		</div></td>
+          		<td class="editcolumn">
+              		<APXTConga4:DataStepSelectItem aura:id="ddm" previewId="{!record.TemplateId}" editId="{!record.TemplateId}" recordId="{!record.SolutionTemplateId}" />
+          		</td>
+          		<td class="removecolumn">
+          			<lightning:buttonIcon iconName="utility:close" variant="bare" alternativeText="Remove from solution" onclick="{!c.deleteRecord}" value="{!index}"/>
+          		</td>
+        	</tr>
+    		</aura:iteration>
+    	</tbody>
+    </table>
+</aura:component>

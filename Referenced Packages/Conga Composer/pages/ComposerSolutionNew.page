@@ -1,0 +1,35 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionNewSolutionRecord">
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <br/>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">Conga Solution Manager</span>            
+            </td>
+        </tr>
+    </table>
+       
+    <apex:form >
+    <apex:pageMessages />  
+        <apex:pageBlock id="inputs">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!createNewSolutionRecord}" value="Create Record" title="Click to create your Conga Solution. A Conga Solution Name and Master Object must be set."/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2">                           
+                <apex:pageBlockSectionItem helpText="This will be the name of the button on the Page Layout and cannot be changed once the button/link is created. Alphanumeric only, starting with a letter, 2 - 80 characters supported. Illegal characters will be automatically removed." >
+                    <font color="black"><b>Conga Solution Name</b></font><font color="red" size="3px"><b>|</b></font>
+                    <apex:inputText value="{!solutionName}" />
+                </apex:pageBlockSectionItem>                 
+                <apex:pageBlockSectionItem helpText="Select the Master Object. This is typically the object where the Conga Composer button will be located and from where users will launch the Composer solution.">
+                    <font color="black"><b>Master Object</b></font><font color="red" size="3px"><b>|</b></font>
+                    <apex:SelectList value="{!selectedObject}" size="1">
+                        <apex:selectOptions value="{!ObjectNames}"></apex:selectOptions>
+                    </apex:SelectList>
+                </apex:pageBlockSectionItem>                                                        
+            </apex:pageBlockSection>                
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

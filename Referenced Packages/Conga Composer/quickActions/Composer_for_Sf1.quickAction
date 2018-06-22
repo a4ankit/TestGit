@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canvas>APXTConga4__Conga_Composer_SF1</canvas>
+    <description>This action has been deprecated and will not work in future releases.</description>
+    <height>415</height>
+    <label>Conga Composer (Deprecated)</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Canvas</type>
+    <width>521</width>
+</QuickAction>

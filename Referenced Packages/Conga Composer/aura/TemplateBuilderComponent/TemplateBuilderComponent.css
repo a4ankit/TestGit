@@ -1,0 +1,28 @@
+.THIS iframe#pdfFrame {
+	display:none;
+	height:600px;
+	width:100%;
+}
+.THIS div#canvas-container {
+	display: table;
+	height: 100%;
+	min-height: 500px;
+	text-align: center;
+	width: 100%;
+}
+.THIS div#canvas-container p {
+	display: table-cell;
+	vertical-align: middle;
+}
+.THIS div.section-maxheight > div.lightningInput {
+	background: #fafaf9;
+    border: 0;
+	padding: 0 1px 0 1px;
+}
+.THIS div.section-maxheight > div.lightningInput:focus, .THIS div.section-maxheight > div.lightningInput:active {
+	box-shadow: none;
+}
+.THIS div.sample-data {
+	border-top: 1px solid rgb(217, 219, 221);
+	font-size: 0.75rem;
+}

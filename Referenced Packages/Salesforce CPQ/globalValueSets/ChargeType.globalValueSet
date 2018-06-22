@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>One-Time</fullName>
+        <default>false</default>
+    </customValue>
+    <customValue>
+        <fullName>Recurring</fullName>
+        <default>false</default>
+    </customValue>
+    <customValue>
+        <fullName>Usage</fullName>
+        <default>false</default>
+    </customValue>
+    <description>The type of the product charge.</description>
+    <masterLabel>Charge Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

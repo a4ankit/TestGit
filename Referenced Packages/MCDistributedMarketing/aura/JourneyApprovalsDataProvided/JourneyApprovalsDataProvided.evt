@@ -1,0 +1,5 @@
+<!-- Plugin framework specification reference: https://docs.google.com/document/d/1m2ygYkwW0Qd0cMLALLY1MxDqHnNcJjIiLFOct2y4314/ -->
+<aura:event type="APPLICATION" access="global" description="Indicates that data for the specified campaign member has changed.">
+    <aura:attribute name="id" type="String" description="The id of the campaign member"/>
+    <aura:attribute name="data" type="Object" description="New custom data as an object"/>
+</aura:event>

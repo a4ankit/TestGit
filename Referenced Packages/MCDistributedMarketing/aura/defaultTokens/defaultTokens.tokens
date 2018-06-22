@@ -1,0 +1,4 @@
+<aura:tokens extends="force:base"
+    description="Token definition to extend force:base for SLDS tokens"
+>
+</aura:tokens>

@@ -1,0 +1,3 @@
+<apex:page standardController="Lead">
+    <c:m_LandingComponent />
+</apex:page>

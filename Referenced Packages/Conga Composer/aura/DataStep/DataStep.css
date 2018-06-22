@@ -1,0 +1,15 @@
+.THIS .sectionheader > div, .THIS .sectionheader > h2{
+	display:inline-block;
+}
+
+.THIS .boldweight {
+	font-weight: bold;
+}
+
+.THIS .normalweight {
+	font-weight: normal;
+}
+
+.THIS .z-index-1 {
+	z-index: 1;
+}

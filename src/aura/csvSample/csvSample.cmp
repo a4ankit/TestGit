@@ -1,0 +1,55 @@
+<aura:component controller="csvDownloadCtrl">          
+    <!--aura init handler , call js "loadContactList" function on component load, and display contact data on table-->   
+    <aura:handler name="init" value="{!this}" action="{!c.loadContactList}"/> 
+    
+    <!--Declare Attribute for store Contact Records List-->  
+    <aura:attribute name="ListOfContact" type="contact[]"/> 
+    
+    <!--Use "slds-m-around- -xx-large" class to add standard Large padding to the component--> 
+    <div class="slds-m-around--xx-large">   
+        <button class="slds-button slds-button--brand" onclick="{!c.downloadCsv}">Download As CSV</button> <br/><br/>
+        
+        <!--HTML tabel for display Contact Records-->
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-title--caps">
+                    
+                    <th class="slds-is-sortable slds-text-title--caps" scope="col">
+                        <span class="slds-truncate" title="Name">First Name</span>  
+                    </th>
+                    
+                    <th class="slds-is-sortable slds-text-title--caps" scope="col">
+                        <span class="slds-truncate" title="Last Name">Last Name</span>
+                    </th>
+                    
+                    <th class="slds-is-sortable slds-text-title--caps" scope="col">
+                        <span class="slds-truncate" title="Department">Department</span>
+                    </th>
+                    
+                    <th scope="col">
+                        <div class="slds-truncate" title="MobilePhone">Mobile Phone</div>
+                    </th>
+                </tr>
+            </thead>
+            <!--table body start, Iterate contact list as a <tr>-->
+            <tbody>
+                <aura:iteration items="{!v.ListOfContact}" var="con">  
+                    <tr>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.FirstName}">{!con.FirstName}</div>
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.LastName}">{!con.LastName}</div>
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.Department}">{!con.Department}</div>
+                        </th>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!con.MobilePhone}">{!con.MobilePhone}</div>
+                        </th> 
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table> 
+    </div>
+</aura:component>

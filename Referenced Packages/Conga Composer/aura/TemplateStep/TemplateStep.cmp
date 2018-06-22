@@ -1,0 +1,7 @@
+<aura:component extends="APXTConga4:BaseStep">
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:handler name="emailEvent" event="APXTConga4:SolutionEvent" action="{!c.handleEmailEvent}" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:handler name="templateBuilderEvent" event="APXTConga4:SolutionEvent" action="{!c.handleTemplateBuilderEvent}" />
+	<div class="slds-m-around--large">{!v.body}</div>
+</aura:component>

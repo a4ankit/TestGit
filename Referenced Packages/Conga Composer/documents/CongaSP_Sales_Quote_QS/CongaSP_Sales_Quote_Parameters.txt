@@ -1,0 +1,5 @@
+&SC0=1
+&SC1=Attachments
+&OFN=Quote+for+{!Quote.Name}+-+{!Today}
+&AC0=1
+&AC1=Quote+Generated+by+{!User.Name}

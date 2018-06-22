@@ -1,0 +1,94 @@
+<aura:component >
+	<ltng:require scripts="{!$Resource.APXTConga4__jQuery+'/jQuery/jquery.min.js'}" />
+	<aura:attribute name="breadcrumbsArr" type="Object[]" />
+	<aura:attribute name="calloutDirection" type="String" default="bottom" />
+	<aura:attribute name="currentBreadCrumb" type="String" default="" />
+  	<aura:attribute name="currentMetadataArr" type="Object[]" access="private"/>
+  	<aura:attribute name="currentMetadataArrInit" type="Object[]" access="private"/>
+	<aura:attribute name="isVisible" type="boolean" />
+  	<aura:attribute name="height" type="Integer" />
+  	<aura:attribute name="inputSObjectMetadata" type="String" />
+  	<aura:attribute name="masterObject" type="String" />
+  	<aura:attribute name="masterObjectLabel" type="String" />
+  	<aura:attribute name="masterDataArr" type="Object[]" />
+  	<aura:attribute name="offsetX" type="Integer" />
+  	<aura:attribute name="offsetY" type="Integer"/>
+  	<aura:attribute name="targetHeight" type="Integer" description="height of element popover is pointing at" />
+  	<aura:attribute name="targetX" type="Integer" />
+  	<aura:attribute name="targetY" type="Integer" />
+  	<aura:attribute name="textMetadata" type="Object" access="private" />
+  	<aura:attribute name="replacementDataArr" type="Object[]" />
+  	<aura:attribute name="width" type="Integer" />
+    <aura:method name="reposition" action="{!c.reposition}"/>
+  	<aura:method name="initPopover" action="{!c.init}" />
+  	<aura:method name="setPopoverValue" action="{!c.setPopoverValue}">
+  		<aura:attribute name="text" type="String" />
+  		<aura:attribute name="textMetadata" type="Object" />
+  	</aura:method>
+  	<aura:registerEvent name="insertTextEvent" type="APXTConga4:CongaEvent" />
+  <div>
+	<section aura:id="popoverSection" id="popover" class="{!(v.isVisible ? 'slds-popover slds-popover_large slds-popover_walkthrough slds-nubbin_' + v.calloutDirection : 'hidden')}" style="{!'position:absolute;  width:' + v.width + 'px; height:' + v.height + 'px; z-index:1000001; top:' + v.offsetY + 'px; left:' + v.offsetX + 'px;'}">
+		<button class="slds-button slds-button_icon slds-button--icon slds-button--icon_x-small slds-icon_x-small slds-float_right slds-popover__close slds-button_icon-inverse" onclick="{!c.closeDialog}" title="Close dialog">
+			<lightning:icon iconName="utility:close" class="icn" />
+		</button>
+		<header class="slds-popover__header slds-p-vertical_medium">
+			<h2 id="dialog-heading-id-01" class="slds-text-heading_small">{!$Label.apxtconga4.Template_Builder_Popover_Header}</h2>
+		</header>
+		<div class="slds-popover__body" id="dialog-body-id-3">
+			<div id="inputMergeFieldContainer" class="popover__section">
+				<input type="text" id="inputMergeField" class="slds-input slds-text-color_default slds-m-top_xx-small slds-m-bottom_xx-small" onblur="{!c.handleBlurInputMergeField}" onfocus="{!c.handleFocusInputMergeField}" onkeyup="{!c.handlekeyupInputMergeField}" placeholder="{!$Label.apxtconga4.Template_Builder_Popover_Input_Replacement_Text_Label}" required="true" autofocus="true" />
+				<div id="inputMergeFieldValidationMessage" class="slds-p-vertical_x-small conga-hidden slds-required">Replacement text required.</div>
+			</div>
+			<div class="popover__section">
+				<nav role="navigation" aria-label="Breadcrumbs">
+					<ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+						<aura:iteration items="{!v.breadcrumbsArr}" var="bc" indexVar="index">
+							<li data-step="{!index}" class="slds-breadcrumb__item slds-text-title_caps slds-m-top_xx-small" onclick="{!c.handleBreadcrumb}">
+								<a class="conga-hover" href="javascript:void(0);">{!bc}</a>
+							</li>
+						</aura:iteration>
+					</ol>
+				</nav>
+				<lightning:input type="search" aura:id="inputSObjectMetadata" class="searchInput slds-input slds-text-color_default slds-p-bottom_medium slds-p-top_small slds-m-vertical_x-small" name="inputSObjectMetadata" value="{!v.inputSObjectMetadata}" required="false" label="" onchange="{!c.handleSearchSobjectMetadata}" placeholder="{!format($Label.apxtconga4.Template_Builder_Popover_Input_Search_InputSObjectMetadata_Text_Label, v.currentBreadCrumb)}" />
+				<div class="section-maxheight">
+					<ul class="slds-has-dividers_around-space slds-m-top_x-small">
+						<aura:iteration items="{!v.currentMetadataArr}" var="md" indexVar="index">
+							<li class="slds-item hover-hand sObjectMetadata-tile" data-step="{!index}" onclick="{!c.handleSelectField}">
+								<article class="slds-tile slds-tile_board">
+									<div class="slds-grid slds-wrap">
+										<div class="slds-size_10-of-12">
+											<h3 class="slds-tile__title slds-truncate bold">{!md.fieldLabel}</h3>
+											<div class="slds-tile__detail">
+												<h3 class="slds-tile__title slds-truncate">{!md.fieldName}</h3>
+												<p class="slds-truncate field-type slds-p-top_xxx-small">{!md.fieldType}</p>
+											</div>
+										</div>
+										<div class="slds-size_2-of-12 slds-text-align_right">
+											<aura:if isTrue="{!md.isExpandable}">
+												<p class="slds-truncate field-type slds-p-top_xxx-small">
+													<lightning:buttonIcon class="{!md.sObjectName+' slds-m-top_x-small'}" iconName="utility:forward" variant="bare" iconClass="dark" onclick="{!c.handleGetReferenceData}" size="medium" value="{!md}" />
+												</p>
+											</aura:if>
+										</div>
+										<aura:if isTrue="{!and(md.fieldType!='REFERENCE', md.sampleData)}">
+											<div class="slds-size_12-of-12 slds-tile__detail sample-data slds-m-top_x-small">
+												<p class="slds-tile__title slds-truncate slds-p-top_x-small">{!md.sampleData}</p>
+											</div>
+										</aura:if>
+									</div>
+								</article>
+							</li>
+						</aura:iteration>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<footer class="slds-popover__footer">
+			<div class="slds-grid slds-grid_vertical-align-center">
+				<lightning:button variant="neutral" label="{!$Label.apxtconga4.Cancel_Button_Text}" onclick="{!c.closeDialog}" class="slds-button slds-button--neutral slds-col_bump-left" />
+				<lightning:button aura:id="buttonInputMergeField" variant="brand" label="{!$Label.apxtconga4.Insert_Button_Text}" onclick="{!c.insertMergeField}" class="slds-button slds-button_brand slds-col_bump-left insertButton" />
+			</div>
+		</footer>
+	</section>
+</div>
+</aura:component>

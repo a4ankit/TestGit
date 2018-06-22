@@ -1,0 +1,36 @@
+<aura:component description="Encapsulates a three-state button group for approving and rejecting">
+    <aura:attribute name="class" type="String" description="One or more space-delimited classes to apply to the wrapping element"/>
+    <aura:attribute name="disabled" type="Boolean" default="false" description="Disabled state for the entire component"/>
+
+    <aura:registerEvent name="select" type="ui:menuSelect"/>
+
+    <ltng:require scripts="{!join(',',
+        $Resource.mcdm_15__StaticAssets + '/commons.js',
+        $Resource.mcdm_15__StaticAssets + '/journey.js')}"/>
+
+    <div class="{!v.class}">
+        <lightning:buttonGroup >
+            <lightning:button iconName="utility:check"
+                class="approve slds-button_neutral"
+                onclick="{!c.handleApproved}"
+                label="{!$Label.mcdm_15.approve}"
+                title="{!$Label.mcdm_15.approve}"
+                disabled="{!v.disabled}"
+            />
+            <lightning:button iconName="utility:close"
+                class="reject slds-button_neutral"
+                onclick="{!c.handleRejected}"
+                label="{!$Label.mcdm_15.reject}"
+                title="{!$Label.mcdm_15.reject}"
+                disabled="{!v.disabled}"
+            />
+            <lightning:buttonMenu disabled="{!v.disabled}"
+                menuAlignment="right"
+                alternativeText="{!$Label.mcdm_15.more}"
+                onselect="{!c.handleMenuSelect}"
+            >
+                <lightning:menuItem label="{!$Label.mcdm_15.resetToPending}"/>
+            </lightning:buttonMenu>
+        </lightning:buttonGroup>
+    </div>
+</aura:component>

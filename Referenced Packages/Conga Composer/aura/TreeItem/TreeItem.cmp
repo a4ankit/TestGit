@@ -1,0 +1,38 @@
+<aura:component extends="APXTConga4:BaseHelper">
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  <aura:attribute name="isExpanded" type="Boolean" />
+  <aura:attribute name="label" type="String" default="Tree Branch" />
+  <aura:attribute name="action" type="Object" description="Name of Apex Action if server side loading of subitems" />
+  <aura:attribute name="level" type="Integer" default="1" />
+  <aura:attribute name="items" type="Array"/>
+  <aura:attribute name="hasItems" type="Boolean" default="{!v.items.length gt 0}" />
+
+  <li role="treeitem" aria-level="{!v.level}" aria-expanded="{!v.isExpanded}">
+    <div class="slds-tree__item" onclick="{!c.select}">
+      <aura:if isTrue="{!v.hasItems == false}">
+        <span class="slds-checkbox">
+          <input type="checkbox" name="options" id="{!'checkbox' + globalId}" />
+          <label class="slds-checkbox__label" for="{!'checkbox' + globalId}">
+            <span class="slds-checkbox--faux"></span>
+            <span class="slds-form-element__label slds-assistive-text"></span>
+          </label>
+        </span>      
+      </aura:if>
+      <button class="{!(v.hasItems ? '' : 'slds-is-disabled ') + 'slds-button slds-button--icon slds-m-right--x-small'}" aria-controls="tree0-node1" title="Toggle">
+        <aura:if isTrue="{!v.isExpanded}">
+          <lightning:icon iconName="utility:chevrondown" size="x-small" />
+          <aura:set attribute="else">
+            <lightning:icon iconName="utility:chevronright" size="x-small" />
+          </aura:set>
+        </aura:if>
+        <span class="slds-assistive-text">Toggle</span>
+      </button><a id="tree0-node1__label" href="javascript:void(0);" tabindex="-1" role="presentation" class="slds-truncate" title="{!v.label}">{!v.label}</a></div>
+    <aura:if isTrue="{!v.isExpanded}">
+      <ul class="{!v.isExpanded ? 'slds-is-expanded' : ''}" role="group" aria-labelledby="tree0-node1__label">
+        <aura:iteration items="{!v.items}" var="item">
+          <APXTConga4:TreeItem level="{!v.level + 1}" label="{!item.label}" action="{!item.action}" items="{!item.items}" />
+        </aura:iteration>
+      </ul>
+    </aura:if>
+  </li>
+</aura:component>

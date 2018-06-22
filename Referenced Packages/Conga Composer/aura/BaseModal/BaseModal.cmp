@@ -1,0 +1,33 @@
+<aura:component extensible="true" abstract="true" extends="BaseStep">
+    <aura:attribute name="header" type="String" />
+    <aura:attribute name="acceptLabel" type="String" />
+    <aura:attribute name="customSize" type="String" default="" />
+    <aura:attribute name="customSizeStyle" type="String" default="" />
+    <aura:attribute name="isModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="isSaveVisible" type="Boolean" default="{! !empty(v.acceptLabel)}" />
+    <aura:set attribute="showNav" value="false" />
+    <aura:method name="openModal" action="{!c.openModal}" description="Show the modal" />
+    
+    <aura:if isTrue="{!v.isModalVisible}">
+      <div class="{!'slds-modal slds-fade-in-open ' + v.customSize}">
+      <div class="slds-modal__container" style="{!v.customSizeStyle}">
+          <div class="slds-modal__header">
+            <div style="position: relative; left: 10px; top: -12px;">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{! c.closeModal}">
+                <lightning:icon iconName="utility:close" class="icn"/>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+          </div>
+            <h2 class="slds-text-heading--medium color-text-input-focus-inverse">{!v.header}</h2>
+          </div>
+          <div class="slds-modal__content slds-p-around--medium color-text-input-focus-inverse" style="{!v.customSizeStyle}">{!v.body}</div>
+          <aura:if isTrue="{!v.isSaveVisible}">
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button--brand" onclick="{! c.saveModal}">{!v.acceptLabel}</button>
+            </div>
+          </aura:if>
+        </div>
+    </div>
+    <div class="slds-backdrop slds-backdrop--open"></div>
+  </aura:if>
+</aura:component>

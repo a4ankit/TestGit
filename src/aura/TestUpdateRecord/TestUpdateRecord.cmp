@@ -1,0 +1,27 @@
+<aura:component >
+    <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+        <lightning:recordEditForm aura:id="recordViewForm" 
+                                  recordId="0037F00000LQiar"
+                                  objectApiName="Contact">
+            <lightning:messages />
+            <lightning:inputField fieldName="FirstName" />
+            <lightning:inputField fieldName="LastName" />
+            <lightning:inputField fieldName="Birthdate" />
+            <lightning:inputField fieldName="Phone" />
+            <!--Picklist-->
+            <lightning:inputField fieldName="devsfdx__Level__c" />
+            <lightning:button aura:id="submit" type="submit" label="Update record" class="slds-m-top_medium" />
+        </lightning:recordEditForm>
+    </div>  
+    <!-- Record Display -->    
+    <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+        <lightning:recordViewForm recordId="0037F00000LQiar" objectApiName="Contact">
+            <div class="slds-box">
+                <lightning:outputField fieldName="Name" />
+                <lightning:outputField fieldName="Birthdate" />
+                <lightning:outputField fieldName="Phone" />
+                <lightning:outputField fieldName="devsfdx__Level__c" />
+            </div>
+        </lightning:recordViewForm>
+    </div>   
+</aura:component>

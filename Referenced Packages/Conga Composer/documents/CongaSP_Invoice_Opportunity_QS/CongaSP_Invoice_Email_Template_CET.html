@@ -1,0 +1,37 @@
+<span style="font-size: 14px;"><span style="font-family: arial,helvetica,sans-serif;">Hi {{CONTACT_FIRSTNAME}},</span><br />
+<br />
+Please complete payment for the attached invoice.&nbsp; Here&#39;s a summary of what&#39;s included:</span><br />
+&nbsp;
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+	<tbody>
+		<tr>
+			<td colspan="3" rowspan="1" style="background-color: rgb(96, 187, 70);"><strong><span style="color: #FFFFFF;">PRODUCTS</span></strong></td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1" style="background-color: rgb(191, 191, 191);">PRODUCT NAME</td>
+			<td colspan="1" rowspan="1" style="background-color: rgb(191, 191, 191); text-align: center;">QUANTITY</td>
+			<td colspan="1" rowspan="1" style="background-color: rgb(191, 191, 191); text-align: right;">TOTAL PRICE</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1"><span style="color: #FF0000;">{{TableStart:OppLineItems}}</span>{{OPPORTUNITY_LINEITEM_PRODUCTNAME}}</td>
+			<td colspan="1" rowspan="1" style="text-align: center;">{{OPPORTUNITY_LINEITEM_QUANTITY \# Number0}}</td>
+			<td colspan="1" rowspan="1" style="text-align: right;">{{OPPORTUNITY_LINEITEM_TOTALPRICE \# Currency}}<span style="color: #FF0000;">{{TableEnd:OppLineItems}}</span></td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1" style="background-color: rgb(191, 191, 191);">&nbsp;</td>
+			<td colspan="1" rowspan="1" style="text-align: right; background-color: rgb(191, 191, 191);"><strong>TOTAL:</strong></td>
+			<td colspan="1" rowspan="1" style="text-align: right; background-color: rgb(191, 191, 191);"><strong>{{ =SUM(Above) \# Currency}}</strong></td>
+		</tr>
+	</tbody>
+</table>
+<br />
+<span style="font-size: 14px;">Please see the attachment for complete details.&nbsp; We appreciate the opportunity to be of service.<br />
+<br />
+Kind regards,<br />
+{{USER_FIRSTNAME}}<br />
+<br />
+<span style="color: #696969;"><em>{{USER_NAME}}<br />
+{{USER_PHONE}}<br />
+{{USER_COMPANYNAME}}</em></span></span><br />
+&nbsp;
+<div style="text-align: center;"><span style="color: #696969;"><span style="font-size: 8px;">Powered by Conga Composer&reg;</span></span></div>

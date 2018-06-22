@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>ProductFeatureHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Feature of a configurable product that consists of one or more options. Features are configured by selecting one or more options.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>Configurator</fullName>
+        <description>Determines fields presented to user inside each feature in the Configurator.</description>
+        <displayedFields>
+            <field>OptionSelectionMethod__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Configurator</label>
+    </fieldSets>
+    <fields>
+        <fullName>Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Category of options in this feature. Allows for another level of grouping.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Assign this feature to a category such that multiple features with related options are grouped together.</inlineHelpText>
+        <label>Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Hardware</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Software</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ConfigurationFieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name of the field set that will be used for this feature during configuration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API name of the field set that will be used for this feature during configuration.</inlineHelpText>
+        <label>Configuration Field Set</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>OptionConfiguration</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ConfiguredSKU__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The product bundle that includes this feature. If you created the feature from the product detail page, this should already be populated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The product bundle that includes this feature. If you created the feature from the product detail page, this should already be populated.</inlineHelpText>
+        <label>Configured SKU</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Features</relationshipLabel>
+        <relationshipName>Features</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DiscountSchedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Discount schedule to be applied to the product selected by all options in this feature.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount schedule to be applied to the product selected by all options in this feature. This overrides discount schedule selected on the product.</inlineHelpText>
+        <label>Discount Schedule</label>
+        <referenceTo>DiscountSchedule__c</referenceTo>
+        <relationshipLabel>Product Features</relationshipLabel>
+        <relationshipName>ProductFeatures</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DynamicProductFilterFieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name of the field set that will be used when filtering dynamic options for this feature during configuration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API name of the field set that will be used when filtering dynamic options for this feature during configuration.</inlineHelpText>
+        <label>Dynamic Option Filter Field Set</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ConfiguratorFilter</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DynamicProductLookupFieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name of the field set that will be used when viewing dynamic options for this feature during configuration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API name of the field set that will be used when viewing dynamic options for this feature during configuration.</inlineHelpText>
+        <label>Dynamic Option Lookup Field Set</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ConfiguratorLookup</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MaxOptionCount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Maximum number of options for this feature that can be selected as part of the product bundle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Maximum number of options for this feature that can be selected as part of the product bundle.</inlineHelpText>
+        <label>Max Options</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinOptionCount__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Minimum number of options for this feature that must be part of the product bundle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Minimum number of options for this feature that must be part of the product bundle.</inlineHelpText>
+        <label>Min Options</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A sequential number that determines how the features are sorted in the related list on the product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A sequential number that determines how the features are sorted in the related list on the product.</inlineHelpText>
+        <label>Number</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OptionSelectionMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Determines how user selects options attached to this product. &quot;Click&quot; method presents options with checkboxes next to them. &quot;Add&quot; renders a button which brings up predefined options. &quot;Dynamic&quot; renders a button which brings up all active products.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines how user selects options attached to this product. &quot;Click&quot; method presents options with checkboxes next to them. &quot;Add&quot; renders a button which brings up predefined options. &quot;Dynamic&quot; renders a button which brings up all active products.</inlineHelpText>
+        <label>Option Selection Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Click</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Add</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dynamic</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Product Feature</label>
+    <nameField>
+        <label>Feature Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Product Features</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>ConfiguredSKU__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MinOptionCount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MaxOptionCount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UPDATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ConfiguredSKU__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MinOptionCount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MaxOptionCount__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ConfiguredSKU__c</searchFilterFields>
+        <searchFilterFields>Number__c</searchFilterFields>
+        <searchFilterFields>MinOptionCount__c</searchFilterFields>
+        <searchFilterFields>MaxOptionCount__c</searchFilterFields>
+        <searchFilterFields>UPDATEDBY_USER</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>MinOptionValidation</fullName>
+        <active>true</active>
+        <description>Min Options cannot be negative.</description>
+        <errorConditionFormula>AND(ISNEW(),MinOptionCount__c &lt; 0)</errorConditionFormula>
+        <errorDisplayField>MinOptionCount__c</errorDisplayField>
+        <errorMessage>Min Options cannot be negative.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Translate</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Translate</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <url>/apex/SBQQ__Translations?targetObject=ProductFeature&amp;targetId={!ProductFeature__c.Id}&amp;supportUserDefined=false&amp;supportStandard=true</url>
+    </webLinks>
+</CustomObject>

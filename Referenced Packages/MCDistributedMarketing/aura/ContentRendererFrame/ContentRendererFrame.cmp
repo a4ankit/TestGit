@@ -1,0 +1,30 @@
+<aura:component description="Renders HTML within an iframe">
+    <aura:attribute name="renderCallback" type="Object" description="Saved callback from a displayHtml invocation"/>
+    <aura:attribute name="queuedHtmlContent" type="String" access="private" description="HTML content to be posted to the Iframe when ready"/>
+    <aura:attribute name="selfOrigin" type="String" access="private" description="The container (Lightning) domain for internal postMessages"/>
+    <aura:attribute name="isIframeReady" type="Boolean" access="private" description="A flag indicating whether the child IFrame is ready for content"/>
+    <aura:attribute name="messagePort" type="Object" access="private" description="A port used to communicate with the child IFrame."/>
+    <aura:attribute name="vfPath" type="String" access="private" description="Path to Visualforce pages"/>
+
+    <aura:method name="displayHtml" description="Renders the given HTML content in the iframe">
+        <aura:attribute name="htmlContent" type="String" required="true" description="HTML content to display"/>
+        <aura:attribute name="callback" type="Object" required="true" description="Called after display is complete"/>
+    </aura:method>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/contentRenderer.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div>
+        <div class="html-container">
+            <iframe
+                aura:id="htmlFrame"
+                src="{!v.vfPath + 'mcdm_15__ContentRendererFramePage?origin=' + v.selfOrigin}"
+                class="html-frame slds-container_center"
+                scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</aura:component>

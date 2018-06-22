@@ -1,0 +1,40 @@
+<aura:component controller="APXTConga4.TemplateBuilderController" extends="c.BaseStep">
+	<ltng:require scripts="{!$Resource.APXTConga4__jQuery+'/jQuery/jquery.min.js'}" />
+	<aura:attribute name="base64String" type="String" />
+	<aura:attribute name="fileType" type="String" default="" />
+	<aura:attribute name="isPopoverVisible" type="Boolean" />
+	<aura:attribute name="MasterDataArr" type="Object[]" />
+	<aura:attribute name="masterObject" type="String" />
+	<aura:attribute name="masterObjectLabel" type="String" />
+	<aura:attribute name="message" type="String" default="Choose a docx, or drag it here to upload." />
+	<aura:attribute name="sampleRecordId" type="String" />
+	<aura:attribute name="showSpinner" type="Boolean" default="false" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="templateMergeFieldArr" type="Object[]" />
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
+	<aura:method name="publicHandleLoadDocument" action="{!c.handleLoadPdf}" access="PUBLIC" />
+	<aura:registerEvent name="templateUploadEvent" type="APXTConga4:CongaEvent" />
+	<aura:set attribute="showNav" value="false" />
+	<aura:if isTrue="{!v.showSpinner}">
+		<APXTConga4:Spinner />
+	</aura:if>
+	<APXTConga4:Popover aura:id="popoverComp" masterDataArr="{!v.MasterDataArr}" isVisible="{!v.isPopoverVisible}" masterObject="{!v.masterObject}" masterObjectLabel="{!v.masterObjectLabel}" replacementDataArr="{!v.templateMergeFieldArr}"/>
+	<iframe aura:id="pdfFrame" id="pdfFrame" src="{!$Resource.APXTConga4__lcins1_pdfjs+'/web/viewer.html'}" class="pdfFrame"></iframe>
+	<div id="canvas-container" ondrop="{!c.drop}" ondragover="{!c.dragover}" ondragleave="{!c.dragleave}">
+		<div class="slds-form-element" style="margin-top:175px;">
+			<span class="slds-form-element__label" id="file-selector-primary-label">{!$Label.apxtconga4.Attachment_Text}</span>
+			<div class="slds-form-element__control">
+				<div class="slds-file-selector slds-file-selector_files">
+					<div class="slds-file-selector__dropzone">
+						<input onchange="{!c.drop}" type="file" class="slds-file-selector__input slds-assistive-text" accept=".docx" id="file-upload-input-01" aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+						<label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label">
+							<span class="slds-file-selector__button slds-button slds-button_neutral">
+								<img src="https://i.imgur.com/UHq4RsS.png" width="16px" />{!$Label.apxtconga4.Upload_Files_Button_Text}</span>
+							<span class="slds-file-selector__text slds-medium-show">{!$Label.apxtconga4.Drop_Files_Text}</span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>

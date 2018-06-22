@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>EnvelopeId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>DocuSign envelope ID.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>DocuSign envelope ID.</inlineHelpText>
+        <label>Envelope Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ErrorMessage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Message returned by DocuSign service in case of errors.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Message returned by DocuSign service in case of errors.</inlineHelpText>
+        <label>Error Message</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SenderURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>One-time URL to open the DocuSign sender view for this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DocuSign sender view</inlineHelpText>
+        <label>Sender URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>SignedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date this document was signed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date this document was signed.</inlineHelpText>
+        <label>Signed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>VoidedReason__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Reason for voiding this document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Reason for voiding this document.</inlineHelpText>
+        <label>Voided Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>Send</fullName>
+        <availability>online</availability>
+        <description>Send the document via DocuSign.</description>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Send</masterLabel>
+        <openType>replace</openType>
+        <page>SendDocument</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Update</fullName>
+        <availability>online</availability>
+        <description>Updates document status and collected information from DocuSign.</description>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Update</masterLabel>
+        <openType>replace</openType>
+        <page>UpdateDocument</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Void</fullName>
+        <availability>online</availability>
+        <description>Void this document in DocuSign.</description>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Void</masterLabel>
+        <openType>replace</openType>
+        <page>VoidDocument</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

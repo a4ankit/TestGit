@@ -1,0 +1,37 @@
+<aura:component >
+	<aura:attribute name="allowEdit" type="Boolean" default="True"/>
+    <aura:attribute name="rowData" type="object[]" />
+
+<div>
+	<div class="slds">
+		<table class="slds-table slds-table--bordered slds-table--fixed-layout" >
+			<thead>
+		        <tr class="slds-text-heading--label">
+		            <th><div class="slds-truncate" >{!$Label.apxtconga4.Name_Label}</div></th>
+		           	<th><div class="slds-truncate">{!$Label.apxtconga4.Alias_Label}</div></th>
+		           	<th><div class="slds-truncate" >{!$Label.apxtconga4.Description_Label}</div></th>
+		           	<th><div class="slds-truncate" >{!$Label.apxtconga4.Last_Modified_Label}</div></th>
+		            <th class="slds-cell-shrink"></th>
+		            <th class="slds-cell-shrink"></th>
+		        </tr>
+		    </thead>
+		    <tbody aura:id="templateTableBody">
+		    	<aura:iteration items="{!v.rowData}" var="row" indexVar="index">
+		    	<tr data-templateid="{!row.Id}">
+		      		<td><div class="slds-truncate" title="{!row.Name}" >{!row.Name}</div></td>
+		      		<APXTConga4:EditableColumn aura:id="test1" columnValue="{!row.Alias}" allowEdit="{!v.allowEdit}"/>
+		      		<td><div class="slds-truncate" title="{!row.Description}" >{!row.Description}</div></td>
+		      		<td><div class="slds-truncate" title="{!row.LastModifiedName}" >{!row.LastModifiedName}&nbsp;&nbsp;{!row.LastModifiedDate}</div></td>
+		      		<td class="editcolumn">
+		          		<APXTConga4:DataStepSelectItem previewId="{!row.Id}" editId="{!row.Id}" recordId="{!row.SolutionTemplateId}" />
+		      		</td>
+		      		<td class="removecolumn">
+		      			<lightning:buttonIcon iconName="utility:close" variant="bare" alternativeText="Remove from solution" onclick="{!c.deleteRow}" value="{!index}"/>
+		      		</td>
+		    	</tr>
+				</aura:iteration>
+			</tbody>
+		</table>
+	</div>
+</div>
+</aura:component>

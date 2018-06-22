@@ -1,0 +1,18 @@
+<aura:component extends="APXTConga4:BaseStep">
+	<aura:attribute name="behaviorArea" type="Aura.Component[]" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:handler name="behaviorSaveComplete" event="APXTConga4:CongaEvent" action="{!c.handleBehaviorSave}" />
+	<aura:handler name="behaviorSelect" event="APXTConga4:CongaEvent" action="{!c.handleBehaviorSelect}" />
+	<div class="slds-m-around_large">
+		<div class="slds-p-bottom_small slds-border_bottom">
+			<h2 class="slds-align-middle slds-text-heading_medium normalweight">{!$Label.apxtconga4.Behavior_Settings_Header}</h2>
+		</div>
+		<div class="slds-grid slds-grid_pull-padded">
+			<div class="slds-p-vertical_small slds-p-left_small slds-p-right_x-large slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-border_right">
+				<div class="slds-m-bottom_large">{!$Label.apxtconga4.Behavior_Settings_Description}<a href="https://support.getconga.com/Conga_Composer/Creating_Composer_Templates/Composer_Template_Basics/Behavior_Settings" target="_blank" class="slds-p-left_xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></div>
+				<div><APXTConga4:BehaviorTree solutionId="{!v.solutionId}" /></div>
+			</div>
+			<div class="slds-p-right_small slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12">{!v.behaviorArea}</div>
+		</div>
+	</div>
+</aura:component>

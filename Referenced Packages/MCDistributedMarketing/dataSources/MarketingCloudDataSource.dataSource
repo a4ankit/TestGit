@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isWritable>false</isWritable>
+    <label>MarketingCloudDataSource</label>
+    <principalType>Anonymous</principalType>
+    <protocol>NoAuthentication</protocol>
+    <type>MarketingCloudDataSourceProvider</type>
+</ExternalDataSource>

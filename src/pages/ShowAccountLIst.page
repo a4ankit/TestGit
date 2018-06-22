@@ -1,0 +1,23 @@
+<apex:page standardController="Account" recordSetVar="accounts" tabstyle="account" sidebar="false" extensions="DisplayContact" >
+    <apex:pageBlock title="Account" >
+        <apex:form >
+            
+            <apex:pageBlockTable value="{!accounts}" var="a" id="list">
+                
+                <apex:column headerValue="Account Name">
+                    <apex:commandLink rerender="contactDetails" value=" {!a.Name}" action="{!ContactLists}">
+                        
+                        <apex:param name="id" value="{!a.id}"/>
+                    </apex:commandLink> 
+                </apex:column>
+                <apex:column value="{!a.type}" />
+                <apex:column value="{!a.billingstreet}"/>
+                <apex:column value="{!a.billingCity}" />
+                <apex:column value="{!a.billingCountry}" />
+                <apex:column value="{!a.billingPostalCode}"/>
+                <apex:column value="{!a.createdById}"/>
+            </apex:pageBlockTable>
+            
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>email_subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Subject</shortDescription>
+        <value>Quote Document {0}</value>
+    </labels>
+    <labels>
+        <fullName>lbl_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>lbl_send_button</fullName>
+        <categories>Labels</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Send Button Label</shortDescription>
+        <value>Send with DocuSign</value>
+    </labels>
+    <labels>
+        <fullName>lbl_update_credentials</fullName>
+        <categories>Labels</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Update Credentials</shortDescription>
+        <value>Update Credentials</value>
+    </labels>
+    <labels>
+        <fullName>lbl_username</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>msg_document_already_sent</fullName>
+        <categories>Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Document Already Sent Message</shortDescription>
+        <value>This document has already been sent. Contact your Salesforce Administrator for further information.</value>
+    </labels>
+    <labels>
+        <fullName>msg_error_instructions</fullName>
+        <categories>Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Instructions Message</shortDescription>
+        <value>Contact your Salesforce Administrator for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>msg_no_account_access</fullName>
+        <categories>Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No Account Access</shortDescription>
+        <value>You have no access to the account configured for use with DocuSign for QuoteQuickly. Contact your Salesforce Administrator for help.</value>
+    </labels>
+    <labels>
+        <fullName>msg_not_voidable</fullName>
+        <categories>Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Not Voidable Message</shortDescription>
+        <value>Only documents in Sent or Delivered status can be voided. Contact your Salesforce Administrator for further information.</value>
+    </labels>
+</CustomLabels>

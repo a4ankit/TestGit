@@ -1,0 +1,135 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName,mcdm_15:NavigationHandler"
+    controller="mcdm_15.CampaignMessagesAdapter"
+    access="global"
+>
+    <aura:attribute name="objectId" type="String" description="The Salesforce ID for the object this component is related to"/>
+    <aura:attribute name="journeyDetails" type="mcdm_15.JourneyDetails" description="Details about the associated Journey"/>
+    <aura:attribute name="journeyId" type="String" description="The Salesforce ID for the journey this component is related to"/>
+    <aura:attribute name="objectBreadcrumbDetails" type="Object" description="The data needed for breadcrumbs from the Object"/>
+    <aura:attribute name="linkedJourneyId" type="String" description="The Salesforce ID for Linked Journey Object"/>
+
+    <aura:attribute name="actions" type="Object[]" access="private" description="List of actions for the cog drop down"/>
+    <aura:attribute name="permissions" type="Map" default="{}" access="private" description="A map of Distributed Marketing permission sets for the current user"/>
+    <aura:attribute name="memberCounts" type="Object" access="private" description="Contains the counts for members in ERROR, APPROVED, REJECTED and PENDING states"/>
+    <aura:attribute name="connectCampaignModal" type="Aura.Component[]" access="private" description="Modal for linking Campaign to a Journey"/>
+    <aura:attribute name="connectCampaignCmp" type="Aura.Component[]" access="private" description="The link journey form component in the connectCampaignModal"/>
+    <aura:attribute name="loading" type="Boolean" default="true" access="private" description="Flag to control loading/activity state for the Component"/>
+    <aura:attribute name="disableApprovals" type="Boolean" default="true" access="private" description="Is approval flow disabled?"/>
+
+    <!-- TODO: This prevents users from clicking around while async fetching and saving of p13n defaults occur. These calls should be moved into the p13n modal itself -->
+    <aura:attribute name="isBusy" type="Boolean" default="false" access="private" description="Indicates whether the component is busy nor not"/>
+
+    <aura:handler event="force:refreshView" action="{!c.afterScriptsLoaded}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/journey.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:PermissionSetService aura:id="permissionSetService"/>
+
+    <lightning:card >
+
+        <lightning:spinner class="{!!v.isBusy ? 'slds-hide' : ''}"
+            alternativeText="{!$Label.mcdm_15.loading}"
+            variant="brand"
+            size="large"
+        />
+
+        <aura:set attribute="title">
+            <header class="slds-media slds-media_center">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="standard:email" size="small"/>
+                </div>
+                <div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small slds-shrink-none slds-m-right_xx-small">{!$Label.mcdm_15.activityMessages}</span>
+                    </h2>
+                </div>
+            </header>
+        </aura:set>
+
+        <aura:set attribute="actions">
+            <lightning:buttonMenu disabled="{!v.loading || empty(v.actions)}"
+                alternativeText="{!$Label.mcdm_15.globalSettingsAltText}"
+                title="{!$Label.mcdm_15.globalSettingsTitle}"
+                class="slds-m-left_xx-small"
+                iconName="utility:settings"
+                onselect="{!c.handleSettingsSelection}"
+            >
+                <aura:iteration var="action" items="{! v.actions }">
+                    <lightning:menuItem aura:id="actionMenuItems" label="{! action.label }" value="{! action.value }" title="{! action.title }"/>
+                </aura:iteration>
+            </lightning:buttonMenu>
+        </aura:set>
+
+        <div class="{!'slds-text-align_center slds-m-around_x-large slds-text-color_weak' + (v.journeyDetails.activities.length > 0 || v.loading ? ' slds-hide' : '')}">
+            <aura:if isTrue="{!empty(v.journeyId)}">
+                <p>{!$Label.mcdm_15.noJourneyMessages}</p>
+
+                <aura:if isTrue="{!v.permissions.isAdministrator}">
+                    <p>{!$Label.mcdm_15.connectCampaignInstructions}</p>
+                    <lightning:button onclick="{!c.launchConnectJourney}"
+                        label="{!$Label.mcdm_15.connectCampaign}"
+                        class="slds-m-top_large"/>
+
+                    <aura:set attribute="else">
+                        <p>{!$Label.mcdm_15.askAdminConnectCampaign}</p>
+                    </aura:set>
+                </aura:if>
+            </aura:if>
+        </div>
+
+        <div class="{!(!v.journeyDetails.activities.length || v.loading ? 'slds-hide' : '')}">
+            <div class="approval-summary slds-p-around_large slds-border_top">
+                <h3 class="slds-text-title_caps slds-m-bottom_small">{!$Label.mcdm_15.campaignMemberApproval}</h3>
+                <div class="slds-grid slds-wrap slds-grid_align-spread slds-grid_vertical-align-center">
+                    <div class="slds-m-right_small">
+                        <span class="slds-text-title slds-m-right_small">{!$Label.mcdm_15.approvedSummary}</span>{!v.memberCounts.approved}
+                    </div>
+                    <div class="slds-m-right_small">
+                        <span class="slds-text-title slds-m-right_small">{!$Label.mcdm_15.rejectedSummary}</span>{!v.memberCounts.rejected}
+                    </div>
+                    <div class="slds-m-right_small">
+                        <span class="slds-text-title slds-m-right_small">{!$Label.mcdm_15.failedSummary}</span>{!v.memberCounts.error}
+                    </div>
+                    <lightning:button class="{!v.disableApprovals || v.memberCounts.actionable le 0 ? 'slds-hide' : ''}"
+                        label="{!format($Label.mcdm_15.viewPendingMembers, v.memberCounts.actionable)}"
+                        disabled="{!!v.permissions.isStandard}"
+                        onclick="{!c.launchJourneyApprovals}"
+                    />
+                </div>
+            </div>
+
+            <table class="slds-table slds-table_bordered">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="{!$Label.mcdm_15.message}">{!$Label.mcdm_15.message}</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="{!$Label.mcdm_15.activityEmailSubject}">{!$Label.mcdm_15.activityEmailSubject}</div>
+                        </th>
+                        <th scope="col" class="preview-header">
+                            <div class="slds-th__action">
+                              <span class="slds-assistive-text">{!$Label.mcdm_15.preview}</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.journeyDetails.activities}" var="activity">
+                        <mcdm_15:CampaignMessage activity="{!activity}" journeyId="{#v.journeyId}" previewRequested="{!c.handlePreviewRequested}"/>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="{!'slds-p-around_small slds-align_absolute-center card-body__loader' + (!v.loading ? ' slds-hide' : '')}">
+            <force:inlineSpinner />
+        </div>
+    </lightning:card>
+
+</aura:component>

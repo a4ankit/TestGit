@@ -1,0 +1,16 @@
+<aura:component controller="APXTConga4.SolutionController" extends="SearchAndSelectBase">
+	<aura:attribute name="myMasterObject" type="String" />
+	<aura:attribute name="sampleRecordId" type="String" />
+	<aura:attribute name="sObjectMappedName" type="String" default="" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:method name="hideSampleRecords" action="{!c.hideSampleRecords}" description="Hides all the items" />
+	<aura:method name="reInit" action="{!c.init}" description="Runs the init method again" />
+	<div class="slds-lookup__menu" id="lookup-66" style="{!(v.showItems ? '' : 'display: none; ')}">
+		<span class="slds-truncate slds-p-left_x-small bold" >&quot;{!v.searchStr}&quot; in {!v.myMasterObject}</span>
+		<ul class="slds-lookup__list" role="listbox">
+			<aura:iteration items="{!v.searchedItems}" var="item">
+				<li class="slds-lookup__item-action slds-lookup__result-text" id="{!item.Id}" title="{!item.Name}" onclick="{!c.selectThisRecord}" role="option">{!item.Name}</li>
+			</aura:iteration>
+		</ul>
+	</div>
+</aura:component>

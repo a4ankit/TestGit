@@ -1,0 +1,3 @@
+<aura:interface >
+    <aura:attribute name="navigationHandler" type="Aura.Action" required="true" description="The function to handle navigating to another Component"/>
+</aura:interface>

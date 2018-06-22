@@ -1,0 +1,20 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.getCM8URLFromURLService"
+    sidebar="false" 
+    showHeader="false"> 
+    
+    <script type="text/javascript" language="JavaScript">
+        function openConga() {
+            self.location = '{!finalCMUrl}';
+        }
+    </script>  
+       
+    <script>
+        window.onLoad = openConga(); 
+    </script>
+
+    <div style="background-color:#f8f8f8;display:relative;width:125px;margin-left:25px;margin-top:25px;padding:10px;border:1px dashed #888888;">
+        <img style="margin-right:5px;" src="{!URLFOR($Resource.ComposerResources,'apxt-conga-o-loading-32.gif')}"/>
+        <div style="font-size:16px;display:inline;position:relative;top:-10px">Loading ...</div>
+    </div>
+    
+</apex:page>

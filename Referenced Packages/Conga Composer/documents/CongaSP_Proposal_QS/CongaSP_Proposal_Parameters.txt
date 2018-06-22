@@ -1,0 +1,5 @@
+&TemplateGroup=Proposal
+&DefaultPDF=1
+&OFN=Conga+Proposal+-+{!Opportunity.Name}+-+{!Today}
+&SC0=1
+&SC1=Chatter

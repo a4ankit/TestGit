@@ -1,0 +1,23 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.ActivityLoggingBehaviorController" >
+	<aura:attribute name="days" type="Integer" />
+	<aura:attribute name="logActivity" type="Boolean" default="false" />
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:attribute name="subject" type="String" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:registerEvent name="behaviorSaveComplete" type="APXTConga4:CongaEvent" />
+	<aura:set attribute="showNav" value="false" />
+	<div class="slds-panel">
+		<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-has-divider_bottom-space">
+			<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.Activity_Logging_Settings}</h2>
+		</div>
+		<div data-reactroot="" class="slds-form slds-form_stacked slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">
+			<p class="slds-m-bottom--large">{!$Label.apxtconga4.Activity_Logging_Description}<a href="https://support.getconga.com/Conga_Composer/Customizing_Composer_with_Parameters/Composer_Parameter_Guide/Activity_Logging_Parameters" target="_blank" class="slds-p-left--xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></p>
+			<lightning:input aura:id="logActivity" type="toggle" name="logActivity" checked="{!v.logActivity}" messageToggleActive="{!$Label.apxtconga4.Yes_Label}" messageToggleInactive="{!$Label.apxtconga4.No_Label}" label="{!$Label.apxtconga4.Activity_Log_After_Merging_Ask}"/>
+			<lightning:input aura:id="subject" type="text" name="subject" value="{!v.subject}" disabled="{!!v.logActivity}" label="{!$Label.apxtconga4.Activity_Subject}" required="{!v.logActivity}"/>
+			<lightning:input aura:id="days" type="number" name="days" value="{!v.days}" min="1" class="days-input" disabled="{!!v.logActivity}" label="{!$Label.apxtconga4.Activity_Days_Followup}"/>
+			<div class="slds-form-element slds-float_right">
+				<lightning:button aura:id="buttonSave" variant="brand" label="Save" onclick="{!c.handleSave}" />
+			</div>
+		</div>
+	</div>
+</aura:component>

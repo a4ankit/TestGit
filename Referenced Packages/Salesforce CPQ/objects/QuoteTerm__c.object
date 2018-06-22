@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>QuoteTermHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Legal term printed on quote document.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag that indicates whether this quote term is available for use.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this quote term is available for use.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AdvancedCondition__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Can only be entered if the Conditions Met is Custom. Enter a combination of the Term Condition Index #s, AND, OR, and parenthesis (e.g. (123 AND 124) AND 125).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Can only be entered if the Conditions Met is Custom. Enter a combination of the Term Condition Index #s, AND, OR, and parenthesis (e.g. (123 AND 124) AND 125).</inlineHelpText>
+        <label>Advanced Condition</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Body__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Body containing text of the term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Text content of this term.</inlineHelpText>
+        <label>Body</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ConditionsMet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Choose the behavior for your conditions: All is AND, Any is OR, Custom is a combination of AND/OR.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the behavior for your conditions: All is AND, Any is OR, Custom is a combination of AND/OR.</inlineHelpText>
+        <label>Conditions Met</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Any</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Custom</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Controls a Quote Term being editable by a user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Controls a Quote Term being editable by a user.</inlineHelpText>
+        <label>Locked</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ParentTerm__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Parent term for this term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Parent term for this term.</inlineHelpText>
+        <label>Parent Term</label>
+        <referenceTo>QuoteTerm__c</referenceTo>
+        <relationshipLabel>Sub Terms</relationshipLabel>
+        <relationshipName>SubTerms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PrintOrder__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Order in which the terms are printed on quote document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specifies the order in which the terms are printed on quote document.</inlineHelpText>
+        <label>Print Order</label>
+        <precision>12</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quote__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Quote to which this term applies.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Quote to which this term applies. Left blank if this is a standard term.</inlineHelpText>
+        <label>Quote</label>
+        <referenceTo>Quote__c</referenceTo>
+        <relationshipLabel>Quote Terms</relationshipLabel>
+        <relationshipName>QuoteTerms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>StandardTerm__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Specifies the standard term that is being modified.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specifies the standard term that is being modified.</inlineHelpText>
+        <label>Standard Term</label>
+        <referenceTo>QuoteTerm__c</referenceTo>
+        <relationshipLabel>Modified Terms</relationshipLabel>
+        <relationshipName>ModifiedTerms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status of this quote term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of this quote term.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TemplateContent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Template Content to which this term is applied.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Template Content to which this term is applied.</inlineHelpText>
+        <label>Template Content</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>TemplateContent__c.Type__c</field>
+                <operation>equals</operation>
+                <value>Quote Terms</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>TemplateContent__c</referenceTo>
+        <relationshipLabel>Quote Terms</relationshipLabel>
+        <relationshipName>Quote_Terms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates if the term is standard, custom, or modified.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISBLANK(Quote__c),ISBLANK(StandardTerm__c)), $Label.sbqq__lbl_standard,
+  IF(AND(NOT(ISBLANK(Quote__c)),ISBLANK(StandardTerm__c)), $Label.sbqq__lbl_custom, $Label.sbqq__lbl_modified))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Indicates if the term is standard, custom, or modified.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Quote Term</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PrintOrder__c</columns>
+        <columns>Active__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Body__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>QT-{0000}</displayFormat>
+        <label>Term #</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Quote Terms</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PrintOrder__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Body__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>PrintOrder__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Body__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PrintOrder__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ParentTerm__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Body__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Translate</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Translate</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <url>/apex/SBQQ__Translations?targetObject=QuoteTerm&amp;targetId={!QuoteTerm__c.Id}&amp;supportUserDefined=false&amp;supportStandard=true</url>
+    </webLinks>
+</CustomObject>

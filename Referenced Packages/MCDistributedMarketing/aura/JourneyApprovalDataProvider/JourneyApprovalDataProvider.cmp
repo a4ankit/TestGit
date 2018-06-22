@@ -1,0 +1,16 @@
+<aura:component extends="ui:dataProvider"
+    controller="mcdm_15.JourneyApprovalsDataProviderAdapter"
+    description="Provides paged journey approval enumeration">
+
+    <aura:attribute name="campaignId" type="String" required="true" description="The id of the campaign to enumerate members for"/>
+    <aura:attribute name="maxResults" type="Integer" default="2000" description="Maximum number of records to display"/>
+    <aura:attribute name="memberIds" type="String[]" access="private" description="The full list of member ids"/>
+
+    <aura:handler name="provide" action="{!c.provide}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+</aura:component>

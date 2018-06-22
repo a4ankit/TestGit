@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>Send_with_DocuSign</fullName>
+        <availability>online</availability>
+        <description>This button will initiate a DocuSign Envelope that will be linked to the Account.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send with DocuSign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/apex/dsfs__DocuSign_JavaScript&quot;)}
+DocuSign_CreateEnvelope();</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Verify_with_DNB</fullName>
+        <availability>online</availability>
+        <description>This button will initiate DnBs Pre-Contract Risk Screening linked to the Opportunity</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Verify with D&amp;B</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/apex/dsfs__DocuSign_JavaScript&quot;)}
+        
+{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js&apos;)} 
+{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js&apos;)} 
+
+var html = &apos;&lt;div id=&quot;dialog&quot; style=&quot;display: none;&quot;&gt;&lt;/div&gt;&apos;;
+
+var $g = jQuery.noConflict();
+
+var address = &apos;&lt;iframe id=&quot;dnbContent&quot; width=&quot;700&quot; height=&quot;730&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; frameborder=&quot;0&quot; src=&quot;&apos;+DocuSign_GetVerifyWithDnb(&apos;account&apos;)+&apos;&quot;&gt;&lt;/iframe&gt;&apos;;
+		
+$g(function() { 
+
+	$g(&apos;head&apos;).append(&apos;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css&quot;/&gt;&apos;);
+
+	if($g(&apos;#dialog&apos;).length == 0) {
+		$g(&apos;body&apos;).append(html); 
+	}
+	$g(&quot;#dialog&quot;).dialog({ 
+		autoOpen: true, 
+		modal: true, 
+		width: 700,
+		height: 783,
+		open: function(event, ui) {
+		  if($g(&apos;#myNewImage&apos;).length == 0) {
+		     $g(&quot;.ui-dialog-titlebar&quot;).append(&quot;&lt;img src=&apos;&quot;+getDnbLogo()+&quot;&apos; id=&apos;myNewImage&apos; /&gt;&quot;);
+		  }
+		  $g(&apos;.ui-widget-overlay&apos;).bind(&apos;click&apos;,function(){
+    			$g(&apos;#dialog&apos;).dialog(&quot;close&quot;);
+		  });
+		}
+	})
+	if($g(&apos;#dnbContent&apos;).length == 0) {
+		$g(&apos;#dialog&apos;).append(address); 
+	}
+
+
+	$g(&quot;.ui-dialog-title&quot;).hide();
+	$g(&quot;#dialog&quot;).css(&apos;padding&apos;, &apos;0px&apos;);
+	$g(&quot;.ui-widget-header&quot;).attr(&apos;style&apos;, &apos;padding-top:5px; padding-right:5px; padding-left:10px;padding-bottom:5px; border-radius:0px; background: #005172;border:0px;margin:auto;&apos;);
+	$g(&quot;.ui-button-text&quot;).css(&apos;padding&apos;, &apos;0&apos;);
+	$g(&quot;.ui-icon-closethick&quot;).attr(&apos;style&apos;, &apos;background-color:#005172; width:19px; height:19px; margin-top:-10px; margin-left:-10px;&apos;);
+	$g(&quot;.ui-dialog-titlebar-close&quot;).attr(&apos;style&apos;, &apos;border-radius:0px; padding:0px; width:18px; height:18px; border:0px;&apos;);
+	$g(&quot;.ui-dialog&quot;).css(&apos;z-index&apos;, &apos;10000&apos;);
+	$g(&quot;.ui-dialog&quot;).css(&apos;border-radius&apos;, &apos;0px&apos;);
+});</url>
+    </webLinks>
+</CustomObject>

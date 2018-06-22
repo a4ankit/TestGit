@@ -1,0 +1,22 @@
+<aura:component extensible="true" controller="APXTConga4.sObjectRecordController" extends="BaseStep">
+ 	<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+ 	<aura:attribute name="enabled" type="Boolean" default="False" />
+ 	<aura:attribute name="disabled" type="Boolean" default="false" />
+ 	<aura:attribute name="items" type="Array" />
+ 	<aura:attribute name="itemsToShow" type="Integer" default="100" />
+ 	<aura:attribute name="label" type="String" />
+ 	<aura:attribute name="isRequired" type="Boolean" default="False"/>
+ 	<aura:attribute name="sampleRecordId" type="String" />
+ 	<aura:attribute name="searchedItems" type="Array" />
+ 	<aura:attribute name="searchStr" type="String" />
+ 	<aura:attribute name="showItems" type="Boolean" default="False" />
+ 	<aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+ 	<aura:set attribute="showNav" value="false" />
+ 	<div class="slds-form-element slds-lookup slds-is-open" data-select="single">
+ 		<div class="slds-form-element">
+ 			<lightning:input type="search" label="{!v.label}" name="searchInput" aura:id="searchInput" placeholder="Search" required="{!v.isRequired}" onchange="{!c.searchKeyChange}" value="{!v.searchStr}" disabled="{!!v.enabled}" maxlength="80" />
+ 		</div>
+		<div class="{!'slds-text-color_error ' + (v.disabled ? '' : 'conga-hidden')}">{!$Label.apxtconga4.Templates_Maximum_Message}</div>
+ 		<div>{!v.body}</div>
+ 	</div>
+</aura:component>

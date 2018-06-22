@@ -1,0 +1,28 @@
+<apex:page showHeader="false" sidebar="false">
+    <!-- 
+        This is a dummy page for setting the DocuSign returnUrl
+    -->
+<html>
+    <head>
+        <title>DocuSign</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+        <link rel="stylesheet" type="text/css" href="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+		<script type="text/javascript">
+			var $j = jQuery.noConflict();
+			$j(document).ready(function() {
+
+				$j.mobile.loading( 'show', {
+					textVisible: false,
+					theme: 'a',
+				});
+			});
+		</script>
+	</head>
+    <body></body>
+</html>		
+</apex:page>

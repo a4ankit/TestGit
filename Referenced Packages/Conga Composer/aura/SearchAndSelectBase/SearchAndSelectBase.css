@@ -1,0 +1,6 @@
+.THIS .conga-hidden {
+	display: none;
+}
+.THIS .hide-error-message > .slds-form-element__help {
+    display: none;
+}

@@ -1,0 +1,25 @@
+<apex:page Controller="ObjectList">
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock mode="detail" id="block">
+            <b>Select Account</b>&nbsp;<apex:inputField value="{!objAccount.Parentid}"/>
+            <apex:pageBlockSection >
+                <apex:commandButton value="Submit" action="{!getDetails}" reRender="block"/>           
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Contact List"> 
+                <apex:pageblockTable value="{!contactList}" var="ct" id="pbtId">       
+                    <apex:column >
+                        <apex:inputCheckbox value="{!ct.checked}"/>
+                    </apex:column>
+                    <apex:column value="{!ct.con.FirstName}"/>
+                    <apex:column value="{!ct.con.LastName}"/>
+                    <apex:column value="{!ct.con.Email}"/>
+                    <apex:column value="{!ct.con.Phone}"/>
+                </apex:pageblockTable>
+                <apex:pageBlockSection >
+                    <apex:commandButton value="Delete" action="{!DeleteChecked}" reRender="pbtId" />
+                </apex:pageBlockSection>
+            </apex:pageBlockSection>
+        </apex:pageBlock>       
+    </apex:form>  
+</apex:page>

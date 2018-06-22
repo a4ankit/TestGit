@@ -1,0 +1,14 @@
+<apex:page standardController="SBQQ__QuoteDocument__c" extensions="SBQQDS.QuoteDocumentExtController">
+	<apex:pageMessages />
+	<apex:form >
+		<apex:pageBlock mode="edit" title="Void Document">
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Void" action="{!onVoid}"/>
+				<apex:commandButton value="Cancel" action="{!onCancel}"/>
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection columns="1">
+				<apex:inputField value="{!quoteDocument.SBQQDS__VoidedReason__c}"/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

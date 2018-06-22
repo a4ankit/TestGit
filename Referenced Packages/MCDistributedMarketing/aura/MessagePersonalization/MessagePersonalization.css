@@ -1,0 +1,16 @@
+.THIS { position: relative; }
+
+.THIS .bold-font { font-weight: t(fontWeightBold); }
+
+.THIS .autocomplete { width: 100%; }
+
+.THIS .rich-text-container { position: relative; }
+
+.THIS .rich-text-notification {
+    position: absolute;
+    left: t(borderWidthThin);
+    right: t(borderWidthThin);
+    bottom: t(borderWidthThin);
+    z-index: 4; /* t(zIndexDocked) */
+    border-radius: 0 0 t(borderRadiusMedium) t(borderRadiusMedium)
+}

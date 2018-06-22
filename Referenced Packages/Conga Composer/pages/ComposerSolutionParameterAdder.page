@@ -1,0 +1,198 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionParameterAdder,APXTConga4.ComposerSolutionMergefieldHelper" id="thePage">    
+	<apex:stylesheet value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-theme-classic-all.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-all.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-library.js')}"/>  
+        
+    
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'Parameter.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'Parameters.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'DetailPanel.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'Grid.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'GridTextField.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'GridSelectButton.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'ExpandButton.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'CollapseButton.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'Main.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ParameterGridResources,'app.js')}"/>     
+    
+<script>
+Ext.onReady(function() {
+        apxtLoader.markReady();        
+        var mergeFieldStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'FieldName', 'MergeField' ],
+            id: 'mergeFieldStore',
+            pageSize: 5,
+            autoLoad: true,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(MergeFields)}]'))
+        });       
+        
+        var mHelperPagingtb = Ext.create('Ext.toolbar.Paging', {
+            store: mergeFieldStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                    this.child('#tbseparator-1095').hide();
+                }
+            },               
+            dock: 'bottom'
+        });                        
+        
+        var mergeFieldHelperGridBaseTitle = Ext.util.Format.htmlDecode('{!JSENCODE(objectTypeString)} Field Helper');  
+        var mergeFieldGrid = new Ext.grid.GridPanel({
+            store: mergeFieldStore,
+            title: mergeFieldHelperGridBaseTitle,
+            padding: 0,
+            width: 600,
+            maxHeight: 200,
+            autoScroll: false,
+            overFlowX: 'hidden',
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e){                                                
+                    Ext.get('thePage:theForm:thePageBlock:inputFields:nameandvaluesection:valueStringItem:valueStringBox').dom.value = Ext.util.Format.htmlEncode(Ext.get('thePage:theForm:thePageBlock:inputFields:nameandvaluesection:valueStringItem:valueStringBox').dom.value + grid.getSelectionModel().getStore().getAt(rowIndex).get('MergeField'));
+                    Ext.get('thePage:theForm:thePageBlock:inputFields:nameandvaluesection:valueStringItem:valueStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    });
+                    
+                    Ext.get('thePage:theForm:thePageBlock:inputFields:nameandvaluesection:nameStringItem:nameStringBox').focus(10,'');                                                                                                          
+                }
+            },
+            columns: [
+               {
+                    id: 'FieldName',
+                    header: "Field Name",
+                    sortable: true,
+                    width: 225,
+                    dataIndex: 'FieldName',
+                    selType: 'cellmodel'
+                },{
+                    id: 'MergeFieldName',
+                    header: "Merge Field Syntax",
+                    flex: 1,
+                    sortable: true,
+                    dataIndex: 'MergeField'                        
+                }],
+            bbar: mHelperPagingtb,
+            renderTo: '{!JSENCODE(MFTableRenderToString)}'         
+        });
+        
+        var searchMergeFields = Ext.create('Ext.form.field.Text',{
+            fieldLabel: 'Field Name Search',
+            labelWidth: 125,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 350,            
+            enableKeyEvents: true,
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var mergeFieldUserInput = field.getValue();                       
+                                                                        
+                        var mergeFieldFilter = mergeFieldGrid.getStore().filterBy(function(record){                        
+                            if (mergeFieldUserInput === ''){
+                                return record;
+                            }
+                            else if (record.get('FieldName').toLowerCase().indexOf(mergeFieldUserInput.toLowerCase()) != -1 || 
+                                    record.get('MergeField').toLowerCase().indexOf(mergeFieldUserInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);                            
+                            
+                        if(mergeFieldUserInput === '') {
+                            mergeFieldGrid.setTitle(mergeFieldHelperGridBaseTitle);
+                        } else {
+                            mergeFieldGrid.setTitle(Ext.util.Format.htmlEncode('"' + mergeFieldUserInput + '" Fields'));
+                        }
+                         
+                        mHelperPagingtb.moveFirst();
+                        mHelperPagingtb.doRefresh();                                                                     
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });        
+        
+        mergeFieldGrid.getDockedItems()[0].add(searchMergeFields);
+    });
+</script>
+    
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution Parameter<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!SMRecordName} Solution</span>          
+            </td>
+        </tr>
+    </table>
+    <!--<apex:outputLink value="/{!Conga_Solution__c.Id}" target="_self"><font size="1px">«Return to {!Conga_Solution__c.Name} Record</font></apex:outputLink>    -->
+    <apex:pageMessages />          
+    
+    <apex:form id="theForm" >        
+        <!--<apex:commandLink action="{!save}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:commandLink>-->
+                  
+        <input type="hidden" id="dataURL" name="dataURL" value="{!URLFOR($Resource.APXTConga4__ComposerParameters)}"/>
+        <apex:pageBlock mode="inlineedit" id="thePageBlock">
+            <apex:pageBlockButtons location="top">
+                <!--<apex:commandButton action="{!saveCustom}" value="Save Custom"/>              -->
+                <apex:commandButton action="{!returnToSMRecord}" value="Return to Solution Record"/>                              
+                <apex:commandButton id="addParameters" value="{!IF(isEdit = true, 'Update Parameter', 'Add Parameter to Solution Record')}" action="{!addParameter}"/>               
+            </apex:pageBlockButtons>                                       
+                                             
+            <apex:pageBlockSection id="inputFields" columns="2">                
+                <apex:pageBlockSection id="nameandvaluesection" columns="1">
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the parameter selected below." id="nameStringItem">
+                        <font color="black"><b>Parameter Name</b></font><font color="red" size="3px"><b>|</b></font>                                       
+                        <apex:inputText value="{!nameString}" id="nameStringBox" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem helptext="The value of the parameter. A value may be automatically selected or can be entered manually. The use of a plus sign (+) indicates that a blank value should be used." id="valueStringItem">
+                        <font color="black"><b>Parameter Value</b></font><font color="red" size="3px"><b>|</b></font>                
+                        <apex:inputTextarea value="{!valueString}" id="valueStringBox" rows="3" cols="50"/> 
+                    </apex:pageBlockSectionItem>  
+                    <apex:pageblockSectionItem helptext="Automatically populated according to the parameter selected below. Additional information may be added." id="descriptionSectionItem">
+                        <b>Description</b>               
+                        <apex:inputTextarea value="{!commentsString}" id="commentStringBox" rows="3" cols="50"/>                
+                    </apex:pageblockSectionItem>                                                                      
+                </apex:pageBlockSection> 
+
+                <apex:pageBlockSection id="commentsSection" columns="1">
+                    <apex:pageBlockSectionItem rendered="{!IF(MergeFieldSwitchValue = 'false', false, true)}">
+                        <apex:outputText value=""/>
+                        <apex:panelGrid >
+                            To add merge fields to the Parameter Value field, click Merge Field Helper.
+                            <apex:commandButton action="{!setMergeFieldSwitch}" value="Merge Field Helper" />                        
+                        </apex:panelGrid>
+                    </apex:pageblockSectionItem>                
+                    <!--<apex:pageblockSectionItem helptext="Automatically populated according to the parameter selected below. Additional information may be added." id="descriptionSectionItem">
+                        <b>Description</b>               
+                        <apex:inputTextarea value="{!commentsString}" id="commentStringBox" rows="3" cols="30"/>                
+                    </apex:pageblockSectionItem>                  
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value=""/>
+                        <apex:panelGrid >
+                            To add merge fields to the Parameter Value field, click Merge Field Helper.
+                            <apex:commandButton action="{!setMergeFieldSwitch}" value="Merge Field Helper"/>                        
+                        </apex:panelGrid>
+                    </apex:pageblockSectionItem> -->                   
+                </apex:pageBlockSection> 
+                    
+            </apex:pageBlockSection>                                                                                   
+                <apex:pageBlockSection id="EXTTable" columns="1" title="Conga Composer Parameters">  
+            </apex:pageBlockSection>                                                                             
+        </apex:pageBlock>
+
+        <!--<apex:pageBlock id="EXTMergeFieldBlock" title="Merge Field Helper" rendered="{!IF(MergeFieldSwitchValue = 'true', 'false', 'true')}">           
+            <apex:pageBlockSection columns="1" id="ExtMergeFieldBlockSection" title="Select Merge Fields">                             
+            </apex:pageBlockSection>           
+        </apex:pageBlock>-->
+        
+    </apex:form>
+   <apex:relatedList list="Conga_Solution_Parameters__r" title="Selected Composer Parameters" pageSize="10" rendered="{!IF(isEdit = true, false, true)}"/>
+</apex:page>

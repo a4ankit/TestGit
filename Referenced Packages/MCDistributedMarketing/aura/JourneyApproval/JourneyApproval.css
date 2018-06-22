@@ -1,0 +1,19 @@
+/* copied from .slds-assistive-text */
+.THIS .slds-form-element__label {
+    position: absolute !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.THIS.has-error td > .slds-truncate {
+    display: inline-block;
+}
+
+.THIS.has-error .slds-icon_container {
+    vertical-align: top;
+}

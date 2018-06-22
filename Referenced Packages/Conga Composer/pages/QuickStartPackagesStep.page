@@ -1,0 +1,18 @@
+<apex:page sidebar="false">
+	<apex:includeLightning />
+	<script>
+		
+        $Lightning.use("APXTConga4:AppForVisualForcePages", function() {
+          $Lightning.createComponent("APXTConga4:QuickStartPackagesStep",
+          {inVFPage:"true",
+           theme: '{!$CurrentPage.parameters.theme}'},
+          "lightning",
+          function(cmp) {
+            
+          });
+        });
+    </script>
+
+    <div id="lightning" />
+
+</apex:page>

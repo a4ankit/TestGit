@@ -1,0 +1,11 @@
+.THIS .icon-indent {
+    margin-left: 2rem;
+}
+
+.THIS .slds-button+.slds-button {
+    margin-left: 0px;
+}
+
+.THIS .slds-button {
+    border: 0px;
+}

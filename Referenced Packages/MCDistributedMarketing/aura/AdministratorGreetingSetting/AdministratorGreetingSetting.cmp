@@ -1,0 +1,27 @@
+<aura:component access="global"
+    description="Used to modify a custom Greeting option"
+>
+
+    <aura:attribute name="objectMap" type="Object" description="Greeting setting option"/>
+    <aura:attribute name="iconName" type="String" description="The string used to display the icon"/>
+    <aura:attribute name="disabled" type="Boolean" default="true" description="Field Disable flag"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <div class="slds-grid slds-grid_vertical-align-center">
+        <lightning:icon iconName="{!v.iconName}"
+            size="medium"/>
+        <div class="slds-p-horizontal_small">
+            <mcdm_15:Autocomplete placeholder="{!format($Label.mcdm_15.objectFieldLookupPlaceholder, v.objectMap.objectTypeLabel)}"
+                disabled="{!v.disabled}"
+                value="{!v.objectMap.fieldLabel}"
+                label="{!format($Label.mcdm_15.objectFieldLookup, v.objectMap.objectTypeLabel)}"
+                labelClass="slds-assistive-text"
+                selectionChanged="{!c.handleSelectionChanged}">
+                    <aura:set attribute="dataProvider">
+                        <mcdm_15:ObjectFieldDataProvider objectType="{!v.objectMap.objectType}"/>
+                    </aura:set>
+            </mcdm_15:Autocomplete>
+        </div>
+    </div>
+</aura:component>

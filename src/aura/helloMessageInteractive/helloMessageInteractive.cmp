@@ -1,0 +1,15 @@
+<aura:component >
+ 
+    <aura:attribute name="message" type="String"/>
+ 
+    <p>Hey: {!v.message}</p>
+ 
+    
+        <lightning:button label="how are you doing."
+            onclick="{!c.handleClick2}"/>
+ 
+        <lightning:button label="I am fine!"
+            onclick="{!c.handleClick3}"/>
+    
+ 
+</aura:component>

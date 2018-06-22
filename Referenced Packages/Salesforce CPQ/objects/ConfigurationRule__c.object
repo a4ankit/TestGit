@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>ConfigurationRuleHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Links product-scoped Product Rules to specific bundle to validate correct configuration.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether this rule should be used in validating configurations.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether this rule should be used in validating configurations.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AscendingNestedLevel__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Include parent bundle configuration with the specified level when evaluating this rule&apos;s conditions in the configurator for alert, validation and selection rules.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Include parent bundle configuration with the specified level when evaluating this rule&apos;s conditions in the configurator for alert, validation and selection rules.</inlineHelpText>
+        <label>Parent Bundle Condition Level</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DescendingActionNesting__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allow child bundle configurations up to the specified level to be targeted by this rule&apos;s actions when executing in the configurator for selection rules only.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Allow child bundle configurations up to the specified level to be targeted by this rule&apos;s actions when executing in the configurator for selection rules only.</inlineHelpText>
+        <label>Child Bundle Action Level</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DescendingNestedLevel__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Include child bundle configurations to the specified level when evaluating this rule&apos;s conditions in the configurator for alert, validation and selection rules.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Include child bundle configurations to the specified level when evaluating this rule&apos;s conditions in the configurator for alert, validation and selection rules.</inlineHelpText>
+        <label>Child Bundle Condition Level</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ProductFeature__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Product feature validated by this rule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the product feature you want this rule to validate.</inlineHelpText>
+        <label>Product Feature</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.Product__c</field>
+                <operation>equals</operation>
+                <valueField>ProductFeature__c.ConfiguredSKU__c</valueField>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>ProductFeature__c</referenceTo>
+        <relationshipLabel>Configuration Rules</relationshipLabel>
+        <relationshipName>Configuration_Rules</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductRule__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The actual rule that defines logic used to validate product configuration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the product rule that contains the logic to validate your product configurations.</inlineHelpText>
+        <label>Product Rule</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ProductRule__c.Scope__c</field>
+                <operation>equals</operation>
+                <value>Product</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ProductRule__c</referenceTo>
+        <relationshipLabel>Configuration Rules</relationshipLabel>
+        <relationshipName>ConfigurationRules</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Configured product to be validated by this rule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the configured product you want this rule to validate.</inlineHelpText>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Configuration Rules</relationshipLabel>
+        <relationshipName>ConfigurationRules</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RuleEvaluationEvent__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Evaluation event of referenced rule.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(ProductRule__r.EvaluationEvent__c)</formula>
+        <inlineHelpText>Specify when this rule should be evaluated.</inlineHelpText>
+        <label>Rule Evaluation Event</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RuleType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of referenced rule. Convenience field to avoid querying related rule record.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(ProductRule__r.Type__c)</formula>
+        <inlineHelpText>Type of product rule referenced by this configuration rule.</inlineHelpText>
+        <label>Rule Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Configuration Rule</label>
+    <nameField>
+        <displayFormat>CR-{000000}</displayFormat>
+        <label>Rule #</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Configuration Rules</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Ensure_rule_type_nested_level</fullName>
+        <active>true</active>
+        <description>Ensures the related Product Rule is of type Validation, Alert or Selection when specifying either a parent or child bundle condition level.</description>
+        <errorConditionFormula>(TEXT(ProductRule__r.Type__c) != null &amp;&amp; TEXT(ProductRule__r.Type__c) != &apos;Validation&apos; &amp;&amp; TEXT(ProductRule__r.Type__c) != &apos;Alert&apos; &amp;&amp; TEXT(ProductRule__r.Type__c) != &apos;Selection&apos;) &amp;&amp; (TEXT(AscendingNestedLevel__c) != null || TEXT(DescendingNestedLevel__c) != null)</errorConditionFormula>
+        <errorMessage>Condition Level only supported for Validation, Alert and Selection product rules.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Ensure_rule_type_nested_level_actions</fullName>
+        <active>true</active>
+        <description>Ensures the related Product Rule is of type Selection when specifying an action level.</description>
+        <errorConditionFormula>(TEXT(ProductRule__r.Type__c) != null &amp;&amp; TEXT(ProductRule__r.Type__c) != &apos;Selection&apos;) &amp;&amp; (TEXT(DescendingActionNesting__c) != null)</errorConditionFormula>
+        <errorMessage>Action Level only supported for Selection product rules.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Ensure_supported_nested_level</fullName>
+        <active>true</active>
+        <description>Ensure the value of either the parent or child bundle level field is None or 1.</description>
+        <errorConditionFormula>(TEXT(AscendingNestedLevel__c) != null &amp;&amp; TEXT(AscendingNestedLevel__c) != &apos;1&apos;) || (TEXT(DescendingNestedLevel__c) != null &amp;&amp; TEXT(DescendingNestedLevel__c) != &apos;1&apos;) || (TEXT(DescendingActionNesting__c) != null &amp;&amp; TEXT(DescendingActionNesting__c) != &apos;1&apos;)</errorConditionFormula>
+        <errorMessage>The maximum supported Bundle Level is 1.</errorMessage>
+    </validationRules>
+</CustomObject>

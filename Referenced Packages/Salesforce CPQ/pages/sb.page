@@ -1,0 +1,259 @@
+<apex:page action="{!checkLicense}" tabStyle="SBQQ__Quote__c" doctype="html-5.0" showHeader="{!(!$Setup.GeneralSettings__c.GlobalHeaderPermUsed__c || !$Permission.SBQQ__HideGlobalHeader) && formFactor == 'desktop'}" standardstylesheets="false" controller="SBQQ.ServiceRouter" extensions="SBQQ.OAuthExtension,SBQQ.SettingsExtension,SBQQ.ThemeExtension,SBQQ.LicenseCheckerExt">
+	<script>if( document.head.createShadowRoot ) Polymer = {dom: 'shady'};</script>
+	<apex:includeScript value="{!$Resource.SBQQ__sb_app_3rd_js}"/>
+	<apex:includeScript value="{!$Resource.SBQQ__sb_ms_js}"/>
+	<apex:includeScript value="{!$Resource.SBQQ__JSQC}"/>
+	<apex:includeScript value="{!$Resource.SBQQ__JSAR}"/>
+
+	<div id="pw" class="sbPleaseWait" style="display:none">{!$Label.lbl_please_wait}</div>
+
+    <sb-page-container id="sbPageContainer"></sb-page-container>
+    <div id="sb-app"></div>
+	<script>
+		var pleaseWait;
+		if((navigator.userAgent.match(/Tablet|iPad|iPod/i) && !navigator.userAgent.match(/Tablet PC/i)) || navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/Mobi/i)) { // phone or tablet
+			document.querySelector('#pw').style.display = 'block';
+		} else { // desktop
+            document.querySelector('#sbPageContainer').classList.add('--desktop');
+			pleaseWait = setTimeout(function() {
+				document.querySelector('#pw').style.display = 'block';
+			}, 1000);
+		}
+	</script>
+
+	<style>
+	body {
+		overflow: hidden;
+	}
+
+	.showTemplatePreviewMode::before {
+		content: 'Previewing most recently used quote';
+		display: inline-block;
+		width: 100%;
+		padding: 0.5rem 0 ;
+		text-align: center;
+		font-size: 1.6em;
+		color: #16325c;
+		background-color: #ffb75d;
+		background-image: linear-gradient(45deg,rgba(0,0,0,.025) 25%,transparent 25%,transparent 50%,rgba(0,0,0,.025) 50%,rgba(0,0,0,.025) 75%,transparent 75%,transparent);
+		background-size: 100px 100px;
+		white-space: pre;
+	}
+
+	#bodyCell {
+		position: relative;
+		overflow: hidden;
+		padding: 0px;
+		display: inline-block;
+		width: 100%;
+		min-height: 500px;
+	}
+
+	#sidebarCell.sidebarCollapsed {
+		padding-left: 0;
+		width:1px;
+	}
+	.noSidebarCell.noSidebarCell {
+        padding: 0;
+    }
+	#MoreTabs_Tab > #MoreTabs_List {
+		z-index: 10;  // must be larger than fixed page header (tab overflow dropdown)
+	}
+
+	.sbPleaseWait{
+		font-family: 'Salesforce Sans', 'Open Sans', Arial, sans-serif;
+		font-size: 1.3rem;
+		font-weight: 300;
+		left: 0;
+		line-height: 200px;
+		margin-top: -100px;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		width: 100%;
+	}
+
+	iron-dropdown > #contentWrapper {
+		min-width: 0;
+	}
+
+	</style>
+
+	<script>
+	(function( window ) {
+		window.sb = window.sb || {};
+		window.sb.vfSessionId = '{!$API.Session_Id}';
+		window.sb.labels = <c:sb_labels />;
+		window.sb.mode = Object.freeze({debugMode: {!userSettings}['debugMode']});
+		escapeLabelKeys();
+
+		System.import('perfMetrics/MetricsService.js').then(function (ms) {
+			// There is a flag to only show performance metrics if internal development or subscriber access
+			// that must be enabled before EPT metrics are logged.
+			var metricsService = new ms.MetricsService();
+			// Measure EPT performance on the page
+			init(metricsService);
+			// With true passed to addEventListener, the event is executed in the capturing phase, and with false
+			// the event handler is executed in the bubbling phase. We want the capturing phase.
+			document.addEventListener('click', function () {
+				// Measure EPT for every click on the page
+				metricsService.startTransaction();
+			}, true);
+		});
+
+		// Need to escape the keys in labels map
+		// Sb-i18n uses this.innerHTML which returns escaped characters when getting text to translate
+		function escapeLabelKeys() {
+			for(var labelKey in window.sb.labels) {
+				if(labelKey.includes('&') || labelKey.includes('<') || labelKey.includes('>')) {
+					var escapedLabelKey = labelKey.replace(/&/g, '&amp' + ';').replace(/</g, '&lt' + ';').replace(/>/g, '&gt'  + ';');
+					window.sb.labels[escapedLabelKey] = window.sb.labels[labelKey];
+					delete window.sb.labels[labelKey];
+				}
+			}
+		}
+
+		function init(metricsService) {
+			window.addEventListener("load", function() {
+				adjustBody();
+			});
+
+
+			window.addEventListener("resize", function() {
+				adjustBody();
+			});
+
+			function adjustBody() {
+				var bodyCell = document.querySelector('#bodyCell');
+				if(bodyCell) {
+					var heightOffset = document.querySelector('#globalHeaderBar') ? 166 : 130;
+					var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+					bodyCell.style.minHeight = (height - heightOffset) + 'px';
+					var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+					bodyCell.style.maxWidth = (width - 12) + 'px';
+				}
+			}
+
+			function get( u ) {
+				return new Promise( function( resolve, reject ) {
+					var req = new XMLHttpRequest();
+					req.open( 'GET', u );
+					req.onload = function() {
+						if( [200,304].indexOf( req.status ) >= 0 )
+							resolve( req.responseText );
+						else
+							reject( new Error( req.statusText ) );
+					};
+					req.onerror = function() {
+						reject( new Error( req.statusText ) );
+					};
+					req.send();
+				});
+			}
+
+			function evalJs( js ) {
+				var s = document.createElement( 'script' );
+				s.text = js;
+				document.head.appendChild( s ); //.parentNode.removeChild( s );
+			}
+
+			// map of urls to 3rd parties on filesystem not included in HTML import or ES6 import
+			var libUrls = {
+				intl: '{!URLFOR($Resource.sb_i18n_cldr)}',
+				tinymce: '{!URLFOR($Resource.sb_tinymce)}'
+			};
+
+			/* W-3537777: Clicking any button/action when using a community would do nothing:
+             * 		This seems to be because of a race condition/timing issue.
+             * 		The fix was to use the load event below which should always be fired after webComponentsReady.
+             * 		There's no known reason the load event doesn't work outside of communities, but we have no reason to change it anywhere else.
+             */
+			var readyEventName = {!usersettings}['inCommunity'] ? 'load' : 'WebComponentsReady';
+			window.addEventListener( readyEventName, function(e) {
+				Promise.all([get('{!$Resource.sb_app_html}'), get('{!$Resource.sb_app_js}')]).then(function (results) {
+					var e = document.querySelector('#sb-app');
+					if (!results[0] || e.nodeType !== 1)
+						return;
+
+					e.innerHTML = results[0];
+					// if user sets a theme, it is added
+					if ('{!userTheme}') {
+						var commonStyles = e.querySelector('dom-module#sb-common-styles template').content.querySelector('style');
+						commonStyles.innerText += window.atob('{!userTheme}');
+					}
+
+					var scripts = e.querySelectorAll('script'), len = scripts ? scripts.length : 0;
+
+					for (var i = 0; i < len; i++)
+						evalJs(scripts[i].textContent.replace(/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g, ''));
+
+					evalJs(results[1]);
+
+					System.import('app.js').then(function (mod) {
+						mod.App.init(document.querySelector('#sbPageContainer'), null, {!usersettings}, libUrls).then(function () {
+							// PageStartTime is measured after App.init. Everything earlier is bootstrap time
+							metricsService.startTransaction();
+
+							if (pleaseWait)
+								clearTimeout(pleaseWait);
+
+							// the default page to land the user on
+							var HOME = '/product/search';
+							document.querySelector('body').removeAttribute('unresolved');
+
+							// clear the hash so in aloha you can refresh the page by reloading the URL
+							var previous = window.location.hash;
+							window.location.hash = '';
+							var editable = {!isMostCurrentQuote};
+							var route = window.location.hash.length > 1 ? window.location.hash.slice(1) : (previous || getRoute() || HOME);
+							document.querySelector('#sbPageContainer').route = route;
+							document.querySelector('#pw').style.display = 'none';
+
+							function getRoute() {
+								if('{!JSENCODE($CurrentPage.parameters.selectContract)}' === 'true') {
+									return getSelectContractRoute();
+								} else {
+									return getLineEditorRoute();
+								}
+							}
+
+							function getLineEditorRoute() {
+								var quoteId = '{!JSENCODE($CurrentPage.parameters.id)}' == '' ? '{!JSENCODE($CurrentPage.parameters.newid)}' : '{!JSENCODE($CurrentPage.parameters.id)}';
+
+								if (!editable) {
+									alert('{!$Label.msg_quote_already_fully_ordered}');
+									window.location = '/' + quoteId;
+								}
+
+								var cmd = '{!JSENCODE($CurrentPage.parameters.cmd)}' == '' ? '' : '&cmd={!JSENCODE($CurrentPage.parameters.cmd)}';
+								return quoteId ? 'quote/le?qId=' + quoteId + cmd : null;
+							}
+
+							function getSelectContractRoute() {
+								var action = '{!JSENCODE($CurrentPage.parameters.action)}';
+								if(action) {
+									var accountId = '{!JSENCODE($CurrentPage.parameters.id)}';
+									var selectedAssetIds = '{!JSENCODE($CurrentPage.parameters.selectedAssetIds)}';
+									return 'contract/lookup?accId=' + accountId + '&action=' + action + '&selectedAssetIds=' + selectedAssetIds;
+								}
+								var quoteId = '{!JSENCODE($CurrentPage.parameters.id)}' == '' ? '{!JSENCODE($CurrentPage.parameters.newid)}' : '{!JSENCODE($CurrentPage.parameters.id)}';
+								return quoteId ? 'contract/lookup?qId=' + quoteId : null;
+							}
+
+							var themeDocId = '{!JSENCODE($CurrentPage.parameters.themeDocId)}';
+							if (themeDocId) {
+								var pageContainer = document.querySelector('#sbPageContainer');
+								document.querySelector('#sbPageContainer').classList.add('showTemplatePreviewMode');
+							}
+						});
+					})
+					.catch(function (err) {
+						console.error(err);
+						console.log(err.originalErr)
+					});
+				});
+			});
+		}
+	})( window );
+	</script>
+</apex:page>

@@ -1,0 +1,60 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.SolutionController" implements="force:appHostable">
+	<aura:attribute name="description" type="String" default="" />
+	<aura:attribute name="MyDomainNameSpaceVFServerBaseURL" type="String" />
+	<aura:attribute name="objectList" type="List" />
+	<aura:attribute name="remoteSiteList" type="String" />
+	<aura:attribute name="remoteSiteListString" type="String" />
+	<aura:attribute name="sampleRecordId" type="String" />
+	<aura:attribute name="sampleRecordName" type="String" />
+	<aura:attribute name="selectedObject" type="String" default="-- Select a Salesforce Object --" />
+	<aura:attribute name="SFServerBaseURL" type="String" />
+	<aura:attribute name="showSpinner" type="Boolean" default="false" />
+	<aura:attribute name="sObjectMappedName" type="String" default="" />
+	<aura:attribute name="tempObjectName" type="String"/>
+	<aura:attribute name="tempObjectLabel" type="String"/>
+	<aura:attribute name="theme" type="String" />
+	<aura:attribute name="VFServerURL" type="String" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+	<aura:if isTrue="{!v.showSpinner}">
+		<APXTConga4:Spinner />
+	</aura:if>
+	<div class="slds-m-around--large">
+		<div class="slds-p-bottom_small slds-border_bottom">
+			<h2 class="slds-align-middle slds-text-heading_medium normalweight">{!$Label.apxtconga4.Add_Solution_Details_Header}</h2>
+		</div>
+		<div class="slds-grid slds-grid--pull-padded-medium" onclick="{!c.hideSampleRecords}">
+			<div class="slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_8-of-12 slds-p-around_medium slds-form_stacked">
+				<div class="slds-form-element">{!$Label.apxtconga4.Solution_Detail_Description}
+					<a href="https://support.getconga.com/Conga_Composer/Building_Composer_Solutions/Using_Solution_Manager/Solution_Manager_Basics/02_Creating_and_Managing_Solutions_using_Solution_Manager" target="_blank" class="slds-p-left_xx-small">{!$Label.apxtconga4.Learn_More_Label}</a>
+				</div>
+				<div class="slds-form-element">
+					<div class="slds-form-element__control">
+						<lightning:input aura:id="solutionName" name="solutionName" label="{!$Label.apxtconga4.Solution_Name_Label}" value="{!v.solutionName}" required="true" messageWhenPatternMismatch="Letters, numbers, spaces, and underscores only" pattern="^[a-zA-Z0-9_]+([a-zA-Z0-9_\s]+)*$" maxlength="80" messageWhenTooLong="80 characters maximum" />
+					</div>
+				</div>
+				<div class="slds-form-element">
+					<div class="slds-form-element__control">
+						<lightning:select name="tempObjectName" label="{!$Label.apxtconga4.Salesforce_Object}" required="true" aura:id="selectMasterObject" onchange="{!c.onMasterObjectChange}" value="{!v.tempObjectName}">
+							<aura:iteration items="{!v.objectList}" var="obj" indexVar="index">
+								<option selected="{!obj.Value==v.tempObjectName}" value="{!index}">{!obj.Key}</option>
+							</aura:iteration>
+						</lightning:select>
+					</div>
+				</div>
+				<div class="slds-form-element">
+					<div class="slds-form-element__control">
+						<APXTConga4:SearchAndSelectSampleRecord myMasterObject="{!v.tempObjectName}" sObjectMappedName="{!v.sObjectMappedName}" searchStr="{!v.sampleRecordName}" isRequired="true" sampleRecordId="{!v.sampleRecordId}" aura:id="searchAndSelectSampleRecord" label="{!v.tempObjectLabel.length > 0 ? 'Find a sample ' + v.tempObjectLabel + ' record.' : 'Find a sample record.'}" />
+					</div>
+				</div>
+				<div class="slds-form-element">
+					<lightning:textarea name="description" aura:id="description" maxlength="300" messageWhenTooLong="300 characters maximum" label="{!$Label.apxtconga4.Description_Label}" value="{!v.description}" onfocus="{!c.handleDescriptionFocus}" />
+				</div>
+				<div class="slds-form-element slds-text-align--right">
+					<lightning:button variant="brand" label="{!(v.solutionId =='' ? 'Create' : 'Save')}" title="{!(v.solutionId =='' ? 'Create' : 'Save')}" onclick="{!c.createSolution}" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<APXTConga4:RemoteSiteSettingsModal aura:id="remoteSiteSettingsModal" remoteSiteList="{!v.remoteSiteListString}" VFServerURL="{!v.VFServerURL}" MyDomainNameSpaceVFServerBaseURL="{!v.MyDomainNameSpaceVFServerBaseURL}" SFServerBaseURL="{!v.SFServerBaseURL}" />
+</aura:component>

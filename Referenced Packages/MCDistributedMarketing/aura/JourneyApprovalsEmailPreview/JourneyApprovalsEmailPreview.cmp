@@ -1,0 +1,51 @@
+<aura:component controller="mcdm_15.JourneyApprovalsEmailPreviewAdapter"
+    description="Generates previews given a journey activity and a Campaign Member">
+
+    <!-- TODO: The name selectedMember makes no sense in the context of default p13n, rename this to 'p13nRecord' or something more appropriate -->
+    <aura:attribute name="selectedMember" type="Object" description="The currently selected member"/>
+    <aura:attribute name="activity" type="Object" required="true" description="The currently selected activity"/>
+    <aura:attribute name="memberDataProvider" type="Aura.Component[]" description="The data provider used for enumerating members for selection"/>
+    <aura:attribute name="membersInContext" type="Boolean" default="true" description="Indicates whether we are previewing with Campain Members in context"/>
+
+    <aura:attribute name="emailData" access="private" type="Object" description="The email data bound to the EmailPreview component"/>
+    <aura:attribute name="fieldMaps" access="private" type="Object" description="The field mappings to use when generating the preview"/>
+    <aura:attribute name="previewUpdateTimeoutId" type="Integer" access="private" description="The timeout id for debouncing the email generation"/>
+
+    <aura:handler name="change" value="{!v.selectedMember}" action="{!c.handleSelectedMemberChanged}"/>
+    <aura:handler name="change" value="{!v.activity}" action="{!c.handleActivityChanged}"/>
+
+    <aura:method name="updateEmailPreview" action="{!c.updateEmailPreview}"/>
+
+    <ltng:require scripts="{!join(',',
+        $Resource.mcdm_15__StaticAssets + '/commons.js',
+        $Resource.mcdm_15__StaticAssets + '/journey.js',
+        $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+    />
+
+    <div class="slds-p-around_medium">
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+            <!-- Header and preheader -->
+            <div class="{!empty(v.activity) ? 'slds-hide' : ''}">
+                <p class="email-subject slds-text-heading_small">{!v.activity.EmailSubject}</p>
+                <p>{!v.activity.PreHeader}</p>
+            </div>
+
+            <div class="{!(empty(v.activity) ? '' : 'slds-hide ') + 'slds-size_1-of-3'}">
+                <p class="placeholder-header slds-m-vertical_x-small"></p>
+                <p class="placeholder-preheader"></p>
+            </div>
+
+            <!-- Member selection -->
+            <aura:if isTrue="{#v.membersInContext}">
+                <mcdm_15:Autocomplete aura:id="memberAutocomplete"
+                    placeholder="{!$Label.mcdm_15.selectCampaignMember}"
+                    selectionChanged="{!c.handleMemberSelectionChanged}"
+                    class="member-select"
+                    dataProvider="{!v.memberDataProvider}"
+                />
+            </aura:if>
+        </div>
+
+        <mcdm_15:EmailPreview aura:id="emailPreview" emailData="{!v.emailData}"/>
+    </div>
+</aura:component>

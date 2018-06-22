@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>ProductActionHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Action taken when Product Rule fires.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>FilterField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The field that is updated when the rule is triggered.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the field to update when the rule is triggered.</inlineHelpText>
+        <label>Filter Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Product Code</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product Family</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FilterValue__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value that will be updated in the chosen Filter Field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the value to be updated in the chosen Filter Field.</inlineHelpText>
+        <label>Filter Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The operator that determines how the Filter Field will be applied to the Filter Value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the operator that determines how the Filter Field will apply to the Filter Value.</inlineHelpText>
+        <label>Operator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>not equals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>starts with</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>contains</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ParentRuleIsActive__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Rule__r.Active__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ParentRuleIsActive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The product that is automatically selected on the quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the product to be automatically selected on the quote. Note: The product rule Type must be set to &quot;Selection&quot;.</inlineHelpText>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Actions</relationshipLabel>
+        <relationshipName>ProductActions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Determines whether the product in the Product Lookup field will be selected on the quote.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want the product in the Product Lookup field to be selected on the quote.</inlineHelpText>
+        <label>Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rule__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Rule that runs this product action.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rule that runs this product action.</inlineHelpText>
+        <label>Rule</label>
+        <referenceTo>ProductRule__c</referenceTo>
+        <relationshipLabel>Actions</relationshipLabel>
+        <relationshipName>Actions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of action.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the type of action.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Add</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Remove</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Enable</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Disable</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Enable &amp; Add</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Disable &amp; Remove</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Show</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hide</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Show &amp; Add</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hide &amp; Remove</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Default Filter</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Optional Filter</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ValueAttribute__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Used to identify the specific attribute if the Value Field is a global Configuration Attribute field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to identify the specific attribute if the Value Field is a global Configuration Attribute field.</inlineHelpText>
+        <label>Value Attribute</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.ValueField__c</field>
+                <operation>equals</operation>
+                <valueField>ProductAttribute__c.Attribute__r.TargetField__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ProductAttribute__c</referenceTo>
+        <relationshipLabel>Product Actions</relationshipLabel>
+        <relationshipName>ProductActions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ValueField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field will be used instead of the Filter Value when compared with the Filter Field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Compares the Filter Field with this field instead of the Filter Value.</inlineHelpText>
+        <label>Value Field</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Product Code</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ValueObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Salesforce Object that holds the Value Field,</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the Salesforce Object where the Value Field is defined.</inlineHelpText>
+        <label>Value Object</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quote</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Configuration Attributes</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Product Action</label>
+    <nameField>
+        <displayFormat>PA-{0000000}</displayFormat>
+        <label>Product Action #</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Actions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Value_attr_required_if_global_field</fullName>
+        <active>true</active>
+        <description>Value Attribute required since the Value Field is a global Configuration Attribute field.</description>
+        <errorConditionFormula>IF(TEXT(ValueObject__c) == &apos;Configuration Attributes&apos; &amp;&amp; CONTAINS(TEXT(ValueField__c), &apos;.&apos;) &amp;&amp; ValueAttribute__c == &apos;&apos;, true, false)</errorConditionFormula>
+        <errorMessage>Value Attribute required since the Value Field is a global Configuration Attribute field.</errorMessage>
+    </validationRules>
+</CustomObject>

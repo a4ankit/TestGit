@@ -1,0 +1,19 @@
+<aura:component controller="mcdm_15.PluginSettingsAdapter">
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+    />
+
+    <aura:method name="setLabel" action="{!c.handleSetLabel}" description="Persists a string as the plugin's label">
+        <aura:attribute name="newLabel" type="String" description="The new string value to set as the label"/>
+        <aura:attribute name="callback" type="Object" description="The function called on success"/>
+    </aura:method>
+
+    <aura:method name="getLabel" action="{!c.handleGetLabel}" description="Retrieves the label of the plugin">
+        <aura:attribute name="callback" type="Object" description="The function called on success"/>
+    </aura:method>
+
+    <aura:method name="getPlugin" action="{!c.handleGetPlugin}" description="Retrieves the plugin name">
+        <aura:attribute name="callback" type="Object" description="The function called on success"/>
+    </aura:method>
+</aura:component>

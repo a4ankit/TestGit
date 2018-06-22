@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Indicates Journey Approval fields have changed">
+    <aura:attribute name="isDirty" type="Boolean" description="Indicates whether the personalization data has changed or not"/>
+    <aura:attribute name="areP13nsValid" type="Boolean" description="Indicates whether the personalization data passes validation"/>
+</aura:event>

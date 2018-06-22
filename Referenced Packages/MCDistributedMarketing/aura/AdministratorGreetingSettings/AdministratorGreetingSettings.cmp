@@ -1,0 +1,72 @@
+<aura:component access="global"
+    controller="mcdm_15.AdministratorSettingsAdapter"
+    description="Used to modify and add custom Greeting options"
+>
+    <aura:attribute name="greetingMappingsSettings" type="Object[]" description="Maps greeting options to fields of object types e.g Lead or Contact"/>
+    <aura:attribute name="deletedGreetingMappingsSettings" type="Object[]" default="[]" description="Stores deleted greeting mappings sendSettingsSelector"/>
+    <aura:attribute name="maxGreetings" type="Integer" default="10" description="Max amount of custom Greeting Mappings"/>
+    <aura:attribute name="maxLabelCharacters" type="Integer" default="100" access="private" description="Max amount of Characters for Mapping Setting Label"/>
+
+    <div class="slds-box slds-m-top_large">
+        <h4 class="slds-text-heading_medium">{!$Label.mcdm_15.administratorSettingsGreetingHeader}</h4>
+        <p class="slds-text-body_regular slds-m-bottom_medium slds-p-bottom_small slds-border_bottom">{!$Label.mcdm_15.administratorSettingsGreetingSubHeader}</p>
+
+        <aura:iteration items="{!v.greetingMappingsSettings}" var="greeting" indexVar="index">
+            <div class="slds-p-vertical_x-small slds-grid slds-grid_vertical-align-center">
+                <lightning:buttonIcon iconName="utility:lock"
+                    class="{!greeting.packaged || greeting.defaultSetting ? '' : 'slds-hide'}"
+                    variant="inverse"
+                    size="medium"
+                    disabled="true"
+                    title="{!$Label.mcdm_15.lockedGreetingOptionTooltip}"
+                    alternativeText="{!$Label.mcdm_15.greetingMappingLocked}"/>
+                <lightning:buttonIcon iconName="utility:close"
+                    class="{!greeting.packaged || greeting.defaultSetting ? 'slds-hide' : ''}"
+                    variant="inverse"
+                    size="medium"
+                    alternativeText="{!$Label.mcdm_15.deleteGreetingMapping}"
+                    value="{!index}"
+                    onclick="{!c.deleteGreeting}"/>
+                <div class="slds-p-horizontal_small">
+                    <lightning:input label="{!$Label.mcdm_15.greetingMappingLabelTextInput}"
+                        variant="label-hidden"
+                        disabled="{!greeting.packaged}"
+                        maxlength="{!v.maxLabelCharacters}"
+                        value="{!greeting.greetingLabel}"
+                        aura:id="GreetingMappingLabel"/>
+                </div>
+                <div class="slds-p-horizontal_small">
+                    =
+                </div>
+                <div class="slds-col slds-p-horizontal_small">
+                    <div class="slds-grid">
+                        <aura:iteration items="{!greeting.objectGreetingMappings}" var="objectMapping">
+                            <mcdm_15:AdministratorGreetingSetting disabled="{!greeting.packaged}"
+                                objectMap="{!objectMapping}"/>
+                        </aura:iteration>
+                    </div>
+                </div>
+                <div class="slds-col slds-p-horizontal_small slds-text-align_right">
+                    <lightning:button class="{!greeting.defaultSetting ? 'slds-hide' : ''}"
+                        variant="base"
+                        value="{!index}"
+                        onclick="{!c.setGreetingAsDefault}"
+                        label="{!$Label.mcdm_15.setDefaultOption}"/>
+                    <lightning:button class="{!greeting.defaultSetting ? '' : 'slds-hide'}"
+                        variant="base"
+                        disabled="true"
+                        label="{!$Label.mcdm_15.defaultOption}"/>
+                </div>
+            </div>
+        </aura:iteration>
+        <div class="{! v.greetingMappingsSettings.length >= v.maxGreetings ? 'slds-hide' : ''}">
+            <div class="slds-p-vertical_x-small slds-grid slds-grid_vertical-align-center">
+                <div class="icon-indent slds-p-horizontal_small">
+                    <lightning:button variant="base"
+                        label="{!'+ ' + $Label.mcdm_15.addAdditionalGreetingMapping}"
+                        onclick="{!c.addGreetingMapping}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

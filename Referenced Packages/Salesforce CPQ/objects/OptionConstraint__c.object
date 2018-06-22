@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>OptionConstraintHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Product option constraint. Constraints govern which options must or must not be selected together.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Marks this constraint as active or inactive.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Marks this constraint as active or inactive.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CheckPriorPurchases__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Allows you to check on past purchases in the Account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if you want to look up prior purchases of Constraining Option within the Account.</inlineHelpText>
+        <label>Check Prior Purchases</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ConfiguredSKU__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>SKU which configuration is being constrained.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Product SKU being constrained.</inlineHelpText>
+        <label>Configured SKU</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Option Constraints</relationshipLabel>
+        <relationshipName>Option_Constraints</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ConstrainedOption__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Option that&apos;s being constrained.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the option in the bundle that you want applied to this constraint.</inlineHelpText>
+        <label>Constrained Option</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ProductOption__c.ConfiguredSKU__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.ConfiguredSKU__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ProductOption__c</referenceTo>
+        <relationshipLabel>Constraints</relationshipLabel>
+        <relationshipName>Constraints</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ConstrainingOption__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Option that&apos;s constraining another option.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose an additional option if the Constrained Option is constraining another option.</inlineHelpText>
+        <label>Constraining Option</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.ConfiguredSKU__c</field>
+                <operation>equals</operation>
+                <valueField>ProductOption__c.ConfiguredSKU__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ProductOption__c</referenceTo>
+        <relationshipLabel>Constraining</relationshipLabel>
+        <relationshipName>Constraining</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OptionConstraintGroup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows you to apply multiple constraints on a single option.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If multiple Option Constraints target the same Constrained Option, putting the Option Constraints in the same group will require ALL Constraining Options to be selected.</inlineHelpText>
+        <label>Option Constraint Group</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Determines behavior of this constraint.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the behavior of this constraint: dependency means inclusion is required while exclusion means the option constraint is not selected when the constraining option is or vice versa.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Dependency</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Exclusion</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Option Constraint</label>
+    <nameField>
+        <label>Constraint Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Option Constraints</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>ConfiguredSKU__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ConstrainedOption__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ConstrainingOption__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ConfiguredSKU__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ConstrainedOption__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ConstrainingOption__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ConfiguredSKU__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Type__c</searchFilterFields>
+        <searchFilterFields>ConstrainedOption__c</searchFilterFields>
+        <searchFilterFields>ConstrainingOption__c</searchFilterFields>
+        <searchFilterFields>UPDATEDBY_USER</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

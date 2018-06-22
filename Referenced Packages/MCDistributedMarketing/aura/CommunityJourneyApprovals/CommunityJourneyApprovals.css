@@ -1,0 +1,10 @@
+.THIS > .mcdm_15JourneyApprovals {
+    position: fixed;
+    top: 113px; /* Height of partner community header */
+}
+
+.THIS {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+}

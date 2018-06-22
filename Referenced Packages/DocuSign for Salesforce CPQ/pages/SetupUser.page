@@ -1,0 +1,29 @@
+<apex:page standardController="User" extensions="SBQQDS.UserSetupController">
+    <apex:sectionHeader title="DocuSign for Salesforce CPQ User Setup" subtitle="{!user.Name}"/>
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.sbqqds__lbl_update_credentials}" action="{!onSave}"/>
+            </apex:pageBlockButtons>
+			<apex:pageBlockSection columns="2">
+			<apex:pageBlockSection columns="1">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.SBQQDS__DocuSignCredentials__c.fields.SBQQDS__Username__c.label}"/>
+					<apex:inputText value="{!username}" required="true"/>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.SBQQDS__DocuSignCredentials__c.fields.SBQQDS__Password__c.label}"/>
+					<apex:inputSecret value="{!password}"/>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection columns="1">
+				<apex:pageBlockSectionItem rendered="{!userid != null}">
+					<apex:outputLabel value="{!$ObjectType.SBQQDS__DocuSignCredentials__c.fields.SBQQDS__UserID__c.label}"/>
+					<apex:outputText value="{!userid}"/>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			</apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

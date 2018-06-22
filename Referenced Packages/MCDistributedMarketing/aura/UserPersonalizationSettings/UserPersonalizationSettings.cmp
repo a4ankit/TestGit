@@ -1,0 +1,41 @@
+<aura:component access="global"
+    controller="mcdm_15.DefaultPersonalizationSettingsAdapter"
+    implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+    description="Distributed Marketing user settings/preferences"
+>
+    <aura:attribute name="hasAccess" type="Boolean" default="false" description="Does the current user have the necessary permissions?"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true" description="Activity flag"/>
+    <aura:attribute name="hierarchyTypeStr" type="String" description="Hierarchy Level for the settings"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/journey.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div>
+        <lightning:card class="settings-container slds-p-around_medium">
+            <aura:set attribute="title">
+                <!-- Communities throws an error if this is not present -->
+            </aura:set>
+
+            <aura:if isTrue="{!(v.hasAccess &amp;&amp; !v.isLoading)}">
+                <div class="slds-clearfix">
+                    <lightning:button variant="brand"
+                        label="{!$Label.mcdm_15.applyChanges}"
+                        onclick="{!c.applyChanges}"
+                        class="slds-float_right"
+                    />
+                </div>
+
+                <mcdm_15:DefaultPersonalizationSettings aura:id="settingsForm"
+                    hierarchyTypeStr="{!v.hierarchyTypeStr}"
+                />
+
+                <aura:set attribute="else">
+                    <p class="{!(v.isLoading ? 'slds-hide' : '')}">{!$Label.mcdm_15.pageUnauthorized}</p>
+                </aura:set>
+            </aura:if>
+        </lightning:card>
+    </div>
+</aura:component>

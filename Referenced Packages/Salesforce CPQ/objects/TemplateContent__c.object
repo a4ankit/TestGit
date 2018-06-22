@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>EditTemplateContent</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>EditTemplateContent</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>NewTemplateContent</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>ViewTemplateContent</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>TemplateContentHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Content for use on quote templates. Same content may be used on multiple templates.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>CustomSource__c</fullName>
+        <deprecated>false</deprecated>
+        <description>URL to a VisualForce page that generates content when type is set to &quot;Custom&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>URL to a VisualForce page that generates content when type is set to &quot;Custom&quot;.</inlineHelpText>
+        <label>Custom Source</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FontFamily__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Font family to use when rendering this content in the generated PDF quote document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Font family to use when rendering this content in the generated PDF quote document.</inlineHelpText>
+        <label>Font Family</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Courier</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dosis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Droid Sans</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Droid Serif</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Helvetica</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Merriweather</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Montserrat</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Noto Sans JP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Noto Sans KR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Noto Sans SC</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Noto Sans TC</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Open Sans</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>PT Sans</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>PT Serif</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Roboto</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Roboto Light</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Times</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Titillium Web</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FontSize__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Font size to use when rendering this content on the generated PDF quote document.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Font size to use when rendering this content on the generated PDF quote document.</inlineHelpText>
+        <label>Font Size</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Markup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contains the markup if this content is of type &quot;Markup&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Contains the markup if this content is of type &quot;Markup&quot;.</inlineHelpText>
+        <label>Markup</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RawMarkup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Raw HTML markup. Rich Text field (Markup) strips out many HTML tags so this holds the original version as created by the editor.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Original HTML version of the content in the Markup field.</inlineHelpText>
+        <label>Raw Markup</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TableStyle__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Style of the table used for line items. Standard (default) = user-defined fields as columns with line items listed vertically.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Style of the table used for line items. Standard (default) = user-defined fields as columns with line items listed vertically.</inlineHelpText>
+        <label>Table Style</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Standard</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Price Dimensions as Columns</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Price Dimensions as Rows with Summary</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TextColor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Default color (in HEX) applied to text rendered by this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default color (in HEX) applied to text rendered by this content.</inlineHelpText>
+        <label>Text Color</label>
+        <length>6</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of this content.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>HTML</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Line Items</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Quote Terms</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Custom</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Template Content</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Content Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Template Content</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Translate</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Translate</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <url>/apex/SBQQ__Translations?targetObject=TemplateContent&amp;targetId={!TemplateContent__c.Id}&amp;supportUserDefined=true&amp;supportStandard=false</url>
+    </webLinks>
+</CustomObject>

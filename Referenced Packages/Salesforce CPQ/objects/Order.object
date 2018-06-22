@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Contracted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates if the order is contracted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if the order is contracted.</inlineHelpText>
+        <label>Contracted</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractingMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>&quot;By Subscription End Date&quot; creates a separate Contract for each unique Subscription End Date, containing only those Subscriptions. &quot;Single Contract&quot; creates one Contract containing all Subscriptions, regardless of their End Dates.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;By Subscription End Date&quot; creates a separate Contract for each unique Subscription End Date, containing only those Subscriptions. &quot;Single Contract&quot; creates one Contract containing all Subscriptions, regardless of their End Dates.</inlineHelpText>
+        <label>Contracting Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>ContractingMethod</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FirstContractedOrder__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>If Contracting Method is set to &quot;Single Contract&quot;, this field references the original contracted order, where the single contract is created from. All subsequent contracted subscriptions and assets will be added to the single contract associated to the original contracted order.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If Contracting Method is set to &quot;Single Contract&quot;, this field references the original contracted order, where the single contract is created from. The field value is set by the system.</inlineHelpText>
+        <label>First Contracted Order</label>
+        <referenceTo>Order</referenceTo>
+        <relationshipLabel>Single Contracted Orders</relationshipLabel>
+        <relationshipName>FirstContractedOrders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PaymentTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The payment term for this order.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The payment term for this order.</inlineHelpText>
+        <label>Payment Term</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PaymentTerm</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PriceCalcStatusMessage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price calculation status message.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The price calculation status message</inlineHelpText>
+        <label>Price Calculation Status Message</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceCalcStatus__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The order price calculation  job status.  It is set by the system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the order price calculation job status.  It is set by the system.</inlineHelpText>
+        <label>Price Calculation Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>JobStatus</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quote__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The quote where the order is created from.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The quote where the order is created from.</inlineHelpText>
+        <label>Quote</label>
+        <referenceTo>Quote__c</referenceTo>
+        <relationshipLabel>Orders</relationshipLabel>
+        <relationshipName>Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RenewalTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specify the term of the renewal. By default, it matches the original contract term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the term of the renewal. By default, it matches the original contract term.</inlineHelpText>
+        <label>Renewal Term</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RenewalUpliftRate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Rate of renewal price increases.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rate of renewal price increases.</inlineHelpText>
+        <label>Renewal Uplift (%)</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>TaxAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The estimated tax amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The estimated tax amount</inlineHelpText>
+        <label>Estimated Tax</label>
+        <summarizedField>OrderItem.TaxAmount__c</summarizedField>
+        <summaryForeignKey>OrderItem.OrderId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <validationRules>
+        <fullName>Cannot_Contract_New_Order</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISNEW(), Contracted__c)</errorConditionFormula>
+        <errorDisplayField>Contracted__c</errorDisplayField>
+        <errorMessage>Can&apos;t contract the order. Activate the order and try again.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>EditOrderProducts</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Edit Order Products</masterLabel>
+        <openType>noSidebar</openType>
+        <page>OrderLineSelector</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

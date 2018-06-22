@@ -1,0 +1,26 @@
+<aura:component controller="MyPropertyController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<aura:attribute name="recordId" type="Id" />
+<aura:attribute name="similarPropertiess" type="Object[]" />
+<aura:attribute name="property" type="Property__c" />
+<aura:attribute name="remoteRecordId" type="Id" />
+<aura:attribute name="showDialog" type="String" default="false" />
+
+<force:recordData aura:id="propertyService"
+                  recordId="{!v.recordId}"
+                  targetRecord="{!v.property}"
+                  recordUpdated="{!c.doInit}"
+                  layoutType="FULL" />
+
+<lightning:card iconName="custom:custom85" title="Similar Propertiess">
+    <div class="slds-p-left_medium slds-p-right_medium">
+        <ul class="slds-list_vertical slds-has-dividers_top-space">
+            <aura:iteration items="{!v.similarProperties}" var="item" indexVar="i">
+                <li class="slds-list__item">                   
+                    {!item.Name}
+                </li>
+            </aura:iteration>
+        </ul>
+    </div>
+</lightning:card>
+
+</aura:component>

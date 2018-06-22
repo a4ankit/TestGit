@@ -1,0 +1,32 @@
+<aura:component extends="APXTConga4:BaseHelper">
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  <aura:handler name="stepEvent" event="APXTConga4:StepEvent" action="{!c.next}" />
+  <aura:attribute name="showing" type="Aura.Component" />  
+  <aura:attribute name="steps" type="List" />
+  <aura:attribute name="index" default="0" type="Integer" />
+  <aura:attribute name="masterObject" type="String" />
+
+  <div class="slds-grid slds-m-around--large">
+    <div class="slds-tabs--path" role="application">
+      <ul class="slds-tabs--path__nav" role="tablist">
+        <aura:iteration items="{!v.steps}" var="item" indexVar="index">
+          <li class="{!(v.index eq index ? 'slds-is-current' : (v.index gt index ? 'slds-is-complete' : 'slds-is-incomplete')) + ' slds-tabs--path__item'}" role="presentation">
+            <a class="slds-tabs--path__link" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+            <span class="slds-tabs--path__stage">
+              <aura:if isTrue="{!v.index gt index}">
+                <lightning:icon iconName="utility:check" size="x-small"/>
+                <span class="slds-assistive-text">Stage Complete</span>
+              </aura:if>
+            </span>
+            <span data-step="{!index}" onclick="{!c.jump}" class="slds-tabs--path__title">{!item.label}</span>
+          </a>
+        </li>
+      </aura:iteration>
+    </ul>
+  </div>
+</div>
+<div class="slds-container--center slds-container--large">
+  {!v.showing}
+</div>
+
+</aura:component>

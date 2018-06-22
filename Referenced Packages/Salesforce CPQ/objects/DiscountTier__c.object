@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>DiscountTierHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Discount tier that specifies discount for a given quantity range.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>DiscountScheduleModal</fullName>
+        <description>Fields displayed on Discount Schedule Modal.</description>
+        <displayedFields>
+            <field>Number__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LowerBound__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UpperBound__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Discount__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>DiscountAmount__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <label>Discount Schedule Modal</label>
+    </fieldSets>
+    <fields>
+        <fullName>DiscountAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Discount amount applied when quantity falls in this tier.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount amount applied when quantity falls in this tier.</inlineHelpText>
+        <label>Discount ({0})</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Discount percentage applied when quantity falls in this tier.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount percentage applied when quantity falls in this tier.</inlineHelpText>
+        <label>Discount (%)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>10</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>LowerBound__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Lower bound of the quantity range for this tier</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lower bound of the quantity range for this tier.</inlineHelpText>
+        <label>Lower Bound</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number indicating this tier&apos;s position within the schedule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number indicating this tier&apos;s position within the schedule.</inlineHelpText>
+        <label>Number</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The actual price of this discount tier. This field will be populated when a new set of discount schedules are created for a new Order record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The actual price of this discount tier. This field will be populated when a new set of discount schedules are created for a new Order record.</inlineHelpText>
+        <label>Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>7</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Schedule__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Discount Schedule to which this tier belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Discount Schedule to which this tier belongs.</inlineHelpText>
+        <label>Schedule</label>
+        <referenceTo>DiscountSchedule__c</referenceTo>
+        <relationshipLabel>Discount Tiers</relationshipLabel>
+        <relationshipName>DiscountTiers</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>UpperBound__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Upper bound of the quantity range for this tier.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Upper bound of the quantity range for this tier.</inlineHelpText>
+        <label>Upper Bound</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Discount Tier</label>
+    <nameField>
+        <label>Tier Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Discount Tiers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

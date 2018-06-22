@@ -1,0 +1,331 @@
+<apex:page controller="mcdm_15.PostInstallPageController">
+
+    <style type="text/css">
+        h1 {
+            margin-bottom: 1em;
+            display: block;
+        }
+
+        .internal { display: {!IF(showCredentials, 'block', 'none')}; }
+
+        .two-col {
+            margin: 0.5em 0;
+            display: block;
+        }
+
+        .two-col > span {
+            display: inline-block;
+            width: 180px;
+        }
+
+        li { margin-bottom: 1em; }
+    </style>
+
+    <body>
+        <apex:form >
+            <apex:inputHidden value="{!showCredentials}" id="showCredentials" html-class="showCredentials"/>
+
+            <h1>Fantastic, you're almost there!</h1>
+            <p>
+                Before you can start using Distributed Marketing, there are a couple of steps you must first
+                complete:
+            </p>
+            <ol>
+                <li>
+                    <div>
+                        <h1>Create the Remote Site Setting for your org</h1>
+                        <p>
+                            This will add a remote site setting that points to your local org. ({!salesforceHost})
+                        </p>
+                    </div>
+                    <apex:outputPanel >
+                        <input id="createremotesitebtn" type="button" onclick="createRemoteSite();" value="Create Remote Site Setting"/>
+                    </apex:outputPanel>
+                </li>
+                <li>
+                    <div>
+                        <h1>Configure Authentication Provider</h1>
+                    </div>
+                    <apex:outputPanel >
+                        <div class="internal">
+                            <p>
+                                Enter the client ID and client secret that you were provided with:
+                            </p>
+                            <label class="two-col">
+                                <span>Client Id:</span>
+                                <apex:inputText value="{!clientId}" id="clientId" size="25"/>
+                            </label>
+                            <label class="two-col">
+                                <span>Client Secret:</span>
+                                <apex:inputText value="{!clientSecret}" id="clientSecret" size="25"/>
+                            </label>
+
+                            <apex:outputLabel value="Marketing Cloud Environment:" for="environment"/>
+                            <apex:selectRadio id="environment" value="{!environment}">
+                                <apex:selectOptions value="{!environmentItems}"/>
+                            </apex:selectRadio>
+                        </div>
+
+                        <apex:outputLabel value="Salesforce Environment:" for="sfdcEnvironmentRadio"/>
+                        <apex:selectRadio id="sfdcEnvironmentRadio" value="{!orgType}">
+                            <apex:selectOptions value="{!orgTypes}"/>
+                        </apex:selectRadio>
+
+                        <apex:commandButton action="{!createAuthProviderSettings}" value="Store Authentication Settings"/>
+                        <apex:commandButton action="{!executeConfiguration}" value="Configure Authentication Provider"/>
+                    </apex:outputPanel>
+                </li>
+            </ol>
+
+            <h2>Additional Steps:</h2>
+            <ul>
+                <li>
+                    Use the Lightning App Builder to customize your user interface by adding Distributed Marketing Lightning components
+                    to Home screens, App Pages and Object Record Homes.
+                </li>
+                <li>
+                    Authenticate against the Marketing Cloud on behalf of your users by editing the newly created <b>MarketingCloudNamedCredential</b> Named Credential.
+                </li>
+            </ul>
+        </apex:form>
+
+        <!--
+            https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/labels_value_provider_platform.htm
+
+            "Custom labels referenced in a Lightning component are not automatically added when
+            you create a package containing the Lightning component. To include a custom label
+            in a package, another member of the package, such as a Visualforce page, must
+            reference the custom label."
+        -->
+        <div style="display:none">{!$Label.mcdm_15__unknownerror}
+    {!$Label.mcdm_15__activitymessages}
+    {!$Label.mcdm_15__cancel}
+    {!$Label.mcdm_15__apply}
+    {!$Label.mcdm_15__errorfetchingcontent}
+    {!$Label.mcdm_15__askadminconnectcampaign}
+    {!$Label.mcdm_15__nojourneymessages}
+    {!$Label.mcdm_15__connectcampaigninstructions}
+    {!$Label.mcdm_15__name}
+    {!$Label.mcdm_15__fullname}
+    {!$Label.mcdm_15__firstname}
+    {!$Label.mcdm_15__details}
+    {!$Label.mcdm_15__relatedlists}
+    {!$Label.mcdm_15__feed}
+    {!$Label.mcdm_15__save}
+    {!$Label.mcdm_15__submitmembers}
+    {!$Label.mcdm_15__message}
+    {!$Label.mcdm_15__activityemailsubject}
+    {!$Label.mcdm_15__back}
+    {!$Label.mcdm_15__mcreservedfielderror}
+    {!$Label.mcdm_15__mctimeout}
+    {!$Label.mcdm_15__pendingapprovals}
+    {!$Label.mcdm_15__signature}
+    {!$Label.mcdm_15__nopendingmembersheading}
+    {!$Label.mcdm_15__nopendingmembersbody}
+    {!$Label.mcdm_15__personalizationintro}
+    {!$Label.mcdm_15__personalizationclosing}
+    {!$Label.mcdm_15__personalizationintroplaceholder}
+    {!$Label.mcdm_15__personalizationclosingplaceholder}
+    {!$Label.mcdm_15__personalizationintromultiplevalues}
+    {!$Label.mcdm_15__personalizationclosingmultiplevalues}
+    {!$Label.mcdm_15__pendingmemberscounts}
+    {!$Label.mcdm_15__pendingapprovalsheader}
+    {!$Label.mcdm_15__completeconnection}
+    {!$Label.mcdm_15__pageunauthorized}
+    {!$Label.mcdm_15__loading}
+    {!$Label.mcdm_15__configuredistributedmarketing}
+    {!$Label.mcdm_15__distributedmarketingisconfigured}
+    {!$Label.mcdm_15__distributedmarketingadminheader}
+    {!$Label.mcdm_15__searchformcjourney}
+    {!$Label.mcdm_15__failedtocreatecampaignjourneylink}
+    {!$Label.mcdm_15__connectcampaignpermissiondeniedheading}
+    {!$Label.mcdm_15__connectcampaignpermissiondenied}
+    {!$Label.mcdm_15__connectcampaignalreadyconnected}
+    {!$Label.mcdm_15__connectcampaignchangejourney}
+    {!$Label.mcdm_15__connectcampaignformdisabledheader}
+    {!$Label.mcdm_15__connectcampaignintroheader}
+    {!$Label.mcdm_15__more}
+    {!$Label.mcdm_15__emailpreviewerror}
+    {!$Label.mcdm_15__emailpreview}
+    {!$Label.mcdm_15__selectcampaignmember}
+    {!$Label.mcdm_15__selectmcmessage}
+    {!$Label.mcdm_15__defaultgreetingheading}
+    {!$Label.mcdm_15__defaultgreetingsubheading}
+    {!$Label.mcdm_15__defaultsendsettingaccountdefault}
+    {!$Label.mcdm_15__defaultsendsettingorgdefault}
+    {!$Label.mcdm_15__applychanges}
+    {!$Label.mcdm_15__sendfrom}
+    {!$Label.mcdm_15__sendfromoptionme}
+    {!$Label.mcdm_15__sendfromoptionrecordowner}
+    {!$Label.mcdm_15__sendfromandemaillabel}
+    {!$Label.mcdm_15__sendfromandemailinstruction}
+    {!$Label.mcdm_15__campaignpersonalizationdefaults}
+    {!$Label.mcdm_15__approve}
+    {!$Label.mcdm_15__reject}
+    {!$Label.mcdm_15__undo}
+    {!$Label.mcdm_15__napproved}
+    {!$Label.mcdm_15__nrejected}
+    {!$Label.mcdm_15__approvalfailures}
+    {!$Label.mcdm_15__approvalsuccesses}
+    {!$Label.mcdm_15__connectcampaign}
+    {!$Label.mcdm_15__greeting}
+    {!$Label.mcdm_15__preview}
+    {!$Label.mcdm_15__viewpreview}
+    {!$Label.mcdm_15__approval}
+    {!$Label.mcdm_15__edit}
+    {!$Label.mcdm_15__journeyfieldmissing}
+    {!$Label.mcdm_15__journeyfieldsmissing}
+    {!$Label.mcdm_15__journeysubscriberkeymissingordataextensiondeleted}
+    {!$Label.mcdm_15__journeyfieldnotset}
+    {!$Label.mcdm_15__journeyapprovalunknownerror}
+    {!$Label.mcdm_15__journeycampaignmemberremoved}
+    {!$Label.mcdm_15__journeyapprovaldataextensionduplicatekey}
+    {!$Label.mcdm_15__journeyentryerror}
+    {!$Label.mcdm_15__processapprovalscompleteerrormessage}
+    {!$Label.mcdm_15__processapprovalspartialsuccessmessage}
+    {!$Label.mcdm_15__processapprovalssuccessmessage}
+    {!$Label.mcdm_15__processoneapprovalsuccessmessage}
+    {!$Label.mcdm_15__processonerejectionsuccessmessage}
+    {!$Label.mcdm_15__selectallcheckbox}
+    {!$Label.mcdm_15__selecttoedit}
+    {!$Label.mcdm_15__recordownerincompleteormissing}
+    {!$Label.mcdm_15__customdefaultgreetingnotfound}
+    {!$Label.mcdm_15__cannotshowmorerecords}
+    {!$Label.mcdm_15__to}
+    {!$Label.mcdm_15__helpalternativetext}
+    {!$Label.mcdm_15__administratorsettingsgreetingheader}
+    {!$Label.mcdm_15__administratorsettingsgreetingsubheader}
+    {!$Label.mcdm_15__greetingmappinglabeltextinput}
+    {!$Label.mcdm_15__deletegreetingmapping}
+    {!$Label.mcdm_15__greetingmappinglocked}
+    {!$Label.mcdm_15__objectfieldlookup}
+    {!$Label.mcdm_15__objectfieldlookupplaceholder}
+    {!$Label.mcdm_15__defaultoption}
+    {!$Label.mcdm_15__setdefaultoption}
+    {!$Label.mcdm_15__addadditionalgreetingmapping}
+    {!$Label.mcdm_15__pleasecompleteallfields}
+    {!$Label.mcdm_15__toomanyapprovals}
+    {!$Label.mcdm_15__breadcrumbs}
+    {!$Label.mcdm_15__greetingoptionselectlabel}
+    {!$Label.mcdm_15__sendfromoptionselectlabel}
+    {!$Label.mcdm_15__pluginsettingstitle}
+    {!$Label.mcdm_15__pluginsettingsdescription}
+    {!$Label.mcdm_15__pluginsettingstablabel}
+    {!$Label.mcdm_15__duplicategreetinglabelsdetected}
+    {!$Label.mcdm_15__erroraccessingobjectfield}
+    {!$Label.mcdm_15__lockedgreetingoptiontooltip}
+    {!$Label.mcdm_15__journeylookup}
+    {!$Label.mcdm_15__campaignmemberapproval}
+    {!$Label.mcdm_15__viewpendingmembers}
+    {!$Label.mcdm_15__managejourneyoption}
+    {!$Label.mcdm_15__managejourneyoptiontitle}
+    {!$Label.mcdm_15__administrationoption}
+    {!$Label.mcdm_15__administrationoptiontitle}
+    {!$Label.mcdm_15__settingsoption}
+    {!$Label.mcdm_15__settingsoptiontitle}
+    {!$Label.mcdm_15__personalizationdefaultsoption}
+    {!$Label.mcdm_15__personalizationdefaultsoptiontitle}
+    {!$Label.mcdm_15__globalsettingstitle}
+    {!$Label.mcdm_15__globalsettingsalttext}
+    {!$Label.mcdm_15__globalsettingsloadingerror}
+    {!$Label.mcdm_15__staticpreviewdescription}
+    {!$Label.mcdm_15__approvedsummary}
+    {!$Label.mcdm_15__rejectedsummary}
+    {!$Label.mcdm_15__failedsummary}
+    {!$Label.mcdm_15__administrationpagetitle}
+    {!$Label.mcdm_15__personalizemessages}
+    {!$Label.mcdm_15__resettopending}
+    {!$Label.mcdm_15__status}
+    {!$Label.mcdm_15__personalization}
+    {!$Label.mcdm_15__selectedmember}
+    {!$Label.mcdm_15__selectedmembers}
+    {!$Label.mcdm_15__approvedapprovalstatus}
+    {!$Label.mcdm_15__errorapprovalstatus}
+    {!$Label.mcdm_15__pendingapprovalstatus}
+    {!$Label.mcdm_15__rejectedapprovalstatus}
+    {!$Label.mcdm_15__memberdetailstitle}
+    {!$Label.mcdm_15__personalizemessagestitle}
+    {!$Label.mcdm_15__sendsettingstitle}
+    {!$Label.mcdm_15__modifying}
+    {!$Label.mcdm_15__nmembers}
+    {!$Label.mcdm_15__nmember}
+    {!$Label.mcdm_15__personalizationoptions}
+    {!$Label.mcdm_15__insufficientprivilegestitle}
+    {!$Label.mcdm_15__insufficientprivilegesmessage}
+    {!$Label.mcdm_15__xoftotal}
+    {!$Label.mcdm_15__nextmessage}
+    {!$Label.mcdm_15__previousmessage}
+    {!$Label.mcdm_15__differentp13nvalues}
+    {!$Label.mcdm_15__modified}
+    {!$Label.mcdm_15__personalizationdenotfound}
+    {!$Label.mcdm_15__cleartext}
+    {!$Label.mcdm_15__externalcomponents}
+    {!$Label.mcdm_15__autheduserdatalabel}
+    {!$Label.mcdm_15__saveandclose}
+    {!$Label.mcdm_15__autogenerateddefolder}
+    {!$Label.mcdm_15__dataextensioncreationfailed}
+    {!$Label.mcdm_15__categorycreationfailed}
+    {!$Label.mcdm_15__norootcategory}
+    {!$Label.mcdm_15__p13ndataextensiondescription}
+    {!$Label.mcdm_15__sendfromnameplaceholder}
+    {!$Label.mcdm_15__sendfromemailplaceholder}
+    {!$Label.mcdm_15__firstnameplaceholder}
+    {!$Label.mcdm_15__lastnameplaceholder}
+    {!$Label.mcdm_15__introplaceholder}
+    {!$Label.mcdm_15__closingplaceholder}
+    {!$Label.mcdm_15__sfuseridplaceholder}
+    {!$Label.mcdm_15__sfcampaignidplaceholder}
+    {!$Label.mcdm_15__sfcampaignmemberidplaceholder}
+    {!$Label.mcdm_15__greetingplaceholder}
+    {!$Label.mcdm_15__decolumnnotlargeenougherror}
+    {!$Label.mcdm_15__p13ntoolargeerror}
+    {!$Label.mcdm_15__custompermissionnotvalid}</div>
+
+        <script>
+            //-- Our lord and savior, Andrew Fawcett --
+            //https://andyinthecloud.com/2014/07/29/post-install-apex-metadata-api-configuration-solved/
+            function createRemoteSite() {
+                // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+                var binding = new XMLHttpRequest();
+                var request =
+                    '<?xml version="1.0" encoding="utf-8"?>' +
+                    '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+                        '<env:Header>' +
+                            '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' +
+                                '<urn:sessionId>{!$Api.Session_ID}</urn:sessionId>' +
+                            '</urn:SessionHeader>' +
+                        '</env:Header>' +
+                        '<env:Body>' +
+                            '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' +
+                                '<metadata xsi:type="RemoteSiteSetting">' +
+                                    '<fullName>MY_ORG</fullName>' +
+                                    '<description>Metadata API Remote Site Setting for Distributed Marketing</description>' +
+                                    '<disableProtocolSecurity>false</disableProtocolSecurity>' +
+                                    '<isActive>true</isActive>' +
+                                    '<url>{!salesforceHost}</url>' +
+                                '</metadata>' +
+                            '</createMetadata>' +
+                        '</env:Body>' +
+                    '</env:Envelope>';
+                binding.open('POST', '{!salesforceHost}/services/Soap/m/40.0');
+                binding.setRequestHeader('SOAPAction','""');
+                binding.setRequestHeader('Content-Type', 'text/xml');
+                binding.send(request);
+            }
+
+            var kkeys = [];
+            var konami = '38,38,40,40,37,39,37,39,66,65';
+            var konamiListener = function(e) {
+                kkeys.push(e.keyCode);
+
+                if (kkeys.toString().indexOf(konami) > -1) {
+                    window.removeEventListener('keydown', konamiListener);
+                    document.getElementsByClassName('internal')[0].style.display = 'block';
+                    document.getElementsByClassName('showCredentials')[0].value = true;
+                }
+            };
+
+            window.addEventListener('keydown', konamiListener);
+        </script>
+    </body>
+</apex:page>

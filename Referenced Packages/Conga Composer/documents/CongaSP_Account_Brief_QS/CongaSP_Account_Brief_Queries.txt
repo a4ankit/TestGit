@@ -1,0 +1,4 @@
+Acct Opptys [Opptys] SELECT Opportunity.Name, Opportunity.Type, Opportunity.Amount, Opportunity.CloseDate, Opportunity.StageName, (Select Contact.name from OpportunityContactRoles where IsPrimary = true)  FROM Opportunity Where Opportunity.Account.Id = '{pv0}' order by Opportunity.CloseDate asc;
+Acct Contacts [Contacts] Select FirstName, LastName, Title, Phone From Contact Where Account.Id = '{pv0}' order by LastName asc;
+Acct Cases [Cases] Select Account.Name, Subject, Status, CreatedDate from Case where Account.Id = '{pv0}' order by CreatedDate asc;
+Acct Activities [Activities] SELECT Status,Subject, ActivityDate FROM Task Where AccountId = '{pv0}' order by ActivityDate asc;

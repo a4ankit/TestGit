@@ -1,0 +1,31 @@
+<aura:component description="Community Wrapper For Journey Approvals to get extra data that won't be passed to component"
+    controller="mcdm_15.CommunityJourneyApprovalsAdapter"
+    implements="force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global"
+>
+    <aura:attribute name="campaignId" type="String" description="The associated Campaign Record Id"/>
+    <aura:attribute name="journeyId" type="String" description="The associated MarketingCloudJourney__x Record Id"/>
+    <aura:attribute name="eventEntryKey" type="String" description="The Journey event entry key"/>
+    <aura:attribute name="objectBreadcrumbDetails" type="Object" description="The data needed for breadcrumbs from the Object"/>
+    <aura:attribute name="loading" type="Boolean" default="true" access="private" description="Indicates if the page is loading and spinner should be displayed"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div class="{! v.loading ? 'slds-hide' : '' }">
+        <aura:if isTrue="{! !empty(v.journeyId)}">
+            <mcdm_15:JourneyApprovals campaignId="{!v.campaignId}"
+                journeyId="{!v.journeyId}"
+                eventEntryKey="{!v.eventEntryKey}"
+                objectBreadcrumbDetails="{!v.objectBreadcrumbDetails}"
+            />
+            <aura:set attribute="else">
+               <p>{!$Label.mcdm_15.askAdminConnectCampaign}</p>
+            </aura:set>
+        </aura:if>
+    </div>
+    <lightning:spinner variant="brand" alternativeText="{!$Label.mcdm_15.loading}" size="large" class="{!v.loading ? '' : 'slds-hide'}" />
+</aura:component>

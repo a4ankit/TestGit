@@ -1,0 +1,18 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.DocuSignBehaviorController">
+	<aura:set attribute="showNav" value="false" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute type="List" name="DocuSignRecipients" />
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:registerEvent name="behaviorSaveComplete" type="APXTConga4:CongaEvent" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<div class="slds-panel slds-p-around_large slds-clearfix">
+		<div data-reactroot="" class="slds-form slds-form_stacked">
+			<div class="slds-m-vertical_large">
+				<APXTConga4:DocuSignBehaviorTable DocuSignRecipients="{!v.DocuSignRecipients}" solutionId="{!v.solutionId}" />
+			</div>
+			<div class="slds-form-element slds-float_right">
+				<lightning:button aura:id="buttonSave" variant="brand" label="Save" onclick="{!c.handleSave}" />
+			</div>
+		</div>
+	</div>
+</aura:component>

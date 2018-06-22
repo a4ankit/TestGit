@@ -1,0 +1,32 @@
+<aura:component controller="APXTConga4.TemplateManagementController" extends="SearchAndSelectBase" >
+ 	<aura:handler name="init" action="{!c.init}" value="{!this}"/>
+ 	<aura:method name="reInit" action="{!c.init}" description="Runs the init method again" />
+ 	<aura:registerEvent name="addTemplateEvent" type="APXTConga4:CongaEvent" />
+
+ 	<div class="{! v.showItems ? 'slds-box searchresultbox' : 'borderless'}">
+ 		<div class="slds-scrollable--y slds-p-right--small searchResultHeight">
+ 			<aura:iteration items="{!v.searchedItems}" var="item">
+ 				<div class="slds-box slds-box--small slds-theme--default templatecard" onclick="{!c.addTemplate}" data-templateid="{!item.TemplateId}" 
+ 				data-templatename="{!item.Name}" data-templategroup="{!item.TemplateGroup}" data-templatedescription="{!item.Description}" 
+ 				data-lastmodifieddate="{!item.LastModifiedDate}" data-lastmodifiedname="{!item.LastModifiedName}">
+ 					<div class="slds-grid">
+ 						<div class="slds-col slds-p-right--large slds-p-left--small slds-align_absolute-center slds-size_1-of-1 slds-medium-size_1-of-6 slds-large-size_1-of-6">
+ 							<lightning:icon iconName="{!'doctype:' + item.Extension}" class="slds-p-left--xx-small" size="large" alternativeText="Template Type" />
+ 						</div>
+ 						<div class="slds-col slds-border--left slds-p-left--small slds-text-title slds-text-align--left slds-size_1-of-1 slds-medium-size_5-of-6 slds-large-size_5-of-6">
+ 							<div class="slds-p-bottom--xx-small">
+ 								<span class="templatetitle">{!item.Name}</span>
+ 								<br />
+ 								<aura:if isTrue="{!and(item.TemplateGroup != '', item.TemplateGroup != null)}">
+ 									<span class="templategroup">Group: {!item.TemplateGroup}</span>
+ 								</aura:if>
+ 							</div>
+ 							<span class="templatedescription">{!item.Description}</span>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<br />
+ 			</aura:iteration>
+ 		</div>
+ 	</div>
+</aura:component>

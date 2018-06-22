@@ -1,0 +1,58 @@
+<aura:component description="Encapsulates a list item for JourneyApprovalsList">
+    <aura:attribute name="approvalRecord" type="SObject" description="The content item"/>
+    <aura:attribute name="checkboxChecked" type="Boolean" default="false" description="The checked state for the checkbox"/>
+    <aura:attribute name="checkboxDisabled" type="Boolean" default="false" description="The disabled state for the checkbox"/>
+
+    <aura:attribute name="displayName" access="private" type="String" description="The full name of the approval record's user"/>
+    <aura:attribute name="statusLabel" access="private" type="String" description="The display value for the approval status"/>
+
+    <aura:method name="setStatus" action="{!c.setStatus}" description="Sets the approval status">
+        <aura:attribute name="status" type="String" description="The new value"/>
+    </aura:method>
+
+    <aura:registerEvent name="selectionChanged" type="mcdm_15:JourneyApprovalsSelectionChanged"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <tr>
+        <!-- NB: this needs to be wrapped in an element to avoid aura:iteration issues... -->
+        <ltng:require scripts="{!join(',',
+                $Resource.mcdm_15__StaticAssets + '/commons.js',
+                $Resource.mcdm_15__StaticAssets + '/journey.js')}"
+        />
+
+        <td>
+            <lightning:icon class="{!(!empty(v.approvalRecord.errorMessage) ? '' : ' slds-hide')}"
+                iconName="utility:warning"
+                variant="error"
+                size="x-small"
+                title="{!v.approvalRecord.errorMessage}"
+            />
+        </td>
+        <td>
+            <lightning:input type="checkbox"
+                aura:id="checkbox"
+                label="{!$Label.mcdm_15.selectToEdit}"
+                checked="{!v.checkboxChecked}"
+                disabled="{!v.checkboxDisabled}"
+                onchange="{!c.handleCheckChanged}"
+            />
+        </td>
+        <td>
+            <div class="slds-truncate" title="{!v.displayName}">
+                <a href="javascript:void(0);" onclick="{!c.launchObjectModal}">
+                    {!v.displayName}
+                </a>
+            </div>
+        </td>
+        <td>
+            <div class="slds-truncate" title="{!v.statusLabel}">{!v.statusLabel}</div>
+        </td>
+        <td>
+            <div class="slds-truncate" title="{!v.approvalRecord.dirty ? $Label.mcdm_15.modified : ''}">{!v.approvalRecord.dirty ? $Label.mcdm_15.modified : ''}</div>
+        </td>
+        <td>
+            <div class="slds-truncate" title="{!v.approvalRecord.greeting.label}">{!v.approvalRecord.greeting.label}</div>
+        </td>
+    </tr>
+</aura:component>

@@ -1,0 +1,71 @@
+<aura:component access="global"
+    controller="mcdm_15.AdministratorSettingsAdapter"
+    implements="flexipage:availableForAllPageTypes"
+    description="Top level Component for DM Administration"
+>
+
+    <aura:attribute name="postInstallPageUrl" type="String" description="The post install page URL"/>
+    <aura:attribute name="hasAccess" type="Boolean" default="false" description="Does the current user have the necessary permissions?"/>
+    <aura:attribute name="isConfigured" type="Boolean" default="false" description="Flag representing if the post install has been completed"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true" description="Activity flag"/>
+    <aura:attribute name="administratorSettings" type="Object" description="The Administrator Settings Data"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:PermissionSetService aura:id="permissionSetService"/>
+
+    <div>
+        <div class="slds-page-header slds-page-header_joined">
+            <div class="slds-grid slds-grid_align-spread">
+                <div>
+                    <h1 class="slds-page-header__title" title="{!$Label.mcdm_15.administrationPageTitle}">
+                        {!$Label.mcdm_15.administrationPageTitle}
+                    </h1>
+                </div>
+
+                <aura:if isTrue="{!v.hasAccess}">
+                    <div class="{!v.isLoading ? 'slds-hide' : ''}">
+                        <lightning:button variant="brand" label="{!$Label.mcdm_15.applyChanges}" onclick="{!c.applyChanges}"/>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+
+        <div class="settings-container slds-p-around_large">
+            <lightning:spinner class="{!(v.isLoading ? '' : 'slds-hide')}"
+                alternativeText="{!$Label.mcdm_15.loading}"
+                variant="brand"
+                size="large"/>
+
+            <div class="{!v.isLoading ? 'slds-hide' : ''}">
+                <aura:if isTrue="{!v.hasAccess}">
+                    <div class="slds-box">
+                        <h4 class="slds-text-heading_medium">{!$Label.mcdm_15.distributedMarketingAdminHeader}</h4>
+                        <div class="{!v.isConfigured ? 'slds-hide' : ''}">
+                            <lightning:button class="slds-m-vertical_small" label="{!$Label.mcdm_15.completeConnection}" onclick="{!c.navigateToPostInstallPage}"/>
+                            <div class="slds-text-body_regular">{!$Label.mcdm_15.configureDistributedMarketing}</div>
+                        </div>
+                        <div class="{!v.isConfigured ? 'slds-text-body_regular' : 'slds-hide'}">{!$Label.mcdm_15.distributedMarketingIsConfigured}</div>
+                    </div>
+
+                    <mcdm_15:AdministratorGreetingSettings aura:id="administratorGreetingSettings"
+                        greetingMappingsSettings="{!v.administratorSettings.greetingMappingsSettings}"
+                        deletedGreetingMappingsSettings="{!v.administratorSettings.deletedGreetingMappingsSettings}"
+                    />
+
+                    <mcdm_15:PluginSettings aura:id="pluginSettings"
+                        hideIfNoPlugin="true"
+                    />
+
+                    <aura:set attribute="else">
+                        <div class="slds-text-body_regular">{!$Label.mcdm_15.pageUnauthorized}</div>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+</aura:component>

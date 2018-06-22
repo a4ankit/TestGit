@@ -1,0 +1,51 @@
+<aura:component extends="BaseStep" controller="APXTConga4.DataManagementController">
+	<aura:attribute name="showBlankError" type="Boolean" default="False" />
+	<aura:attribute name="showUniqueError" type="Boolean" default="False" />
+	<aura:attribute name="errorMessage" type="String" />
+	<aura:attribute name="queryData" type="Object[]" />
+	<aura:attribute name="queryObjectPrefix" type="String" />
+	<aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+	<aura:handler name="searchResultClickEvent" event="APXTConga4:CongaEvent" action="{!c.captureSearchResultClickEvent}" />
+	<aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+		
+	<div class="slds-m-around--large">
+		<div class="slds-p-bottom_small slds-border_bottom">
+			<h2 class="slds-align-middle slds-text-heading_medium normalweight">{!$Label.apxtconga4.Data_Step_Header}</h2>
+		</div>
+		<div class="slds-grid slds-grid_pull-padded">
+			<div
+				class="slds-p-vertical_small slds-p-left_small slds-p-right_x-large slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-border_right">
+				<div class="slds-m-bottom_large">
+						{!format($Label.apxtconga4.Data_Step_Description, v.masterObjectLabel)}<a
+						href="https://support.getconga.com/Conga_Composer/Gathering_Data_for_Composer/Using_Conga_Queries_with_Conga_Composer/Using_SOQL_Queries_with_Conga_Composer"
+						target="_blank" class="slds-p-left_xx-small">{!$Label.apxtconga4.Learn_More_Label}</a>
+				</div >
+				<div class="slds-m-bottom_x-large">
+					<APXTConga4:SearchAndSelectQuery />
+				</div>
+				<div>
+					<lightning:button class="slds-button slds-button_neutral" onclick="{!c.createQueryClick}" label="{!$Label.apxtconga4.Create_New_Query_Button_Text}" />
+				</div>
+			</div>
+			<div class="slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12">
+				<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-m-right_small slds-border_bottom sectionheader">
+					<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.Data_Step_Table_Section_Header}</h2>
+				</div>
+				<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">
+					{!$Label.apxtconga4.Data_Step_Table_Section_Description}<a
+						href="https://support.getconga.com/Conga_Composer/Gathering_Data_for_Composer/Data_Gathering_Basics/03Adding_an_Alias"
+						target="_blank" class="slds-p-left_xx-small">{!$Label.apxtconga4.Learn_More_Label}</a>
+				</div>
+				<aura:if isTrue="{!v.errorMessage.length > 0}">
+					<div class="slds-text-color_error slds-p-bottom_medium slds-p-left_x-large">{!v.errorMessage}</div>
+				</aura:if>
+				<div class="slds-p-right_medium slds-p-bottom_medium slds-p-left_x-large slds-is-relative z-index-1">
+					<APXTConga4:LightningTableQueries aura:id="queryTable" rowData="{!v.queryData}"/>
+				</div>
+				<div class="slds-text-align_right slds-p-horizontal_medium">
+					<lightning:button variant="brand" label="Add to Solution" onclick="{!c.saveQueries }" />
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>

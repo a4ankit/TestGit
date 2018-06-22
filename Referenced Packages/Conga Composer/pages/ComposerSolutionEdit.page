@@ -1,0 +1,53 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionEditExtension">
+
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!APXTConga4__Conga_Solution__c.Name}</span>       
+            </td>
+        </tr>
+    </table> 
+       
+    <apex:pageMessages />
+    <apex:form >
+    <!--<apex:outputLink value="/{!Conga_Solution__c.ID}" target="_self"><font size="1px">« Back to Record: {!APXTConga4__Conga_Solution__c.Name}</font></apex:outputLink>-->
+
+        <apex:pageBlock id="fields" mode="inlineedit">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!forceRefresh}" value="Return to Solution Record" title="Click here to return to the standard Conga Solution Record page."/>                  
+            </apex:pageBlockButtons>
+            <!--<apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!saveCustom}" id="saveButton" value="Save"/>
+            </apex:pageBlockButtons>-->
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Conga Solution Name"/>
+                    <apex:outputText value="{!APXTConga4__Conga_Solution__c.Name}"/>
+                </apex:pageBlockSectionItem>
+               <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="Owner Name"/>
+                    <apex:outputLink value="/{!APXTConga4__Conga_Solution__c.Owner.Id}" target="_blank">
+                        <apex:outputText value="{!APXTConga4__Conga_Solution__c.Owner.FirstName} {!APXTConga4__Conga_Solution__c.Owner.LastName}"/>
+                    </apex:outputLink>
+                </apex:PageBlockSectionItem>    
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Master Object Type"/>
+                    <apex:outputText value="{!APXTConga4__Conga_Solution__c.APXTConga4__Master_Object_Type__c}"/>
+                </apex:pageBlockSectionItem>
+                <!--<apex:pageBlockSectionItem helptext="{!IF(JSENCODE(OrgType) != 'Professional Edition', 'Filled in when the button is first created by Create Button', 'After it is created, enter the API Name of the button here for maximum functionality.')}" rendered="{!IF(OrgType = 'Professional Edition', 'false', 'true')}">
+                    <apex:outputLabel value="Button/Link API Name"/>
+                    <apex:outputText value="{!Conga_Solution__c.Button_Link_API_Name__c}"/>
+                </apex:pageBlockSectionItem>-->
+                <apex:pageBlockSectionItem rendered="{!IF(OR(JSENCODE(OrgType) = 'Professional Edition', APXTConga4__Conga_Solution__c.APXTConga4__Master_Object_Type__c = 'Home Page'), 'false', 'true')}">
+                    <apex:outputLabel value="{!IF(APXTConga4__Conga_Solution__c.APXTConga4__Master_Object_Type__c = 'Composer_QuickMerge_Link__c','Composer QuickMerge Record ID', 'Sample Record ID')}" id="sampleRecordId"/>
+                    <apex:outputText value="{!APXTConga4__Conga_Solution__c.APXTConga4__Sample_Record_Id__c}"/>
+                </apex:pageBlockSectionItem>                                       
+            </apex:pageBlockSection>
+        </apex:pageBlock> 
+                   
+    </apex:form>         
+</apex:page>

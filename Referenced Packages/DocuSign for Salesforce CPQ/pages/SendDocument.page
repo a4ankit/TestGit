@@ -1,0 +1,52 @@
+<apex:page standardController="SBQQ__QuoteDocument__c" showHeader="{!redirectToSender == false}" sideBar="{!redirectToSender == false}" extensions="SBQQDS.QuoteDocumentExtController">
+	<style>
+		.sbLoadingMask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #A8B7C7;
+			opacity: 0.8;
+			z-index: 10001;
+		}
+	</style>
+	<apex:pageMessages />
+
+	<script>
+		var redirectToSender = '{!redirectToSender}';
+		if (redirectToSender === 'true') {
+			var senderUrl = '{!JSENCODE(quoteDocument.SenderURL__c)}';
+			setTimeout(function() {
+				if (senderUrl != '') {
+					window.location = senderUrl;
+				} else {
+					window.location.reload();
+				}
+			}, 500);
+		}
+	</script>
+	<apex:outputPanel layout="none" rendered="{!redirectToSender == true}">
+		<div class="sbLoadingMask"></div>
+	</apex:outputPanel>
+	<apex:outputPanel layout="none" rendered="{!redirectToSender == false}">
+		<apex:form >
+			<apex:pageBlock title="Sending Document for Signature">
+				<apex:pageBlockButtons >
+					<apex:commandButton value="Send" action="{!onSend}"/>
+					<apex:commandButton value="Cancel" action="{!onCancel}"/>
+				</apex:pageBlockButtons>
+				<apex:pageBlockSection title="Confirm Document Recipient" collapsible="false" columns="1">
+					<apex:pageBlockSectionItem >
+						<apex:outputText value="Primary Contact"/>
+						<apex:outputLink value="/{!quoteDocument.SBQQ__Quote__r.SBQQ__PrimaryContact__c}">{!quoteDocument.SBQQ__Quote__r.SBQQ__PrimaryContact__r.Name}</apex:outputLink>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputText value="Primary Contact Email"/>
+						<apex:outputText value="{!quoteDocument.SBQQ__Quote__r.SBQQ__PrimaryContact__r.Email}"/>
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:form>
+	</apex:outputPanel>
+</apex:page>

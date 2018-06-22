@@ -1,0 +1,9 @@
+<aura:component extends="APXTConga4:BaseModal">
+  <aura:set attribute="header" value="Video" />
+  <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+  <aura:attribute name="theme" type="String" />
+  <aura:attribute name="srcVal" type="String" />
+    <div class="slds-text-align--center slds-border--top slds-border--bottom slds-border--left slds-border--right" >
+        <iframe src="{!v.srcVal}" title="Wistia video player" allowtransparency="true" frameBorder="0" scrolling="no" class="wistia_embed " name="wistia_embed" height="85%" width="85%" style="width: 1088px; height:610px; "></iframe>
+    </div>
+</aura:component>

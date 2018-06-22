@@ -1,0 +1,46 @@
+<aura:component >
+    <aura:attribute name="newItem" type="Camping_Item__c" default="{ 'sobjectType': 'Camping_Item__c',
+                                                                   'Name': '',
+                                                                   'Quantity__c': 0,
+                                                                   'Price__c': 0,
+                                                                   'Packed__c': false }"/>
+    <!-- BOXED AREA -->
+    <aura:registerEvent name="addItem" type="c:addItemEvent"/>
+    
+    <fieldset class="slds-box slds-theme--default slds-container--small">
+        
+        <legend id="newexpenseform" class="slds-text-heading--small 
+                                           slds-p-vertical--medium">
+            New Item
+        </legend>
+        
+        <!-- CREATE NEW EXPENSE FORM -->
+        <form class="slds-form--stacked">          
+            <lightning:input aura:id="new" label="Name"
+                             name="name"
+                             value="{!v.newItem.Name}"
+                             required="true"/> 
+            <lightning:input type="number" aura:id="new" label="Price"
+                             name="Price"
+                             min="1"
+                             formatter="currency"
+                             step="1"
+                             value="{!v.newItem.Price__c}"
+                             messageWhenRangeUnderflow="Enter an amount that's at least $1."/>
+            <lightning:input type="number" aura:id="new" label="Quantity"
+                             name="Quantity"
+                             min="1"
+                             value="{!v.newItem.Quantity__c}"
+                             placeholder="At least 1"/>
+            <lightning:input type="checkbox" aura:id="new" label="Packed"  
+                             name="Packed"
+                             checked="{!v.newItem.Packed__c}"/>
+            <lightning:button label="Create Expense" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickCreateItem}"/>
+        </form>
+        <!-- / CREATE NEW EXPENSE FORM -->
+        
+    </fieldset>
+</aura:component>

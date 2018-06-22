@@ -1,0 +1,68 @@
+<table width="100%">
+    <tbody>
+    <tr>
+        <td>
+            <p><span style="font-size: xx-small;">{!companyLogo}</span></p>
+            <p><span style="font-size: medium;"> <strong>{!template.SBQQ__CompanyName__c}</strong></span><br /><span style="font-size: xx-small;"><em> {!template.SBQQ__CompanySlogan__c}</em></span></p>
+            <p>&#160;</p>
+            <p><span style="font-size: x-small;">{!template.SBQQ__CompanyStreet__c}<br />{!template.SBQQ__CompanyCity__c}, {!template.SBQQ__CompanyState__c} {!template.SBQQ__CompanyPostalCode__c}<br /> {!template.SBQQ__CompanyCountry__c}<br /></span><span style="font-size: x-small;">&#160;</span></p>
+            <br />
+            <p><span style="font-size: x-small;">Phone: {!template.SBQQ__CompanyPhone__c}<br />Fax: {!template.SBQQ__CompanyFax__c}<br /></span><span style="font-size: x-small;">Email: {!template.SBQQ__CompanyEmail__c}</span></p>
+            <p>&#160;</p>
+            <p><span style="font-size: x-small;"><br /></span></p>
+        </td>
+        <td style="padding: 5px;">
+            <p style="font-size: 16pt; color: #293d60; text-align: right;">Quotation</p>
+            <p>&#160;</p>
+            <table style="font-size: 9pt; margin-left: 34px;">
+                <tbody>
+                <tr>
+                    <td style="text-align: right; width: 100px;"><strong>Quote #:</strong></td>
+                    <td style="text-align: right;">{!quote.Name}-{!document.SBQQ__Version__c}</td>
+                </tr>
+                <tr>
+                    <td style="width: 80px; text-align: right;"><strong>Date:</strong></td>
+                    <td style="text-align: right;">{!quote.CreatedDate}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><strong>Expires On:</strong></td>
+                    <td style="text-align: right;">{!quote.SBQQ__ExpirationDate__c}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table width="100%">
+    <tbody>
+    <tr>
+        <td><span style="font-size: x-small;"><strong>{!template.SBQQ__ShipToTitle__c}</strong></span><br /><span style="font-size: x-small;"> {!primaryContact.Name}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__ShippingName__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__ShippingStreet__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__ShippingCity__c}, {!quote.SBQQ__ShippingState__c} {!quote.SBQQ__ShippingPostalCode__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__ShippingCountry__c}</span><br /><span style="font-size: x-small;"> {!primaryContact.Phone}</span><br /><span style="font-size: x-small;"> {!primaryContact.Fax}</span><br /><span style="font-size: x-small;"> {!primaryContact.Email}</span><br /></td>
+        <td><span style="font-size: x-small;"><strong>{!template.SBQQ__BillToTitle__c}</strong></span><br /><span style="font-size: x-small;"> {!quote.SBQQ__BillingName__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__BillingStreet__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__BillingCity__c}, {!quote.SBQQ__BillingState__c} {!quote.SBQQ__BillingPostalCode__c}</span><br /><span style="font-size: x-small;"> {!quote.SBQQ__BillingCountry__c}</span><br /></td>
+    </tr>
+    </tbody>
+</table>
+<p>&#160;</p>
+<table style="border: thin solid black; border-collapse: collapse;" width="100%">
+    <tbody>
+    <tr>
+        <td style="border-collapse: collapse; width: 20%; border: thin solid black;" align="center"><span style="font-size: x-small;"><strong>SALESPERSON</strong></span></td>
+        <td style="border-collapse: collapse; text-align: center; width: 10%; border: thin solid black;" align="center"><span style="font-size: x-small;"><strong>EXT</strong></span></td>
+        <td style="border-collapse: collapse; text-align: center; width: 30%; border: thin solid black;" align="center"><span style="font-size: x-small;"><strong>EMAIL</strong></span></td>
+        <td style="border-collapse: collapse; text-align: center; width: 20%; border: thin solid black;" align="center"><span style="font-size: x-small;"><strong>DELIVERY METHOD</strong></span></td>
+        <td style="border-collapse: collapse; text-align: center; width: 20%; border: thin solid black;" align="center"><span style="font-size: x-small;"><strong>PAYMENT METHOD</strong></span></td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+        <td style="border-collapse: collapse; text-align: center; border: thin solid black;" align="center"><span style="font-size: x-small;">{!salesRep.Name}</span></td>
+        <td style="border-collapse: collapse; text-align: center; border: thin solid black;" align="center"><span style="font-size: x-small;">x{!salesRep.Extension}</span></td>
+        <td style="border-collapse: collapse; text-align: center; border: thin solid black;" align="center"><span style="font-size: x-small;">{!salesRep.Email}</span></td>
+        <td style="border-collapse: collapse; text-align: center; border: thin solid black;" align="center"><span style="font-size: x-small;">{!quote.SBQQ__DeliveryMethod__c}</span></td>
+        <td style="border-collapse: collapse; text-align: center; border: thin solid black;" align="center"><span style="font-size: x-small;">{!quote.SBQQ__PaymentTerms__c}</span></td>
+    </tr>
+    </tbody>
+</table>
+<!-- Introduction -->
+<p>&#160;</p>
+<p><span style="font-size: x-small;"><strong>{!template.SBQQ__IntroductionTitle__c}</strong> </span><br /><span style="font-size: x-small;"> {!quote.SBQQ__Introduction__c}</span></p>

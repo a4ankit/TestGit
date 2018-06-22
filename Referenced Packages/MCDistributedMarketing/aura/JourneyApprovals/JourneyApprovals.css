@@ -1,0 +1,56 @@
+.THIS {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.THIS .no-access .slds-text-heading_large,
+.THIS .no-access .slds-text-heading_small {
+    line-height: 1.5;
+}
+
+/* fixes a 1px offset between the approve/reject button group and the "Peronalize Messages" button */
+.THIS .personalize-messages { vertical-align: baseline; }
+
+.THIS .slds-table_bordered { border-top-style: none; }
+
+.THIS .approval-members__container {
+    position: relative;
+    height: calc(100% - 93px - 0.75rem); /* .slds-page-header + .slds-m-top_small */
+    overflow: auto;
+    background-color: t(colorBackgroundAlt);
+}
+
+.THIS .approval-members__footer {
+    position: relative;
+    min-height: 60px;
+}
+
+/* Centers the footer message without using flexbox due to issues with nested
+flexboxes in IE11. Remove and replace with 'slds-align_absolute-center'
+ when support for IE11 is up */
+.THIS .approval-members__footer__message {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* copied from .slds-assistive-text */
+.THIS .select-all-checkbox .slds-form-element__label {
+    position: absolute !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.THIS .mcdm_15JourneyApprovalsEmailPreview { padding-bottom: 0.75rem; }
+
+/* Fixes an issue in IE11 where flex children are miss-aligned when their parent
+is a flex item itself that is right-aligned. */
+.THIS .right-aligned-media { width: 100%; }

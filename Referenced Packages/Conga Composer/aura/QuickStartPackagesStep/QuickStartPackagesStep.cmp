@@ -1,0 +1,87 @@
+<aura:component controller="APXTConga4.QuickStartPackagesStepController">
+<ltng:require scripts="{!$Resource.APXTConga4__MixPanelLibrary}" />
+<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+
+<aura:attribute name="theme" type="String" />  
+<aura:attribute name="remoteSiteList" type="String" />
+<aura:attribute name="remoteSiteListString" type="String" />
+<aura:attribute name="VFServerURL" type="String" />
+<aura:attribute name="MyDomainNameSpaceVFServerBaseURL" type="String" />
+<aura:attribute name="SFServerBaseURL" type="String" />
+<aura:attribute name="solutionToUnpack" type="String" />
+<aura:attribute name="solutionName" type="String" />
+<aura:attribute name="masterObject" type="String" />
+<aura:attribute name="inVFPage" type="String" />
+<aura:attribute name="showSpinner" type="Boolean" default="false" />
+
+<aura:handler name="stepEvent" event="APXTConga4:StepEvent" action="{!c.captureRemoteSiteSettingsEvent}" />
+
+<div class="slds-box slds-m-around--large slds-text-align--center slds-is-relative"> 
+	<div class="slds-border--bottom slds-m-bottom--small slds-p-bottom--small">
+		<span class="slds-text-heading--large">Quick Start</span>
+	</div>
+	<div>
+   <div class="slds-p-top--medium slds-p-bottom--medium">
+		<span class="slds-text-heading--medium ">Select a pre-built solution best suited for your needs. 
+      <aura:if isTrue="{!v.showSpinner}">
+        <APXTConga4:Spinner />
+      </aura:if> 
+    </span>
+  </div>
+	</div>
+<APXTConga4:Toast aura:id="toastComponent" showOnEvent="true" title="{!$Label.apxtconga4.Toast_Title}" />
+<div class=" slds-p-top--medium">
+  <div class="slds-grid slds-grid--align-center slds-wrap slds-grid--pull-padded" >
+    <div id="CongaSP_Account_Brief_QS" title="Account" class="slds-p-horizontal--large slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3" onclick="{! c.selectSolution }" style="cursor: pointer; width: 550px;">
+    <div class="slds-box slds-box--small slds-theme--default slds-p-around--large slds-m-horizontal--large" style="background-color: white;">
+  
+      <div class="slds-grid">
+        <div class="slds-p-around--small slds-border--right"><lightning:icon iconName="doctype:word" size="large" alternativeText="Word Template"/></div>
+        <div class="slds-p-left--small slds-text-align--left"><div class="slds-text-heading--medium slds-p-bottom--xx-small" style="color: MediumBlue;">Account Brief</div>{!$Label.apxtconga4.Account_Brief_Description}</div>
+      </div>
+
+    </div>
+  </div>
+  <div id="CongaSP_Client_Letter_QS" title="Contact" class="slds-p-horizontal--large slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3" onclick="{! c.selectSolution }" style="cursor: pointer; width: 550px;">
+    <div class="slds-box slds-box--small slds-theme--default slds-p-around--large slds-m-horizontal--large" style="background-color: white;">
+ 
+      <div class="slds-grid">
+        <div class="slds-p-around--small slds-border--right"><lightning:icon iconName="doctype:word" size="large" alternativeText="Word Template"/></div>
+        <div class="slds-p-left--small slds-text-align--left"><div class="slds-text-heading--medium slds-p-bottom--xx-small" style="color: MediumBlue;">Client Letter</div>{!$Label.apxtconga4.Client_Letter_Description}</div>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+</div>
+<div class="slds-container--fluid slds-p-top--medium">
+  <div class="slds-grid slds-grid--align-center slds-wrap slds-grid--pull-padded">
+<div id="CongaSP_Proposal_QS" title="Opportunity" class="slds-p-horizontal--large slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3" onclick="{! c.selectSolution }" style="cursor: pointer; width: 550px;">
+    <div class="slds-box slds-box--small slds-theme--default slds-p-around--large slds-m-horizontal--large" style="background-color: white;">
+ 
+      <div class="slds-grid">
+        <div class="slds-p-around--small slds-border--right"><lightning:icon iconName="doctype:word" size="large" alternativeText="Word Template"/></div>
+        <div class="slds-p-left--small slds-text-align--left"><div class="slds-text-heading--medium slds-p-bottom--xx-small" style="color: MediumBlue;">Sales Proposal</div>{!$Label.apxtconga4.Sales_Proposal_Description}</div>
+      </div>
+
+    </div>
+  </div>
+<div id="CongaSP_Sales_Quote_QS" title="Quote" class="slds-p-horizontal--large slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3" onclick="{! c.selectSolution }" style="cursor: pointer; width: 550px;">
+    <div class="slds-box slds-box--small slds-theme--default slds-p-around--large slds-m-horizontal--large" style="background-color: white;">
+ 
+      <div class="slds-grid">
+        <div class="slds-p-around--small slds-border--right"><lightning:icon iconName="doctype:excel" size="large" alternativeText="Word Template"/></div>
+        <div class="slds-p-left--small slds-text-align--left"><div class="slds-text-heading--medium slds-p-bottom--xx-small" style="color: MediumBlue;">Sales Quote</div>{!$Label.apxtconga4.Sales_Quote_Description}</div>
+      </div>
+
+    </div>
+  </div>
+  
+  </div>
+
+</div>
+</div>
+<APXTConga4:RemoteSiteSettingsModal aura:id="remoteSiteSettingsModal" remoteSiteList="{!v.remoteSiteListString}" VFServerURL="{!v.VFServerURL}" MyDomainNameSpaceVFServerBaseURL="{!v.MyDomainNameSpaceVFServerBaseURL}" SFServerBaseURL="{!v.SFServerBaseURL}" />
+</aura:component>

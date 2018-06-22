@@ -1,0 +1,13 @@
+.THIS .wrapper { position: relative; }
+
+.THIS .uiInputTextForAutocomplete { padding-right: 2.5rem; }
+
+.THIS .uiInputTextForAutocomplete::-ms-clear { display: none; } /* Gets rid of built in 'x' icon in IE */
+
+.THIS .icon-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: t(squareIconLargeBoundary);
+    height: calc(1.875rem + 2px); /* t(heightInput) + 2px. Height of the containing input; not sure why they added 2px */
+}

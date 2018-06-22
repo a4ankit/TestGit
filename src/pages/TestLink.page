@@ -1,0 +1,20 @@
+<apex:page >
+    <apex:form >
+        <apex:pageBlock > 
+            
+            <h1> You are being redirected to another page</h1>
+            
+            <script>
+            window.open('https://dev.churnpredictor.traderinteractive.com','_blank');
+            
+            function redirect()
+            {
+                window.location.href='/home/home.jsp'; 
+            }
+            
+            window.onload = window.setTimeout(redirect());
+            
+            </script>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

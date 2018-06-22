@@ -1,0 +1,28 @@
+<aura:component description="Allows a user to personalize default send settings">
+
+    <aura:attribute name="defaultSettings" type="Object" required="true" description="Reference to the object that contains the send settings" />
+    <aura:attribute name="greetings" type="Object[]" description="Greeting Select Objects" />
+    <aura:attribute name="savedGreeting" type="String" description="The greeting value that was last saved" />
+
+    <aura:registerEvent name="personalizationChanged" type="mcdm_15:JourneyApprovalsPersonalizationChanged" />
+
+    <aura:method name="applyChanges" action="{!c.applyChanges}" description="Applies any changes made to the referenced members array"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <div>
+        <lightning:select label="{!$Label.mcdm_15.greetingOptionSelectLabel}"
+            aura:id="greetingSelect"
+            onchange="{!c.handleInputChanged}"
+            name="greetingOption"
+        >
+            <aura:iteration items="{!v.greetings}" var="greeting">
+                <option value="{!greeting.value}">{!greeting.label}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+</aura:component>

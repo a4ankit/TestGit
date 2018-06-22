@@ -1,0 +1,55 @@
+<aura:component extends="APXTConga4:BaseModal" controller="APXTConga4.attachmentController">
+  	<aura:attribute name="fileToUpload" type="String" />
+  	<aura:attribute name="dataFileToUpload" type="Object" />
+	<aura:handler name="change" value="{!v.isModalVisible}" action="{!c.onModalToggle}"/>
+	<aura:set attribute="header" value="Upload Template" />
+	<aura:set attribute="acceptLabel" value="Save" />
+	<aura:registerEvent name="addTemplateEvent" type="APXTConga4:CongaEvent" />
+	<aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+    <aura:registerEvent name="spinnerEvent" type="APXTConga4:SpinnerEvent" />
+	<aura:method name="saveModal" action="{!c.saveModal}" description="Show the modal" />
+	
+	<fieldset class="slds-form--compound">
+  		<div class="slds-form-element__group">
+    		<div class="slds-form-element__row">
+      			<div class="slds-form-element slds-size--1-of-2">
+              <lightning:input aura:id="templateName" name="templateName" label="Name" required="true" messageWhenPatternMismatch="Letters, numbers, spaces, and underscores only" pattern="^[a-zA-Z0-9_]+([a-zA-Z0-9_\s]+)*$" maxlength="80" messageWhenTooLong="80 characters maximum" />
+      			</div>
+      			<div class="slds-form-element slds-size--1-of-2">
+      			</div>
+    		</div>
+    		<div class="slds-form-element__row">
+      			<div class="slds-form-element slds-size--1-of-2">
+        			<lightning:input aura:id="templateGroup" name="templateGroup" label="Template Group" messageWhenPatternMismatch="Letters, numbers, and underscores only" pattern="^[a-zA-Z0-9_]*$" maxlength="80" messageWhenTooLong="80 characters maximum" />
+      			</div>
+      			<div class="slds-form-element slds-size--1-of-2">
+            </div>
+    		</div>
+    		<div class="slds-form-element__row">
+    			<div class="slds-form-element">
+    				<lightning:input aura:id="templateDescription" name="templateDescription" label="Description" maxlength="255" messageWhenBadInput="Description contains bad text" messageWhenTooLong="255 characters maximum" />
+    			</div>
+    		</div>
+    		<div class="slds-form-element__row">
+    			<div class="slds-form-element">
+			  		<span class="slds-form-element__label" id="file-selector-id">Attachment</span>
+				  	<div class="slds-form-element__control">
+				    	<div class="slds-file-selector slds-file-selector--files">
+				      		<div class="slds-file-selector__dropzone" ondragover="{!c.onDragOver}" ondrop="{!c.onDrop}">
+				        		<input aura:id="file" type="file" class="slds-file-selector__input slds-assistive-text" accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.csv,.pdf" id="file-upload-input-01" aria-describedby="file-selector-id" onchange="{!c.filesAdded}" />
+				        		<label class="slds-file-selector__body" for="file-upload-input-01">
+				          			<span class="slds-file-selector__button slds-button slds-button--neutral">
+			            				<lightning:icon class="slds-button__icon--left" size="xx-small" iconName="utility:upload"/>Upload Files
+			            			</span>
+				          			<span class="slds-file-selector__text slds-medium-show">or Drop Files</span>
+				        		</label>
+				      		</div>
+				    	</div>
+              &nbsp;{!v.fileToUpload}
+			  		</div>
+				</div>
+    		</div>
+  		</div>
+	</fieldset>
+	
+</aura:component>

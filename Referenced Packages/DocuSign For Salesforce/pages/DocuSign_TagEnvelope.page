@@ -1,0 +1,50 @@
+<apex:page standardController="dsfs__DocuSign_Envelope__c"
+           Extensions="dsfs.DocuSignEnvelopeController" sidebar="false"
+           tabStyle="dsfs__DocuSign_Status__c" action="{!SetTagFrameUrl}">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+    <apex:includeScript value="{!$Resource.dsfs__modernizrjs}"/>
+    <apex:includeScript value="{!$Resource.dsfs__html5shivjs}"/>
+    <script type="text/javascript">
+        jQuery.noConflict();
+        jQuery(document).ready(function ($) {
+            if (!Modernizr.svg) {
+                $('.dsLogo').attr('src', '{!$Resource.dsfs__DocuSignPNG}');
+            }
+            resizeTagger();
+        });
+
+        function resizeTagger() {
+            if (!{!isLightningEnabled}) document.getElementById('taggerIFrame').height = window.innerHeight - 220;
+        }
+
+        (function () { //this wrapper prevents pollution of the global scope
+            var windowOnresize = window.onresize;
+            window.onresize = function () {
+                if (windowOnresize) windowOnresize(); //don't trample the handler; intercept it
+                resizeTagger();
+            };
+        }());
+    </script>
+    <apex:form >
+        <table cellpadding="0" cellspacing="0" style="padding-bottom: 5px">
+            <tr>
+                <td style="vertical-align: top">
+                    <img class="dsLogo" src="{!$Resource.dsfs__DocuSign}" title="{!$Label.dsfs__docusigninc}."/>
+                </td>
+                <td style="vertical-align: top; padding-left: 5px">
+                    <h1>
+                        <apex:outputText value="{!mySource}"/>
+                    </h1>
+                    <br/>{!$Label.Envelope}:&nbsp;
+                    <apex:outputField value="{!DSEnvelope.name}"/>
+                </td>
+            </tr>
+        </table>
+        <iframe id="taggerIFrame"
+                name="taggerIFrame"
+                src="{!TaggerUrl}?DSEnvGUID={!MyEnvGUID}&DSEID={!MyDSEID}&SourceID={!MyStartingPageObjectID}&NW={!NewWindow}"
+                height="{!IF(isLightningEnabled, '95%', '')}"
+                width="100%"
+                style="{!IF(isLightningEnabled,'position: absolute;','')}"></iframe>
+    </apex:form>
+</apex:page>

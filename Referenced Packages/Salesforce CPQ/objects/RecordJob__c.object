@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>RecordJobHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Maps records to the Apex Jobs it initiates</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <fields>
+        <fullName>IsRead__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If true the user has been alerted of the record job&apos;s finished status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked the user has been alerted of the record job&apos;s finished status.</inlineHelpText>
+        <label>Is Read</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JobDetails__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The details of the background job performed if no job id was specified.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The details of the background job performed if no job id was specified.</inlineHelpText>
+        <label>Job Details</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>JobId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Apex Job Id</description>
+        <externalId>false</externalId>
+        <label>Job Id</label>
+        <length>90</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>JobStatus__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The status of the background job performed if no job id was specified.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The status of the background job performed if no job id was specified.</inlineHelpText>
+        <label>Job Status</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RecordId__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>The unique key for this record, comprised of the parent record Id and the type of job</description>
+        <externalId>false</externalId>
+        <label>Record Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>RedirectUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Url to redirect to once the job finishes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Url to redirect to once the job finishes.</inlineHelpText>
+        <label>Redirect URL</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Stacktrace__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The stacktrace for the error that caused the record job to fail.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The stacktrace of the background job performed if no job id was specified.</inlineHelpText>
+        <label>Stacktrace</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>Record Job</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>RecordId__c</columns>
+        <columns>JobId__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>JOB{00000000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Record Jobs</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

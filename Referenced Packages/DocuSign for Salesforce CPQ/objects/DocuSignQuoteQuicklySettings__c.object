@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AccountID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of DocuSign account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of DocuSign account</inlineHelpText>
+        <label>Account ID</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BatchSize__c</fullName>
+        <defaultValue>5</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Size of batches in which documents are processed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Size of batches in which documents are processed.</inlineHelpText>
+        <label>Batch Size</label>
+        <precision>1</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Endpoint__c</fullName>
+        <defaultValue>&apos;https://www.docusign.net/v2&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Endpoint</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <label>DocuSign for Salesforce CPQ Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

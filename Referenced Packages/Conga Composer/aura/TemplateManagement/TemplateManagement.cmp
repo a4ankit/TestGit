@@ -1,0 +1,51 @@
+<aura:component controller="APXTConga4.TemplateManagementController" extends="BaseStep">
+	<aura:attribute name="showSpinner" type="Boolean" default="false" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="templateMaxReached" type="Boolean" default="false" />
+	<aura:attribute name="templatesToAdd" type="String[]" />
+	<aura:handler name="addTemplateEvent" event="APXTConga4:CongaEvent" action="{!c.captureAddTemplateEvent}" />
+	<aura:handler name="spinnerEvent" event="APXTConga4:SpinnerEvent" action="{!c.captureSpinnerEvent}" />
+	<aura:handler name="templateDeleteEvent" event="APXTConga4:CongaEvent" action="{!c.captureTemplateDeleteEvent}" />
+	<aura:handler name="tableLoadedEvent" event="APXTConga4:CongaEvent" action="{!c.captureTableLoadedEvent}" />
+	<aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+	<aura:registerEvent name="templateBuilderEvent" type="APXTConga4:SolutionEvent"/>
+	<aura:set attribute="showNav" value="false" />
+	<aura:if isTrue="{!v.showSpinner}">
+		<APXTConga4:Spinner />
+	</aura:if>
+	<div>
+		<div class="slds-p-bottom_small slds-border_bottom">
+			<h2 class="slds-align-middle slds-text-heading_medium normalweight">{!$Label.apxtconga4.Templates_Header}</h2>
+		</div>
+		<div class="slds-grid slds-grid_pull-padded">
+			<div
+				class="slds-p-vertical_small slds-p-left_small slds-p-right_x-large slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-border_right">
+				<div class="slds-m-bottom_large">{!$Label.apxtconga4.Template_Description}<a href="https://support.getconga.com/Conga_Composer/Building_Composer_Solutions/Using_Solution_Manager/Creating_Composer_Buttons_with_Solution_Manager/10_Adding_File_Templates" target="_blank" class="slds-p-left--xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></div >
+				<div class="slds-m-bottom--x-large">
+					<APXTConga4:SearchAndSelectTemplates aura:id="searchAndSelectTemplates" disabled="{!v.templateMaxReached}"/>
+				</div>
+				<div class="slds-grid slds-wrap slds-grid_align-center">
+					<div class="slds-col slds-p-bottom_small slds-grow-none">
+						<lightning:button aura:id="createTemplate" class="slds-align_absolute-center templateButton" disabled="{!v.templateMaxReached}" onclick="{!c.createTemplateClick}" label="{!$Label.apxtconga4.Create_New_Template_Button_Text}" />
+					</div>
+					<div class="slds-col slds-p-horizontal_small slds-grow-none">
+						<lightning:button aura:id="uploadTemplate" class="slds-align_absolute-center templateButton" disabled="{!v.templateMaxReached}" onclick="{!c.uploadTemplateClick}" label="{!$Label.apxtconga4.Upload_New_Template_Button_Text}" />
+					</div>
+				</div>
+			</div>
+			<div class="slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12">
+				<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-m-right_small slds-border_bottom sectionheader">
+					<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.Templates_Table_Section_Header}</h2>
+				</div>
+				<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">{!$Label.apxtconga4.Templates_Table_Section_Description}</div>
+				<div class="slds-p-right_medium slds-p-bottom_medium slds-p-left_x-large">
+					<APXTConga4:LightningTableTemplates aura:id="lightningTableTemplates" headers=",Name,Template Group,Description,Last Modified" solutionId="{!v.solutionId}" />
+				</div>
+				<div class="slds-float_right slds-p-horizontal_medium">
+					<lightning:button variant="brand" label="Add to Solution" onclick="{!c.saveTemplates }" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<APXTConga4:UploadTemplateModal aura:id="uploadTemplateModal" solutionId="{!v.solutionId}" />
+</aura:component>

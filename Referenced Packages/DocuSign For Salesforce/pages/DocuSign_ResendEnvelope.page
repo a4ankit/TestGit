@@ -1,0 +1,40 @@
+<apex:page standardController="dsfs__DocuSign_Status__c"
+	Extensions="dsfs.DocuSignResendEnvelopeController"
+	tabStyle="dsfs__DocuSign_Status__c" id="DocuSignResendEnvelopePage"
+	action="{!ResendDocuSignEmails}">
+	<apex:sectionHeader title="{!$Label.dsfs__resendemails}"
+		id="PageTitleHeader" />
+	<apex:form id="theForm">
+		<apex:pageBlock title="{!$Label.dsfs__resendemailscomplete}"
+			id="thePageBlock" mode="Edit" tabStyle="DocuSign_Status__c">
+			<apex:pageMessages />
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.dsfs__return}" action="{!DSReturnToSource}" />
+			</apex:pageBlockButtons>
+			<apex:pageBlockTable value="{!RecipientResultStatusList}" var="item"
+				rendered="{!HasRecipientResultStatus}">
+				<apex:column value="{!item.EnvelopeId}">
+					<apex:facet name="header">{!$Label.dsfs__dsenvelope}</apex:facet>
+				</apex:column>
+				<apex:column value="{!item.UserName}">
+					<apex:facet name="header">{!$Label.dsfs__dsrecipientname}</apex:facet>
+				</apex:column>
+				<apex:column value="{!item.Email}">
+					<apex:facet name="header">{!$Label.dsfs__dsrecipientemail}</apex:facet>
+				</apex:column>
+				<apex:column value="{!item.Status}">
+					<apex:facet name="header">{!$Label.dsfs__dsresendresult}</apex:facet>
+				</apex:column>
+			</apex:pageBlockTable>
+			<apex:pageBlockTable value="{!EnvelopeErrorResultList}" var="item2"
+				rendered="{!HasEnvelopeErrorResult}">
+				<apex:column value="{!item2.EnvelopeId}">
+					<apex:facet name="header">{!$Label.dsfs__dsenvelope}</apex:facet>
+				</apex:column>
+				<apex:column value="{!item2.Status}">
+					<apex:facet name="header">{!$Label.dsfs__dsstatusresult}</apex:facet>
+				</apex:column>
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

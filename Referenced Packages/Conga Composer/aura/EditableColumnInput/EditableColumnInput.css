@@ -1,0 +1,9 @@
+.THIS .popoverBody{
+	padding:.25rem;
+}
+
+.THIS .popoverPanel{
+	top:0;
+	left:0;
+	width:21.25em;
+}

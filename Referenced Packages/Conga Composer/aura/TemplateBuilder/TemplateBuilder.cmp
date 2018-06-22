@@ -1,0 +1,27 @@
+<aura:component controller="APXTConga4.attachmentController" extends="APXTConga4:BaseStep">
+	<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+	<aura:attribute name="base64String" type="String" />
+	<aura:attribute name="fileType" type="String" default="" />
+	<aura:attribute name="isTemplateUploaded" type="Boolean" default="false" />
+	<aura:attribute name="masterObject" type="String" />
+	<aura:attribute name="showSpinner" type="Boolean" default="false" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="templateId" type="String" />
+	<aura:attribute name="templateMergeFieldArr" type="Object[]" />
+	<aura:handler name="insertTextEvent" event="APXTConga4:CongaEvent" action="{!c.handleSaveDocReplacements}" />
+	<aura:handler name="templateUploadEvent" event="APXTConga4:CongaEvent" action="{!c.handleTemplateUpload}" />
+	<aura:set attribute="showNav" value="false" />
+	<aura:if isTrue="{!v.showSpinner}">
+		<APXTConga4:Spinner /> 
+	</aura:if>
+	<div class="slds-p-bottom_small slds-border_bottom">
+		<h2 class="slds-align-middle slds-text-heading_medium normalweight">{!$Label.apxtconga4.Template_Builder_Header}</h2>
+	</div>
+	<div class="slds-grid slds-m-top_small slds-m-bottom_small slds-wrap">
+		<div class="slds-col slds-size_11-of-12">{!$Label.apxtconga4.Template_Builder_Description}<a href="https://support.getconga.com/Conga_Composer/Creating_Composer_Templates/Merged_Fields" target="_blank" class="slds-p-left--xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></div>
+     	<div class="slds-col slds-size_1-of-12">
+     		<lightning:button variant="brand" class="slds-float_right" label="Save" onclick="{!c.handleFinishedAddTemplates}" disabled="{!!v.isTemplateUploaded}" />
+     	</div>
+    </div>
+	<APXTConga4:TemplateBuilderComponent aura:id="TemplateBuilder" base64String="{!v.base64String}" fileType="{!v.fileType}" masterObject="{!v.masterObject}" masterObjectLabel="{!v.masterObjectLabel}" solutionId="{!v.solutionId}" templateMergeFieldArr="{!v.templateMergeFieldArr}" />
+</aura:component>

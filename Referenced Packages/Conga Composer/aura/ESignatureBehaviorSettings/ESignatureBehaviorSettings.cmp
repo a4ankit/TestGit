@@ -1,0 +1,49 @@
+<aura:component controller="APXTConga4.ESignatureBehaviorController" extends="APXTConga4:BaseStep">
+	<aura:attribute name="isAdobeSignSelected" type="Boolean" />
+	<aura:attribute name="isDocuSignSelected" type="Boolean" />
+	<aura:attribute name="isOffSelected" type="Boolean" />
+	<aura:attribute name="isSertifiSelected" type="Boolean" />
+	<aura:attribute name="signatureForm" type="Aura.Component[]" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:handler name="change" value="{!v.isOffSelected}" action="{!c.handleOffSelected}" />
+	<aura:handler name="change" value="{!v.isDocuSignSelected}" action="{!c.handleDocuSignSelected}" />
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:registerEvent name="behaviorSaveComplete" type="APXTConga4:CongaEvent" />
+    <aura:set attribute="showNav" value="false" />
+	<div class="slds-panel slds-clearfix">
+    	<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-has-divider_bottom-space">
+			<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.eSignature_Settings_Header}</h2>
+		</div>
+    	<div data-reactroot="" class="slds-form slds-form_stacked  slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">
+	        <p class="slds-m-bottom--large">{!$Label.apxtconga4.ESignature_Description}<a href="https://support.getconga.com/Conga_Composer/Customizing_Composer_with_Parameters" target="_blank" class="slds-p-left--xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></p>
+	  	    <div class="slds-p-bottom_large slds-align_absolute-center">	
+	   			<fieldset class="slds-form-element">
+		  			<div class="slds-form-element__control">
+			    		<div class="slds-radio_button-group">
+							<span class="slds-button slds-radio_button">
+			        			<input name="eSignatureOptions" type="radio" id="off" value="off" onclick="{!c.handleSignatureSelect}" checked="{!v.isOffSelected ? 'checked' : ''}" />
+			        			<label class="slds-radio_button__label" for="off">
+			          				<span class="slds-radio_faux">{!$Label.apxtconga4.Off_Label}</span>
+			        			</label>
+			      			</span>
+			      			<span class="slds-button slds-radio_button">
+			        			<input name="eSignatureOptions" type="radio" id="docuSign" value="docuSign" onclick="{!c.handleSignatureSelect}" checked="{!v.isDocuSignSelected ? 'checked' : ''}" />
+			        			<label class="slds-radio_button__label" for="docuSign">
+			          				<span class="slds-radio_faux">{!$Label.apxtconga4.DocuSign_Label}</span>
+			        			</label>
+			      			</span>
+		    			</div>
+			  		</div>
+				</fieldset>
+	    	</div>
+   		</div>
+		<div data-reactroot="" class="slds-form slds-form_stacked">
+			{!v.signatureForm}
+			<aura:if isTrue="{!v.isOffSelected}">
+				<div class="slds-form-element slds-float_right slds-p-top_medium">
+					<lightning:button class="slds-m-right_large" variant="brand" label="Save" onclick="{!c.handleSave}"/>
+				</div>
+			</aura:if>
+		</div>
+	</div>
+</aura:component>

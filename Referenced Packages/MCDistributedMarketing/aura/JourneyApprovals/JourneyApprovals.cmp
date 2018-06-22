@@ -1,0 +1,189 @@
+<aura:component controller="mcdm_15.JourneyApprovalsAdapter" description="Encapsulates personalization of Campaign Members and approval for Journeys">
+    <aura:attribute name="campaignId" type="String" required="true" description="The associated Campaign record ID"/>
+    <aura:attribute name="journeyId" type="String" required="true" description="The associated MarketingCloudJourney__x record ID"/>
+    <aura:attribute name="eventEntryKey" type="String" required="true" description="The Journey event entry key"/>
+    <aura:attribute name="objectBreadcrumbDetails" type="Object" required="true" description="The data needed for breadcrumbs from the Object"/>
+    <aura:attribute name="maxApprovals" type="Integer" default="98" description="The maximum number of approvals that can be processed"/>
+
+    <aura:attribute name="loading" type="Boolean" access="private" default="true" description="Flag to control loading/activity state for the Component"/>
+    <aura:attribute name="pendingMembers" type="Object[]" access="private" description="The Array of pending campaign members for the journey"/>
+    <aura:attribute name="approvedMembers" type="Object[]" access="private" default="[]" description="Members marked for approval"/>
+    <aura:attribute name="rejectedMembers" type="Object[]" access="private" default="[]" description="Members marked for rejection"/>
+    <aura:attribute name="selectedMembers" type="Object[]" access="private" default="[]" description="The currently selected campaign members"/>
+    <aura:attribute name="totalMemberCount" type="Integer" access="private" default="0" description="The total number of pending members available"/>
+    <aura:attribute name="approvalsEnabled" type="Boolean" access="private" default="false" description="Does this component do anything?"/>
+    <aura:attribute name="selectAllChecked" type="Boolean" access="private" default="false" description="The checked state for the 'select all' checkbox"/>
+    <aura:attribute name="checkboxDisabled" type="Boolean" access="private" default="false" description="The initial checked state for mcdm_15:JourneyApproval checkboxes"/>
+    <aura:attribute name="detailsTabBody" type="Aura.Component[]" access="private" description="The dynamically inserted details tab component"/>
+    <aura:attribute name="permissions" type="Map" default="{}" access="private" description="A map of Distributed Marketing permission sets for the current user"/>
+
+    <aura:handler name="select" event="ui:menuSelect" action="{!c.approveRejectSelected}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/journey.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:PluginSettingsService aura:id="pluginSettingsService"/>
+    <mcdm_15:PermissionSetService aura:id="permissionSetService"/>
+
+    <aura:if isTrue="{!v.approvalsEnabled}">
+        <mcdm_15:JourneyApprovalDataProvider aura:id="dataProvider"
+            maxResults="2000"
+            pageSize="50"
+            campaignId="{#v.campaignId}"
+            onchange="{!c.handleMembersLoaded}"/>
+    </aura:if>
+
+    <div>
+        <div class="slds-page-header slds-page-header_joined">
+            <div class="slds-grid">
+                <!-- Breadcrumbs -->
+                <div class="slds-col slds-has-flexi-truncate">
+                    <nav role="navigation" aria-label="{!$Label.mcdm_15.breadcrumbs}">
+                        <ol class="slds-breadcrumb slds-list_horizontal">
+                            <li class="slds-breadcrumb__item slds-text-title_caps">
+                                <a href="javascript:void(0);" onclick="{!c.navigateToCampaign}">{!v.objectBreadcrumbDetails.pluralLabel}</a>
+                            </li>
+                            <li class="slds-breadcrumb__item slds-text-title_caps">
+                                <a href="javascript:void(0);" onclick="{!c.navigateToCampaignRecord}">{!v.objectBreadcrumbDetails.recordName}</a>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="slds-page-header__title" title="{!$Label.mcdm_15.pendingApprovalsHeader}">
+                        {!$Label.mcdm_15.pendingApprovalsHeader}
+                    </h1>
+                        <p class="{!'slds-m-top_small slds-text-body_small' + (!v.permissions.isStandard || v.loading || !v.pendingMembers.length ? ' slds-hide' : '')}">
+                        {!format($Label.mcdm_15.pendingMembersCounts, v.pendingMembers.length, v.totalMemberCount)}
+                        <span class="{!!v.selectedMembers.length ? 'slds-hide' : ''}">
+                            • {!format(v.selectedMembers.length == 1 ? $Label.mcdm_15.selectedMember : $Label.mcdm_15.selectedMembers, v.selectedMembers.length)}
+                        </span>
+                    </p>
+                </div>
+                <div class="{!'actions slds-col slds-m-left_small slds-no-flex' + (!v.permissions.isStandard || v.loading ? ' slds-hide' : '')}">
+                    <div class="slds-grid slds-grid_vertical slds-grid_vertical-align-end">
+                        <div>
+                            <span class="slds-text-body_small slds-m-right_medium">
+                                {!format($Label.mcdm_15.nApproved, v.approvedMembers.length)} • {!format($Label.mcdm_15.nRejected, v.rejectedMembers.length)}
+                            </span>
+                            <lightning:button variant="brand"
+                                disabled="{!v.approvedMembers.length > v.maxApprovals || v.approvedMembers.length + v.rejectedMembers.length &lt;= 0}"
+                                label="{!$Label.mcdm_15.submitMembers}"
+                                onclick="{!c.doProcessApprovals}"
+                            />
+                        </div>
+                        <div class="slds-m-top_x-small">
+                            <mcdm_15:ApproveRejectButtonGroup class="slds-m-right_x-small"
+                                disabled="{!!v.selectedMembers.length}"
+                            />
+                            <lightning:button class="personalize-messages"
+                                disabled="{!empty(v.selectedMembers)}"
+                                label="{!$Label.mcdm_15.personalizeMessages}"
+                                onclick="{!c.handlePersonalizeMessages}"
+                            />
+                        </div>
+                        <div class="{!'right-aligned-media slds-media slds-m-top_small' + (v.approvedMembers.length >  v.maxApprovals ? '' : ' slds-hide')}">
+                            <div class="slds-media__figure">
+                                <lightning:icon iconName="utility:warning" size="x-small"/>
+                            </div>
+                            <div class="slds-media__body">
+                                {!format($Label.mcdm_15.tooManyApprovals, v.maxApprovals)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aura:id="approvalMembersContainer" class="approval-members__container">
+            <lightning:spinner alternativeText="{!$Label.mcdm_15.loading}"
+                variant="brand"
+                size="large"
+                class="{!(v.loading ? '' : 'slds-hide')}"
+            />
+
+            <div class="{!'slds-text-align_center slds-m-around_medium' + (!v.permissions.isStandard || v.pendingMembers.length gt 0 || v.loading ? ' slds-hide' : '')}">
+                <div class="slds-text-heading_large">{!$Label.mcdm_15.noPendingMembersHeading}</div>
+                <p>{!$Label.mcdm_15.noPendingMembersBody}</p>
+            </div>
+
+            <div class="{!'no-access slds-text-color_weak slds-text-align_center slds-m-around_medium' + (v.permissions.isStandard || v.loading ? ' slds-hide' : '')}">
+                <img
+                    src="{!$Resource.mcdm_15__StaticAssets + '/images/illustration-insufficient-privileges.png'}"
+                    alt="{!$Label.mcdm_15.insufficientPrivilegesTitle}"
+                    class="slds-m-vertical_xx-large"
+                />
+                <div class="slds-text-heading_large">{!$Label.mcdm_15.insufficientPrivilegesTitle}</div>
+                <p class="slds-text-heading_small">{!$Label.mcdm_15.insufficientPrivilegesMessage}</p>
+            </div>
+
+            <div class="{!v.pendingMembers.length == 0 || !v.permissions.isStandard ? 'slds-hide' : ''}">
+                <table class="slds-table slds-table_bordered slds-table_fixed-layout" role="grid">
+                    <colgroup>
+                        <col style="width:32px"/><!-- ERROR -->
+                        <col style="width:32px"/><!-- CHECKBOX -->
+                        <col/><!-- NAME -->
+                        <col/><!-- STATUS -->
+                        <col/><!-- PERSONALIZATION -->
+                        <col/><!-- GREETING -->
+                    </colgroup>
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col"></th>
+                            <th scope="col">
+                                <lightning:input aura:id="selectAll"
+                                    class="select-all-checkbox"
+                                    type="checkbox"
+                                    label="{!$Label.mcdm_15.selectAllCheckbox}"
+                                    checked="{!v.selectAllChecked}"
+                                    onchange="{!c.selectAllChanged}"
+                                />
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!$Label.mcdm_15.name}">{!$Label.mcdm_15.name}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!$Label.mcdm_15.status}">{!$Label.mcdm_15.status}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!$Label.mcdm_15.personalization}">{!$Label.mcdm_15.personalization}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!$Label.mcdm_15.greeting}">{!$Label.mcdm_15.greeting}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.pendingMembers}" var="member">
+                            <mcdm_15:JourneyApproval aura:id="approvalListItem"
+                                approvalRecord="{!member}"
+                                checkboxDisabled="{#v.checkboxDisabled}"
+                                selectionChanged="{!c.handleSelectionChanged}"
+                            />
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <div aura:id="approvalMembersFooter" class="approval-members__footer slds-theme_shade">
+                    <lightning:spinner aura:id="footerSpinner"
+                        alternativeText="{!$Label.mcdm_15.loading}"
+                        variant="brand"
+                        size="small"/>
+
+                    <div aura:id="footerMessage" class="slds-hide approval-members__footer__message">
+                        <div class="slds-media slds-media_center slds-p-around_small slds-m-bottom_small">
+                            <div class="slds-media__figure">
+                                <lightning:icon iconName="utility:info" size="x-small"/>
+                            </div>
+                            <div class="slds-media__body">
+                                <p>{!$Label.mcdm_15.cannotShowMoreRecords}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

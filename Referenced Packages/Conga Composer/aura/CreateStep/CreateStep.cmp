@@ -1,0 +1,57 @@
+<aura:component controller="APXTConga4.CreateStepController" implements="force:appHostable">
+	<ltng:require scripts="{!$Resource.APXTConga4__MixPanelLibrary}" afterScriptsLoaded="{!c.initMixPanel}" />
+	<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:attribute name="theme" type="String" />
+	<aura:attribute name="inVFPage" type="String" />
+	<APXTConga4:Toast aura:id="toastComponent" showOnEvent="true" title="{!$Label.apxtconga4.Toast_Title}" />
+	<div class="slds-m-around_large">
+		<div class="slds-container_fluid slds-text-align_center ">
+			<div class="slds-box slds-container_fluid slds-text-align_center bgwhite">
+				<div class="slds-border_bottom slds-m-bottom_small slds-p-bottom_small">
+					<span class="slds-text-heading_large">Welcome!</span>
+				</div>
+				<div class="slds-p-top_medium">
+					<span class="slds-text-heading_medium">Conga Composer<sup>&reg;</sup> allows you to create and deliver robust, sophisticated documents with ease. Documents include presentations, reports, and quotes by merging data from any standard or custom object into richly-formatted templates.</span>
+				</div>
+				<br /><br />
+				<div class="slds-grid slds-grid_align-center slds-wrap slds-grid_pull-padded">
+					<div class="slds-box slds-box_small slds-theme_default slds-text-align_center bgwhite container-quick slds-m-horizontal_x-small">
+						<br /><br />
+						<div class="slds-text-heading_large slds-text-color_inverse slds-p-around_x-small bold">Quick Start</div>
+						<div class="white">Pre-Built Solutions to get you up and running quickly.</div>
+						<div class="bold relative btn_container-quick">
+							<lightning:button label="Launch Quick Start" variant="neutral" onclick="{!c.showQuickStart}" />
+						</div>
+					</div>
+					<div class="slds-box slds-box_small slds-theme_default slds-text-align_center bgwhite container-custom slds-m-horizontal_x-small">
+						<br />
+						<div class="slds-text-heading_large slds-text-color_inverse slds-p-around_x-small bold">Document Automation Wizard</div>
+						<div class="white">Follow the easy step-by-step process to create your custom solution.</div>
+						<div class="bold relative btn_container-custom">
+							<lightning:button label="Launch Wizard" variant="neutral" onclick="{!c.showWizard}" />
+						</div>
+					</div>
+				</div>
+				<br />
+			</div>
+			<br />
+			<div class="slds-box slds-container_fluid slds-text-align_center bgwhite">
+				<div class="sslds-box_small">
+					<br /><br />
+					<div class="slds-m-bottom_small">
+						<span class="slds-text-heading_medium">Overview of Conga Composer</span>
+					</div>
+					<div class="slds-p-top_small slds-text-align_center">
+						<iframe src="https://fast.wistia.net/embed/iframe/yfhrwktybd?videoFoam=true" title="Overview of Conga Composer" allowtransparency="true" frameBorder="0" scrolling="no" class="wistia_embed " name="overview_embed" height="85%" width="85%" style="width: 1088px; height:610px;"></iframe>
+					</div>
+					<br />
+					<div class="slds-m-bottom_small slds-p-bottom_small slds-p-right_small">
+						<span class="slds-text-heading_medium">For more information, please visit our support site at<br />
+						<a href="https://support.getconga.com" target="_blank">Support.GetConga.Com</a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>

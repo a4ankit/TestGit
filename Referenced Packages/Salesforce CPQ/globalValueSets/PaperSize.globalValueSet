@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Default</fullName>
+        <default>true</default>
+    </customValue>
+    <customValue>
+        <fullName>Letter</fullName>
+        <default>false</default>
+    </customValue>
+    <customValue>
+        <fullName>Legal</fullName>
+        <default>false</default>
+    </customValue>
+    <customValue>
+        <fullName>A4</fullName>
+        <default>false</default>
+    </customValue>
+    <masterLabel>Paper Size</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

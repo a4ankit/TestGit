@@ -1,0 +1,198 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionCETAdder" id="CETAdderPage">
+	<apex:stylesheet value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-theme-classic-all.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-all.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-library.js')}"/>  
+    
+<script>
+    Ext.onReady(function() {
+        apxtLoader.markReady();                
+        var CETStore = Ext.create('Ext.ux.data.PagingStore', {
+            fields: [ 'Id', 'Name', 'CETName' ],
+            id: 'CETStore',
+            autoLoad: true,
+            pageSize: 15,            
+            data:  Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(CETRecords)}]')) 
+        });
+                
+        var pagingtb = Ext.create('Ext.toolbar.Paging',{
+            store: CETStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                    //this.child('#tbseparator-1019').hide();
+                }
+            },               
+            items: [
+                {
+                    text: '',
+                    icon: '{!JSENCODE($Resource.APXTConga4__RefreshIcon)}',
+                    xtype: 'button',
+                    width: 20,                    
+                    handler: function() {
+                        window.location.reload(true);                                 
+                    }
+                }], 
+            dock: 'bottom'  
+        });
+        
+        var baseGridTitle = Ext.util.Format.htmlEncode('All Available Conga Email Templates');                                    
+        var CETGrid = new Ext.grid.GridPanel({
+            title: baseGridTitle,
+            store: CETStore,                
+            width: 600,
+            maxHeight: 375,
+            autoScroll: false,
+            overFlowX: 'hidden',
+            columnLines: true,                
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e) {                                                     
+                    Ext.get('CETAdderPage:CETAdderForm:inputFieldsBlock:inputFieldsSection:theFields:CETNameSectionItem:CETNameStringBox').dom.value = Ext.util.Format.htmlEncode(grid.getSelectionModel().getStore().getAt(rowIndex).get('CETName'));
+                    Ext.get('CETAdderPage:CETAdderForm:inputFieldsBlock:inputFieldsSection:theFields:CETNameSectionItem:CETNameStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    }).focus(10,'');
+                    Ext.get('CETAdderPage:CETAdderForm:inputFieldsBlock:inputFieldsSection:theFields:CETIdSectionItem:CETIdStringBox').dom.value = Ext.util.Format.htmlEncode(grid.getSelectionModel().getStore().getAt(rowIndex).get('Id'));
+                    Ext.get('CETAdderPage:CETAdderForm:inputFieldsBlock:inputFieldsSection:theFields:CETIdSectionItem:CETIdStringBox').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    });              
+                }
+            },
+            columns: [
+                {
+                    xtype:'actioncolumn',
+                    align: 'center',                        
+                    width: 22,
+                    items: [{
+                        icon: '{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-document-email-24.png')}'  // Use a URL in the icon config                                                        
+                    }]
+                },{
+                    id: 'Name',
+                    header: "Name",
+                    sortable: true,
+                    width: 103,
+                    dataIndex: 'Name',
+                    selType: 'cellmodel'
+                },{
+                    id: 'CETName',
+                    header: "CET Name",
+                    width: 300,
+                    sortable: true,
+                    dataIndex: 'CETName',  
+                    renderer: 'htmlEncode'                       
+                },{
+                    id: 'Id',
+                    header: "ID",
+                    flex: 1,                        
+                    sortable: true,
+                    dataIndex: 'Id'
+                }           
+            ],
+            bbar: pagingtb,
+            renderTo: 'CETAdderPage:CETAdderForm:inputFieldsBlock:inputFieldsSection:EXTTable'            
+        });
+        
+        var searchTextField = Ext.create('Ext.form.field.Text', {
+            fieldLabel: 'CET Name Search',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',            
+            labelWidth: 100,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,
+            enableKeyEvents: true,  
+                listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var userInput = field.getValue();
+                                                                        
+                        var filteredStore = CETGrid.getStore().filterBy(function(record){
+                            if (userInput === ''){
+                                return record;
+                            }
+                            else if (record.get('CETName').toLowerCase().indexOf(userInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);
+                        
+                        if(userInput === '') {
+                            CETGrid.setTitle(baseGridTitle);
+                        } else {
+                            CETGrid.setTitle(Ext.util.Format.htmlEncode('"' + userInput + '" Conga Templates'));                                
+                        }
+                        pagingtb.moveFirst();
+                        pagingtb.doRefresh();                       
+                    },
+                    buffer: 100   
+                }   
+            }                             
+        });
+        CETGrid.getDockedItems()[0].add(searchTextField);
+        Ext.get('textfield-1029-inputEl').highlight("60bb46", { 
+            attr: 'color', 
+            attr: 'backgroundColor', 
+            duration: 3000 
+        }).focus(10,'');                       
+        //Ext.get('textfield-1029-inputEl').focus(10,'');                   
+    });                      
+ 
+</script>    
+    
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution Email Template<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!SMRecordName} Solution</span>        
+            </td>
+        </tr>
+    </table>
+    <!--<apex:outputLink value="/{!Conga_Solution__c.Id}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:outputLink>-->
+    <apex:pageMessages />  
+    
+    <apex:form id="CETAdderForm">
+        <!--<apex:commandLink action="{!save}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:commandLink>-->
+    
+        <apex:pageBlock id="inputFieldsBlock">
+            <apex:pageblockButtons location="top" >
+                <apex:commandButton action="{!returnToSMRecord}" value="Return to Solution Record" />            
+                <apex:commandButton action="{!addCET}" id="CETAdderButton" value="{!IF(IsEdit = true, 'Update Conga Email Template', 'Add Conga Email Template to Solution Record')}"/>
+                <!--<apex:commandButton action="{!editCET}" id="CETUpdateButton" value="Update Conga Email Template" rendered="{!IF(IsEdit = true, true, false)}"/>-->
+            </apex:pageblockButtons>    
+            <apex:pageBlockSection columns="2" id="inputFieldsSection" title="Select A Conga Email Template"> 
+
+                <apex:pageBlockSection columns="1" id="EXTTable">  
+                </apex:pageBlockSection> 
+            
+                <apex:pageBlockSection columns="1" id="theFields">
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the Conga Email Template selected." id="CETNameSectionItem">
+                        <font color="black"><b>Conga Email Template Name</b></font><font color="red" size="3px"><b>|</b></font>                     
+                        <apex:inputText value="{!CETNameString}" id="CETNameStringBox" size="35"/>
+                    </apex:pageBlockSectionItem>                                               
+                    <apex:pageBlockSectionItem helptext="Automatically populated according to the Conga Email Template selected." id="CETIdSectionItem">
+                        <font color="black"><b>Conga Email Template ID</b></font><font color="red" size="3px"><b>|</b></font>                     
+                        <apex:inputText value="{!CETIdString}" id="CETIdStringBox" maxlength="18" size="25"/>
+                    </apex:pageBlockSectionItem>                  
+                    <apex:pageBlockSectionItem helpText="Displays the Conga Email Template Group(s) in use as defined by the CongaEmailTemplateGroup parameter. Add the CongaEmailTemplateGroup parameter prior to selecting a Conga Email Template to use this functionality.">
+                        <b>Conga Email Template Group(s)</b>
+                        <apex:outputText value="{!HTMLENCODE(CETTemplateGroupList)}" escape="false"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem helpText="Enter comments/description. This field will not affect Composer behavior.">                            
+                        <b>Description</b>
+                        <apex:inputTextarea value="{!commentString}" id="commentStringBox" rows="5" cols="30"/>                   
+                    </apex:pageBlockSectionItem>                                                           
+                </apex:pageBlockSection>   
+                <apex:commandButton onclick="window.open('/{!CETPrefix}/e?retURL={!APXTConga4__Conga_Solution__c.Id}','_blank','location=no,resizable=no,toolbar=no,status=no,menubar=no,width=1100,height=800', 1)" value="Create New Conga Email Template Record" title="Click to create a new Conga Email Template record in a new window."/>                                                                                                                                                                                                                                          
+            </apex:pageBlockSection>    
+        </apex:pageBlock>      
+
+    </apex:form>
+    <apex:relatedList list="Conga_Solution_Email_Templates__r" title="Selected Conga Email Template" rendered="{!IF(IsEdit = true, false, true)}"/>    
+    
+</apex:page>

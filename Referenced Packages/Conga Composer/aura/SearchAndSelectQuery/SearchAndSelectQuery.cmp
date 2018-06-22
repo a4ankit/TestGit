@@ -1,0 +1,33 @@
+<aura:component controller="APXTConga4.DataManagementController" extends="BaseStep">
+	<ltng:require scripts="{!$Resource.APXTConga4__LightningUtils}" />
+	<aura:attribute name="items" type="Array" />
+	<aura:attribute name="searchStr" type="String" />
+	<aura:attribute name="searchedItems" type="Array" />
+	<aura:attribute name="showItems" type="Boolean" default="False" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+ 	<aura:registerEvent name="searchResultClickEvent" type="APXTConga4:CongaEvent" />
+	<aura:set attribute="showNav" value="false" />
+	
+ 	<div class="slds-form-element slds-lookup slds-is-open" data-select="single">
+		<div class="slds-form-element slds-m-bottom_medium">
+			<lightning:input type="search" label="" name="searchInput" aura:id="searchInput" placeholder="Search" onchange="{!c.searchKeyChange}" value="{!v.searchStr}" maxlength="80" />
+		</div>
+	 	<div class="{! v.showItems ? 'slds-box searchresultbox' : 'borderless'}">
+	 		<div class="slds-scrollable--y slds-p-right--small">
+	 			<aura:iteration items="{!v.searchedItems}" var="item" indexVar="index">
+	 				<div class="slds-box slds-box--small slds-theme--default searchresultcard" onclick="{!c.searchResultClick}" data-index="{!index}">
+	 					<div class="slds-grid">
+	 						<div class="slds-p-left--small slds-text-title slds-text-align--left">
+	 							<div class="slds-m-bottom--xx-small">
+	 								<span class="searchresulttitle">{!item.Name}</span>
+	 							</div>
+	 							<span class="searchresultdescription">{!item.Description}</span>
+	 						</div>
+	 					</div>
+	 				</div>
+	 				<br />
+	 			</aura:iteration>
+	 		</div>
+	 	</div>
+ 	</div>
+</aura:component>

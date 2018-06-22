@@ -1,0 +1,26 @@
+<aura:component extends="APXTConga4:BaseStep" controller="APXTConga4.EmailBehaviorController">
+	<aura:attribute name="additionalToField" type="String" />
+	<aura:attribute name="bccField" type="String" />
+	<aura:attribute name="ccField" type="String" />
+	<aura:attribute name="showSpinner" type="Boolean" />
+	<aura:attribute name="solutionId" type="String" />
+	<aura:attribute name="toField" type="String" />
+	<aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:registerEvent name="behaviorSaveComplete" type="APXTConga4:CongaEvent" />
+	<aura:set attribute="showNav" value="false" />
+	<div class="slds-panel slds-clearfix">
+		<div class="slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large slds-has-divider_bottom-space">
+			<h2 class="slds-align-middle slds-text-heading_medium boldweight">{!$Label.apxtconga4.Email_Settings_Header}</h2>
+		</div>
+		<div data-reactroot="" class="slds-form slds-form_stacked slds-p-vertical_medium slds-p-right_medium slds-p-left_x-large">
+			<p class="slds-m-bottom--large">{!$Label.apxtconga4.Email_Description}<a href="https://support.getconga.com/Conga_Composer/Customizing_Composer_with_Parameters/Composer_Parameter_Guide/Email_Parameters" target="_blank" class="slds-p-left--xx-small">{!$Label.apxtconga4.Learn_More_Label}</a></p>
+			<lightning:input aura:id="emailToField" type="text" label="{!$Label.apxtconga4.Email_To_Label}" name="emailToId" value="{!v.toField}" />
+			<lightning:input aura:id="additionalField" type="text" label="{!$Label.apxtconga4.Additional_To_Label}" name="emailAdditionalTo" value="{!v.additionalToField}" />
+			<lightning:input aura:id="additionalField" type="text" label="{!$Label.apxtconga4.CC_Label}" name="emailCC" value="{!v.ccField}" />
+			<lightning:input aura:id="additionalField" type="text" label="{!$Label.apxtconga4.BCC_Label}" name="emailBCC" value="{!v.bccField}" />
+			<div class="slds-form-element slds-float_right">
+				<lightning:button aura:id="buttonSave" variant="brand" label="Save" onclick="{!c.handleSave}" />
+			</div>
+		</div>
+	</div>
+</aura:component>

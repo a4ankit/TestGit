@@ -1,0 +1,34 @@
+<aura:component extends="APXTConga4:BaseModal">
+  <aura:set attribute="header" value="One Time Setup" />
+  <aura:set attribute="acceptLabel" value="Yes! Automatically Add Remote Sites" />
+  <aura:attribute name="showDeets" type="Boolean" default="false" />
+  <aura:attribute name="remoteSiteList" type="String" />
+  <aura:attribute name="VFServerURL" type="String" />
+  <aura:attribute name="MyDomainNameSpaceVFServerBaseURL" type="String" />
+  <aura:attribute name="SFServerBaseURL" type="String" />
+  <aura:attribute name="toggleDetailText" type="String" default="Show Details" />
+  <aura:registerEvent name="stepEvent" type="APXTConga4:StepEvent" />
+  <aura:method name="saveModal" action="{!c.saveModal}" description="Show the modal" />
+  
+        <div>
+          <span class="slds-text-heading--small">Composer would like to add remote sites so that we can automatically create your buttons for you. Does that sound awesome or what?</span>
+        </div>
+       
+        <br /><br />
+        <a href="javascript:void(0);" onclick="{!c.toggle}">{!v.toggleDetailText}</a><br />
+        <div class="{!(v.showDeets ? '' : 'slds-hide ') + 'slds-form--compound slds-form-element__row'}">
+          <br />
+          <b>Remote Sites that will be automatically added:</b><br />
+          <ul>
+            <li>{!v.MyDomainNameSpaceVFServerBaseURL}</li>
+            <li>{!v.SFServerBaseURL}</li>
+            <li>{!v.VFServerURL}</li>
+          </ul>
+          <br />
+          <b>Or you can add the remote sites manually:</b><br />
+          {!v.MyDomainNameSpaceVFServerBaseURL}&nbsp;<a href="{! '/0rp/e?SiteName=Conga_VisualForce&amp;EndpointUrl=https://' + v.MyDomainNameSpaceVFServerBaseURL + '&amp;DescriptionField=Click+Save+and+close+this+window.'}" target="_blank">Add this site</a><br />
+          {!v.SFServerBaseURL}&nbsp;<a href="{! '/0rp/e?SiteName=Conga_Front_End&amp;EndpointUrl=https://' + v.SFServerBaseURL + '&amp;DescriptionField=Click+Save+and+close+this+window.'}" target="_blank">Add this site</a><br />
+          {!v.VFServerURL}&nbsp;<a href="{! '/0rp/e?SiteName=Standard_VisualForce&amp;EndpointUrl=https://' + v.VFServerURL + '&amp;DescriptionField=Click+Save+and+close+this+window.'}" target="_blank">Add this site</a><br />
+        </div>
+  
+</aura:component>

@@ -1,0 +1,15 @@
+.THIS .sectionheader > div, .THIS .sectionheader > h2{
+	display:inline-block;
+}
+
+.THIS .boldweight {
+	font-weight: bold;
+}
+
+.THIS .normalweight {
+	font-weight: normal;
+}
+
+.THIS .templateButton {
+	white-space:nowrap;
+}

@@ -1,0 +1,81 @@
+<aura:component controller="SBQQ.SelectContractController" access="global" implements="forceCommunity:availableForAllPageTypes">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:attribute name="title" type="String" access="global" />
+	<aura:attribute name="accountId" type="String" access="global" />
+	<aura:attribute name="nextUrl" type="String" access="global" />
+	<aura:attribute name="returnUrl" type="String" access="global" />
+
+	<aura:attribute name="contracts" type="Contract[]" />
+	<aura:attribute name="selectedContract" type="String" />
+
+	<div class="c-container">
+		<div aura:id="spinner" class="slds-hidden slds-spinner_container">
+			<div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+				<span class="slds-assistive-text">Loading</span>
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+
+		<div aura:id="messages"/>
+		<div class="slds-grid slds-grid--align-spread slds-grid--pull-padded-medium">
+			<div class="slds-p-around--medium slds-col" >
+				<h3>
+					<ui:outputText value="{!v.title}"/>
+				</h3>
+			</div>
+			<div class=" slds-p-around--medium slds-col" >
+				<div class="slds-button-group" role="group">
+					<ui:button class="slds-button slds-button--neutral" label="Select" press="{!c.handleSelect}"/>
+					<ui:button class="slds-button slds-button--neutral" label="Skip" press="{!c.handleSkip}"/>
+					<ui:button class="slds-button slds-button--neutral" label="Cancel" press="{!c.handleCancel}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="slds-grid slds-grid--align-spread ">
+			<div class="slds-grow">
+				<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+					<thead>
+					<tr class="slds-text-title--caps">
+						<th class="slds-cell-shrink" scope="col"></th>
+						<th scope="col">
+							<div class="slds-truncate" title="Status">Status</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Contract Number">Contract Number</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Start Date">Start Date</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="End Date">End Date</div>
+						</th>
+					</tr>
+					</thead>
+					<tbody>
+					<aura:iteration items="{!v.contracts}" var="item">
+						<tr>
+							<td class="slds-cell-shrink" data-label="{!'Select row ' + item.ContractNumber}">
+								<ui:inputRadio name="contracts" text="{!item.Id}" change="{!c.onSelectContract}"/>
+							</td>
+							<th data-label="Status">
+								<div class="slds-truncate" title="{!item.Status}">{!item.Status}</div>
+							</th>
+							<td data-label="Contract Number">
+								<div class="slds-truncate" title="{!item.ContractNumber}">{!item.ContractNumber}</div>
+							</td>
+							<td data-label="Start Date">
+								<div class="slds-truncate" title="{!item.StartDate}">{!item.StartDate}</div>
+							</td>
+							<td data-label="End Date">
+								<div class="slds-truncate" title="{!item.EndDate}">{!item.EndDate}</div>
+							</td>
+						</tr>
+					</aura:iteration>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</aura:component>

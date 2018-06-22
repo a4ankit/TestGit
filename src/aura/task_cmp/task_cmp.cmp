@@ -1,0 +1,41 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!--<aura:attribute name="name" type="String"/>
+    <aura:attribute name="phone" type="Integer"/>
+    <aura:attribute name="email" type="String"/>
+    <aura:attribute name="pincode" type="Integer"/>-->
+    
+    
+    <aura:attribute name="accountList" type="Account[]" default=""/>
+    <aura:attribute name="newAccount" type="Account"/>
+    <fieldset class="slds-box slds-theme--default slds-container--medium">
+        <div class="demo-only" style="width: 95%;">
+            <div class="slds-form slds-form_compound">
+                
+                <legend class="slds-form-element__label slds-text-title_caps">TABLE</legend>
+                <!--<div class="slds-form-element__group">
+                    <div class="slds-form-element__column"> -->
+                <div class="slds-form--stacked">
+                    <div class="slds-form-element slds-size_1-of-1">
+                        <lightning:input name="input1" label="Account Name" aura:id="task" value="{!v.name}" />
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-1">
+                        <lightning:input name="input2" type="Integer" label="Phone" aura:id="task" value="{!v.phone}" />
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-1">
+                        <lightning:input name="input3" type="String" label="Email" aura:id="task" value="{!v.email}" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+    </fieldset>
+    <div class="slds-form-element__row">
+        <lightning:button variant="success" label="Get Table Data" title="Success" onclick="{! c.clickCreateItem }"/>
+    </div>
+    <aura:iteration items="{!v.accountList}" var="acc">
+        Account : {!acc.Id}, {!acc.Name}
+    </aura:iteration>
+</aura:component>

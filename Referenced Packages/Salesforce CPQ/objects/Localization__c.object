@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>LocalizationHelp</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>APIName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API Name of this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API Name of this content.</inlineHelpText>
+        <label>API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>To describe where the text is located</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To describe where the text is located</inlineHelpText>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Label__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This action’s label in the UI.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This action’s label in the UI.</inlineHelpText>
+        <label>Label</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Language__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The language code for this translation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The language code for this translation.</inlineHelpText>
+        <label>Language</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LineColumn__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The line column related to this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The line column related to this content.</inlineHelpText>
+        <label>Line Column</label>
+        <referenceTo>LineColumn__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LongTextArea__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field stores translations for Long Text fields.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field stores translations for Long Text fields.</inlineHelpText>
+        <label>Long Text Area</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>PriceDimension__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Dimension related to this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Dimension related to this content.</inlineHelpText>
+        <label>Price Dimension</label>
+        <referenceTo>Dimension__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductFeature__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The product feature related to this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The product feature related to this content.</inlineHelpText>
+        <label>Product Feature</label>
+        <referenceTo>ProductFeature__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductOption__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The product option that generated this line.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The product option that generated this line.</inlineHelpText>
+        <label>Product Option</label>
+        <referenceTo>ProductOption__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The product related to this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The product related to this content.</inlineHelpText>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QuoteTemplate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The template to use for this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The template to use for this content.</inlineHelpText>
+        <label>Quote Template</label>
+        <referenceTo>QuoteTemplate__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QuoteTerm__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The parent term for this term.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent term for this term.</inlineHelpText>
+        <label>Quote Term</label>
+        <referenceTo>QuoteTerm__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RichTextArea__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field stores translations for Rich Text fields.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field stores translations for Rich Text fields.</inlineHelpText>
+        <label>Rich Text Area</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TemplateContent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The template content to use for this content.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The template content to use for this content.</inlineHelpText>
+        <label>Template Content</label>
+        <referenceTo>TemplateContent__c</referenceTo>
+        <relationshipLabel>Localizations</relationshipLabel>
+        <relationshipName>Localizations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TextArea__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field stores translations for Text Area fields.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field stores translations for Text Area fields.</inlineHelpText>
+        <label>Text Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Text__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field stores translations for Text fields.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field stores translations for Text fields.</inlineHelpText>
+        <label>Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UserDefined__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>To indicate whether this field is user-defined or not.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To indicate whether this field is user-defined or not.</inlineHelpText>
+        <label>User Defined</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Localization</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Language__c</columns>
+        <columns>Label__c</columns>
+        <columns>APIName__c</columns>
+        <columns>QuoteTemplate__c</columns>
+        <columns>LineColumn__c</columns>
+        <columns>Product__c</columns>
+        <columns>ProductOption__c</columns>
+        <columns>ProductFeature__c</columns>
+        <columns>QuoteTerm__c</columns>
+        <columns>Text__c</columns>
+        <columns>TextArea__c</columns>
+        <columns>LongTextArea__c</columns>
+        <columns>RichTextArea__c</columns>
+        <columns>UserDefined__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>L-{00000}</displayFormat>
+        <label>Localization Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Localizations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Language__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Label__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>APIName__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>QuoteTemplate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LineColumn__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Product__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductOption__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductFeature__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>QuoteTerm__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,19 @@
+<aura:component extends="ui:dataProvider"
+    controller="mcdm_15.CampaignMemberDataProviderAdapter"
+    description="Provides campaign member enumeration">
+
+    <aura:attribute name="campaignId" type="String" required="true" description="The id of the targeted campaign" />
+    <aura:attribute name="maxResults" type="Integer" default="5" description="The maximum number of results to return" />
+
+    <aura:handler name="provide" action="{!c.provide}"/>
+
+    <ltng:require scripts="{!join(',',
+            $Resource.mcdm_15__StaticAssets + '/commons.js',
+            $Resource.mcdm_15__StaticAssets + '/messages.js')}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}"
+    />
+
+    <mcdm_15:ClientSideDataProvider aura:id="clientSideDataProvider"
+        maxResults="{!v.maxResults}"
+    />
+</aura:component>

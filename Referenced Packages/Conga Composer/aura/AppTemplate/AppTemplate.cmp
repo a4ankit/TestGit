@@ -1,0 +1,10 @@
+<aura:component isTemplate="true" extends="aura:template">
+    <aura:set attribute="auraPreInitBlock">
+        <auraStorage:init name="actions"
+          persistent="false"
+          secure="true"
+          maxSize="1024"
+          defaultExpiration="900"
+          defaultAutoRefreshInterval="30" />
+    </aura:set>
+</aura:component>

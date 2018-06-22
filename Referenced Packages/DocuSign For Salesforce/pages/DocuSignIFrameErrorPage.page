@@ -1,0 +1,42 @@
+<apex:page standardController="dsfs__DocuSign_Envelope__c"
+	Extensions="dsfs.DocuSignEnvelopeController" tabStyle="dsfs__DocuSign_Status__c"
+	showHeader="false" sidebar="false" standardStylesheets="true"
+	ID="TaggerError">
+
+	<script language="JavaScript" type="text/javascript">
+            function CloseParent()  
+            {  
+                parent.ReturnToStartingPoint();
+                
+            }
+    </script>
+	<h1>{!$Label.ProblemWithTransaction}.</h1>
+	<br />
+	<H3>
+		{!$Label.ContactSupport} <a
+			href="https://support.docusign.com">https://support.docusign.com</a>.
+	</H3>
+	<!-- End Default Content REMOVE THIS -->
+	<apex:form >
+		<apex:pageBlock title="Tagger Error" id="thePageBlock" mode="Edit"
+			tabStyle="DocuSign_Status__c">
+			<apex:pageMessages />
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.dsfs__returnto} {!mySource}"
+					onclick="CloseParent()" />
+			</apex:pageBlockButtons>
+			<apex:actionRegion >
+
+				<apex:pageBlockSection title="{!$Label.dsfs__transctioninfo}" columns="1">
+					<apex:outputLabel value="{!mySource}" />
+				</apex:pageBlockSection>
+
+				<apex:pageBlockSection title="{!$Label.dsfs__envelopeinfo}" columns="1">
+					<apex:outputField value="{!DSEnvelope.name}" />
+					<apex:outputField value="{!DSEnvelope.dsfs__DocuSign_Envelope_ID__c}" />
+				</apex:pageBlockSection>
+			</apex:actionRegion>
+
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

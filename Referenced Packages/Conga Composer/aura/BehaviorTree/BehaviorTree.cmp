@@ -1,0 +1,54 @@
+<aura:component >
+	<aura:attribute name="solutionId" type="String" />
+	<aura:registerEvent name="behaviorSelect" type="APXTConga4:CongaEvent" />
+	<div class="slds-panel">
+		<div data-reactroot="" class="slds-tree_container" role="application">
+			<ul class="slds-tree" role="tree" aria-labelledby="treeheading">
+				<li id="tree0-node0" role="treeitem" aria-level="1" aria-expanded="true">
+					<div class="slds-tree__item slds-m-bottom_xx-small">
+						<h4 class="slds-text-title_caps">{!$Label.apxtconga4.General_Node}</h4>
+					</div>
+					<ul role="group" aria-labelledby="tree0-node1__label">
+						<li id="backgroundModeSettingsNode" aura:id="backgroundModeSettingsNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.Background_Mode_Settings_Node}">{!$Label.apxtconga4.Background_Mode_Settings_Node}</span>
+							</div>
+						</li>
+						<li id="generatedFileSettingsNode" aura:id="generatedFileSettingsNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.Generated_File_Settings_Node}">{!$Label.apxtconga4.Generated_File_Settings_Node}</span>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li id="tree0-node1" role="treeitem" aria-level="1" aria-expanded="true">
+					<div class="slds-tree__item slds-m-top_small slds-m-bottom_xx-small">
+						<h4 class="slds-text-title_caps">{!$Label.apxtconga4.Post_Merge_Distribution_Node}</h4>
+					</div>
+					<ul role="group" aria-labelledby="tree0-node1__label">
+						<li id="activityLoggingNode" aura:id="activityLoggingNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.Activity_Logging_Node}">{!$Label.apxtconga4.Activity_Logging_Node}</span>
+							</div>
+						</li>
+						<li id="emailNode" aura:id="emailNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.Email_Node}">{!$Label.apxtconga4.Email_Node}</span>
+							</div>
+						</li>
+						<li id="eSignatureSettingsNode" aura:id="eSignatureSettingsNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.eSignature_Node}">{!$Label.apxtconga4.eSignature_Node}</span>
+							</div>
+						</li>
+						<li id="saveACopyNode" aura:id="saveACopyNode" role="treeitem" aria-level="2" onclick="{!c.handleClick}">
+							<div class="slds-tree__item">
+								<span class="slds-truncate" title="{!$Label.apxtconga4.Save_A_Copy_Node}">{!$Label.apxtconga4.Save_A_Copy_Node}</span>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</aura:component>

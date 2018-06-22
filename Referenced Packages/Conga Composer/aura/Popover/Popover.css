@@ -1,0 +1,88 @@
+.THIS .conga-hidden {
+	display: none;
+}
+.THIS .bold {
+	font-weight: 700;
+}
+.THIS .hover-hand {
+    cursor: pointer;
+}
+.THIS .conga-hover:active, .THIS .conga-hover:focus, .THIS .conga-hover:hover { 
+	color: #d2232a !important;
+}
+.THIS .sObjectMetadata-tile {
+	background: #fff;
+	margin-right: .5em;
+}
+.THIS .sObjectMetadata-tile:hover {
+	background: #fafaf9;
+}
+.THIS .visible {
+  transition: opacity 300ms;
+  opacity: 1;
+  display: block;
+}
+.THIS .hidden {
+	visibility: hidden !important;
+}
+.THIS .searchInput {
+	border: none;
+	padding: 0;
+}
+.THIS input#inputMergeField {
+	width: 90%;
+}
+.THIS div#inputMergeFieldContainer{
+	text-align: center;
+}
+.THIS section#popover {
+    background: #e0e5ee;
+	border: 0;
+	position: absolute;
+}
+.THIS section#popover div.popover__section {
+	background:#fff;
+	padding: .25em 1em;
+	margin-bottom: .25em;
+}
+.THIS section#popover header.slds-popover__header {
+	background: #54698d;
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+}
+.THIS section#popover div.slds-popover__body {
+    color: rgb(22, 50, 92);
+    max-height: 365px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: .25em;
+}
+.THIS section#popover div.slds-popover__body div.section-maxheight {
+    max-height: 17.5em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+.THIS section#popover footer.slds-popover__footer {
+	background: #e0e5ee;
+	border-bottom-left-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+	padding-top: 0;
+	padding-bottom: .5em;
+}
+.THIS section#popover svg.slds-icon {
+	height: 15px;
+	padding-right: 15px;
+}
+.THIS section#popover p.field-type {
+	font-size: 0.55rem;
+}
+.THIS .insertButton {
+	margin-left: 1em !important;
+}
+.THIS li.slds-breadcrumb__item > a{
+	color: rgb(0, 112, 210);
+}
+.THIS .slds-breadcrumb .slds-list__item:before, .THIS .slds-breadcrumb__item:before {
+	top: -0.1rem;
+}

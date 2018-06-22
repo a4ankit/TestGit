@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Access_Control_Violation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Access Control Violation Warning</shortDescription>
+        <value>You do not have the level of access necessary to perform the operation you requested. Please contact the owner of the Conga Solution record or your administrator if access necessary.</value>
+    </labels>
+    <labels>
+        <fullName>Access_Control_Violation_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Access Control Violation Header Warning</shortDescription>
+        <value>Access control violation</value>
+    </labels>
+    <labels>
+        <fullName>Account_Brief_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account Brief Description</shortDescription>
+        <value>Create account briefs that use the Account Object. Includes pre-built queries and Word templates.</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Days_Followup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Activity Logging</shortDescription>
+        <value>Days to Follow-Up</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Log_After_Merging_Ask</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Log an activity?</shortDescription>
+        <value>Log an activity after merging?</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Logging_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings Activity Logging</shortDescription>
+        <value>Log an event, a task, or an email you sent on the record you launched that was created with Composer.</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Logging_IO_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: Activity Logging Error</shortDescription>
+        <value>Something went wrong with reading or writing your activity log settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Logging_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Activity Logging Node Label</shortDescription>
+        <value>Activity Logging</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Logging_Settings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Activity Logging</shortDescription>
+        <value>Activity Logging</value>
+    </labels>
+    <labels>
+        <fullName>Activity_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Activity Logging</shortDescription>
+        <value>Activity Subject</value>
+    </labels>
+    <labels>
+        <fullName>Add_Recipient</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Add Recipient Label</shortDescription>
+        <value>Add Recipient</value>
+    </labels>
+    <labels>
+        <fullName>Add_Solution_Details_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Add Solution Details Header</shortDescription>
+        <value>Add Solution Details</value>
+    </labels>
+    <labels>
+        <fullName>Additional_To_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Additional To Label</shortDescription>
+        <value>Additional To</value>
+    </labels>
+    <labels>
+        <fullName>Alias_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alias</shortDescription>
+        <value>Alias</value>
+    </labels>
+    <labels>
+        <fullName>Attachment_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Attachment Text</shortDescription>
+        <value>Attachment</value>
+    </labels>
+    <labels>
+        <fullName>Attachment_Warning</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Attachment Warning</shortDescription>
+        <value>Cannot create file. File Name or file data is missing</value>
+    </labels>
+    <labels>
+        <fullName>BCC_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: BCC Label</shortDescription>
+        <value>BCC</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Settings Label</shortDescription>
+        <value>Would you like to enable background mode?</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_DS7_1</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select DS7_1 option</shortDescription>
+        <value>Attach to Notes &amp; Attachments (DS7=1)</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_DS7_17</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select DS7_17 option</shortDescription>
+        <value>DocuSign Auto Delivery (DS7=17)</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_DS7_2</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select DS7_2 option</shortDescription>
+        <value>Email (DS7=2)</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_DS7_3</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select DS7_3 option</shortDescription>
+        <value>Download (DS7=3)</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_DS7_7</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select DS7_7 option</shortDescription>
+        <value>DocuSign (DS7=7)</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Select_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Select Label</shortDescription>
+        <value>Select background mode option</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Settings_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings Background Mode</shortDescription>
+        <value>Background mode allows you to bypass the Composer window and jump into document creation.</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Settings_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for Solution Manager&apos;s Behavior Settings Background Mode</shortDescription>
+        <value>Background Mode</value>
+    </labels>
+    <labels>
+        <fullName>Background_Mode_Settings_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Background Mode Settings Node Label</shortDescription>
+        <value>Background Mode</value>
+    </labels>
+    <labels>
+        <fullName>Behavior_Settings_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings step</shortDescription>
+        <value>Click on the link in the sidebar to set up your behavior settings for your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Behavior_Settings_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header for Solution Manager&apos;s Behavior Settings step</shortDescription>
+        <value>Behavior Settings</value>
+    </labels>
+    <labels>
+        <fullName>Button_Create_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Create Warning</shortDescription>
+        <value>Something went wrong with creating your button. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Button_Page_Layout_Finish_Step</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Page Layout Finish Step</shortDescription>
+        <value>Go to Page Layouts</value>
+    </labels>
+    <labels>
+        <fullName>CC_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: CC Label</shortDescription>
+        <value>CC</value>
+    </labels>
+    <labels>
+        <fullName>Cancel_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel Button Text</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Client_Letter_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Client Letter Description</shortDescription>
+        <value>Create client letters that use the Contact Object. Includes a pre-built Word template.</value>
+    </labels>
+    <labels>
+        <fullName>Convert_To_PDF_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Convert to PDF label</shortDescription>
+        <value>Convert to PDF?</value>
+    </labels>
+    <labels>
+        <fullName>Create_New_Query_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Create New Query Button Text</shortDescription>
+        <value>Create New Query</value>
+    </labels>
+    <labels>
+        <fullName>Create_New_Template_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Create New Template Button Text</shortDescription>
+        <value>Create New Template</value>
+    </labels>
+    <labels>
+        <fullName>Data_Invalid_Alias_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Invalid Alias Error</shortDescription>
+        <value>Aliases are required, must have 3-20 characters, and cannot contain spaces or special characters.</value>
+    </labels>
+    <labels>
+        <fullName>Data_Step_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Description</shortDescription>
+        <value>If your solution requires data related to your {0}, use this step to create and add SOQL queries to access the related content.</value>
+    </labels>
+    <labels>
+        <fullName>Data_Step_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Header</shortDescription>
+        <value>Add Data to a Solution</value>
+    </labels>
+    <labels>
+        <fullName>Data_Step_Table_Section_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Table Section Description</shortDescription>
+        <value>SOQL queries listed below are available for your solution. Add an Alias for each option. Aliases must be unique, include 3-20 characters, and cannot contain spaces or special characters.</value>
+    </labels>
+    <labels>
+        <fullName>Data_Step_Table_Section_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Table Section Header</shortDescription>
+        <value>SOQL Queries</value>
+    </labels>
+    <labels>
+        <fullName>Data_Unique_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Step Unique Alias Error</shortDescription>
+        <value>Each Alias must be unique and include 3-20 characters.</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Recipient</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Delete Recipient Label</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Description_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>DocuSign_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DocuSign is true.</shortDescription>
+        <value>DocuSign</value>
+    </labels>
+    <labels>
+        <fullName>DocuSign_Save_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: DocuSign Behavior Settings Save Error</shortDescription>
+        <value>Something went wrong with saving your DocuSign behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Docusign_Retrieval_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: DocuSign Retrieval Error.</shortDescription>
+        <value>Something went wrong with retrieving DocuSign behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Drop_Files_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Drop Files Text</shortDescription>
+        <value>or Drop Files</value>
+    </labels>
+    <labels>
+        <fullName>ESignature_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings Activity Logging</shortDescription>
+        <value>Add digital signatures related to documents or agreements by using the Recipients Related List object in Salesforce.</value>
+    </labels>
+    <labels>
+        <fullName>Edit_Recipient</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Edit Recipient Label</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Email_Button_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Button Description</shortDescription>
+        <value>HTML Email body populated with data</value>
+    </labels>
+    <labels>
+        <fullName>Email_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings Activity Logging</shortDescription>
+        <value>Generate the desired merge output and attach it directly to an outbound email message or Conga Email Template.</value>
+    </labels>
+    <labels>
+        <fullName>Email_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Email Node Label</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>Email_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: Email Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your email behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Email_Save_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: Email Save Error</shortDescription>
+        <value>Something went wrong with saving your email behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Email_Settings_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: email settings header</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>Email_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Text</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>Email_To_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Email To Label</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>Filename_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Filename label</shortDescription>
+        <value>Filename</value>
+    </labels>
+    <labels>
+        <fullName>Filename_Note_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Filename Note label</shortDescription>
+        <value>Filenames can include letters, numbers, dashes, underscores, and periods. Exclamation points and braces can be used with dynamic text only.</value>
+    </labels>
+    <labels>
+        <fullName>Files_Button_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Files Button Description</shortDescription>
+        <value>Word, Excel, Powerpoint, PDF</value>
+    </labels>
+    <labels>
+        <fullName>Files_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Files Text</shortDescription>
+        <value>Files</value>
+    </labels>
+    <labels>
+        <fullName>Filesettings_Retrieval_Error_Msg</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message shown when there is an error retrieving the users file settings</shortDescription>
+        <value>Something went wrong with retrieving Generated Filed Settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Filesettings_Save_Error_Msg</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message shown when there is an error saving the users file settings</shortDescription>
+        <value>Something went wrong with saving Generated Filed Settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>General_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: General Node Label</shortDescription>
+        <value>General</value>
+    </labels>
+    <labels>
+        <fullName>GenerateFile_Settings_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Generate File settings header</shortDescription>
+        <value>Generated File</value>
+    </labels>
+    <labels>
+        <fullName>Generated_File_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for Solution Manager&apos;s Behavior Settings Generated File</shortDescription>
+        <value>View files that were created and save a copy if needed.</value>
+    </labels>
+    <labels>
+        <fullName>Generated_File_Settings_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Generated File Settings Node Label</shortDescription>
+        <value>Generated File</value>
+    </labels>
+    <labels>
+        <fullName>Insert_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Insert Button Text</shortDescription>
+        <value>Insert</value>
+    </labels>
+    <labels>
+        <fullName>Is_Mandatory_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Is Mandatory label</shortDescription>
+        <value>Is This Mandatory?</value>
+    </labels>
+    <labels>
+        <fullName>Last_Modified_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Last Modified</shortDescription>
+        <value>Last Modified</value>
+    </labels>
+    <labels>
+        <fullName>Learn_More_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Learn more Label</shortDescription>
+        <value>Learn more</value>
+    </labels>
+    <labels>
+        <fullName>Name_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>No_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>No_Recipients</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: No Recipients Label</shortDescription>
+        <value>There are no recipients.</value>
+    </labels>
+    <labels>
+        <fullName>Not_Quite_Sure_Finish_Step_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Not Quite Sure Finish Step Label</shortDescription>
+        <value>Not quite sure how? Let us show you.</value>
+    </labels>
+    <labels>
+        <fullName>Off_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Off</shortDescription>
+        <value>Off</value>
+    </labels>
+    <labels>
+        <fullName>Parameters_Missing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Parameters_Missing</shortDescription>
+        <value>Parameters missing</value>
+    </labels>
+    <labels>
+        <fullName>Post_Merge_Distribution_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Post Merge Distribution Node Label</shortDescription>
+        <value>Post Merge Distribution</value>
+    </labels>
+    <labels>
+        <fullName>Processing_Error_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Processing Error Header Warning</shortDescription>
+        <value>Processing error</value>
+    </labels>
+    <labels>
+        <fullName>Query_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Query Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your queries. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Query_Save_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Query Save Error</shortDescription>
+        <value>Something went wrong with saving your queries. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Object_Warning</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Quote object not enabled.</shortDescription>
+        <value>It appears you do not have the Quote object enabled. The Quote object is required for the Sales Quote Quick Start, please go to Setup &gt; Customize &gt; Quotes &gt; Quotes Settings to enable.</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Address_Recipients</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Address Recipients Label</shortDescription>
+        <value>Address Recipients</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Carbon_Copy</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Carbon Copy Label</shortDescription>
+        <value>Carbon Copy</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Certified_Delivery</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Certified Delivery Label</shortDescription>
+        <value>Certified Delivery</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Id</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Id Label</shortDescription>
+        <value>Id</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Message_Envelope</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Message Envelope Label</shortDescription>
+        <value>Message Envelope</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Role</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Role Label</shortDescription>
+        <value>Role</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Signer</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Signer Label</shortDescription>
+        <value>Signer</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Signing_Order</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Signing Order Label</shortDescription>
+        <value>Signing Order</value>
+    </labels>
+    <labels>
+        <fullName>Recipient_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Recipient Type Label</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>Record_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Record Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your records. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Sales_Proposal_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sales Proposal Description</shortDescription>
+        <value>Create sales proposals that use the Opportunity and Opportunity line items. Includes pre-built Word and email templates.</value>
+    </labels>
+    <labels>
+        <fullName>Sales_Quote_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sales Quote Description</shortDescription>
+        <value>Create sales quotes that use the Quote Object. Includes a pre-built Excel template. * You must have the Quote object enabled for this solution.</value>
+    </labels>
+    <labels>
+        <fullName>Salesforce_Object</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Salesforce_Object</shortDescription>
+        <value>Select a Salesforce Object</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Header Label</shortDescription>
+        <value>Save a Copy</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Node Label</shortDescription>
+        <value>Save a Copy</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save a Copy Select Label</shortDescription>
+        <value>Select a location where you want to save the copied file</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Salesforce_Chatter</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Select Chatter Text</shortDescription>
+        <value>Chatter</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Salesforce_Content</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Select Content Text</shortDescription>
+        <value>Content</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Salesforce_Documents</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Select Documents Text</shortDescription>
+        <value>Documents</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Salesforce_Files</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Select Files Text</shortDescription>
+        <value>Files</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Select_Salesforce_Notes_Attachments</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save A Copy Select Notes &amp; Attachments Text</shortDescription>
+        <value>Notes &amp; Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Save_A_Copy_Toggle_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: Save a Copy Toggle Label</shortDescription>
+        <value>Would you like to save a copy of the file?</value>
+    </labels>
+    <labels>
+        <fullName>Select_Option_None</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select option text value for --None--</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>Solution_Create_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Solution Creation Error</shortDescription>
+        <value>Something went wrong with creating your solution record. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Solution_Detail_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Solutuion Detail Description</shortDescription>
+        <value>Start creating your solution by adding a name and identifying the master object in Salesforce.</value>
+    </labels>
+    <labels>
+        <fullName>Solution_Name_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Solution Name Label</shortDescription>
+        <value>Solution Name</value>
+    </labels>
+    <labels>
+        <fullName>Solution_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Solution Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your solution details. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Template_Builder_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Builder Description</shortDescription>
+        <value>You can insert merge fields and modify text by selecting a word or text area on your document. Merged fields appear the text-based merge field syntax. For example: {{ACCOUNT_NAME}}.</value>
+    </labels>
+    <labels>
+        <fullName>Template_Builder_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Builder Header</shortDescription>
+        <value>Conga Template Editor</value>
+    </labels>
+    <labels>
+        <fullName>Template_Builder_Popover_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Builder Popover Header</shortDescription>
+        <value>Insert Merge Fields</value>
+    </labels>
+    <labels>
+        <fullName>Template_Builder_Popover_Input_Replacement_Text_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Builder Popover Input Replacement Text Label</shortDescription>
+        <value>Enter Replacement Text</value>
+    </labels>
+    <labels>
+        <fullName>Template_Builder_Popover_Input_Search_InputSObjectMetadata_Text_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Builder Popover Input Search InputSObjectMetadata Text Label</shortDescription>
+        <value>Search {0} fields...</value>
+    </labels>
+    <labels>
+        <fullName>Template_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Description</shortDescription>
+        <value>Select the templates you want added to your solution. You can create or upload your own template. You can add up to 10 templates only.</value>
+    </labels>
+    <labels>
+        <fullName>Template_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your templates. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Template_Save_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Save Error</shortDescription>
+        <value>Something went wrong with saving your templates. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Template_Warning</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Template Warning</shortDescription>
+        <value>Cannot add templates. Your solution does not yet exist. Please go to Step 1: Details to create your solution.</value>
+    </labels>
+    <labels>
+        <fullName>Templates_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Templates Step Header</shortDescription>
+        <value>Add Templates to a Solution</value>
+    </labels>
+    <labels>
+        <fullName>Templates_Maximum_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Maximum Templates Message</shortDescription>
+        <value>You have reached the maximum (10) allowable number of templates.</value>
+    </labels>
+    <labels>
+        <fullName>Templates_Table_Section_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Templates Table Section Description</shortDescription>
+        <value>Drag and drop templates to order them.</value>
+    </labels>
+    <labels>
+        <fullName>Templates_Table_Section_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Templates Table Section Header</shortDescription>
+        <value>Templates</value>
+    </labels>
+    <labels>
+        <fullName>Toast_Maximum_Recipients_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast Maximum Recipients Message</shortDescription>
+        <value>You have reached the maximum number of 24 recipients. You will not be able to add additional recipients.</value>
+    </labels>
+    <labels>
+        <fullName>Toast_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast Title</shortDescription>
+        <value>There was an error processing your request.</value>
+    </labels>
+    <labels>
+        <fullName>Upload_Files_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Upload Files Button Text</shortDescription>
+        <value>Upload Files</value>
+    </labels>
+    <labels>
+        <fullName>Upload_New_Template_Button_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Upload New Template Button Text</shortDescription>
+        <value>Upload New Template</value>
+    </labels>
+    <labels>
+        <fullName>Watch_Video_Finish_Step_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Watch Video Finish Step Label</shortDescription>
+        <value>Watch Video</value>
+    </labels>
+    <labels>
+        <fullName>Yes_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>eSignature_Node</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: eSignature Node Label</shortDescription>
+        <value>eSignature</value>
+    </labels>
+    <labels>
+        <fullName>eSignature_Retrieve_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: eSignature Behavior Settings Retrieve Error</shortDescription>
+        <value>Something went wrong with retrieving your eSignature behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>eSignature_Save_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BehaviorSettings: eSignature Behavior Settings Save Error</shortDescription>
+        <value>Something went wrong with saving your eSignature behavior settings. Please refresh the page or rebuild your solution.</value>
+    </labels>
+    <labels>
+        <fullName>eSignature_Settings_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Behavior Settings: eSignature settings header</shortDescription>
+        <value>eSignature</value>
+    </labels>
+</CustomLabels>

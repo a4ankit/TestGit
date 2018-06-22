@@ -1,0 +1,69 @@
+<aura:component implements="force:hasRecordId"
+    controller="mcdm_15.ConnectCampaignAdapter"
+    description="Lightning quick action to allow creation and edit of a Campaign - Journey linkage"
+>
+    <aura:attribute name="campaignJourneyLink" type="Object" description="The existing campaign - journey link"/>
+    <aura:attribute name="hasCampaignMembers" type="Boolean" description="Flag to determine if context Campaign has campaignMembers" default="false"/>
+    <aura:attribute name="journeyId" type="String" description="The journeyId that's linked or about to be linked"/>
+    <aura:attribute name="isApprovalFlow" type="Boolean" description="Does this campaign-journey linkage require an approval flow?" default="true"/>
+    <aura:attribute name="isLoading" type="Boolean" description="Flag to determine if we are currently fetching possible journeys for autoComplete" default="true"/>
+    <aura:attribute name="formDisabledMessage" type="String" description="The string displayed to the user if form editing is disabled"/>
+    <aura:attribute name="hasAccess" type="Boolean" default="false" description="Flag representing if the user is an Admin"/>
+    <aura:attribute name="isEditable" type="Boolean" default="false" description="Flag if form is editable"/>
+    <aura:attribute name="saveButton" type="Aura.Component[]" description="Reference to the save button"/>
+    <aura:attribute name="isParent" type="Boolean" default="false" description="Flag if campaign is a parent to one or more other campaigns"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:method name="saveJourneyLinkage" description="Save the Campaign/Journey linkage">
+        <aura:attribute name="callback" type="Object" description="Called after save is complete"/>
+    </aura:method>
+
+    <aura:dependency resource="markup://force:refreshView" type="EVENT"/>
+
+    <div>
+        <aura:if isTrue="{!v.isEditable}">
+            <div class="{!'slds-text-align_left slds-m-bottom_xx-small' + (v.isLoading ? ' slds-hide' : '')}">
+                <div class="slds-text-heading_small">
+                    {!$Label.mcdm_15.connectCampaignIntroHeader}
+                </div>
+                <div class="slds-text-body_regular">
+                    {!$Label.mcdm_15.connectCampaignChangeJourney}
+                </div>
+                <div class="slds-form_stacked slds-m-vertical_small">
+                    <div class="slds-form-element journey-results__panel">
+                        <div class="slds-form-element__control">
+                            <mcdm_15:Autocomplete aura:id="autoComplete"
+                                placeholder="{!$Label.mcdm_15.searchForMCJourney}"
+                                disabled="{!!v.isEditable}"
+                                labelClass="slds-assistive-text"
+                                label="{!$Label.mcdm_15.journeyLookup}"
+                                selectionChanged="{!c.handleSelectOption}"
+                                allowBlankSearches="false">
+                                    <aura:set attribute="dataProvider">
+                                        <mcdm_15:JourneyDataProvider aura:id="dataProvider"/>
+                                    </aura:set>
+                            </mcdm_15:Autocomplete>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aura:set attribute="else">
+                <div class="{!'form-disabled__message slds-text-align_left' + (v.isLoading ? ' slds-hide' : '')}">
+                    <div class="slds-text-heading_small">{!empty(v.campaignJourneyLink) ? $Label.mcdm_15.connectCampaignPermissionDeniedHeading : $Label.mcdm_15.connectCampaignFormDisabledHeader}</div>
+
+                    <aura:if isTrue="{!(!empty(v.campaignJourneyLink))}">
+                        <div class="slds-text-body_regular">
+                            {!format($Label.mcdm_15.connectCampaignAlreadyConnected, v.campaignJourneyLink.mcdm_15__JourneyName__c)}
+                        </div>
+                    </aura:if>
+
+                    <div class="slds-m-top_xx-small slds-text-body_regular">{!v.formDisabledMessage}</div>
+                </div>
+            </aura:set>
+        </aura:if>
+
+        <lightning:spinner variant="brand" class="{!'campaign-journey-link__loading-indicator' + (v.isLoading ? '' : ' slds-hide')}"/>
+    </div>
+</aura:component>

@@ -1,0 +1,32 @@
+<apex:page standardController="Account" showHeader="true">
+    
+   <apex:form >
+    <apex:pageblock title="Create Account" >
+    <apex:pageBlockSection >
+    <apex:inputField value="{!account.name}"/>
+    <apex:inputField value="{!account.Type}"/>
+    <apex:inputField value="{!account.Phone}"/>
+    <apex:inputField value="{!account.Industry}"/>
+    <apex:inputField value="{!account.Id}"/>
+    <apex:inputField value="{!account.Site}"/>
+    <apex:inputField value="{!account.Website}"/>
+    <apex:inputField value="{!account.AccountNumber}"/>
+    <apex:inputField value="{!account.AccountSource}"/>
+    <apex:inputField value="{!account.Active__c}"/>
+    <apex:inputField value="{!account.Description}"/>
+    <apex:inputField value="{!account.Rating}"/>
+    <apex:inputField value="{!account.Type}"/>
+   
+    
+    </apex:pageBlockSection>
+    
+    <apex:pageBlockButtons >
+     <apex:commandButton action="{!save}" value="Save Account"/>
+    <apex:commandButton action="{!delete}" value="Delete Account"/>
+    </apex:pageBlockButtons>
+    
+    </apex:pageBlock>
+    <apex:detail relatedList="Contacts"/>
+     
+   </apex:form>
+</apex:page>

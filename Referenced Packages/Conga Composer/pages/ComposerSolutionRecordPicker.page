@@ -1,0 +1,208 @@
+<apex:page standardController="APXTConga4__Conga_Solution__c" extensions="APXTConga4.ComposerSolutionSampleRecordPicker" id="CSRecordPickerPage">  
+	<apex:stylesheet value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-theme-classic-all.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'ext-all.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-library.js')}"/>  
+     
+    
+<script>          
+    Ext.onReady(function() {                                                                                  
+        apxtLoader.markReady();        
+        var sampleRecordsStore = Ext.create('Ext.ux.data.PagingStore',{
+            id: 'sampleRStore',
+            fields: [ 'Id', 'Name' ],
+            pageSize: 10,
+            data: Ext.decode(Ext.util.Format.htmlDecode('[{!JSENCODE(SampleRecords)}]'))                        
+        });          
+        
+        var pagingtb = Ext.create('Ext.toolbar.Paging',{
+            store: sampleRecordsStore, 
+            displayInfo: true,
+            listeners: {
+                afterrender: function() {
+                    this.child('#refresh').hide();
+                    this.child('#tbseparator-1019').hide();
+                }
+            },
+            items: [
+                {
+                    text: '',
+                    icon: '{!JSENCODE($Resource.APXTConga4__RefreshIcon)}',
+                    xtype: 'button',
+                    width: 20,
+                    handler: function() {
+                        window.location.reload(true);                                 
+                    }
+                }], 
+            dock: 'bottom'  
+        });
+
+        var baseGridTitle = Ext.util.Format.htmlEncode('Sample {!JSENCODE(APXTConga4__Conga_Solution__c.APXTConga4__Master_Object_Type__c)} Records');
+        var recordGrid = new Ext.grid.GridPanel({
+            title: baseGridTitle,
+            store: sampleRecordsStore,   
+            /*style: 
+            {
+              'font-style':'italic',
+              'font-family':'tahoma',
+              'font-weight':'bold',
+              'size': '12px'
+            },*/                    
+            autoScroll: false,
+            overFlowx: 'hidden',
+            maxHeight: 375,
+            width: 600,
+            columnLines: true,
+            listeners : {
+                itemclick: function(grid, record, item, rowIndex, e) {                             
+                    
+                    Ext.get('CSRecordPickerPage:CSRecordPickerForm:selectionOptions:outerpageBlockSection:fields:inputField:selectedRecordId2').dom.value = Ext.util.Format.htmlEncode(grid.getSelectionModel().getStore().getAt(rowIndex).get('Id').substring(0,15));
+                    Ext.get('CSRecordPickerPage:CSRecordPickerForm:selectionOptions:outerpageBlockSection:fields:inputField:selectedRecordId2').highlight("60bb46", { 
+                        attr: 'color', 
+                        attr: 'backgroundColor', 
+                        duration: 1500 
+                    }).focus(10,'');                
+                }
+            },
+            columns: [
+                {
+                    id: 'Name',
+                    header: Ext.util.Format.htmlDecode('{!JSENCODE(dependentColumnName)}'),
+                    sortable: true,
+                    width: 425,
+                    dataIndex: 'Name',
+                    selType: 'cellmodel',     
+                    renderer: 'htmlEncode'            
+                },{
+                    id: 'Id',
+                    header: "Record ID",
+                    flex: 1,                        
+                    sortable: true,
+                    dataIndex: 'Id',
+                    renderer: Ext.util.Format.substr(0,1)
+                }],        
+            bbar: pagingtb,                                    
+            renderTo: 'CSRecordPickerPage:CSRecordPickerForm:selectionOptions:outerpageBlockSection:EXTTable',    
+        });
+                
+        var searchTextField = Ext.create('Ext.form.field.Text',{            
+            fieldLabel: 'Record Search',
+            //labelStyle:'font-weight:bold;color:#04408c;font-size:11px;',
+            labelStyle:'font-weight:normal;color:black;font-size:11px;',            
+            labelWidth: 100,
+            labelAlign: 'right',
+            labelPad: 7,
+            width: 300,
+            enableKeyEvents: true,                 
+            listeners: {
+                keyup: {
+                    fn: function(field, e){
+                        var userInput = field.getValue();                                               
+                                                                        
+                        var filteredStore = recordGrid.getStore().filterBy(function(record){                        
+                            if (userInput === ''){
+                                return record;
+                            }
+                            else if (record.get('Name').toLowerCase().indexOf(userInput.toLowerCase()) != -1)
+                            {                            
+                                return record;
+                            }
+                        }, this);
+                            
+                        if(userInput === '') {
+                            recordGrid.setTitle(baseGridTitle);
+                        } else {
+                            recordGrid.setTitle(Ext.util.Format.htmlEncode('"' + userInput + '" Records'));                                
+                        }
+                        pagingtb.moveFirst();
+                        pagingtb.doRefresh();
+                    },                        
+                    buffer: 100                    
+                } 
+            }
+        });
+                        
+        recordGrid.getDockedItems()[0].add(searchTextField);
+        Ext.get('textfield-1028-inputEl').highlight("60bb46", { 
+            attr: 'color', 
+            attr: 'backgroundColor', 
+            duration: 3000 
+        }).focus(10,'');   
+    });                                                 
+</script> 
+    
+    <table>
+        <tr>
+            <td>
+                <img src="{!JSENCODE($Resource.APXTConga4__Conga_O_Logo_SM)}" width="32"/>
+            </td>
+            <td>
+                <span style="font-size: .9em;font-weight: bold;color: #4a4a56;padding-left: 1px;">Conga Solution Sample Record<br/></span>
+                <span style="font-size: 1.8em;font-weight: normal;line-height: 1.1em;">{!APXTConga4__Conga_Solution__c.Name} Solution</span>        
+            </td>
+        </tr>
+    </table>
+    <!--<apex:outputLink value="/{!Conga_Solution__c.Id}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:outputLink>-->
+    <apex:pageMessages /> 
+    
+    <apex:form id="CSRecordPickerForm">
+        <!--<apex:commandLink action="{!save}" target="_self"><font size="1px">« Back to Record: {!Conga_Solution__c.Name}</font></apex:commandLink>-->
+		
+		<!-- below ensures Master_object_type field is in the Conga_Solution__c object so that the javascript above can use it -->
+    	<apex:outputText value="{!APXTConga4__Conga_Solution__c.APXTConga4__Master_Object_Type__c}" rendered="false"/>
+    
+        <apex:pageBlock id="selectionOptions">
+            <apex:pageBlockButtons location="top">
+                <!--<apex:commandButton action="{!save}" value="Submit & Return to {!Conga_Solution__c.Name} Record"/>-->                             
+                <apex:commandButton action="{!save}" value="Return to Solution Record" />                  
+                <!--<apex:commandButton action="{!setSampleRecordId}" value="Select Sample Record"/>
+                <apex:commandButton action="{!saveRecord}" value="Submit & Return to Solution Record"/>-->
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="outerpageBlockSection" columns="2" title="Select a Sample Record">
+                
+                <apex:pageBlockSection id="EXTTable">
+                </apex:pageBlockSection>  
+                          
+                <apex:pageBlockSection id="fields" columns="1">
+                    <apex:pageBlockSectionItem helpText="Automatically populated according to the record selected. Alternatively, copy/paste a Record ID into this field." id="inputField">
+                        <b>Sample Record ID</b><font color="red" size="3px"><b>|</b></font>
+                        <apex:inputText value="{!sampleRecordId}" id="selectedRecordId2" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >  
+                        <apex:outputText />
+                        <!--<apex:actionStatus id="myStatus">  
+                            <apex:facet name="start">  
+                                <apex:outputPanel >  
+                                    <apex:commandButton value="Setting Sample Record..." style="width:120px" disabled="true"/>  
+                                    <apex:image value="/img/loading24.gif"/>  
+                                </apex:outputPanel>  
+                            </apex:facet>  
+                            <apex:facet name="stop">  
+                                <apex:outputPanel >  
+                                    <apex:commandButton action="{!setSampleRecordId}" value="Select Sample Record" reRender="myStatus" status="myStatus"/>
+                                </apex:outputPanel>  
+                            </apex:facet>  
+                        </apex:actionStatus>-->
+                        <apex:commandButton action="{!setSampleRecordId}" value="Select Sample Record" title="Click to set the selected record from the table as the test record."/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem id="launcher" rendered="{!IF(JSENCODE(orgTypeString) = 'Professional Edition', false, true)}">
+                        <apex:outputText />
+                        <apex:commandButton onClick="openCMLaunchVFPage()" value="Access Template Builder" title="Click to access the Template Builder. Available after selecting a sample record." disabled="{!IF(OR(APXTConga4__Conga_Solution__c.APXTConga4__Button_Link_API_Name__c = '', APXTConga4__Conga_Solution__c.APXTConga4__Sample_Record_Id__c = ''), true, false)}"/> 
+<!--                   <apex:outputField value="{!Conga_Solution__c.Launch_C8_Formula_Button__c}"/>-->
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText />
+                        <apex:image value="{!JSENCODE($Resource.APXTConga4__TemplateBuilder)}" rendered="{!IF(AND(APXTConga4__Conga_Solution__c.APXTConga4__Button_Link_API_Name__c != '', APXTConga4__Conga_Solution__c.APXTConga4__Sample_Record_Id__c != ''), true, false)}" title="Click Access Template Builder and then go to Template Builder under Tools & Settings."/>
+                    </apex:pageBlockSectionItem>                     
+                </apex:pageBlockSection>            
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+<!-- JS function to open a vf page -->
+    <script Language="JavaScript">
+        function openCMLaunchVFPage() { window.open('{!VFPageLaunchString}', '','scrollbars=yes, menubar=no, height=600, width=800, resizable=yes, toolbar=no, location=no, status=yes'); }
+    </script>      
+           
+    
+</apex:page>

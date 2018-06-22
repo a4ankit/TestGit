@@ -1,0 +1,7 @@
+<aura:interface access="GLOBAL" description="Indicates that a component will receive Campaign Members in scope during Distributed Marketing personalization">
+    <aura:attribute name="personalizationReadyHandler" type="Aura.Action" required="true" description="The Aura Action to be supplied by components that implement this interface"/>
+
+    <aura:method name="messagePersonalizationReady" action="{!v.personalizationReadyHandler}" description="Invoked when the personalization flow begins">
+        <aura:attribute name="members" type="List" required="true" description="The collection of Campaign Members in scope for personalization"/>
+    </aura:method>
+</aura:interface>
